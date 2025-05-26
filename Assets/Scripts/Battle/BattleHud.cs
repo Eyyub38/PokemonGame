@@ -27,6 +27,9 @@ public class BattleHud : MonoBehaviour{
     public Dictionary<ConditionID, Sprite> StatusImages {
         get { return statusImages; }
     }
+    public Image StatusImage {
+        get { return statusImage; }
+    }
     
     public void SetData(Pokemon pokemon){
         _pokemon = pokemon;

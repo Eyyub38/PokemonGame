@@ -109,6 +109,13 @@ public class PartyMemberUI : MonoBehaviour{
             genderIcon.gameObject.SetActive(false);
         }
 
+        if(pokemon.Status != null && battleHud.StatusImages.ContainsKey(pokemon.Status.Id)){
+            this.statusIcon.gameObject.SetActive(true);
+            this.statusIcon.sprite = battleHud.StatusImages[pokemon.Status.Id];
+        } else {
+            this.statusIcon.gameObject.SetActive(false);
+        }
+
         hpBar.SetHP((float)pokemon.HP / (float)pokemon.MaxHp);
 
         if(isSelected){
