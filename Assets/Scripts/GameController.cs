@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 
-public enum GameState{ FreeRoam, Battle}
+public enum GameState{ FreeRoam, Battle, Dialog }
 
 public class GameController : MonoBehaviour{
     GameState state;
@@ -20,12 +20,21 @@ public class GameController : MonoBehaviour{
             playerController.HandleUpdate();
         } else if(state == GameState.Battle){
             battleSystem.HandleUpdate();
+        } else if(state == GameState.Dialog){
+            DialogManager.Instance.HandleUpdate();
         }
     }
 
     void Start(){
         playerController.OnEncountered += StartBattle;
         battleSystem.OnBattleOver += EndBattle;
+
+        DialogManager.Instance.OnShowDialog += () => state = GameState.Dialog;
+        DialogManager.Instance.OnCloseDialog += () =>{
+            if(state == GameState.Dialog){
+                state = GameState.FreeRoam;
+            }
+        };
     }
 
     void EndBattle(bool won){

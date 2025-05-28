@@ -10,9 +10,9 @@ public class Pokemon{
     [SerializeField] Gender gender;
 
 
-    public PokemonBase Base { get { return _base; }}
+    public PokemonBase Base { get{ return _base; }}
     public int Level { get{ return level; } }
-    public Gender Gender { get { return gender; } }
+    public Gender Gender { get{ return gender; } }
 
     public int HP{ get; set; }
     public List<Move> Moves{ get; set; }
