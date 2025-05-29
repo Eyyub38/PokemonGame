@@ -92,7 +92,7 @@ public class Pokemon{
         if(boost >= 0){
             statVal = Mathf.FloorToInt(statVal * boostVal[boost]);
         } else {
-            statVal = Mathf.FloorToInt(statVal / boostVal[boost]);
+            statVal = Mathf.FloorToInt(statVal / boostVal[-boost]);
         }
         return statVal;
     }
