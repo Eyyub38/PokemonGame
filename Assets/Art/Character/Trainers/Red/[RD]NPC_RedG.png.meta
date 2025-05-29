@@ -1,0 +1,546 @@
+fileFormatVersion: 2
+guid: b9eb0677c99ff4249baeec7265848630
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1176112818515233387
+    second: '[RD]NPC_RedG_0'
+  - first:
+      213: -1906119643587807999
+    second: '[RD]NPC_RedG_1'
+  - first:
+      213: -4763919463478437564
+    second: '[RD]NPC_RedG_2'
+  - first:
+      213: -2284297298499033662
+    second: '[RD]NPC_RedG_3'
+  - first:
+      213: -3416441636220137410
+    second: '[RD]NPC_RedG_4'
+  - first:
+      213: -2163730838798731780
+    second: '[RD]NPC_RedG_5'
+  - first:
+      213: 3229045532825802424
+    second: '[RD]NPC_RedG_6'
+  - first:
+      213: 5873205516500079812
+    second: '[RD]NPC_RedG_7'
+  - first:
+      213: 473793346595171099
+    second: '[RD]NPC_RedG_8'
+  - first:
+      213: -3222788487651924703
+    second: '[RD]NPC_RedG_9'
+  - first:
+      213: 4923190805723869021
+    second: '[RD]NPC_RedG_10'
+  - first:
+      213: -5696491206917229954
+    second: '[RD]NPC_RedG_11'
+  - first:
+      213: 4066547898318731187
+    second: '[RD]NPC_RedG_12'
+  - first:
+      213: -8473303163167966660
+    second: '[RD]NPC_RedG_13'
+  - first:
+      213: 8317395863265914462
+    second: '[RD]NPC_RedG_14'
+  - first:
+      213: -148488030995219735
+    second: '[RD]NPC_RedG_15'
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: '[RD]NPC_RedG_0'
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 195
+        width: 40
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6a426b8064625010800000000000000
+      internalID: 1176112818515233387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '[RD]NPC_RedG_1'
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 191
+        width: 40
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 105fd80884a1c85e0800000000000000
+      internalID: -1906119643587807999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '[RD]NPC_RedG_2'
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 195
+        width: 40
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4495cc00d7823edb0800000000000000
+      internalID: -4763919463478437564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '[RD]NPC_RedG_3'
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 191
+        width: 40
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c5a491b5bb8c40e0800000000000000
+      internalID: -2284297298499033662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '[RD]NPC_RedG_4'
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 131
+        width: 46
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e309e35de6c5690d0800000000000000
+      internalID: -3416441636220137410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '[RD]NPC_RedG_5'
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 129
+        width: 46
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf5f7db1442e8f1e0800000000000000
+      internalID: -2163730838798731780
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '[RD]NPC_RedG_6'
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 131
+        width: 46
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b6d4abcdcfdfcc20800000000000000
+      internalID: 3229045532825802424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '[RD]NPC_RedG_7'
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 131
+        width: 46
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c41ad7bc41d18150800000000000000
+      internalID: 5873205516500079812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '[RD]NPC_RedG_8'
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 67
+        width: 46
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1bafb8d980439600800000000000000
+      internalID: 473793346595171099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '[RD]NPC_RedG_9'
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 65
+        width: 46
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 125e94f02fa5643d0800000000000000
+      internalID: -3222788487651924703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '[RD]NPC_RedG_10'
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 67
+        width: 46
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5fe3a024ffa25440800000000000000
+      internalID: 4923190805723869021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '[RD]NPC_RedG_11'
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 67
+        width: 46
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e72ff89bd6ff1f0b0800000000000000
+      internalID: -5696491206917229954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '[RD]NPC_RedG_12'
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 3
+        width: 40
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b7366d94c74f6830800000000000000
+      internalID: 4066547898318731187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '[RD]NPC_RedG_13'
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 1
+        width: 40
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3afd25aaa7c86a80800000000000000
+      internalID: -8473303163167966660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '[RD]NPC_RedG_14'
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 3
+        width: 40
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5ea44e58735d6370800000000000000
+      internalID: 8317395863265914462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: '[RD]NPC_RedG_15'
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 1
+        width: 40
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9eaf12b2ce670fdf0800000000000000
+      internalID: -148488030995219735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      '[RD]NPC_RedG_0': 1176112818515233387
+      '[RD]NPC_RedG_1': -1906119643587807999
+      '[RD]NPC_RedG_10': 4923190805723869021
+      '[RD]NPC_RedG_11': -5696491206917229954
+      '[RD]NPC_RedG_12': 4066547898318731187
+      '[RD]NPC_RedG_13': -8473303163167966660
+      '[RD]NPC_RedG_14': 8317395863265914462
+      '[RD]NPC_RedG_15': -148488030995219735
+      '[RD]NPC_RedG_2': -4763919463478437564
+      '[RD]NPC_RedG_3': -2284297298499033662
+      '[RD]NPC_RedG_4': -3416441636220137410
+      '[RD]NPC_RedG_5': -2163730838798731780
+      '[RD]NPC_RedG_6': 3229045532825802424
+      '[RD]NPC_RedG_7': 5873205516500079812
+      '[RD]NPC_RedG_8': 473793346595171099
+      '[RD]NPC_RedG_9': -3222788487651924703
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,462 @@
+fileFormatVersion: 2
+guid: 4ffa22f8325f9cc4c93ae316857f8f03
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3301064110192349734
+    second: PartyUI_0
+  - first:
+      213: -1008155485431700292
+    second: PartyUI_1
+  - first:
+      213: 3043817427503479040
+    second: PartyUI_2
+  - first:
+      213: -2178134087512423234
+    second: PartyUI_3
+  - first:
+      213: 6806306226221780235
+    second: PartyUI_4
+  - first:
+      213: -5441359676103985948
+    second: PartyUI_5
+  - first:
+      213: 4616688739863449770
+    second: PartyUI_6
+  - first:
+      213: 6450023092234524929
+    second: PartyUI_7
+  - first:
+      213: 4249408048291416305
+    second: PartyUI_8
+  - first:
+      213: 4364697963916840005
+    second: PartyUI_9
+  - first:
+      213: 2791817442184294664
+    second: PartyUI_10
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 72
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PartyUI_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 304
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 5, y: 5, z: 5, w: 5}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6225ec4815cbfcd20800000000000000
+      internalID: 3301064110192349734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PartyUI_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 307
+        width: 347
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 30, y: 0, z: 17, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb46b7c6def4202f0800000000000000
+      internalID: -1008155485431700292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PartyUI_2
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 304
+        width: 268
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 009fc7fc2dfcd3a20800000000000000
+      internalID: 3043817427503479040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PartyUI_3
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 258
+        width: 347
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 30, y: 0, z: 17, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb407a07696b5c1e0800000000000000
+      internalID: -2178134087512423234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PartyUI_4
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 272
+        width: 310
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 39, y: 3, z: 6, w: 3}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0d8a7e837bd47e50800000000000000
+      internalID: 6806306226221780235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PartyUI_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 210
+        width: 347
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 30, y: 0, z: 17, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e4ffa244386c74b0800000000000000
+      internalID: -5441359676103985948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PartyUI_6
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 240
+        width: 261
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa05b1ad2f5c11040800000000000000
+      internalID: 4616688739863449770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PartyUI_7
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 210
+        width: 291
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 28, y: 2, z: 2, w: 2}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10994b524d5138950800000000000000
+      internalID: 6450023092234524929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PartyUI_8
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 147
+        width: 347
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 17, y: 0, z: 30, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f888180b1ee8fa30800000000000000
+      internalID: 4249408048291416305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PartyUI_9
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 10
+        width: 86
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54c422b4ca5829c30800000000000000
+      internalID: 4364697963916840005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PartyUI_10
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 10
+        width: 86
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80172270c278eb620800000000000000
+      internalID: 2791817442184294664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PartyUI_11
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 10
+        width: 86
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8b085b3888c95f4fbc2265322cdb07e
+      internalID: 707289672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PartyUI_12
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 10
+        width: 86
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45884a1e6727a254ab12d4870291c3b7
+      internalID: -644249776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: be7d42c5770c9d84cae4f17bb7cb0757
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      PartyUI_0: 3301064110192349734
+      PartyUI_1: -1008155485431700292
+      PartyUI_10: 2791817442184294664
+      PartyUI_11: 707289672
+      PartyUI_12: -644249776
+      PartyUI_2: 3043817427503479040
+      PartyUI_3: -2178134087512423234
+      PartyUI_4: 6806306226221780235
+      PartyUI_5: -5441359676103985948
+      PartyUI_6: 4616688739863449770
+      PartyUI_7: 6450023092234524929
+      PartyUI_8: 4249408048291416305
+      PartyUI_9: 4364697963916840005
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

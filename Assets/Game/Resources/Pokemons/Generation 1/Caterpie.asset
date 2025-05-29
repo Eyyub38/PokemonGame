@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e17b5636463d23c489f99c873ed40ff6, type: 3}
+  m_Name: Caterpie
+  m_EditorClassIdentifier: 
+  _name: Caterpie
+  description: Its short feet are tipped with suction pads that enable it to tirelessly
+    climb slopes and walls.
+  frontSprite: {fileID: 21300000, guid: 0495fe1ca19da6b42bea0f364335df14, type: 3}
+  backSprite: {fileID: 21300000, guid: 6e9a2e454d5ba734686aef3761203b7e, type: 3}
+  iconSprite: {fileID: -600957054, guid: fbdf3c195147d5b46b69c622d4223998, type: 3}
+  femaleFrontSprite: {fileID: 0}
+  femaleBackSprite: {fileID: 0}
+  hasGenderDifferences: 0
+  maleRatio: 0.5
+  isGenderless: 0
+  type1: 12
+  type2: 0
+  maxHp: 45
+  attack: 30
+  defense: 35
+  spAttack: 20
+  spDefense: 20
+  speed: 45
+  learnableMoves:
+  - moveBase: {fileID: 11400000, guid: fd4ce293205921d46b745d8ff68c6be1, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: 72353876ccbec0941bd1511e241c07c0, type: 2}
+    level: 3
+  - moveBase: {fileID: 11400000, guid: a884d60a0f30ddb4193226b9f423cc5b, type: 2}
+    level: 9

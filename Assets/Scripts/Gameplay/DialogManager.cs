@@ -17,11 +17,11 @@ public class DialogManager : MonoBehaviour{
     bool isTyping = false;
     Dialog dialog;
 
-    public static DialogManager Instance{ get; private set;}
+    public static DialogManager i{ get; private set;}
     public bool IsShowing { get; private set;}
 
     void Awake(){
-        Instance = this;
+        i = this;
     }
 
     public IEnumerator ShowDialog(Dialog dialog, Action onFinished = null){

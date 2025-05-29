@@ -20,7 +20,7 @@ public class NPCController : MonoBehaviour, Interactable{
         if(state == NPCState.Idle){
             state = NPCState.Dialog;
             character.LookTowards(initiator.position);
-            StartCoroutine(DialogManager.Instance.ShowDialog( dialog, () =>{
+            StartCoroutine(DialogManager.i.ShowDialog( dialog, () =>{
                 idleTimer = 0f;
                 state = NPCState.Idle;
             }));
