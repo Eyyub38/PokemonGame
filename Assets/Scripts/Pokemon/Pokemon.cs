@@ -9,7 +9,6 @@ public class Pokemon{
     [SerializeField] int level;
     [SerializeField] Gender gender;
 
-
     public PokemonBase Base { get{ return _base; }}
     public int Level { get{ return level; } }
     public Gender Gender { get{ return gender; } }
@@ -24,7 +23,7 @@ public class Pokemon{
     public int StatusTime{ get; set; }
     public int VolatileStatusTime{ get; set; }
 
-    public Queue<string> StatusChanges { get; private set; } = new Queue<string>();
+    public Queue<string> StatusChanges { get; private set; }
     public bool HpChanged{ get; set; }
 
     public event System.Action OnStatusChanged;
@@ -36,6 +35,13 @@ public class Pokemon{
     public int SpDefense{ get{ return GetStat(Stat.SpDefense);}}
     public int Speed{ get{ return GetStat(Stat.Speed);}}
     
+    public Pokemon(PokemonBase pBase, int pLvl){
+        _base = pBase;
+        level = pLvl;
+
+        Init();
+    }
+
     public void Init(){
         Moves = new List<Move>();
         foreach(var move in Base.LearnableMoves){
@@ -54,6 +60,7 @@ public class Pokemon{
             }
         }
 
+        StatusChanges = new Queue<string>();
         CalculateStats();
         HP = MaxHp;
         ResetStatBoosts();
