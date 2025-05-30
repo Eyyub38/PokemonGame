@@ -2,6 +2,8 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+public enum NPCState{ Idle, Walking, Dialog}
+
 public class NPCController : MonoBehaviour, Interactable{
     [SerializeField] Dialog dialog;
     [SerializeField] List<Vector2> movementPattern;
@@ -53,5 +55,3 @@ public class NPCController : MonoBehaviour, Interactable{
         state = NPCState.Idle;
     }
 }
-
-public enum NPCState{ Idle, Walking, Dialog}

@@ -2,6 +2,9 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+public enum MoveTarget{ Foe, Self}
+public enum MoveCategory{ Physical, Special, Status}
+
 [CreateAssetMenu(fileName = "Move", menuName = "Move/Create new Move")]
 public class MoveBase : ScriptableObject{
     [SerializeField] string _name;
@@ -61,6 +64,4 @@ public class StatBoosts{
     public int boost;
 }
 
-public enum MoveTarget{ Foe, Self}
-public enum MoveCategory{ Physical, Special, Status}
 

@@ -45,7 +45,7 @@ public class PokemonBase : ScriptableObject{
     [SerializeField] GrowthRate growthRate;
 
     //LearnableMoves
-    [SerializeField] List<LearnableMoves> learnableMoves;
+    [SerializeField] List<LearnableMove> learnableMoves;
 
     //Properties
     public string Name{ get{return _name;}}
@@ -69,7 +69,9 @@ public class PokemonBase : ScriptableObject{
     public int SpDefense{ get{return spDefense;}}
     public int CatchRate => catchRate;
     public int XpYield => xpYield;
-    public List<LearnableMoves> LearnableMoves{ get{return learnableMoves;}}
+    public List<LearnableMove> LearnableMoves{ get{return learnableMoves;}}
+
+    public static int MaxNumberOfMoves { get; set; } = 4;
 
     public int GetExpForLevel(int level){
         if(growthRate == GrowthRate.Erratic){
@@ -109,7 +111,7 @@ public class PokemonBase : ScriptableObject{
 }
 
 [System.Serializable]
-public class LearnableMoves{
+public class LearnableMove{
     [SerializeField] MoveBase moveBase;
     [SerializeField] int level;
 

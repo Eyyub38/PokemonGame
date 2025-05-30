@@ -47,30 +47,6 @@ public class PartyMemberUI : MonoBehaviour{
             StopBounceAnimation();
         }
     }
-
-    private void StartBounceAnimation(){
-        StopBounceAnimation();
-
-        pokemonIcon.transform.localPosition = originalIconPosition;
-
-        bounceSequence = DOTween.Sequence();
-        bounceSequence.Append(pokemonIcon.transform.DOLocalMoveY(originalIconPosition.y + bounceHeight, bounceDuration / 2))
-                     .Append(pokemonIcon.transform.DOLocalMoveY(originalIconPosition.y, bounceDuration / 2))
-                     .SetLoops(-1)
-                     .SetEase(Ease.InOutQuad);
-    }
-
-    private void StopBounceAnimation(){
-        if (bounceSequence != null){
-            bounceSequence.Kill();
-            bounceSequence = null;
-        }
-        pokemonIcon.transform.localPosition = originalIconPosition;
-    }
-
-    private void OnDestroy(){
-        StopBounceAnimation();
-    }
     
     public void SetData(Pokemon pokemon){
         _pokemon = pokemon;
@@ -121,5 +97,29 @@ public class PartyMemberUI : MonoBehaviour{
         if(isSelected){
             StartBounceAnimation();
         }
+    }
+
+    private void StartBounceAnimation(){
+        StopBounceAnimation();
+
+        pokemonIcon.transform.localPosition = originalIconPosition;
+
+        bounceSequence = DOTween.Sequence();
+        bounceSequence.Append(pokemonIcon.transform.DOLocalMoveY(originalIconPosition.y + bounceHeight, bounceDuration / 2))
+                     .Append(pokemonIcon.transform.DOLocalMoveY(originalIconPosition.y, bounceDuration / 2))
+                     .SetLoops(-1)
+                     .SetEase(Ease.InOutQuad);
+    }
+
+    private void StopBounceAnimation(){
+        if (bounceSequence != null){
+            bounceSequence.Kill();
+            bounceSequence = null;
+        }
+        pokemonIcon.transform.localPosition = originalIconPosition;
+    }
+
+    private void OnDestroy(){
+        StopBounceAnimation();
     }
 }

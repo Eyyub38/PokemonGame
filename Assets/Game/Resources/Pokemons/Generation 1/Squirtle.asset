@@ -31,12 +31,23 @@ MonoBehaviour:
   spAttack: 50
   spDefense: 64
   speed: 43
+  catchRate: 255
+  xpYield: 0
+  growthRate: 2
   learnableMoves:
   - moveBase: {fileID: 11400000, guid: 72353876ccbec0941bd1511e241c07c0, type: 2}
     level: 1
-  - moveBase: {fileID: 11400000, guid: bf6fb07aa47d15a44a7e8a619815702c, type: 2}
-    level: 5
   - moveBase: {fileID: 11400000, guid: 97b96bef282a5b94eb2f4365a0687b92, type: 2}
+    level: 3
+  - moveBase: {fileID: 11400000, guid: bf6fb07aa47d15a44a7e8a619815702c, type: 2}
+    level: 4
+  - moveBase: {fileID: 11400000, guid: 8d711a5be2053db42824be3f6f85cbc0, type: 2}
+    level: 6
+  - moveBase: {fileID: 11400000, guid: 37bd34ad90a784f4b9f9c4f7eefccac3, type: 2}
     level: 7
+  - moveBase: {fileID: 11400000, guid: cf74b6bdbb45964428daa04f691d041b, type: 2}
+    level: 9
   - moveBase: {fileID: 11400000, guid: e91719678adf9e74bbef0919ed69dd23, type: 2}
     level: 12
+  - moveBase: {fileID: 11400000, guid: a5b3291c4b21cd3459efa0eedf0b2f91, type: 2}
+    level: 15

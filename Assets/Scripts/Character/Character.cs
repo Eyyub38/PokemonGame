@@ -15,6 +15,28 @@ public class Character : MonoBehaviour{
         animator = GetComponent<CharacterAnimator>();    
     }
     
+    public void HandleUpdate(){
+        animator.IsMoving = IsMoving;
+    }
+
+    private bool IsWalkable(Vector3 targetPos){
+        if(Physics2D.OverlapCircle(targetPos, 0.2f, GameLayers.i.SolidObjectsLayer | GameLayers.i.InteractableLayer) != null){
+            return false;
+        }
+        
+        return true;
+    }
+
+    private bool IsPathClear(Vector3 targetPos){
+        var diff = targetPos - transform.position;
+        var dir = diff.normalized;
+
+        if(Physics2D.BoxCast(transform.position + dir, new Vector2(0.2f,0.2f), 0f, dir, diff.magnitude - 1, GameLayers.i.SolidObjectsLayer | GameLayers.i.InteractableLayer | GameLayers.i.PlayerLayer) == true){
+            return false;
+        }
+        return true;
+    }
+    
     public IEnumerator Move(Vector2 moveVector, Action OnMoveOver = null){
         animator.MoveX = Mathf.Clamp(moveVector.x, -1f, 1f);
         animator.MoveY = Mathf.Clamp(moveVector.y, -1f, 1f);
@@ -38,28 +60,6 @@ public class Character : MonoBehaviour{
         IsMoving = false;
 
         OnMoveOver?.Invoke();
-    }
-
-    public void HandleUpdate(){
-        animator.IsMoving = IsMoving;
-    }
-
-    private bool IsWalkable(Vector3 targetPos){
-        if(Physics2D.OverlapCircle(targetPos, 0.2f, GameLayers.i.SolidObjectsLayer | GameLayers.i.InteractableLayer) != null){
-            return false;
-        }
-        
-        return true;
-    }
-
-    private bool IsPathClear(Vector3 targetPos){
-        var diff = targetPos - transform.position;
-        var dir = diff.normalized;
-
-        if(Physics2D.BoxCast(transform.position + dir, new Vector2(0.2f,0.2f), 0f, dir, diff.magnitude - 1, GameLayers.i.SolidObjectsLayer | GameLayers.i.InteractableLayer | GameLayers.i.PlayerLayer) == true){
-            return false;
-        }
-        return true;
     }
 
     public void LookTowards(Vector3 targetPos){

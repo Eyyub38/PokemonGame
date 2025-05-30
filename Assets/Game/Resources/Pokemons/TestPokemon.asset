@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e17b5636463d23c489f99c873ed40ff6, type: 3}
+  m_Name: TestPokemon
+  m_EditorClassIdentifier: 
+  _name: TestPokemon
+  description: This Pokemon just for Test'ing some systems
+  frontSprite: {fileID: 21300000, guid: 173fc35a4d85d10448fdd04d7ac82096, type: 3}
+  backSprite: {fileID: 21300000, guid: 173fc35a4d85d10448fdd04d7ac82096, type: 3}
+  iconSprite: {fileID: 1098523144, guid: 416a56eab8014ae43b31191cca7a8d8b, type: 3}
+  femaleFrontSprite: {fileID: 0}
+  femaleBackSprite: {fileID: 0}
+  hasGenderDifferences: 0
+  maleRatio: 0.5
+  isGenderless: 0
+  type1: 1
+  type2: 12
+  maxHp: 10
+  attack: 10
+  defense: 10
+  spAttack: 10
+  spDefense: 10
+  speed: 10
+  catchRate: 255
+  xpYield: 255
+  growthRate: 0
+  learnableMoves:
+  - moveBase: {fileID: 11400000, guid: e91719678adf9e74bbef0919ed69dd23, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: fd4ce293205921d46b745d8ff68c6be1, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: a884d60a0f30ddb4193226b9f423cc5b, type: 2}
+    level: 3
+  - moveBase: {fileID: 11400000, guid: 72353876ccbec0941bd1511e241c07c0, type: 2}
+    level: 5

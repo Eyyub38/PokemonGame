@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public enum BattleState { Start, ActionSelection, MoveSelection, RunningTurn, PartyScreen, AboutToUse, BattleOver, Busy}
+public enum BattleState { Start, ActionSelection, MoveSelection, RunningTurn, PartyScreen, AboutToUse, MoveToForget, BattleOver, Busy}
 public enum BattleAction { Move, SwitchPokemon, UseItem, Run}
 
 public class BattleSystem : MonoBehaviour{
@@ -16,6 +16,7 @@ public class BattleSystem : MonoBehaviour{
     [SerializeField] Image playerImage;
     [SerializeField] Image trainerImage;
     [SerializeField] GameObject pokeballSprite;
+    [SerializeField] MoveSelectionUI moveSelectionUI; 
 
     BattleState state;
     BattleState? prevState;
@@ -116,6 +117,17 @@ public class BattleSystem : MonoBehaviour{
 
         state = BattleState.AboutToUse;
         dialogBox.gameObject.SetActive(true);
+    }
+
+    IEnumerator ChooseMoveToForget(Pokemon pokemon, MoveBase newMove){
+        state = BattleState.Busy;
+        yield return dialogBox.TypeDialog($"Choose a move you want {pokemon.Base.Name} to forget!");
+        moveSelectionUI.gameObject.SetActive(true);
+
+        moveSelectionUI.SetMoveSelectionBars(pokemon.Moves, newMove);
+        moveSelectionUI.SetMoveDetails(pokemon.Moves[0].Base, newMove);
+
+        state = BattleState.MoveToForget;
     }
 
     void OpenPartyScreen(){
@@ -329,8 +341,11 @@ public class BattleSystem : MonoBehaviour{
             HandlePartySelection();
         } else if(state == BattleState.AboutToUse){
             HandleAboutToUse();
+        } else if(state == BattleState.MoveToForget){
+            moveSelectionUI.HandleMoveSelection(playerUnit);
         }
     }
+    
     void HandleActionSelection(){
         if(Input.GetKeyDown(KeyCode.RightArrow)){
             ++currentAction;
@@ -483,12 +498,28 @@ public class BattleSystem : MonoBehaviour{
                 playerUnit.Hud.SetLevel();
                 yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name} level up to Lvl {playerUnit.Pokemon.Level}!");
 
+                var newMove = playerUnit.Pokemon.GetLearnableMoveAtCurrLevel();
+                if(newMove != null) {
+                    if(playerUnit.Pokemon.Moves.Count < PokemonBase.MaxNumberOfMoves){
+                        playerUnit.Pokemon.LearnMove(newMove);
+                        yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name} learned {newMove.Base.Name}");
+                        dialogBox.SetMoveBars(playerUnit.Pokemon.Moves);
+                    } else {
+                        yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name} trying to learn {newMove.Base.Name}...");
+                        yield return dialogBox.TypeDialog($"But its is already knew {PokemonBase.MaxNumberOfMoves} moves.");
+                        yield return ChooseMoveToForget(playerUnit.Pokemon, newMove.Base);
+                        yield return new WaitUntil(() => state != BattleState.MoveToForget);
+                    }
+                }
+
                 yield return playerUnit.Hud.SetExpSmooth(true);
             }
+            yield return new WaitForSeconds(1f);
         }
 
         CheckForBattleOver(faintedUnit);
     }
+    
     IEnumerator SwitchPokemon(Pokemon newPokemon){
         if (playerUnit.Pokemon.HP > 0){
             yield return dialogBox.TypeDialog($"Come back {playerUnit.Pokemon.Base.Name}!. Thank you for your hard work!");

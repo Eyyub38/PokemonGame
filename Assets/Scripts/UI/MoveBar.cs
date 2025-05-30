@@ -11,4 +11,5 @@ public class MoveBar : MonoBehaviour{
     public Image TypeImage => typeImage;
     public Text NameText => nameText;
     public Text PpText => ppText;
+    public bool Selected { get; set; } = false;
 }

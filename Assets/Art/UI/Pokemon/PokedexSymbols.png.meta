@@ -1,0 +1,784 @@
+fileFormatVersion: 2
+guid: 5dfc41c905b74e540a464e7e769f0951
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7831122004282382910
+    second: PokedexSymbols_0
+  - first:
+      213: -3196875474127120289
+    second: PokedexSymbols_1
+  - first:
+      213: -7494410507006938418
+    second: PokedexSymbols_2
+  - first:
+      213: -7951429758914019548
+    second: PokedexSymbols_3
+  - first:
+      213: 5233655968682428835
+    second: PokedexSymbols_4
+  - first:
+      213: -5885956233819834765
+    second: PokedexSymbols_5
+  - first:
+      213: 7067380731611826576
+    second: PokedexSymbols_6
+  - first:
+      213: -625805730938975585
+    second: PokedexSymbols_7
+  - first:
+      213: -447809145857267868
+    second: PokedexSymbols_8
+  - first:
+      213: -2082957902328541755
+    second: PokedexSymbols_9
+  - first:
+      213: 5693834371742153472
+    second: PokedexSymbols_10
+  - first:
+      213: 2103334273689604365
+    second: PokedexSymbols_11
+  - first:
+      213: 7565385405466687266
+    second: PokedexSymbols_12
+  - first:
+      213: 6697591885015336480
+    second: PokedexSymbols_13
+  - first:
+      213: 3336900535265233635
+    second: PokedexSymbols_14
+  - first:
+      213: 7712463824843891391
+    second: PokedexSymbols_15
+  - first:
+      213: -424503707716397648
+    second: PokedexSymbols_16
+  - first:
+      213: -6843755794858960889
+    second: PokedexSymbols_17
+  - first:
+      213: -3104917856402212420
+    second: PokedexSymbols_18
+  - first:
+      213: -5991902790009306968
+    second: PokedexSymbols_19
+  - first:
+      213: 5493362920688300869
+    second: PokedexSymbols_20
+  - first:
+      213: 7459301266429709366
+    second: PokedexSymbols_21
+  - first:
+      213: 7084420880111847563
+    second: PokedexSymbols_22
+  - first:
+      213: 2367221374702963632
+    second: PokedexSymbols_23
+  - first:
+      213: -8293200000816401571
+    second: PokedexSymbols_24
+  - first:
+      213: -2954472128231240375
+    second: PokedexSymbols_25
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 128
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PokedexSymbols_0
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 267
+        width: 206
+        height: 206
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c5e0063704425390800000000000000
+      internalID: -7831122004282382910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PokedexSymbols_1
+      rect:
+        serializedVersion: 2
+        x: 277
+        y: 473
+        width: 296
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f589e7da1ba62a3d0800000000000000
+      internalID: -3196875474127120289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PokedexSymbols_2
+      rect:
+        serializedVersion: 2
+        x: 647
+        y: 452
+        width: 52
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec275e8d9518ef790800000000000000
+      internalID: -7494410507006938418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PokedexSymbols_3
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 287
+        width: 453
+        height: 142
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 8, y: 8, z: 8, w: 7}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42fb57343c8d6a190800000000000000
+      internalID: -7951429758914019548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PokedexSymbols_4
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 157
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a94be9df5ea1a840800000000000000
+      internalID: 5233655968682428835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PokedexSymbols_5
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 157
+        width: 25
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3763caf8df1e05ea0800000000000000
+      internalID: -5885956233819834765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PokedexSymbols_6
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 157
+        width: 25
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 099c920b451641260800000000000000
+      internalID: 7067380731611826576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PokedexSymbols_7
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 161
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9a8afcd001b057f0800000000000000
+      internalID: -625805730938975585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PokedexSymbols_8
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 162
+        width: 17
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 467a10654ff09c9f0800000000000000
+      internalID: -447809145857267868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PokedexSymbols_9
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 166
+        width: 98
+        height: 98
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 4, y: 4, z: 4, w: 4}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cd4d95e2d8d713e0800000000000000
+      internalID: -2082957902328541755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PokedexSymbols_10
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 133
+        width: 32
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00bb991a130940f40800000000000000
+      internalID: 5693834371742153472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PokedexSymbols_11
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 131
+        width: 32
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d015c23c06b803d10800000000000000
+      internalID: 2103334273689604365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PokedexSymbols_12
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 131
+        width: 32
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22734c171f5adf860800000000000000
+      internalID: 7565385405466687266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PokedexSymbols_13
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 132
+        width: 32
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 026c0e48550a2fc50800000000000000
+      internalID: 6697591885015336480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PokedexSymbols_14
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 133
+        width: 32
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ea8b4f6b5d0f4e20800000000000000
+      internalID: 3336900535265233635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PokedexSymbols_15
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 129
+        width: 32
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb2eede7cfc280b60800000000000000
+      internalID: 7712463824843891391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PokedexSymbols_16
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 104
+        width: 32
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b55abf702cdb1af0800000000000000
+      internalID: -424503707716397648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PokedexSymbols_17
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 105
+        width: 32
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70819e54d581601a0800000000000000
+      internalID: -6843755794858960889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PokedexSymbols_18
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 101
+        width: 32
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb9f06009ad19e4d0800000000000000
+      internalID: -3104917856402212420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PokedexSymbols_19
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 103
+        width: 32
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a0c2d0b82c78dca0800000000000000
+      internalID: -5991902790009306968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PokedexSymbols_20
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 103
+        width: 32
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 543bde5a8785c3c40800000000000000
+      internalID: 5493362920688300869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PokedexSymbols_21
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 103
+        width: 32
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63c0a221bf2c48760800000000000000
+      internalID: 7459301266429709366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PokedexSymbols_23
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 44
+        width: 51
+        height: 50
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bbc1e75c4f0ad020800000000000000
+      internalID: 2367221374702963632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PokedexSymbols_24
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 47
+        width: 61
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d53b11cd982a8ec80800000000000000
+      internalID: -8293200000816401571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PokedexSymbols_25
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 42
+        width: 81
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94d0cf9b04b9ff6d0800000000000000
+      internalID: -2954472128231240375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 89105e51b21103a4d8d924bf2c81a5c9
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      PokedexSymbols_0: -7831122004282382910
+      PokedexSymbols_1: -3196875474127120289
+      PokedexSymbols_10: 5693834371742153472
+      PokedexSymbols_11: 2103334273689604365
+      PokedexSymbols_12: 7565385405466687266
+      PokedexSymbols_13: 6697591885015336480
+      PokedexSymbols_14: 3336900535265233635
+      PokedexSymbols_15: 7712463824843891391
+      PokedexSymbols_16: -424503707716397648
+      PokedexSymbols_17: -6843755794858960889
+      PokedexSymbols_18: -3104917856402212420
+      PokedexSymbols_19: -5991902790009306968
+      PokedexSymbols_2: -7494410507006938418
+      PokedexSymbols_20: 5493362920688300869
+      PokedexSymbols_21: 7459301266429709366
+      PokedexSymbols_22: 7084420880111847563
+      PokedexSymbols_23: 2367221374702963632
+      PokedexSymbols_24: -8293200000816401571
+      PokedexSymbols_25: -2954472128231240375
+      PokedexSymbols_3: -7951429758914019548
+      PokedexSymbols_4: 5233655968682428835
+      PokedexSymbols_5: -5885956233819834765
+      PokedexSymbols_6: 7067380731611826576
+      PokedexSymbols_7: -625805730938975585
+      PokedexSymbols_8: -447809145857267868
+      PokedexSymbols_9: -2082957902328541755
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -3,6 +3,8 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 
+public enum Gender{ None, Male, Female, Genderless}
+
 [System.Serializable]
 public class Pokemon{
     [SerializeField] PokemonBase _base;
@@ -49,7 +51,7 @@ public class Pokemon{
             if(Level >= move.Level){
                 Moves.Add(new Move(move.Base));
             }
-            if(Moves.Count >= 4){
+            if(Moves.Count >= PokemonBase.MaxNumberOfMoves){
                 break;
             }
         }
@@ -121,6 +123,17 @@ public class Pokemon{
         return movesWithPP[r];
     }
 
+    public LearnableMove GetLearnableMoveAtCurrLevel() {
+        return Base.LearnableMoves.Where(x => x.Level == level).FirstOrDefault();
+    }
+
+    public void LearnMove(LearnableMove moveToLearn){
+        if(Moves.Count > PokemonBase.MaxNumberOfMoves) {
+            return;
+        }
+        Moves.Add(new Move(moveToLearn.Base));
+    }
+    
     public void SetStatus(ConditionID conditionID){
         if(Status != null) return;
 
@@ -210,6 +223,7 @@ public class Pokemon{
         }
         return canPerformMove;
     }
+    
     public void OnAfterTurn(){
         Status?.OnAfterTurn?.Invoke(this);
         VolatileStatus?.OnAfterTurn?.Invoke(this);
@@ -226,5 +240,3 @@ public class DamageDetails{
     public float Critical { get; set;}
     public float TypeEffectiveness { get; set;}
 }
-
-public enum Gender{ None, Male, Female, Genderless}

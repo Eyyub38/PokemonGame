@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Collections;
 
+public enum ConditionID{ non, psn, brn, slp, par, frz, fro, tox, confusion}
+
 public class ConditionsDB{
     public static void Init(){
         foreach(var kvp in Conditions){
@@ -12,6 +14,7 @@ public class ConditionsDB{
             condition.Id = conditionId;
         }
     }
+    
     public static Dictionary<ConditionID, Condition> Conditions { get; set; } = new Dictionary<ConditionID, Condition>(){
         { ConditionID.psn,
             new Condition{
@@ -132,7 +135,6 @@ public class ConditionsDB{
             }
         },
     };
-
     public static float GetStatusBonus(Condition condition){
         if(condition == null){
             return 1f;
@@ -145,5 +147,3 @@ public class ConditionsDB{
         return 1f;
     }
 }
-
-public enum ConditionID{ non, psn, brn, slp, par, frz, fro, tox, confusion}

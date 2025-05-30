@@ -22,6 +22,8 @@ public class BattleDialogBox : MonoBehaviour{
 
     [SerializeField] Sprite empty;
 
+    public Sprite Empty => empty;
+
     Color originalColor;
     public void SetDialog(string dialog){
         dialogText.text = dialog;
@@ -39,9 +41,11 @@ public class BattleDialogBox : MonoBehaviour{
     public void EnableDialogText(bool enabled){
         dialogText.enabled = enabled;
     }
+    
     public void EnableActionSelector(bool enabled){
         actionSelector.SetActive(enabled);
     }
+    
     public void EnableMoveSelector(bool enabled){
         moveSelector.SetActive(enabled);
     }
