@@ -39,6 +39,7 @@ public class BattleSystem : MonoBehaviour{
         this.playerParty = playerParty;
         this.wildPokemon = wildPokemon;
 
+        isTrainerBattle = false;
         player = playerParty.GetComponent<PlayerController>();
         StartCoroutine(SetupBattle());
     }
@@ -213,11 +214,7 @@ public class BattleSystem : MonoBehaviour{
             }
 
             if(targetUnit.Pokemon.HP <= 0){
-                yield return dialogBox.TypeDialog($"{targetUnit.Pokemon.Base.Name} fainted");
-                targetUnit.PlayFaintedAnimation();
-                yield return new WaitForSeconds(2f);
-
-                CheckForBattleOver(targetUnit);
+                yield return HandlePokemonFainted(targetUnit);
             }
         } else {
             yield return dialogBox.TypeDialog($"{sourceUnit.Pokemon.Base.Name}'s attack missed!");
@@ -233,11 +230,7 @@ public class BattleSystem : MonoBehaviour{
         yield return sourceUnit.Hud.UpdateHP();
         
         if(sourceUnit.Pokemon.HP <= 0){
-            yield return dialogBox.TypeDialog($"{sourceUnit.Pokemon.Base.Name} fainted");
-            sourceUnit.PlayFaintedAnimation();
-            yield return new WaitForSeconds(2f);
-
-            CheckForBattleOver(sourceUnit);
+            yield return HandlePokemonFainted(sourceUnit);
             yield return new WaitUntil(() => state == BattleState.RunningTurn);
         }
     }
@@ -470,6 +463,32 @@ public class BattleSystem : MonoBehaviour{
         }
     }
 
+    IEnumerator HandlePokemonFainted(BattleUnit faintedUnit){
+        yield return dialogBox.TypeDialog($"{faintedUnit.Pokemon.Base.Name} fainted");
+        faintedUnit.PlayFaintedAnimation();
+        yield return new WaitForSeconds(2f);
+
+        if(!faintedUnit.IsPlayerUnit){
+            int expYield = faintedUnit.Pokemon.Base.XpYield;
+            int enemyLevel = faintedUnit.Pokemon.Level;
+            float trainerBonus = (isTrainerBattle)? 1.5f : 1f;
+
+            int expGain = Mathf.FloorToInt( expYield * enemyLevel * trainerBonus)  / 7;
+            playerUnit.Pokemon.Exp += expGain;
+
+            yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name} gained {expGain} XP from this battle.");
+            yield return playerUnit.Hud.SetExpSmooth();
+
+            while(playerUnit.Pokemon.CheckForLevelUp()) {
+                playerUnit.Hud.SetLevel();
+                yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name} level up to Lvl {playerUnit.Pokemon.Level}!");
+
+                yield return playerUnit.Hud.SetExpSmooth(true);
+            }
+        }
+
+        CheckForBattleOver(faintedUnit);
+    }
     IEnumerator SwitchPokemon(Pokemon newPokemon){
         if (playerUnit.Pokemon.HP > 0){
             yield return dialogBox.TypeDialog($"Come back {playerUnit.Pokemon.Base.Name}!. Thank you for your hard work!");
@@ -538,7 +557,6 @@ public class BattleSystem : MonoBehaviour{
             animator.Play("Idle", 0, 0.25f);
 
         int shakeCount = TryCatchPokemon( enemyUnit.Pokemon);
-        Debug.Log($"{shakeCount}");
         for (int i = 0; i < Mathf.Min( shakeCount, 3); i++) {
             if (animator != null)
                 animator.Play("Shake", 0, 0f);
@@ -575,12 +593,10 @@ public class BattleSystem : MonoBehaviour{
     
     int TryCatchPokemon(Pokemon pokemon){
         float a = ( 3 * pokemon.MaxHp - 2 * pokemon.HP) * pokemon.Base.CatchRate * ConditionsDB.GetStatusBonus(pokemon.Status) / ( 3 * pokemon.MaxHp);
-        Debug.Log($"a = {a}");
         if(a >= 255){
             return 4;
         }
         float b = 1048560 / Mathf.Sqrt(Mathf.Sqrt( 16711680 / a));
-        Debug.Log($"b = {b}");
         int shakeCount = 0;
         while( shakeCount < 4){
             if( UnityEngine.Random.Range( 0, 65535) >= b){

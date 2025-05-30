@@ -14,6 +14,7 @@ public class Pokemon{
     public Gender Gender { get{ return gender; } }
 
     public int HP{ get; set; }
+    public int Exp{ get; set; }
     public List<Move> Moves{ get; set; }
     public Move CurrentMove{ get; set; }
     public Dictionary<Stat, int> Stats{get; private set;}
@@ -60,6 +61,7 @@ public class Pokemon{
             }
         }
 
+        Exp = Base.GetExpForLevel(Level);
         StatusChanges = new Queue<string>();
         CalculateStats();
         HP = MaxHp;
@@ -77,6 +79,14 @@ public class Pokemon{
         Stats.Add(Stat.Speed, Mathf.FloorToInt((Base.Speed * Level) / 100f) + 5);
 
         MaxHp = Mathf.FloorToInt((Base.MaxHp * Level) / 100f) + 10 + Level;
+    }
+
+    public bool CheckForLevelUp(){
+        if(Exp > Base.GetExpForLevel(level + 1)){
+            ++level;
+            return true;
+        }
+        return false;
     }
 
     void ResetStatBoosts(){

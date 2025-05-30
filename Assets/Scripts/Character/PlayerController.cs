@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour{
+    const float offSetY = 0.3f;
+
     [SerializeField] string _name;
     [SerializeField] Sprite battleImage;
 
@@ -54,7 +56,7 @@ public class PlayerController : MonoBehaviour{
     }
 
     private void CheckForEncounters(){
-        if(Physics2D.OverlapCircle(transform.position, 0.2f, GameLayers.i.GrassLayer) != null){
+        if(Physics2D.OverlapCircle(transform.position - new Vector3(0, offSetY), 0.2f, GameLayers.i.GrassLayer) != null){
             if(UnityEngine.Random.Range(1,101) <= 10){
                 character.Animator.IsMoving = false;
                 OnEncountered();

@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum GrowthRate{ Fluctuating ,Slow, MediumSlow, MediumFast, Fast, Erratic}
+
+public enum PokemonType{ None, Normal, Fire, Water, Grass, Electric, Ice, Fighting, Poison, Ground, Flying, Psychic, Bug, Rock, Ghost, Dragon, Dark, Steel, Fairy}
+
+public enum Stat{ Attack, Defense , SpAttack, SpDefense, Speed, Accuracy, Evasion}
+
 [CreateAssetMenu(fileName = "Pokemon", menuName = "Pokemon/Create new Pokemon")]
 public class PokemonBase : ScriptableObject{
     //Name & Description
@@ -35,6 +41,8 @@ public class PokemonBase : ScriptableObject{
     [SerializeField] int speed;
 
     [SerializeField] int catchRate = 255;
+    [SerializeField] int xpYield;
+    [SerializeField] GrowthRate growthRate;
 
     //LearnableMoves
     [SerializeField] List<LearnableMoves> learnableMoves;
@@ -48,10 +56,11 @@ public class PokemonBase : ScriptableObject{
     public Sprite FemaleFrontSprite { get { return femaleFrontSprite; } }
     public Sprite FemaleBackSprite { get { return femaleBackSprite; } }
     public bool HasGenderDifferences { get { return hasGenderDifferences; } }
-    public float MaleRatio { get { return maleRatio; } }
     public bool IsGenderless { get { return isGenderless; } }
+    public float MaleRatio { get { return maleRatio; } }
     public PokemonType Type1{ get{return type1;}}
     public PokemonType Type2{ get{return type2;}}
+    public GrowthRate GrowthRate => growthRate;
     public int MaxHp{ get{return maxHp;}}
     public int Attack{ get{return attack;}}
     public int Defense{ get{return defense;}}
@@ -59,7 +68,44 @@ public class PokemonBase : ScriptableObject{
     public int SpAttack{ get{return spAttack;}}
     public int SpDefense{ get{return spDefense;}}
     public int CatchRate => catchRate;
+    public int XpYield => xpYield;
     public List<LearnableMoves> LearnableMoves{ get{return learnableMoves;}}
+
+    public int GetExpForLevel(int level){
+        if(growthRate == GrowthRate.Erratic){
+            if(level < 50){
+                return Mathf.FloorToInt(( level * level * level ) * ( 100 - level ) / 50);
+            } else if(level >= 50 && level < 68){
+                return Mathf.FloorToInt(( level * level * level ) * ( 150 - level ) / 100);
+            } else if(level >= 68 && level < 98){
+                return Mathf.FloorToInt(( level * level * level ) * (( 1911 - level ) / 3) / 500);
+            } else {
+                return Mathf.FloorToInt(( level * level * level ) * ( 160 - level ) / 100);
+            }
+
+        } else if(growthRate == GrowthRate.Fast){
+            return Mathf.FloorToInt(4 * (level * level * level) / 5);
+
+        } else if(growthRate == GrowthRate.MediumFast){
+            return (level * level * level);
+
+        } else if(growthRate == GrowthRate.MediumSlow){
+            return Mathf.FloorToInt((6 / 5) *( level * level * level ) - 15 * (level * level) + 100 * level - 140 );
+        } else if(growthRate == GrowthRate.Slow){
+
+            return Mathf.FloorToInt( 5 * (level * level * level) / 4 );
+
+        } else if(growthRate == GrowthRate.Fluctuating){
+            if(level < 15){
+                return Mathf.FloorToInt((( level * level * level ) * (( level + 1 ) / 3) + 24)/ 50);
+            } else if(level >= 15 && level < 36){
+                return Mathf.FloorToInt(( level * level * level ) * ( level + 14 ) / 50);
+            } else {
+                return Mathf.FloorToInt(( level * level * level ) * (( level / 2 ) + 32) / 50);
+            }
+        }
+        return -1;
+    }
 }
 
 [System.Serializable]
@@ -104,7 +150,3 @@ public class TypeChart{
         return chart[row][column];
     }
 }
-
-public enum PokemonType{ None, Normal, Fire, Water, Grass, Electric, Ice, Fighting, Poison, Ground, Flying, Psychic, Bug, Rock, Ghost, Dragon, Dark, Steel, Fairy}
-
-public enum Stat{ Attack, Defense , SpAttack, SpDefense, Speed, Accuracy, Evasion}
