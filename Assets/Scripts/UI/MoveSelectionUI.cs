@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
@@ -24,9 +25,10 @@ public class MoveSelectionUI : MonoBehaviour{
     [SerializeField] List<Sprite> typeBarSprites = new List<Sprite>();
     [SerializeField] Sprite empty;
     
-    int selectedMember = 0;
+    int currentSelection = 0;
     Color originalColor;
     MoveBase newMove;
+
     
     public void SetMoveSelectionBars(List<Move> moves, MoveBase newMove) {
         this.newMove = newMove;
@@ -86,14 +88,12 @@ public class MoveSelectionUI : MonoBehaviour{
         currDetails.gameObject.SetActive(true);
         SetCategories(currMove, currCatagoryImage);
         currPowerText.text = currMove.Power.ToString();
-        Debug.Log($"{currAccurText.text}");
         currNameText.text = currMove.Name;
         currAccurText.text = currMove.Accuracy.ToString();
         currDescriptionText.text = currMove.Description;
 
         SetCategories(newMove, newCatagoryImage);
         newPowerText.text = newMove.Power.ToString();
-        Debug.Log($"{newAccurText.text}");
         newNameText.text = newMove.Name;
         newAccurText.text = newMove.Accuracy.ToString();
         newDescriptionText.text = newMove.Description;
@@ -112,15 +112,19 @@ public class MoveSelectionUI : MonoBehaviour{
         }
     }
 
-    public void HandleMoveSelection(BattleUnit playerUnit){
+    public void HandleMoveSelection(BattleUnit playerUnit, Action<int> onSelected){
         if(Input.GetKeyDown(KeyCode.DownArrow)){
-            ++selectedMember;
+            ++currentSelection;
         } else if(Input.GetKeyDown(KeyCode.UpArrow)){
-            --selectedMember;
+            --currentSelection;
         }
-        selectedMember = Mathf.Clamp(selectedMember, 0, PokemonBase.MaxNumberOfMoves);
+        currentSelection = Mathf.Clamp(currentSelection, 0, PokemonBase.MaxNumberOfMoves);
 
-        UpdateMoveSelection(selectedMember, playerUnit.Pokemon.Moves, newMove);
+        UpdateMoveSelection(currentSelection, playerUnit.Pokemon.Moves, newMove);
+
+        if(Input.GetKeyDown(KeyCode.Return)){
+            onSelected?.Invoke(currentSelection);
+        }
     }
 
     public void UpdateMoveSelection(int selectedMove, List<Move> moves, MoveBase newMove){
