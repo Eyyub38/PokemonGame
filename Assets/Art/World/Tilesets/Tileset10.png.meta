@@ -82,7 +82,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -96,7 +96,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -120,7 +120,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -522,7 +522,23 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Tileset10_0: 3597945430162705674
+      Tileset10_1: -4697058260609598153
+      Tileset10_10: 4884239927810145443
+      Tileset10_11: -3950950223139505759
+      Tileset10_12: 3787869042425954412
+      Tileset10_13: -1444162720820403795
+      Tileset10_14: 6841094119520209935
+      Tileset10_15: 3184751807189153423
+      Tileset10_2: -1024134901078209984
+      Tileset10_3: -4815843911524215995
+      Tileset10_4: 3517507163484726640
+      Tileset10_5: 5464122701142868555
+      Tileset10_6: -1528250069429572407
+      Tileset10_7: -2834400714098329291
+      Tileset10_8: 3333515621078802418
+      Tileset10_9: 6338593072591483058
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
