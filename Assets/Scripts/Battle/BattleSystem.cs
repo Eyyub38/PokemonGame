@@ -117,7 +117,7 @@ public class BattleSystem : MonoBehaviour{
         yield return dialogBox.TypeDialog($"{trainer.Name} is about to use {newPokemon.Base.Name}. Do you want to change your Pokemon?");
 
         state = BattleState.AboutToUse;
-        dialogBox.gameObject.SetActive(true);
+        dialogBox.EnableChoiceBox(true);
     }
 
     IEnumerator ChooseMoveToForget(Pokemon pokemon, MoveBase newMove){

@@ -31,23 +31,18 @@ public class GameController : MonoBehaviour{
     }
 
     void Start(){
-        playerController.OnEncountered += StartBattle;
         battleSystem.OnBattleOver += EndBattle;
-
-        playerController.OnEnterTrainersView += (Collider2D trainerCollider) =>{
-            var trainer = trainerCollider.GetComponentInParent<TrainerController>();
-            if(trainer != null){
-                state = GameState.CutScene;
-                StartCoroutine(trainer.TriggerTrainerBattle(playerController));
-            }
-        };
-
         DialogManager.i.OnShowDialog += () => state = GameState.Dialog;
         DialogManager.i.OnCloseDialog += () =>{
             if(state == GameState.Dialog){
                 state = GameState.FreeRoam;
             }
         };
+    }
+
+    public void OnEnterTrainersView(TrainerController trainer){
+        state = GameState.CutScene;
+        StartCoroutine(trainer.TriggerTrainerBattle(playerController));
     }
 
     void EndBattle(bool won){
@@ -60,7 +55,7 @@ public class GameController : MonoBehaviour{
         worldCamera.gameObject.SetActive(true);
     }
 
-    void StartBattle(){
+    public void StartBattle(){
         state = GameState.Battle;
         battleSystem.gameObject.SetActive(true);
         worldCamera.gameObject.SetActive(false);

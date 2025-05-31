@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour{
@@ -12,9 +10,6 @@ public class PlayerController : MonoBehaviour{
     private Character character;
     private Vector2 input;
     
-    public Action OnEncountered;
-    public Action<Collider2D> OnEnterTrainersView;
-
     public string Name => _name;
     public Sprite BattleImage => battleImage;
 
@@ -50,25 +45,15 @@ public class PlayerController : MonoBehaviour{
         }
     }
 
-    private void OnMoveOver(){
-        CheckForEncounters();
-        CheckIfInTrainersView();
-    }
-
-    private void CheckForEncounters(){
-        if(Physics2D.OverlapCircle(transform.position - new Vector3(0, offSetY), 0.2f, GameLayers.i.GrassLayer) != null){
-            if(UnityEngine.Random.Range(1,101) <= 10){
+    private void OnMoveOver() {
+        var colliders = Physics2D.OverlapCircleAll(transform.position - new Vector3(0, offSetY), 0.2f, GameLayers.i.TriggerableLayers);
+        foreach(var collider in colliders) {
+            var triggerable = collider.GetComponent<IPlayerTriggerable>();
+            if(triggerable != null) {
                 character.Animator.IsMoving = false;
-                OnEncountered();
+                triggerable.OnPlayerTriggered(this);
+                break;
             }
-        }
-    }
-
-    private void CheckIfInTrainersView(){
-        var collider = Physics2D.OverlapCircle(transform.position, 0.2f, GameLayers.i.FovLayer);
-        if( collider != null){
-            character.Animator.IsMoving = false;
-            OnEnterTrainersView?.Invoke(collider);
         }
     }
 }
