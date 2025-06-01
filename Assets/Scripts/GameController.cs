@@ -25,13 +25,22 @@ public class GameController : MonoBehaviour{
     public SceneDetails PrevScene {get; private set;}
 
     private void Awake(){
-        ConditionsDB.Init();
         Instance = this;
+
+        PokemonDB.Init();
+        MoveDB.Init();
+        ConditionsDB.Init();
     }
 
     public void Update(){
         if(state == GameState.FreeRoam){
             playerController.HandleUpdate();
+            if(Input.GetKeyDown(KeyCode.F5)){
+                SavingSystem.i.Save("saveSlot1");
+            }
+            if(Input.GetKeyDown(KeyCode.F6)){
+                SavingSystem.i.Load("saveSlot1");
+            }
         } else if(state == GameState.Battle){
             battleSystem.HandleUpdate();
         } else if(state == GameState.Dialog){

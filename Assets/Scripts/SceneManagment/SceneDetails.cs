@@ -10,6 +10,7 @@ public class SceneDetails : MonoBehaviour{
     public bool IsLoaded{get; private set;}
     
     private void OnTriggerEnter2D(Collider2D collision){
+        Debug.Log("Entering Scene: " + gameObject.name);
         if(collision.tag == "Player"){
             LoadScene();
             GameController.Instance.SetCurrentScene(this);

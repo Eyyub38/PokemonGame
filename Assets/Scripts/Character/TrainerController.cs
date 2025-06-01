@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class TrainerController : MonoBehaviour, Interactable{
+public class TrainerController : MonoBehaviour, Interactable, ISavable{
     [SerializeField] string _name;
     [SerializeField] Sprite battleImage;
     [SerializeField] Dialog dialog;
@@ -66,6 +66,18 @@ public class TrainerController : MonoBehaviour, Interactable{
             }));
         } else {
             StartCoroutine(DialogManager.i.ShowDialog(dialogAfterBattle));
+        }
+    }
+
+    public object CaptureState(){
+        return battleLost;
+    }
+
+    public void RestoreState(object state){
+        battleLost = (bool)state;
+
+        if(battleLost){
+            fov.gameObject.SetActive(false);
         }
     }
 }
