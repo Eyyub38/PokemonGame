@@ -2,8 +2,6 @@ using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour{
-    const float offSetY = 0.3f;
-
     [SerializeField] string _name;
     [SerializeField] Sprite battleImage;
 
@@ -12,6 +10,8 @@ public class PlayerController : MonoBehaviour{
     
     public string Name => _name;
     public Sprite BattleImage => battleImage;
+    public Character Character => character;
+
 
     private void Awake(){
         character = GetComponent<Character>();
@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour{
     }
 
     private void OnMoveOver() {
-        var colliders = Physics2D.OverlapCircleAll(transform.position - new Vector3(0, offSetY), 0.2f, GameLayers.i.TriggerableLayers);
+        var colliders = Physics2D.OverlapCircleAll(transform.position - new Vector3(0, character.OffSetY), 0.2f, GameLayers.i.TriggerableLayers);
         foreach(var collider in colliders) {
             var triggerable = collider.GetComponent<IPlayerTriggerable>();
             if(triggerable != null) {

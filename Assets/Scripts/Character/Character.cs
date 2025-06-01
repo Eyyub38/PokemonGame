@@ -8,11 +8,12 @@ public class Character : MonoBehaviour{
     public float movingSpeed;
 
     public bool IsMoving{ get; private set; }
-
     public CharacterAnimator Animator => animator;
+    public float OffSetY {get; private set;} = 0.3f;
     
     private void Awake(){
         animator = GetComponent<CharacterAnimator>();    
+        SetPositionAndSnapToTile(transform.position);
     }
     
     public void HandleUpdate(){
@@ -72,5 +73,12 @@ public class Character : MonoBehaviour{
         } else {
             Debug.Log($"Error in Look Towards: You cannto ask the character to look diagonally!!!");
         }
+    }
+
+    public void SetPositionAndSnapToTile(Vector3 pos){
+        pos.x = Mathf.Floor(pos.x) + 0.5f;
+        pos.x = Mathf.Floor(pos.x) + 0.5f + OffSetY;
+    
+        transform.position = pos;
     }
 }
