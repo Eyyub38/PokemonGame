@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
 using System.Collections;
+using System.Collections.Generic;
 
 public enum ConditionID{ non, psn, brn, slp, par, frz, fro, tox, confusion}
 
