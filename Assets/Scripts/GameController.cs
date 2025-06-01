@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -6,16 +7,22 @@ using Unity.VisualScripting;
 public enum GameState{ FreeRoam, Battle, Dialog, CutScene, Paused }
 
 public class GameController : MonoBehaviour{
-    GameState state;
-    GameState stateBeforePause;
-
     [SerializeField] PlayerController playerController;
     [SerializeField] BattleSystem battleSystem;
     [SerializeField] Camera worldCamera;
 
+    [SerializeField] GameObject locationUI;
+    [SerializeField] Text locationText;
+
+    GameState state;
+    GameState stateBeforePause;
     TrainerController trainer;
 
     public static GameController Instance { get; private set; }
+    public GameObject LocationUI => locationUI;
+    public Text LocationText => locationText;
+    public SceneDetails CurrentScene {get; private set;}
+    public SceneDetails PrevScene {get; private set;}
 
     private void Awake(){
         ConditionsDB.Init();
@@ -63,7 +70,7 @@ public class GameController : MonoBehaviour{
         worldCamera.gameObject.SetActive(false);
 
         var playerParty = playerController.GetComponent<PokemonParty>();
-        var wildPokemon = FindObjectOfType<MapArea>().GetComponent<MapArea>().GetRandomWildPokemon();
+        var wildPokemon = CurrentScene.GetComponent<MapArea>().GetRandomWildPokemon();
 
         var enemyPokemon = new Pokemon(wildPokemon.Base, wildPokemon.Level);
         battleSystem.StartBattle(playerParty, enemyPokemon);
@@ -89,5 +96,10 @@ public class GameController : MonoBehaviour{
         } else {
             state = stateBeforePause;
         }
+    }
+
+    public void SetCurrentScene(SceneDetails currScene){
+        PrevScene = CurrentScene;
+        CurrentScene = currScene;
     }
 }
