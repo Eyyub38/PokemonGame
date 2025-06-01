@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 
-public enum GameState{ FreeRoam, Battle, Dialog, CutScene }
+public enum GameState{ FreeRoam, Battle, Dialog, CutScene, Paused }
 
 public class GameController : MonoBehaviour{
     GameState state;
+    GameState stateBeforePause;
+
     [SerializeField] PlayerController playerController;
     [SerializeField] BattleSystem battleSystem;
     [SerializeField] Camera worldCamera;
@@ -78,5 +80,14 @@ public class GameController : MonoBehaviour{
         var trainerParty = trainer.GetComponent<PokemonParty>();
 
         battleSystem.StartTrainerBattle(playerParty, trainerParty);
+    }
+
+    public void PauseGame(bool pause){
+        if(pause){
+            stateBeforePause = state;
+            state = GameState.Paused;
+        } else {
+            state = stateBeforePause;
+        }
     }
 }

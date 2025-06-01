@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour{
             if(input.x != 0 ) input.y = 0;
 
             if(input != Vector2.zero){
-                StartCoroutine(character.Move(input, OnMoveOver));
+                StartCoroutine( character.Move(input, OnMoveOver));
             }
         }
         character.HandleUpdate();
