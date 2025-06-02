@@ -4,7 +4,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using System.Collections.Generic;
 
-public enum GameState{ FreeRoam, Battle, Dialog, CutScene, Paused }
+public enum GameState{ FreeRoam, Battle, Dialog, Menu, CutScene, Paused }
 
 public class GameController : MonoBehaviour{
     [SerializeField] PlayerController playerController;
@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour{
     GameState state;
     GameState stateBeforePause;
     TrainerController trainer;
+    MenuController menuController;
 
     public static GameController Instance { get; private set; }
     public GameObject LocationUI => locationUI;
@@ -27,6 +28,8 @@ public class GameController : MonoBehaviour{
     private void Awake(){
         Instance = this;
 
+        menuController = GetComponent<MenuController>();
+
         PokemonDB.Init();
         MoveDB.Init();
         ConditionsDB.Init();
@@ -35,16 +38,16 @@ public class GameController : MonoBehaviour{
     public void Update(){
         if(state == GameState.FreeRoam){
             playerController.HandleUpdate();
-            if(Input.GetKeyDown(KeyCode.F5)){
-                SavingSystem.i.Save("saveSlot1");
-            }
-            if(Input.GetKeyDown(KeyCode.F6)){
-                SavingSystem.i.Load("saveSlot1");
+            if(Input.GetKeyDown(KeyCode.Tab)){
+                menuController.OpenMenu();
+                state = GameState.Menu;
             }
         } else if(state == GameState.Battle){
             battleSystem.HandleUpdate();
         } else if(state == GameState.Dialog){
             DialogManager.i.HandleUpdate();
+        } else if(state == GameState.Menu){
+            menuController.HandleUpdate();
         }
     }
 
@@ -56,6 +59,9 @@ public class GameController : MonoBehaviour{
                 state = GameState.FreeRoam;
             }
         };
+
+        menuController.onBack += () => state = GameState.FreeRoam;
+        menuController.onMenuSelected += OnMenuSelected;
     }
 
     public void OnEnterTrainersView(TrainerController trainer){
@@ -110,5 +116,18 @@ public class GameController : MonoBehaviour{
     public void SetCurrentScene(SceneDetails currScene){
         PrevScene = CurrentScene;
         CurrentScene = currScene;
+    }
+
+    void OnMenuSelected(int selectedItem){
+        if(selectedItem == 0){
+
+        } else if(selectedItem == 1){
+
+        } else if(selectedItem == 2){
+            SavingSystem.i.Save("saveSlot1");
+        } else if(selectedItem == 3){
+            SavingSystem.i.Load("saveSlot1");
+        }
+        state = GameState.FreeRoam;
     }
 }

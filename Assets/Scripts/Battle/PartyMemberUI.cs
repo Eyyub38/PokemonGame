@@ -16,24 +16,26 @@ public class PartyMemberUI : MonoBehaviour{
     [SerializeField] List<Sprite> detailBackground;
     [SerializeField] List<Sprite> iconBacgrounrd;
 
-    [SerializeField] Sprite maleIcon;
-    [SerializeField] Sprite femaleIcon;
-    [SerializeField] Sprite genderlessIcon;
     [SerializeField] Image statusIcon;
+    [SerializeField] float bounceHeight = 10f;
+    [SerializeField] float bounceDuration = 0.5f;
+    [SerializeField] BattleUnit currUnit;
+    [SerializeField] BattleHud battleHud;
 
     private Vector3 originalIconPosition;
     private Sequence bounceSequence;
-    [SerializeField] float bounceHeight = 10f;
-    [SerializeField] float bounceDuration = 0.5f;
     private bool isSelected = false;
 
-    [SerializeField] BattleUnit currUnit;
-
-    [SerializeField] BattleHud battleHud;
     Pokemon _pokemon;
+    List<Sprite> genderIcons;
+    List<Sprite> statusIcons;
+    Dictionary<ConditionID, Sprite> statusImages;
     
     private void Start(){
         originalIconPosition = pokemonIcon.transform.localPosition;
+        statusIcons = GlobalSettings.i.StatusIcons;
+        genderIcons = GlobalSettings.i.GenderSprites;
+        statusImages = GlobalSettings.i.StatusImages;
     }
 
     public void SetSelected(bool selected){
@@ -63,7 +65,7 @@ public class PartyMemberUI : MonoBehaviour{
 
         if(pokemon.Status != null){
             statusIcon.gameObject.SetActive(true);
-            statusIcon.sprite = battleHud.StatusImages[pokemon.Status.Id];
+            statusIcon.sprite = statusImages[pokemon.Status.Id];
         } else {
             statusIcon.gameObject.SetActive(false);
 
@@ -73,21 +75,21 @@ public class PartyMemberUI : MonoBehaviour{
         levelText.text ="Lvl." + pokemon.Level.ToString();
 
         if(pokemon.Base.IsGenderless){
-            genderIcon.sprite = genderlessIcon;
+            genderIcon.sprite = genderIcons[0];
             genderIcon.gameObject.SetActive(true);
         } else if(pokemon.Gender == Gender.Male){
-            genderIcon.sprite = maleIcon;
+            genderIcon.sprite = genderIcons[1];
             genderIcon.gameObject.SetActive(true);
         } else if(pokemon.Gender == Gender.Female){
-            genderIcon.sprite = femaleIcon;
+            genderIcon.sprite = genderIcons[2];
             genderIcon.gameObject.SetActive(true);
         } else {
             genderIcon.gameObject.SetActive(false);
         }
 
-        if(pokemon.Status != null && battleHud.StatusImages.ContainsKey(pokemon.Status.Id)){
+        if(pokemon.Status != null && statusImages.ContainsKey(pokemon.Status.Id)){
             this.statusIcon.gameObject.SetActive(true);
-            this.statusIcon.sprite = battleHud.StatusImages[pokemon.Status.Id];
+            this.statusIcon.sprite = statusImages[pokemon.Status.Id];
         } else {
             this.statusIcon.gameObject.SetActive(false);
         }

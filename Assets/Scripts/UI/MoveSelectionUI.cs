@@ -19,17 +19,23 @@ public class MoveSelectionUI : MonoBehaviour{
     [SerializeField] Image newCatagoryImage;
 
     [SerializeField] GameObject currDetails;
-    [SerializeField] Color highlightedColor;
-
-    [SerializeField] List<Sprite> categories = new List<Sprite>();
-    [SerializeField] List<Sprite> typeBarSprites = new List<Sprite>();
-    [SerializeField] Sprite empty;
     
     int currentSelection = 0;
     Color originalColor;
     MoveBase newMove;
-
+    Sprite empty;
+    List<Sprite> categories;
+    Color highlightedColor;
+    List<Sprite> typeBarSprites;
     
+    private void Start(){
+        empty = GlobalSettings.i.Empty;
+        categories = GlobalSettings.i.Categories;
+        highlightedColor = GlobalSettings.i.HighlightedColor;
+        typeBarSprites = GlobalSettings.i.TypeBarSprites;
+
+    }
+
     public void SetMoveSelectionBars(List<Move> moves, MoveBase newMove) {
         this.newMove = newMove;
 
@@ -165,31 +171,31 @@ public class MoveSelectionUI : MonoBehaviour{
             moveBar.TypeImage.sprite = typeBarSprites[ 3 ];
         } else if(type == "Electric") {
             moveBar.TypeImage.sprite = typeBarSprites[ 4 ];
-        } else if(type == "Ice") {
-            moveBar.TypeImage.sprite = typeBarSprites[ 5 ];
-        } else if(type == "Fighting") {
-            moveBar.TypeImage.sprite = typeBarSprites[ 6 ];
-        } else if(type == "Poison") {
-            moveBar.TypeImage.sprite = typeBarSprites[ 7 ];
-        } else if(type == "Ground") {
-            moveBar.TypeImage.sprite = typeBarSprites[ 8 ];
         } else if(type == "Flying") {
-            moveBar.TypeImage.sprite = typeBarSprites[ 9 ];
-        } else if(type == "Psychic") {
-            moveBar.TypeImage.sprite = typeBarSprites[ 10 ];
+            moveBar.TypeImage.sprite = typeBarSprites[ 5 ];
         } else if(type == "Bug") {
-            moveBar.TypeImage.sprite = typeBarSprites[ 11 ];
-        } else if(type == "Rock") {
-            moveBar.TypeImage.sprite = typeBarSprites[ 12 ];
-        } else if(type == "Ghost") {
-            moveBar.TypeImage.sprite = typeBarSprites[ 13 ];
-        } else if(type == "Dragon") {
-            moveBar.TypeImage.sprite = typeBarSprites[ 14 ];
+            moveBar.TypeImage.sprite = typeBarSprites[ 6 ];
+        } else if(type == "Ice") {
+            moveBar.TypeImage.sprite = typeBarSprites[ 7 ];
         } else if(type == "Dark") {
-            moveBar.TypeImage.sprite = typeBarSprites[ 15 ];
-        } else if(type == "Steel") {
-            moveBar.TypeImage.sprite = typeBarSprites[ 16 ];
+            moveBar.TypeImage.sprite = typeBarSprites[ 8 ];
         } else if(type == "Fairy") {
+            moveBar.TypeImage.sprite = typeBarSprites[ 9 ];
+        } else if(type == "Fighting") {
+            moveBar.TypeImage.sprite = typeBarSprites[ 10 ];
+        } else if(type == "Ground") {
+            moveBar.TypeImage.sprite = typeBarSprites[ 11 ];
+        } else if(type == "Steel") {
+            moveBar.TypeImage.sprite = typeBarSprites[ 12 ];
+        } else if(type == "Psychic") {
+            moveBar.TypeImage.sprite = typeBarSprites[ 13 ];
+        } else if(type == "Poison") {
+            moveBar.TypeImage.sprite = typeBarSprites[ 14 ];
+        } else if(type == "Rock") {
+            moveBar.TypeImage.sprite = typeBarSprites[ 15 ];
+        } else if(type == "Ghost") {
+            moveBar.TypeImage.sprite = typeBarSprites[ 16 ];
+        } else if(type == "Dragon") {
             moveBar.TypeImage.sprite = typeBarSprites[ 17 ];
         }
     }
