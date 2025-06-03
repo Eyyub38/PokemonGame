@@ -16,26 +16,24 @@ public class PartyMemberUI : MonoBehaviour{
     [SerializeField] List<Sprite> detailBackground;
     [SerializeField] List<Sprite> iconBacgrounrd;
 
+    [SerializeField] Sprite maleIcon;
+    [SerializeField] Sprite femaleIcon;
+    [SerializeField] Sprite genderlessIcon;
     [SerializeField] Image statusIcon;
-    [SerializeField] float bounceHeight = 10f;
-    [SerializeField] float bounceDuration = 0.5f;
-    [SerializeField] BattleUnit currUnit;
-    [SerializeField] BattleHud battleHud;
 
     private Vector3 originalIconPosition;
     private Sequence bounceSequence;
+    [SerializeField] float bounceHeight = 10f;
+    [SerializeField] float bounceDuration = 0.5f;
     private bool isSelected = false;
 
+    [SerializeField] BattleUnit currUnit;
+
+    [SerializeField] BattleHud battleHud;
     Pokemon _pokemon;
-    List<Sprite> genderIcons;
-    List<Sprite> statusIcons;
-    Dictionary<ConditionID, Sprite> statusImages;
     
     private void Start(){
         originalIconPosition = pokemonIcon.transform.localPosition;
-        statusIcons = GlobalSettings.i.StatusIcons;
-        genderIcons = GlobalSettings.i.GenderSprites;
-        statusImages = GlobalSettings.i.StatusImages;
     }
 
     public void SetSelected(bool selected){
@@ -55,7 +53,7 @@ public class PartyMemberUI : MonoBehaviour{
         if(_pokemon.HP <= 0){
             details.sprite = detailBackground[1];
             icon.sprite = iconBacgrounrd[1];
-        } else if(_pokemon == currUnit.Pokemon){
+        } else if(_pokemon == currUnit?.Pokemon){
             details.sprite = detailBackground[0];
             icon.sprite = iconBacgrounrd[0];
         } else {
@@ -65,7 +63,7 @@ public class PartyMemberUI : MonoBehaviour{
 
         if(pokemon.Status != null){
             statusIcon.gameObject.SetActive(true);
-            statusIcon.sprite = statusImages[pokemon.Status.Id];
+            statusIcon.sprite = battleHud.StatusImages[pokemon.Status.Id];
         } else {
             statusIcon.gameObject.SetActive(false);
 
@@ -75,21 +73,21 @@ public class PartyMemberUI : MonoBehaviour{
         levelText.text ="Lvl." + pokemon.Level.ToString();
 
         if(pokemon.Base.IsGenderless){
-            genderIcon.sprite = genderIcons[0];
+            genderIcon.sprite = genderlessIcon;
             genderIcon.gameObject.SetActive(true);
         } else if(pokemon.Gender == Gender.Male){
-            genderIcon.sprite = genderIcons[1];
+            genderIcon.sprite = maleIcon;
             genderIcon.gameObject.SetActive(true);
         } else if(pokemon.Gender == Gender.Female){
-            genderIcon.sprite = genderIcons[2];
+            genderIcon.sprite = femaleIcon;
             genderIcon.gameObject.SetActive(true);
         } else {
             genderIcon.gameObject.SetActive(false);
         }
 
-        if(pokemon.Status != null && statusImages.ContainsKey(pokemon.Status.Id)){
+        if(pokemon.Status != null && battleHud.StatusImages[pokemon.Status.Id] != null){
             this.statusIcon.gameObject.SetActive(true);
-            this.statusIcon.sprite = statusImages[pokemon.Status.Id];
+            this.statusIcon.sprite = battleHud.StatusImages[pokemon.Status.Id];
         } else {
             this.statusIcon.gameObject.SetActive(false);
         }

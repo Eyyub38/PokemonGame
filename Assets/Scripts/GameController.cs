@@ -1,15 +1,17 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using Unity.VisualScripting;
 using System.Collections.Generic;
 
-public enum GameState{ FreeRoam, Battle, Dialog, Menu, CutScene, Paused }
+public enum GameState{ FreeRoam, Battle, Dialog, PartyScreen, Menu, Bag, CutScene, Paused }
 
 public class GameController : MonoBehaviour{
     [SerializeField] PlayerController playerController;
     [SerializeField] BattleSystem battleSystem;
     [SerializeField] Camera worldCamera;
+    [SerializeField] PartyScreen partyScreen;
+    [SerializeField] InventoryUI inventoryUI;
 
     [SerializeField] GameObject locationUI;
     [SerializeField] Text locationText;
@@ -48,11 +50,28 @@ public class GameController : MonoBehaviour{
             DialogManager.i.HandleUpdate();
         } else if(state == GameState.Menu){
             menuController.HandleUpdate();
+        } else if(state == GameState.PartyScreen){
+            Action OnSelected = () => {
+                //Summary Screen
+                Debug.Log("Summary Screen");
+            };
+            Action onBack = () => {
+                partyScreen.gameObject.SetActive(false);
+                state = GameState.FreeRoam;
+            };
+            partyScreen.HandleUpdate(OnSelected, onBack);
+        } else if(state == GameState.Bag){
+            Action onBack = () => {
+                inventoryUI.gameObject.SetActive(false);
+                state = GameState.FreeRoam;
+            };
+            inventoryUI.HandleUpdate(onBack);
         }
     }
 
     void Start(){
         battleSystem.OnBattleOver += EndBattle;
+        partyScreen.Init();
         DialogManager.i.OnShowDialog += () => state = GameState.Dialog;
         DialogManager.i.OnCloseDialog += () =>{
             if(state == GameState.Dialog){
@@ -120,14 +139,22 @@ public class GameController : MonoBehaviour{
 
     void OnMenuSelected(int selectedItem){
         if(selectedItem == 0){
-
+            //Pokemon
+            partyScreen.gameObject.SetActive(true);
+            partyScreen.SetPartyData(playerController.GetComponent<PokemonParty>().Pokemons);
+            state = GameState.PartyScreen;
         } else if(selectedItem == 1){
-
+            //Bag
+            inventoryUI.gameObject.SetActive(true);
+            state = GameState.Bag;
         } else if(selectedItem == 2){
+            //Save
             SavingSystem.i.Save("saveSlot1");
+            state = GameState.FreeRoam;
         } else if(selectedItem == 3){
+            //Load
             SavingSystem.i.Load("saveSlot1");
+            state = GameState.FreeRoam;
         }
-        state = GameState.FreeRoam;
     }
 }

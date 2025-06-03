@@ -10,50 +10,54 @@ public class BattleHud : MonoBehaviour{
     [SerializeField] HPBar hpBar;
     [SerializeField] GameObject expBar;
     [SerializeField] Image genderIcon;
+    [SerializeField] Sprite maleIcon;
+    [SerializeField] Sprite femaleIcon;
+    [SerializeField] Sprite genderlessIcon;
     [SerializeField] Image statusImage;
 
+    [SerializeField] Sprite psnImage;
+    [SerializeField] Sprite frzImage;
+    [SerializeField] Sprite brnImage;
+    [SerializeField] Sprite slpImage;
+    [SerializeField] Sprite parImage;
+    [SerializeField] Sprite toxImage;
+    [SerializeField] Sprite froImage;
+
     Pokemon _pokemon;
-    List<Sprite> genderIcons;
-    List<Sprite> statusIcons;
+    Dictionary<ConditionID, Sprite> statusImages;
 
-    public Image StatusImage {
-        get { return statusImage; }
-    }
-
-    private void Start(){
-        genderIcons = GlobalSettings.i.GenderSprites;
-        statusIcons = GlobalSettings.i.StatusIcons;
+    public Dictionary<ConditionID, Sprite> StatusImages {
+        get { return statusImages; }
     }
     
     public void SetData(Pokemon pokemon){
         _pokemon = pokemon;
 
         nameText.text = pokemon.Base.Name;
-        SetLevel();
+        levelText.text ="Lvl." + pokemon.Level.ToString();
         hpBar.SetHP((float)pokemon.HP / (float)pokemon.MaxHp);
-        SetExp();
 
         if(pokemon.Base.IsGenderless){
-            genderIcon.sprite = genderIcons[0];
+            genderIcon.sprite = genderlessIcon;
             genderIcon.gameObject.SetActive(true);
         } else if(pokemon.Gender == Gender.Male){
-            genderIcon.sprite = genderIcons[1];
+            genderIcon.sprite = maleIcon;
             genderIcon.gameObject.SetActive(true);
         } else if(pokemon.Gender == Gender.Female){
-            genderIcon.sprite = genderIcons[2];
+            genderIcon.sprite = femaleIcon;
             genderIcon.gameObject.SetActive(true);
         } else {
             genderIcon.gameObject.SetActive(false);
         }
 
-        GlobalSettings.i.StatusImages = new Dictionary<ConditionID, Sprite>(){
-            { ConditionID.psn, statusIcons[0] },
-            { ConditionID.frz, statusIcons[1] },
-            { ConditionID.brn, statusIcons[2] },
-            { ConditionID.slp, statusIcons[3] },
-            { ConditionID.par, statusIcons[4] },
-            { ConditionID.tox, statusIcons[5] },
-            { ConditionID.fro, statusIcons[6] }
+        statusImages = new Dictionary<ConditionID, Sprite>(){
+            { ConditionID.psn, psnImage },
+            { ConditionID.frz, frzImage },
+            { ConditionID.brn, brnImage },
+            { ConditionID.slp, slpImage },
+            { ConditionID.par, parImage },
+            { ConditionID.tox, toxImage },
+            { ConditionID.fro, froImage }
         };
 
         SetStatusImage();

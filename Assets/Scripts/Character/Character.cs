@@ -41,12 +41,14 @@ public class Character : MonoBehaviour{
     public IEnumerator Move(Vector2 moveVector, Action OnMoveOver = null){
         animator.MoveX = Mathf.Clamp(moveVector.x, -1f, 1f);
         animator.MoveY = Mathf.Clamp(moveVector.y, -1f, 1f);
+        animator.IsMoving = true;
 
         var targetPos = transform.position;
         targetPos.x += moveVector.x;
         targetPos.y += moveVector.y;
 
         if(!IsPathClear(targetPos)){
+            animator.IsMoving = false;
             yield break;
         }
 
@@ -59,6 +61,7 @@ public class Character : MonoBehaviour{
         transform.position = targetPos;
         
         IsMoving = false;
+        animator.IsMoving = false;
 
         OnMoveOver?.Invoke();
     }

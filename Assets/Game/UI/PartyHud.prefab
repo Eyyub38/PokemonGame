@@ -71,9 +71,9 @@ MonoBehaviour:
   icon: {fileID: 2842946484232202578}
   detailBackground: []
   iconBacgrounrd: []
-  maleIcon: {fileID: 1488322194, guid: cc97db49e669eda448be31d28ca3b1fb, type: 3}
-  femaleIcon: {fileID: -1477097436, guid: cc97db49e669eda448be31d28ca3b1fb, type: 3}
-  genderlessIcon: {fileID: 546646483, guid: cc97db49e669eda448be31d28ca3b1fb, type: 3}
+  maleIcon: {fileID: -6920841516402400359, guid: cc8110e9df232c4499d7beb1348910c5, type: 3}
+  femaleIcon: {fileID: 6935463861302956500, guid: cc8110e9df232c4499d7beb1348910c5, type: 3}
+  genderlessIcon: {fileID: -1937198735191076674, guid: cc8110e9df232c4499d7beb1348910c5, type: 3}
   statusIcon: {fileID: 1345415199123443969}
   bounceHeight: 10
   bounceDuration: 0.5
@@ -365,7 +365,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3737ece7b63dc043af04d095c9d99aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: {fileID: 0}
+  health: {fileID: 1233154580523588510}
 --- !u!1 &4459351815573799921
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,7 +400,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 38.795, y: 1.375}
+  m_AnchoredPosition: {x: 40.6, y: -1.375}
   m_SizeDelta: {x: 22.79, y: 22.79}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3688916301628894920
@@ -431,7 +431,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1488322194, guid: cc97db49e669eda448be31d28ca3b1fb, type: 3}
+  m_Sprite: {fileID: -6920841516402400359, guid: cc8110e9df232c4499d7beb1348910c5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

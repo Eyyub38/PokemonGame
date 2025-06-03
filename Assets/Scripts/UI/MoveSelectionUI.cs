@@ -19,18 +19,17 @@ public class MoveSelectionUI : MonoBehaviour{
     [SerializeField] Image newCatagoryImage;
 
     [SerializeField] GameObject currDetails;
+    [SerializeField] List<Sprite> categories = new List<Sprite>();
     
     int currentSelection = 0;
     Color originalColor;
     MoveBase newMove;
     Sprite empty;
-    List<Sprite> categories;
     Color highlightedColor;
     List<Sprite> typeBarSprites;
     
     private void Start(){
         empty = GlobalSettings.i.Empty;
-        categories = GlobalSettings.i.Categories;
         highlightedColor = GlobalSettings.i.HighlightedColor;
         typeBarSprites = GlobalSettings.i.TypeBarSprites;
 
