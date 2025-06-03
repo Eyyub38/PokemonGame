@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Potion
   description: Restores the HP of a Pokemon by 20 points.
+  message: Restores the HP of a Pokemon by 20 points.
   icon: {fileID: 21300000, guid: c8e5f6455d193374d9d98de824bedc37, type: 3}
+  itemType: 0
   hpAmount: 20
   restoreMaxHp: 0
   ppAmount: 0

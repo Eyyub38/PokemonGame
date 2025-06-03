@@ -26,6 +26,7 @@ public class GameController : MonoBehaviour{
     public static GameController Instance { get; private set; }
     public GameObject LocationUI => locationUI;
     public Text LocationText => locationText;
+    public GameState PrevState {get; private set;}
     public SceneDetails CurrentScene {get; private set;}
     public SceneDetails PrevScene {get; private set;}
 
@@ -146,7 +147,6 @@ public class GameController : MonoBehaviour{
         if(selectedItem == 0){
             //Pokemon
             partyScreen.gameObject.SetActive(true);
-            partyScreen.SetPartyData(playerController.GetComponent<PokemonParty>().Pokemons);
             state = GameState.PartyScreen;
         } else if(selectedItem == 1){
             //Bag

@@ -65,12 +65,19 @@ MonoBehaviour:
   nameText: {fileID: 5295747357689328145}
   levelText: {fileID: 2417929539402985843}
   hpBar: {fileID: 8390478260064418477}
+  xpBar: {fileID: 1233154580523588510}
   genderIcon: {fileID: 1567537267682456606}
   pokemonIcon: {fileID: 3742394770289290559}
   details: {fileID: 4885734060991059191}
+  detailBackground:
+  - {fileID: -5441359676103985948, guid: 4ffa22f8325f9cc4c93ae316857f8f03, type: 3}
+  - {fileID: -2178134087512423234, guid: 4ffa22f8325f9cc4c93ae316857f8f03, type: 3}
+  - {fileID: -1008155485431700292, guid: 4ffa22f8325f9cc4c93ae316857f8f03, type: 3}
   icon: {fileID: 2842946484232202578}
-  detailBackground: []
-  iconBacgrounrd: []
+  iconBacgrounrd:
+  - {fileID: 707289672, guid: 4ffa22f8325f9cc4c93ae316857f8f03, type: 3}
+  - {fileID: 2791817442184294664, guid: 4ffa22f8325f9cc4c93ae316857f8f03, type: 3}
+  - {fileID: 4364697963916840005, guid: 4ffa22f8325f9cc4c93ae316857f8f03, type: 3}
   maleIcon: {fileID: -6920841516402400359, guid: cc8110e9df232c4499d7beb1348910c5, type: 3}
   femaleIcon: {fileID: 6935463861302956500, guid: cc8110e9df232c4499d7beb1348910c5, type: 3}
   genderlessIcon: {fileID: -1937198735191076674, guid: cc8110e9df232c4499d7beb1348910c5, type: 3}
@@ -91,7 +98,7 @@ GameObject:
   - component: {fileID: 2412403147610448315}
   - component: {fileID: 5248457700169862588}
   m_Layer: 0
-  m_Name: XPBar
+  m_Name: xpBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,8 +120,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -14.930031, y: -11.389994}
-  m_SizeDelta: {x: 233.5, y: 8.77}
+  m_AnchoredPosition: {x: -9.8539, y: -11.389994}
+  m_SizeDelta: {x: 227.47, y: 8.77}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &2412403147610448315
 CanvasRenderer:
@@ -166,7 +173,7 @@ GameObject:
   - component: {fileID: 2572785588213259365}
   - component: {fileID: 5540684752108589692}
   m_Layer: 0
-  m_Name: HPBar
+  m_Name: hpBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -188,8 +195,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -16.27, y: 17.179998}
-  m_SizeDelta: {x: 240.41, y: 11}
+  m_AnchoredPosition: {x: -7.0624, y: 17.179998}
+  m_SizeDelta: {x: 229, y: 11}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &2572785588213259365
 CanvasRenderer:
@@ -316,7 +323,7 @@ GameObject:
   - component: {fileID: 6805517333032306068}
   - component: {fileID: 1287142735462442841}
   m_Layer: 0
-  m_Name: P_XPBar
+  m_Name: XPBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -608,7 +615,7 @@ GameObject:
   - component: {fileID: 4039645472540358057}
   - component: {fileID: 2417929539402985843}
   m_Layer: 0
-  m_Name: P_LevelText
+  m_Name: LevelText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -837,7 +844,7 @@ GameObject:
   - component: {fileID: 4544933306001941450}
   - component: {fileID: 8390478260064418477}
   m_Layer: 0
-  m_Name: P_HPBar
+  m_Name: HPBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1127,7 +1134,7 @@ GameObject:
   - component: {fileID: 4387560787960364353}
   - component: {fileID: 5295747357689328145}
   m_Layer: 0
-  m_Name: P_NameText
+  m_Name: NameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1228,8 +1235,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 51.86, y: 16.567}
-  m_SizeDelta: {x: 241.16, y: 12.23}
+  m_AnchoredPosition: {x: 57.099564, y: 17.4829}
+  m_SizeDelta: {x: 229.9273, y: 10.3983}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8284659660485303094
 CanvasRenderer:

@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Super Potion
   description: Restores the HP of a Pokemon by 50 points.
+  message: Restores the HP of a Pokemon by 50 points.
   icon: {fileID: 21300000, guid: 8179f56655ff1354fa4c6bb60b97d2f5, type: 3}
+  itemType: 0
   hpAmount: 50
   restoreMaxHp: 0
   ppAmount: 0

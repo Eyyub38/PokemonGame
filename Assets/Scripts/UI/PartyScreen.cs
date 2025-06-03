@@ -10,6 +10,7 @@ public class PartyScreen : MonoBehaviour{
 
     List<Pokemon> pokemons;
     BattleState? prevState;
+    PokemonParty party;
     int selection = 0;
 
 
@@ -18,10 +19,15 @@ public class PartyScreen : MonoBehaviour{
     
     public void Init(){
         memberSlots = GetComponentsInChildren<PartyMemberUI>(true);
+        party = PokemonParty.GetPlayerParty();
+        SetPartyData();
+
+        party.OnUpdated += SetPartyData;
     }
 
-    public void SetPartyData(List<Pokemon> pokemons){
-        this.pokemons = pokemons;
+    public void SetPartyData(){
+        pokemons = party.Pokemons;
+
         for(int i = 0; i < memberSlots.Length; i++){
             if(i < pokemons.Count){
                 memberSlots[i].gameObject.SetActive(true);

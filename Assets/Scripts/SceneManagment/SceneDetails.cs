@@ -12,7 +12,6 @@ public class SceneDetails : MonoBehaviour{
     List<SavableEntity> savableEntities;
     
     private void OnTriggerEnter2D(Collider2D collision){
-        Debug.Log("Entering Scene: " + gameObject.name);
         if(collision.tag == "Player"){
             LoadScene();
             GameController.Instance.SetCurrentScene(this);
@@ -53,9 +52,9 @@ public class SceneDetails : MonoBehaviour{
 
     public void UnloadScene(){
         if(IsLoaded){
+            savableEntities = GetSavableEntitiesInScene();
             SavingSystem.i.CaptureEntityStates(savableEntities);
 
-            savableEntities = GetSavableEntitiesInScene();
             SceneManager.UnloadSceneAsync(gameObject.name);
             IsLoaded = false;
         }

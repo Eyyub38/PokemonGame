@@ -18,11 +18,11 @@ MonoBehaviour:
   frontSprite: {fileID: 21300000, guid: 0495fe1ca19da6b42bea0f364335df14, type: 3}
   backSprite: {fileID: 21300000, guid: 6e9a2e454d5ba734686aef3761203b7e, type: 3}
   iconSprite: {fileID: -600957054, guid: fbdf3c195147d5b46b69c622d4223998, type: 3}
+  isGenderless: 0
+  hasGenderDifferences: 0
   femaleFrontSprite: {fileID: 0}
   femaleBackSprite: {fileID: 0}
-  hasGenderDifferences: 0
   maleRatio: 0.5
-  isGenderless: 0
   type1: 12
   type2: 0
   maxHp: 45
@@ -32,7 +32,7 @@ MonoBehaviour:
   spDefense: 20
   speed: 45
   catchRate: 190
-  xpYield: 0
+  xpYield: 39
   growthRate: 3
   learnableMoves:
   - moveBase: {fileID: 11400000, guid: fd4ce293205921d46b745d8ff68c6be1, type: 2}

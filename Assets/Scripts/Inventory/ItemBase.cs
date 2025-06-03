@@ -7,11 +7,17 @@ public enum ItemType{ HealHP, HealStatus, TempBoost, PermBoost, Evolution, Pokeb
 public class ItemBase : ScriptableObject{
     [SerializeField] string _name;
     [SerializeField] string description;
+    [SerializeField] string message;
     [SerializeField] Sprite icon;
     [SerializeField] ItemType itemType;
 
     public string Name => _name;
     public string Description => description;
+    public string Message => message;
     public Sprite Icon => icon;
     public ItemType ItemType => itemType;
+
+    public virtual bool Use(Pokemon pokemon){
+        return false;
+    }
 }

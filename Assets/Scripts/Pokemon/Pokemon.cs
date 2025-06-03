@@ -30,6 +30,8 @@ public class Pokemon{
     public bool HpChanged{ get; set; }
 
     public event System.Action OnStatusChanged;
+    public event System.Action OnHpChanged;
+    public event System.Action OnExpChanged;
     
     public int MaxHp{ get; private set;}
     public int Attack{ get{ return GetStat(Stat.Attack);}}
@@ -47,9 +49,10 @@ public class Pokemon{
 
     public Pokemon(PokemonSaveData saveData){
         _base = PokemonDB.GetPokemonByName(saveData.name);
-        HP = saveData.hp;
+        HP = saveData.Hp;
         level = saveData.level;
         Exp = saveData.xp;
+        
         if(saveData.statusId != null){
             Status = ConditionsDB.Conditions[saveData.statusId.Value];
         } else {
@@ -149,7 +152,7 @@ public class Pokemon{
     public PokemonSaveData GetSaveData(){
         var saveData = new PokemonSaveData(){
             name = Base.Name,
-            hp = HP,
+            Hp = HP,
             level = level,
             xp = Exp,
             statusId = Status?.Id,
@@ -229,7 +232,7 @@ public class Pokemon{
         float d = a * move.Base.Power * ((float)attack / defense) + 2;
         int damage = Mathf.FloorToInt(d * modifiers);
 
-        UpdateHP(damage);
+        DecreaseHP(damage);
 
         return damageDetails;
     }
@@ -260,9 +263,21 @@ public class Pokemon{
         VolatileStatus?.OnAfterTurn?.Invoke(this);
     }
 
-    public void UpdateHP(int damage){
+    public void DecreaseHP(int damage){
         HP = Mathf.Clamp(HP - damage, 0, MaxHp);
         HpChanged = true;
+        OnHpChanged?.Invoke();
+    }
+
+    public void IncreaseHP(int amount){
+        HP = Mathf.Clamp(HP + amount, 0, MaxHp);
+        OnHpChanged?.Invoke();
+        HpChanged = true;
+    }
+
+    public void GainExp(int exp){
+        Exp += exp;
+        OnExpChanged?.Invoke();
     }
 }
 
@@ -275,7 +290,7 @@ public class DamageDetails{
 [System.Serializable]
 public class PokemonSaveData{
     public string name;
-    public int hp;
+    public int Hp;
     public int level;
     public int xp;
     public ConditionID? statusId;

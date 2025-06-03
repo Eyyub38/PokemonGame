@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 8900279587176413475}
   - component: {fileID: 5544961630946089141}
   m_Layer: 0
-  m_Name: P_Gender
+  m_Name: Gender
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1488322194, guid: cc97db49e669eda448be31d28ca3b1fb, type: 3}
+  m_Sprite: {fileID: -1937198735191076674, guid: cc8110e9df232c4499d7beb1348910c5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -316,7 +316,7 @@ GameObject:
   - component: {fileID: 888284693839690504}
   - component: {fileID: 6764472331021575270}
   m_Layer: 0
-  m_Name: P_Status
+  m_Name: Status
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -391,7 +391,7 @@ GameObject:
   - component: {fileID: 3818222167148218984}
   - component: {fileID: 2694336720946228235}
   m_Layer: 0
-  m_Name: XPBar
+  m_Name: xpBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -541,7 +541,7 @@ GameObject:
   - component: {fileID: 276730844776866244}
   - component: {fileID: 9198313425683361959}
   m_Layer: 0
-  m_Name: HPBar
+  m_Name: hpBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -614,9 +614,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2166002922814116678}
   - component: {fileID: 321036151056357573}
-  - component: {fileID: 5236564124896950307}
   m_Layer: 0
-  m_Name: P_XPBar
+  m_Name: XPBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -653,19 +652,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5457348377818373688}
   m_CullTransparentMesh: 1
---- !u!114 &5236564124896950307
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5457348377818373688}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3737ece7b63dc043af04d095c9d99aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: {fileID: 0}
 --- !u!1 &6076488997410165315
 GameObject:
   m_ObjectHideFlags: 0
@@ -753,7 +739,7 @@ GameObject:
   - component: {fileID: 1885001970510576641}
   - component: {fileID: 4504090708958587828}
   m_Layer: 0
-  m_Name: P_HPBar
+  m_Name: HPBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -894,7 +880,7 @@ GameObject:
   - component: {fileID: 4719753153693485565}
   - component: {fileID: 1230846294099710804}
   m_Layer: 0
-  m_Name: P_LevelText
+  m_Name: LevelText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -973,7 +959,7 @@ GameObject:
   - component: {fileID: 602723322587334710}
   - component: {fileID: 1316678959002873730}
   m_Layer: 0
-  m_Name: P_NameText
+  m_Name: NameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1107,6 +1093,7 @@ MonoBehaviour:
   nameText: {fileID: 1316678959002873730}
   levelText: {fileID: 1230846294099710804}
   hpBar: {fileID: 4504090708958587828}
+  expBar: {fileID: 2478553624185870228}
   genderIcon: {fileID: 5544961630946089141}
   maleIcon: {fileID: 1488322194, guid: cc97db49e669eda448be31d28ca3b1fb, type: 3}
   femaleIcon: {fileID: -1477097436, guid: cc97db49e669eda448be31d28ca3b1fb, type: 3}

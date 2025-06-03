@@ -21,7 +21,7 @@ public class ConditionsDB{
                 Name = "Poison",
                 StartMessage = "has been poisoned!",
                 OnAfterTurn = (Pokemon pokemon) =>{
-                    pokemon.UpdateHP(pokemon.MaxHp / 8);
+                    pokemon.DecreaseHP(pokemon.MaxHp / 8);
                     pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} is hurt by poison!");
                 }
             }
@@ -31,7 +31,7 @@ public class ConditionsDB{
                 Name = "Burn",
                 StartMessage = "has been burned!",
                 OnAfterTurn = (Pokemon pokemon) =>{
-                    pokemon.UpdateHP(pokemon.MaxHp / 16);
+                    pokemon.DecreaseHP(pokemon.MaxHp / 16);
                     pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} is hurt by burn!");
                 }
             }
@@ -45,7 +45,7 @@ public class ConditionsDB{
                     if (pokemon.StatusTime > 0){
                         damage += pokemon.StatusTime * pokemon.MaxHp / 16;
                     }
-                    pokemon.UpdateHP(damage);
+                    pokemon.DecreaseHP(damage);
                     pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} is hurt by poison badly!");
                     pokemon.StatusTime++;
                 }
@@ -84,7 +84,7 @@ public class ConditionsDB{
                 Name = "Frostbite",
                 StartMessage = "has been frostbitten!",
                 OnAfterTurn = (Pokemon pokemon) =>{
-                    pokemon.UpdateHP(pokemon.MaxHp / 16);
+                    pokemon.DecreaseHP(pokemon.MaxHp / 16);
                     pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} is hurt by frostbite!");
                 }
             }
@@ -128,7 +128,7 @@ public class ConditionsDB{
                         return true;
                     }
                     pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} is confued.");
-                    pokemon.UpdateHP(pokemon.MaxHp / 8);
+                    pokemon.DecreaseHP(pokemon.MaxHp / 8);
                     pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} hurt itself in its confusion!");
                     return false;
                 }

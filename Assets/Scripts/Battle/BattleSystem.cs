@@ -140,7 +140,6 @@ public class BattleSystem : MonoBehaviour{
     void OpenPartyScreen(){
         partyScreen.CallFrom = state;
         state = BattleState.PartyScreen;
-        partyScreen.SetPartyData(playerParty.Pokemons);
         partyScreen.gameObject.SetActive(true);
     }
 
@@ -501,7 +500,7 @@ public class BattleSystem : MonoBehaviour{
             float trainerBonus = (isTrainerBattle)? 1.5f : 1f;
 
             int expGain = Mathf.FloorToInt( expYield * enemyLevel * trainerBonus)  / 7;
-            playerUnit.Pokemon.Exp += expGain;
+            playerUnit.Pokemon.GainExp(expGain);
 
             yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name} gained {expGain} XP from this battle.");
             yield return playerUnit.Hud.SetExpSmooth();

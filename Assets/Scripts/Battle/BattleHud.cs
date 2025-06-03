@@ -31,17 +31,26 @@ public class BattleHud : MonoBehaviour{
 
     Pokemon _pokemon;
     Dictionary<ConditionID, Sprite> statusImages;
-
-    public Dictionary<ConditionID, Sprite> StatusImages {
-        get { return statusImages; }
-    }
+    
+    public Dictionary<ConditionID, Sprite> StatusImages { get { return statusImages; } set { statusImages = value; }}
     
     public void SetData(Pokemon pokemon){
+        if(_pokemon != null){
+            _pokemon.OnStatusChanged -= SetStatusImage;
+            _pokemon.OnHpChanged -= UpdateHpBar;
+            _pokemon.OnExpChanged -= UpdateExpBar;
+        }
+
         _pokemon = pokemon;
+        _pokemon.OnStatusChanged += SetStatusImage;
+        _pokemon.OnHpChanged += UpdateHpBar;
+        _pokemon.OnExpChanged += UpdateExpBar;
 
         nameText.text = pokemon.Base.Name;
         levelText.text ="Lvl." + pokemon.Level.ToString();
-        hpBar.SetHP((float)pokemon.HP / (float)pokemon.MaxHp);
+
+        hpBar.SetHP((float)pokemon.HP / pokemon.MaxHp);
+        SetExp();
 
         if(pokemon.Base.IsGenderless){
             genderIcon.sprite = genderlessIcon;
@@ -67,7 +76,14 @@ public class BattleHud : MonoBehaviour{
         };
 
         SetStatusImage();
-        _pokemon.OnStatusChanged += SetStatusImage;
+    }
+
+    private void OnDestroy(){
+        if(_pokemon != null){
+            _pokemon.OnStatusChanged -= SetStatusImage;
+            _pokemon.OnHpChanged -= UpdateHpBar;
+            _pokemon.OnExpChanged -= UpdateExpBar;
+        }
     }
 
     void SetStatusImage(){
@@ -75,7 +91,7 @@ public class BattleHud : MonoBehaviour{
             statusImage.gameObject.SetActive(false);
         } else {
             statusImage.gameObject.SetActive(true);
-            statusImage.sprite = GlobalSettings.i.StatusImages[_pokemon.Status.Id];
+            statusImage.sprite = statusImages[_pokemon.Status.Id];
         }
     }
 
@@ -113,5 +129,22 @@ public class BattleHud : MonoBehaviour{
 
         float normilizedExp =  (float)( _pokemon.Exp - currLevelExp ) / (float)( nextLevelExp - currLevelExp);
         return Mathf.Clamp01(normilizedExp);
+    }
+
+    private void UpdateHpBar(){
+        if(gameObject.activeInHierarchy){
+            StartCoroutine(UpdateHP());
+        } else {
+            hpBar.SetHP((float)_pokemon.HP / (float)_pokemon.MaxHp);
+            _pokemon.HpChanged = false;
+        }
+    }
+
+    private void UpdateExpBar(){
+        if(gameObject.activeInHierarchy){
+            StartCoroutine(SetExpSmooth());
+        } else {
+            SetExp();
+        }
     }
 }

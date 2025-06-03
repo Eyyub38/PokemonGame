@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Hyper Potion
   description: Restores the HP of a Pokemon by 200 points.
+  message: Health improved by 200 points.
   icon: {fileID: 21300000, guid: e43aa024c39c4d14d8c1d2836c62bf13, type: 3}
+  itemType: 0
   hpAmount: 200
   restoreMaxHp: 0
   ppAmount: 0

@@ -21,14 +21,14 @@ public class BattleDialogBox : MonoBehaviour{
     [Header("Move Selection")]
     [SerializeField] GameObject moveSelector;
     [SerializeField] List<MoveBar> moveBars;
+    [SerializeField] List<Sprite> typeBarSprites;
+    [SerializeField] Sprite empty;
 
     Color originalColor;
     Color  highlightedColor;
-    List<Sprite> typeBarsSprites;
 
     private void Start(){
         highlightedColor = GlobalSettings.i.HighlightedColor;
-        typeBarsSprites = GlobalSettings.i.TypeBarSprites;
     }
 
     public void SetDialog(string dialog){
@@ -108,7 +108,7 @@ public class BattleDialogBox : MonoBehaviour{
             } else {
                 moveBars[i].NameText.text = "";
                 moveBars[i].PpText.text = "";
-                moveBars[i].TypeImage.sprite = GlobalSettings.i.Empty;
+                moveBars[i].TypeImage.sprite = empty;
             }
         }
     }
@@ -116,41 +116,41 @@ public class BattleDialogBox : MonoBehaviour{
     public void SetTypeBars(Move move,MoveBar moveBar){
         string type = move.Base.Type.ToString();
         if(type == "Normal"){
-            moveBar.TypeImage.sprite = typeBarsSprites[0];
+            moveBar.TypeImage.sprite = typeBarSprites[0];
         } else if(type == "Fire"){
-            moveBar.TypeImage.sprite = typeBarsSprites[1];
+            moveBar.TypeImage.sprite = typeBarSprites[1];
         } else if(type == "Water"){
-            moveBar.TypeImage.sprite = typeBarsSprites[2];
+            moveBar.TypeImage.sprite = typeBarSprites[2];
         } else if(type == "Grass"){
-            moveBar.TypeImage.sprite = typeBarsSprites[3];
+            moveBar.TypeImage.sprite = typeBarSprites[3];
         } else if(type == "Electric"){
-            moveBar.TypeImage.sprite = typeBarsSprites[4];
+            moveBar.TypeImage.sprite = typeBarSprites[4];
         } else if(type == "Ice"){
-            moveBar.TypeImage.sprite = typeBarsSprites[5];
+            moveBar.TypeImage.sprite = typeBarSprites[5];
         } else if(type == "Fighting"){
-            moveBar.TypeImage.sprite = typeBarsSprites[6];
+            moveBar.TypeImage.sprite = typeBarSprites[6];
         } else if(type == "Poison"){
-            moveBar.TypeImage.sprite = typeBarsSprites[7];
+            moveBar.TypeImage.sprite = typeBarSprites[7];
         } else if(type == "Ground"){
-            moveBar.TypeImage.sprite = typeBarsSprites[8];
+            moveBar.TypeImage.sprite = typeBarSprites[8];
         } else if(type == "Flying"){
-            moveBar.TypeImage.sprite = typeBarsSprites[9];
+            moveBar.TypeImage.sprite = typeBarSprites[9];
         } else if(type == "Psychic"){
-            moveBar.TypeImage.sprite = typeBarsSprites[10];
+            moveBar.TypeImage.sprite = typeBarSprites[10];
         } else if(type == "Bug"){
-            moveBar.TypeImage.sprite = typeBarsSprites[11];
+            moveBar.TypeImage.sprite = typeBarSprites[11];
         } else if(type == "Rock"){
-            moveBar.TypeImage.sprite = typeBarsSprites[12];
+            moveBar.TypeImage.sprite = typeBarSprites[12];
         } else if(type == "Ghost"){
-            moveBar.TypeImage.sprite = typeBarsSprites[13];
+            moveBar.TypeImage.sprite = typeBarSprites[13];
         } else if(type == "Dragon"){
-            moveBar.TypeImage.sprite = typeBarsSprites[14];
+            moveBar.TypeImage.sprite = typeBarSprites[14];
         } else if(type == "Dark"){
-            moveBar.TypeImage.sprite = typeBarsSprites[15];
+            moveBar.TypeImage.sprite = typeBarSprites[15];
         } else if(type == "Steel"){
-            moveBar.TypeImage.sprite = typeBarsSprites[16];
+            moveBar.TypeImage.sprite = typeBarSprites[16];
         } else if(type == "Fairy"){
-            moveBar.TypeImage.sprite = typeBarsSprites[17];
+            moveBar.TypeImage.sprite = typeBarSprites[17];
         }
     }
 }

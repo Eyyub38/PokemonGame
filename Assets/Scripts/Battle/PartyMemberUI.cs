@@ -2,14 +2,16 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Collections;
 
 public class PartyMemberUI : MonoBehaviour{
     [Header("Pokemon Details")]
     [SerializeField] Text nameText;
     [SerializeField] Text levelText;
 
-    [Header("HP Bar")]
+    [Header("HP&XP Bar")]
     [SerializeField] HPBar hpBar;
+    [SerializeField] GameObject xpBar;
 
     [Header("Pokemon Gender")]
     [SerializeField] Image genderIcon;
@@ -65,27 +67,32 @@ public class PartyMemberUI : MonoBehaviour{
     
     public void SetData(Pokemon pokemon){
         _pokemon = pokemon;
-        if(_pokemon.HP <= 0){
-            details.sprite = detailBackground[1];
-            icon.sprite = iconBacgrounrd[1];
-        } else if(_pokemon == currUnit?.Pokemon){
-            details.sprite = detailBackground[0];
-            icon.sprite = iconBacgrounrd[0];
-        } else {
-            details.sprite = detailBackground[2];
-            icon.sprite = iconBacgrounrd[2];
-        }
+        UpdateData();
 
-        if(pokemon.Status != null){
-            statusIcon.gameObject.SetActive(true);
-            statusIcon.sprite = battleHud.StatusImages[pokemon.Status.Id];
-        } else {
-            statusIcon.gameObject.SetActive(false);
+        _pokemon.OnHpChanged += UpdateData;
+        _pokemon.OnExpChanged += UpdateData;
+        _pokemon.OnStatusChanged += UpdateData;
 
+        if(GameController.Instance.PrevState == GameState.Bag){
+            if(_pokemon.HP <= 0){
+                details.sprite = detailBackground[1];
+                icon.sprite = iconBacgrounrd[1];
+            } else {
+                details.sprite = detailBackground[2];
+                icon.sprite = iconBacgrounrd[2];
+            }
+        } else {
+            if(_pokemon.HP <= 0){
+                details.sprite = detailBackground[1];
+                icon.sprite = iconBacgrounrd[1];
+            } else if(_pokemon == currUnit?.Pokemon){
+               details.sprite = detailBackground[0];
+                icon.sprite = iconBacgrounrd[0];
+            } else {
+                details.sprite = detailBackground[2];
+                icon.sprite = iconBacgrounrd[2];
+            }
         }
-        pokemonIcon.sprite = pokemon.Base.IconSprite;
-        nameText.text = pokemon.Base.Name;
-        levelText.text ="Lvl." + pokemon.Level.ToString();
 
         if(pokemon.Base.IsGenderless){
             genderIcon.sprite = genderlessIcon;
@@ -99,19 +106,42 @@ public class PartyMemberUI : MonoBehaviour{
         } else {
             genderIcon.gameObject.SetActive(false);
         }
-
-        if(pokemon.Status != null && battleHud.StatusImages[pokemon.Status.Id] != null){
-            this.statusIcon.gameObject.SetActive(true);
-            this.statusIcon.sprite = battleHud.StatusImages[pokemon.Status.Id];
-        } else {
-            this.statusIcon.gameObject.SetActive(false);
-        }
-
-        hpBar.SetHP((float)pokemon.HP / (float)pokemon.MaxHp);
-
+    
         if(isSelected){
             StartBounceAnimation();
         }
+    }
+
+    private void UpdateData(){
+        pokemonIcon.sprite = _pokemon.Base.IconSprite;
+        nameText.text = _pokemon.Base.Name;
+        levelText.text ="Lvl." + _pokemon.Level.ToString();
+        
+        hpBar.SetHP((float)_pokemon.HP / _pokemon.MaxHp);
+        float normalizedExp = GetNormalizedExp(_pokemon);
+        xpBar.transform.localScale = new Vector3(normalizedExp, 1, 1);
+
+        if(_pokemon.Status != null){
+            statusIcon.gameObject.SetActive(true);
+            statusIcon.sprite = battleHud.StatusImages[_pokemon.Status.Id];
+        } else {
+            statusIcon.gameObject.SetActive(false);
+        }
+
+        if(_pokemon.Status != null && battleHud.StatusImages[_pokemon.Status.Id] != null){
+            this.statusIcon.gameObject.SetActive(true);
+            this.statusIcon.sprite = battleHud.StatusImages[_pokemon.Status.Id];
+        } else {
+            this.statusIcon.gameObject.SetActive(false);
+        }
+    }
+
+    private float GetNormalizedExp(Pokemon pokemon){
+        int currLevelExp = pokemon.Base.GetExpForLevel(pokemon.Level);
+        int nextLevelExp = pokemon.Base.GetExpForLevel(pokemon.Level + 1);
+
+        float normalizedExp = (float)(pokemon.Exp - currLevelExp) / (float)(nextLevelExp - currLevelExp);
+        return Mathf.Clamp01(normalizedExp);
     }
 
     private void StartBounceAnimation(){

@@ -7,16 +7,7 @@ public class GlobalSettings : MonoBehaviour{
     [Header("Color")]
     [SerializeField] Color highlightedColor;
     
-    [Header("MoveBar Backgrounds")]
-    [SerializeField] List<Sprite> typeBarSprites = new List<Sprite>();
-    [SerializeField] Sprite empty;
-
-    Dictionary<ConditionID, Sprite> statusImages;
-
-    public Dictionary<ConditionID, Sprite> StatusImages { get { return statusImages; } set { statusImages = value; }}
     public Color HighlightedColor => highlightedColor;
-    public List<Sprite> TypeBarSprites => typeBarSprites;
-    public Sprite Empty => empty;
 
     public static GlobalSettings i {get; private set;}
 
