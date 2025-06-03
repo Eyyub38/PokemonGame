@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 53d8028d032e6ed418c00340c9a6859d, type: 3}
-  m_Name: Potion
+  m_Name: SuperPotion
   m_EditorClassIdentifier: 
-  _name: Potion
-  description: Restores the HP of a Pokemon by 20 points.
-  icon: {fileID: 21300000, guid: c8e5f6455d193374d9d98de824bedc37, type: 3}
-  hpAmount: 20
+  _name: Super Potion
+  description: Restores the HP of a Pokemon by 50 points.
+  icon: {fileID: 21300000, guid: 8179f56655ff1354fa4c6bb60b97d2f5, type: 3}
+  hpAmount: 50
   restoreMaxHp: 0
   ppAmount: 0
   restoreMaxPp: 0

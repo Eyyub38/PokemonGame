@@ -34,6 +34,9 @@ public class GameController : MonoBehaviour{
 
         menuController = GetComponent<MenuController>();
 
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
+
         PokemonDB.Init();
         MoveDB.Init();
         ConditionsDB.Init();

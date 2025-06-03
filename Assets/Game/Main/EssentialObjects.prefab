@@ -525,7 +525,7 @@ MonoBehaviour:
   battleSystem: {fileID: 645511446941952261}
   worldCamera: {fileID: 6204670687512989150}
   partyScreen: {fileID: 7770804013979079318}
-  inventoryUI: {fileID: 8352191135698240029}
+  inventoryUI: {fileID: 2487256870943947463}
   locationUI: {fileID: 8229928707557440138}
   locationText: {fileID: 4263930800890351239}
 --- !u!114 &1146653876710540391
@@ -3672,10 +3672,10 @@ MonoBehaviour:
   enemyUnit: {fileID: 4213259490505949297}
   dialogBox: {fileID: 7625815427457829823}
   partyScreen: {fileID: 3890083027399627137}
+  moveSelectionUI: {fileID: 616964418521490908}
   playerImage: {fileID: 235466175986944993}
   trainerImage: {fileID: 5138801045670261400}
   pokeballSprite: {fileID: 8603953037000960197, guid: 4f492726bf12e014ca2c93d7bd4a241f, type: 3}
-  moveSelectionUI: {fileID: 616964418521490908}
 --- !u!1 &4095603397725695728
 GameObject:
   m_ObjectHideFlags: 0
@@ -5320,6 +5320,7 @@ MonoBehaviour:
   - {fileID: 8581193272504455518}
   - {fileID: 2221132538056900794}
   - {fileID: 4371790178717467099}
+  currDetails: {fileID: 3418807764251619838}
   currNameText: {fileID: 1710729456497551139}
   currPowerText: {fileID: 481772089694731154}
   currAccurText: {fileID: 7404608003072738294}
@@ -5330,7 +5331,6 @@ MonoBehaviour:
   newAccurText: {fileID: 440944944977013037}
   newDescriptionText: {fileID: 8516516269853325282}
   newCatagoryImage: {fileID: 8144029445229560402}
-  currDetails: {fileID: 3418807764251619838}
   categories:
   - {fileID: -7231274899298942884, guid: 59190a51a4ecd024b9edbbab461dc4db, type: 3}
   - {fileID: 77472256623914963, guid: 59190a51a4ecd024b9edbbab461dc4db, type: 3}
@@ -7511,15 +7511,15 @@ MonoBehaviour:
   letterPerSecond: 30
   dialogText: {fileID: 1774624238385496513}
   actionSelector: {fileID: 7854841402553069496}
-  moveSelector: {fileID: 1025353801506284044}
-  choiceBox: {fileID: 3463344206889982374}
-  yesText: {fileID: 6051553852513185196}
-  noText: {fileID: 8888332920968738126}
   actionTexts:
   - {fileID: 6639280269882309194}
   - {fileID: 4932328392190293671}
   - {fileID: 4117096915804752934}
   - {fileID: 7869965516345092149}
+  choiceBox: {fileID: 3463344206889982374}
+  yesText: {fileID: 6051553852513185196}
+  noText: {fileID: 8888332920968738126}
+  moveSelector: {fileID: 1025353801506284044}
   moveBars:
   - {fileID: 7550469378523124194}
   - {fileID: 907224003023298853}
@@ -9004,6 +9004,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4b851b2ab98bcc4599dcdcb11d66a9b, type: 3}
+--- !u!114 &2487256870943947463 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 206206863515313829, guid: c4b851b2ab98bcc4599dcdcb11d66a9b, type: 3}
+  m_PrefabInstance: {fileID: 2330642489478782050}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0e7adb0a074539489c9a586667a3df4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2625868742928082617 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 299752482279996123, guid: c4b851b2ab98bcc4599dcdcb11d66a9b, type: 3}
@@ -9057,17 +9068,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5939841573575501544, guid: c4b851b2ab98bcc4599dcdcb11d66a9b, type: 3}
   m_PrefabInstance: {fileID: 2330642489478782050}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8352191135698240029 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6030578737129807487, guid: c4b851b2ab98bcc4599dcdcb11d66a9b, type: 3}
-  m_PrefabInstance: {fileID: 2330642489478782050}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: deeb0bf84d68ed4448513fcd6a568658, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &4040352060531271187
 PrefabInstance:
   m_ObjectHideFlags: 0

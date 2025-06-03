@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 53d8028d032e6ed418c00340c9a6859d, type: 3}
-  m_Name: Potion
+  m_Name: Revive
   m_EditorClassIdentifier: 
-  _name: Potion
-  description: Restores the HP of a Pokemon by 20 points.
-  icon: {fileID: 21300000, guid: c8e5f6455d193374d9d98de824bedc37, type: 3}
-  hpAmount: 20
+  _name: Revive
+  description: Revives a fainted Pokemon with half its HP.
+  icon: {fileID: 21300000, guid: 3d9554a94d4ca7449a78684e560929b6, type: 3}
+  itemType: 7
+  hpAmount: 0
   restoreMaxHp: 0
   ppAmount: 0
   restoreMaxPp: 0
-  status: 0
+  status: 1
   recoverAllStatus: 0
-  revive: 0
+  revive: 1
   maxRevive: 0

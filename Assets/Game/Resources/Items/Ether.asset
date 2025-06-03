@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 53d8028d032e6ed418c00340c9a6859d, type: 3}
-  m_Name: Potion
+  m_Name: Ether
   m_EditorClassIdentifier: 
-  _name: Potion
-  description: Restores the HP of a Pokemon by 20 points.
-  icon: {fileID: 21300000, guid: c8e5f6455d193374d9d98de824bedc37, type: 3}
-  hpAmount: 20
+  _name: Ether
+  description: Restores the PP of a selected move by 10.
+  icon: {fileID: 21300000, guid: f848642caf1d96a44ad2043cf780fb89, type: 3}
+  itemType: 6
+  hpAmount: 0
   restoreMaxHp: 0
-  ppAmount: 0
+  ppAmount: 10
   restoreMaxPp: 0
   status: 0
   recoverAllStatus: 0

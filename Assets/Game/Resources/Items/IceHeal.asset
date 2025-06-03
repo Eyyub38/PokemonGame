@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 53d8028d032e6ed418c00340c9a6859d, type: 3}
-  m_Name: Potion
+  m_Name: IceHeal
   m_EditorClassIdentifier: 
-  _name: Potion
-  description: Restores the HP of a Pokemon by 20 points.
-  icon: {fileID: 21300000, guid: c8e5f6455d193374d9d98de824bedc37, type: 3}
-  hpAmount: 20
+  _name: Ice Heal
+  description: Defrosts a frozen Pokemon.
+  icon: {fileID: 21300000, guid: dd1a77a4c33be7c4e88fcdc4acc8a20d, type: 3}
+  itemType: 1
+  hpAmount: 0
   restoreMaxHp: 0
   ppAmount: 0
   restoreMaxPp: 0
-  status: 0
+  status: 5
   recoverAllStatus: 0
   revive: 0
   maxRevive: 0

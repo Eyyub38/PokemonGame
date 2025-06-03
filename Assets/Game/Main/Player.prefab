@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 1801119618800852856}
   - component: {fileID: 7573879844018487043}
   - component: {fileID: 1706078320481970831}
+  - component: {fileID: 4213203068204416339}
   - component: {fileID: 7530823447165788642}
   - component: {fileID: 2910947406915275775}
   - component: {fileID: 3971893604026267208}
@@ -171,6 +172,37 @@ MonoBehaviour:
   - _base: {fileID: 11400000, guid: f3da621f39f4452418f05134a077863e, type: 2}
     level: 13
     gender: 1
+--- !u!114 &4213203068204416339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3860890692304561109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2e2a272855cf13449c149a128fe79a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slots:
+  - item: {fileID: 11400000, guid: 9b04392d8decbd341bf3a1dc6638e369, type: 2}
+    count: 10
+  - item: {fileID: 11400000, guid: 3182acda9f533ce4e9d5b216d662d04d, type: 2}
+    count: 10
+  - item: {fileID: 11400000, guid: f8b5f6d95f536fa468bad982f981bfa0, type: 2}
+    count: 2
+  - item: {fileID: 11400000, guid: 97e306c967978bf49ace4656ec88a8ba, type: 2}
+    count: 2
+  - item: {fileID: 11400000, guid: e4ddb4fe322b99141b939252858c9815, type: 2}
+    count: 2
+  - item: {fileID: 11400000, guid: 4ee2792640d95384daf56020122ba9ad, type: 2}
+    count: 10
+  - item: {fileID: 11400000, guid: 99f9a19311e9e0d4d9f2969191adde01, type: 2}
+    count: 2
+  - item: {fileID: 11400000, guid: 99f9a19311e9e0d4d9f2969191adde01, type: 2}
+    count: 2
+  - item: {fileID: 11400000, guid: 058d220bf424f774fbfad82a8f2d8a27, type: 2}
+    count: 1
 --- !u!114 &7530823447165788642
 MonoBehaviour:
   m_ObjectHideFlags: 0
