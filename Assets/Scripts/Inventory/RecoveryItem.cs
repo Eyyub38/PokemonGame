@@ -1,0 +1,23 @@
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
+[CreateAssetMenu(menuName = "Items/Create new recovery item")]
+public class RecoveryItem : ItemBase{
+    [Header("HP")]
+    [SerializeField] int hpAmount;
+    [SerializeField] bool restoreMaxHp;
+
+    [Header("PP")]
+    [SerializeField] int ppAmount;
+    [SerializeField] bool restoreMaxPp;
+
+    [Header("Status")]
+    [SerializeField] ConditionID status;
+    [SerializeField] bool recoverAllStatus;
+
+    [Header("Revive")]
+    [SerializeField] bool revive;
+    [SerializeField] bool maxRevive;
+
+}

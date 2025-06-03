@@ -4,32 +4,47 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class PartyMemberUI : MonoBehaviour{
+    [Header("Pokemon Details")]
     [SerializeField] Text nameText;
     [SerializeField] Text levelText;
+
+    [Header("HP Bar")]
     [SerializeField] HPBar hpBar;
+
+    [Header("Pokemon Gender")]
     [SerializeField] Image genderIcon;
+    
+    [Header("Pokemon Icon")]
     [SerializeField] Image pokemonIcon;
 
+    [Header("Pokemon Detail Background")]
     [SerializeField] Image details;
-    [SerializeField] Image icon;
-
     [SerializeField] List<Sprite> detailBackground;
+
+    [Header("Pokemon Icon Background")]
+    [SerializeField] Image icon;
     [SerializeField] List<Sprite> iconBacgrounrd;
 
+    [Header("Gender Icons")]
     [SerializeField] Sprite maleIcon;
     [SerializeField] Sprite femaleIcon;
     [SerializeField] Sprite genderlessIcon;
+
+    [Header("Status Icon")]
     [SerializeField] Image statusIcon;
+
+    [Header("Bounce Animation")]
+    [SerializeField] float bounceHeight = 10f;
+    [SerializeField] float bounceDuration = 0.5f;
+
+    [Header("Battle Unit")]
+    [SerializeField] BattleUnit currUnit;
+    [SerializeField] BattleHud battleHud;
 
     private Vector3 originalIconPosition;
     private Sequence bounceSequence;
-    [SerializeField] float bounceHeight = 10f;
-    [SerializeField] float bounceDuration = 0.5f;
     private bool isSelected = false;
 
-    [SerializeField] BattleUnit currUnit;
-
-    [SerializeField] BattleHud battleHud;
     Pokemon _pokemon;
     
     private void Start(){

@@ -5,7 +5,10 @@ using System.Collections.Generic;
 public enum NPCState{ Idle, Walking, Dialog}
 
 public class NPCController : MonoBehaviour, Interactable{
+    [Header("NPC Dialog")]
     [SerializeField] Dialog dialog;
+ 
+    [Header("NPC Move Pattern")]
     [SerializeField] List<Vector2> movementPattern;
     [SerializeField] float timeBetweenPattern;
 

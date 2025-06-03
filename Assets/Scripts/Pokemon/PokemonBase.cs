@@ -10,29 +10,29 @@ public enum Stat{ Attack, Defense , SpAttack, SpDefense, Speed, Accuracy, Evasio
 
 [CreateAssetMenu(fileName = "Pokemon", menuName = "Pokemon/Create new Pokemon")]
 public class PokemonBase : ScriptableObject{
-    //Name & Description
+    [Header("Pokemon Details")]
     [SerializeField] string _name;
 
     [TextArea]
     [SerializeField] string description;
 
-    //Sprites
+    [Header("Default Sprites")]
     [SerializeField] Sprite frontSprite;
     [SerializeField] Sprite backSprite;
     [SerializeField] Sprite iconSprite;
     
-    //Gender
+    [Header("Female Sprites")]
+    [SerializeField] bool isGenderless;
+    [SerializeField] bool hasGenderDifferences;
     [SerializeField] Sprite femaleFrontSprite;
     [SerializeField] Sprite femaleBackSprite;
-    [SerializeField] bool hasGenderDifferences;
     [SerializeField] float maleRatio = 0.5f;
-    [SerializeField] bool isGenderless;
 
-    //Types
+    [Header("Types")]
     [SerializeField] PokemonType type1;
     [SerializeField] PokemonType type2;
     
-    //Base States
+    [Header("Stats")]
     [SerializeField] int maxHp;
     [SerializeField] int attack;
     [SerializeField] int defense;
@@ -44,7 +44,7 @@ public class PokemonBase : ScriptableObject{
     [SerializeField] int xpYield;
     [SerializeField] GrowthRate growthRate;
 
-    //LearnableMoves
+    [Header("Learnable Moves")]
     [SerializeField] List<LearnableMove> learnableMoves;
 
     //Properties

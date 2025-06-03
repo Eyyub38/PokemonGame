@@ -5,17 +5,21 @@ using System.Collections.Generic;
 
 
 public class BattleDialogBox : MonoBehaviour{
+    [Header("Dialog")]
     [SerializeField] int letterPerSecond;
-
     [SerializeField] Text dialogText;
-    [SerializeField] GameObject actionSelector;
-    [SerializeField] GameObject moveSelector;
-    [SerializeField] GameObject choiceBox;
 
+    [Header("Action Selection")]
+    [SerializeField] GameObject actionSelector;
+    [SerializeField] List<Text> actionTexts;
+
+    [Header("Choice Selection")]
+    [SerializeField] GameObject choiceBox;
     [SerializeField] Text yesText;
     [SerializeField] Text noText;
 
-    [SerializeField] List<Text> actionTexts;
+    [Header("Move Selection")]
+    [SerializeField] GameObject moveSelector;
     [SerializeField] List<MoveBar> moveBars;
 
     Color originalColor;

@@ -5,20 +5,25 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class MoveSelectionUI : MonoBehaviour{
+    [Header("Move Bars")]
     [SerializeField] List<MoveBar> moveBars;
 
+    [Header("Current Move Details")]
+    [SerializeField] GameObject currDetails;
     [SerializeField] Text currNameText;
     [SerializeField] Text currPowerText;
     [SerializeField] Text currAccurText;
     [SerializeField] Text currDescriptionText;
     [SerializeField] Image currCatagoryImage;
+    
+    [Header("New Move Details")]
     [SerializeField] Text newNameText;
     [SerializeField] Text newPowerText;
     [SerializeField] Text newAccurText;
     [SerializeField] Text newDescriptionText;
     [SerializeField] Image newCatagoryImage;
 
-    [SerializeField] GameObject currDetails;
+    [Header("Category Images")]
     [SerializeField] List<Sprite> categories = new List<Sprite>();
     
     int currentSelection = 0;

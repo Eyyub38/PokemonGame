@@ -140,7 +140,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Menu_0
+      name: Party
       rect:
         serializedVersion: 2
         x: 6
@@ -162,7 +162,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Menu_1
+      name: MenuBackground
       rect:
         serializedVersion: 2
         x: 48
@@ -184,7 +184,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Menu_2
+      name: Quest
       rect:
         serializedVersion: 2
         x: 258
@@ -206,7 +206,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Menu_3
+      name: Bag
       rect:
         serializedVersion: 2
         x: 6
@@ -228,7 +228,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Menu_4
+      name: Map
       rect:
         serializedVersion: 2
         x: 194
@@ -250,7 +250,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Menu_5
+      name: Nav
       rect:
         serializedVersion: 2
         x: 256
@@ -272,7 +272,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Menu_6
+      name: Dex
       rect:
         serializedVersion: 2
         x: 0
@@ -294,7 +294,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Menu_7
+      name: Player
       rect:
         serializedVersion: 2
         x: 52
@@ -316,7 +316,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Menu_8
+      name: Main_Menu
       rect:
         serializedVersion: 2
         x: 101
@@ -338,7 +338,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Menu_9
+      name: Settings
       rect:
         serializedVersion: 2
         x: 146
@@ -360,7 +360,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Menu_10
+      name: MenuSlot
       rect:
         serializedVersion: 2
         x: 160
@@ -382,7 +382,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Menu_11
+      name: Save
       rect:
         serializedVersion: 2
         x: 162
@@ -404,7 +404,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Menu_12
+      name: Load
       rect:
         serializedVersion: 2
         x: 212
@@ -439,19 +439,19 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Menu_0: -198938125430884413
-      Menu_1: -1909268238846872576
-      Menu_10: 835732282
-      Menu_11: -1187006786
-      Menu_12: -1704771611
-      Menu_2: -275939537401066862
-      Menu_3: 2406227903653740696
-      Menu_4: -894268473198475317
-      Menu_5: 7585431397144717044
-      Menu_6: -2067535388042838268
-      Menu_7: 1241894451957635108
-      Menu_8: 4708945720312227554
-      Menu_9: -6401181650942206485
+      Bag: 2406227903653740696
+      Dex: -2067535388042838268
+      Load: -1704771611
+      Main_Menu: 4708945720312227554
+      Map: -894268473198475317
+      MenuBackground: -1909268238846872576
+      MenuSlot: 835732282
+      Nav: 7585431397144717044
+      Party: -198938125430884413
+      Player: 1241894451957635108
+      Quest: -275939537401066862
+      Save: -1187006786
+      Settings: -6401181650942206485
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

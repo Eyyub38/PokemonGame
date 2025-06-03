@@ -5,7 +5,10 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour, ISavable{
+    [Header("Character Name")]
     [SerializeField] string _name;
+    
+    [Header("Battle Image")]
     [SerializeField] Sprite battleImage;
 
     private Character character;

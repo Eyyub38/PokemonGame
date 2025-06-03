@@ -5,7 +5,6 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class BattleUnit : MonoBehaviour{
-    
     [SerializeField] bool isPlayerUnit;
     [SerializeField] BattleHud hud;
 

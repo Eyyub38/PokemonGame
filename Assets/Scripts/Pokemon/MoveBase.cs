@@ -7,18 +7,23 @@ public enum MoveCategory{ Physical, Special, Status}
 
 [CreateAssetMenu(fileName = "Move", menuName = "Move/Create new Move")]
 public class MoveBase : ScriptableObject{
+    [Header("Pokemon Details")]
     [SerializeField] string _name;
     [TextArea]
     [SerializeField] string description;
 
-    //Stats&Type
+    [Header("Type")]
     [SerializeField] PokemonType type;
+    
+    [Header("Stats")]
     [SerializeField] int power;
     [SerializeField] int accuracy;
     [SerializeField] bool alwaysHits;
     [SerializeField] int pp;
     [SerializeField] int priority;
     [SerializeField] MoveCategory category;
+
+    [Header("Effects")]
     [SerializeField] MoveEffects effects;
     [SerializeField] List<SecondaryEffects> secondaries;
     [SerializeField] MoveTarget target;

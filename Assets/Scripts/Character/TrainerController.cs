@@ -3,11 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class TrainerController : MonoBehaviour, Interactable, ISavable{
+    [Header("Trainer Name")]
     [SerializeField] string _name;
+
+    [Header("Trainer Battle Image")]
     [SerializeField] Sprite battleImage;
+
+    [Header("Trainer Dialog")]
     [SerializeField] Dialog dialog;
     [SerializeField] Dialog dialogAfterBattle;
+
+    [Header("Trainer Emote")]
     [SerializeField] GameObject exclamation;
+    
+    [Header("Trainer FoV")]
     [SerializeField] GameObject fov;
 
     bool battleLost = false;

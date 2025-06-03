@@ -143,7 +143,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PartyUI_0
+      name: PartyUI_Background
       rect:
         serializedVersion: 2
         x: 0
@@ -151,7 +151,7 @@ TextureImporter:
         width: 48
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 5, y: 5, z: 5, w: 5}
       customData: 
       outline: []
@@ -165,7 +165,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PartyUI_1
+      name: Pokemon_Detail
       rect:
         serializedVersion: 2
         x: 64
@@ -173,7 +173,7 @@ TextureImporter:
         width: 347
         height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 30, y: 0, z: 17, w: 0}
       customData: 
       outline: []
@@ -187,7 +187,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PartyUI_2
+      name: HP_Bar
       rect:
         serializedVersion: 2
         x: 448
@@ -195,7 +195,7 @@ TextureImporter:
         width: 268
         height: 10
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -209,7 +209,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PartyUI_3
+      name: Fainted_Detail
       rect:
         serializedVersion: 2
         x: 64
@@ -217,7 +217,7 @@ TextureImporter:
         width: 347
         height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 30, y: 0, z: 17, w: 0}
       customData: 
       outline: []
@@ -231,7 +231,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PartyUI_4
+      name: HP_Frame
       rect:
         serializedVersion: 2
         x: 448
@@ -239,7 +239,7 @@ TextureImporter:
         width: 310
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 39, y: 3, z: 6, w: 3}
       customData: 
       outline: []
@@ -253,7 +253,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PartyUI_5
+      name: Current_Detail
       rect:
         serializedVersion: 2
         x: 64
@@ -261,7 +261,7 @@ TextureImporter:
         width: 347
         height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 30, y: 0, z: 17, w: 0}
       customData: 
       outline: []
@@ -275,7 +275,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PartyUI_6
+      name: XP_Bar
       rect:
         serializedVersion: 2
         x: 448
@@ -283,7 +283,7 @@ TextureImporter:
         width: 261
         height: 10
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -297,7 +297,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PartyUI_7
+      name: XP_Frame
       rect:
         serializedVersion: 2
         x: 432
@@ -305,7 +305,7 @@ TextureImporter:
         width: 291
         height: 14
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 28, y: 2, z: 2, w: 2}
       customData: 
       outline: []
@@ -319,7 +319,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PartyUI_8
+      name: Enemy_Detail
       rect:
         serializedVersion: 2
         x: 69
@@ -327,7 +327,7 @@ TextureImporter:
         width: 347
         height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 17, y: 0, z: 30, w: 0}
       customData: 
       outline: []
@@ -341,7 +341,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PartyUI_9
+      name: Pokemon_Icon
       rect:
         serializedVersion: 2
         x: 16
@@ -349,7 +349,7 @@ TextureImporter:
         width: 86
         height: 86
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -363,7 +363,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PartyUI_10
+      name: Fainted_Icon
       rect:
         serializedVersion: 2
         x: 112
@@ -371,7 +371,7 @@ TextureImporter:
         width: 86
         height: 86
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -385,7 +385,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PartyUI_11
+      name: Current_Icon
       rect:
         serializedVersion: 2
         x: 208
@@ -393,7 +393,7 @@ TextureImporter:
         width: 86
         height: 86
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -407,7 +407,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PartyUI_12
+      name: Enemy_Icon
       rect:
         serializedVersion: 2
         x: 304
@@ -415,7 +415,7 @@ TextureImporter:
         width: 86
         height: 86
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -442,19 +442,19 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      PartyUI_0: 3301064110192349734
-      PartyUI_1: -1008155485431700292
-      PartyUI_10: 2791817442184294664
-      PartyUI_11: 707289672
-      PartyUI_12: -644249776
-      PartyUI_2: 3043817427503479040
-      PartyUI_3: -2178134087512423234
-      PartyUI_4: 6806306226221780235
-      PartyUI_5: -5441359676103985948
-      PartyUI_6: 4616688739863449770
-      PartyUI_7: 6450023092234524929
-      PartyUI_8: 4249408048291416305
-      PartyUI_9: 4364697963916840005
+      Current_Detail: -5441359676103985948
+      Current_Icon: 707289672
+      Enemy_Detail: 4249408048291416305
+      Enemy_Icon: -644249776
+      Fainted_Detail: -2178134087512423234
+      Fainted_Icon: 2791817442184294664
+      HP_Bar: 3043817427503479040
+      HP_Frame: 6806306226221780235
+      PartyUI_Background: 3301064110192349734
+      Pokemon_Detail: -1008155485431700292
+      Pokemon_Icon: 4364697963916840005
+      XP_Bar: 4616688739863449770
+      XP_Frame: 6450023092234524929
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

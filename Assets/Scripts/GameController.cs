@@ -7,12 +7,14 @@ using System.Collections.Generic;
 public enum GameState{ FreeRoam, Battle, Dialog, PartyScreen, Menu, Bag, CutScene, Paused }
 
 public class GameController : MonoBehaviour{
+    [Header("Referances")]
     [SerializeField] PlayerController playerController;
     [SerializeField] BattleSystem battleSystem;
     [SerializeField] Camera worldCamera;
     [SerializeField] PartyScreen partyScreen;
     [SerializeField] InventoryUI inventoryUI;
 
+    [Header("LocationUI")]
     [SerializeField] GameObject locationUI;
     [SerializeField] Text locationText;
 

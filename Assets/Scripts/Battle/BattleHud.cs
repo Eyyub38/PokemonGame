@@ -5,16 +5,22 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class BattleHud : MonoBehaviour{
+    [Header("Pokemon Details")]
     [SerializeField] Text nameText;
     [SerializeField] Text levelText;
+
+    [Header("HP & XP Bar")]
     [SerializeField] HPBar hpBar;
     [SerializeField] GameObject expBar;
+
+    [Header("Gender")]
     [SerializeField] Image genderIcon;
     [SerializeField] Sprite maleIcon;
     [SerializeField] Sprite femaleIcon;
     [SerializeField] Sprite genderlessIcon;
-    [SerializeField] Image statusImage;
 
+    [Header("Status")]
+    [SerializeField] Image statusImage;
     [SerializeField] Sprite psnImage;
     [SerializeField] Sprite frzImage;
     [SerializeField] Sprite brnImage;

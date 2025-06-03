@@ -149,7 +149,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Type_Move_0
+      name: Type_Move_Normal
       rect:
         serializedVersion: 2
         x: 0
@@ -171,7 +171,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Type_Move_1
+      name: Type_Move_Fire
       rect:
         serializedVersion: 2
         x: 96
@@ -193,7 +193,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Type_Move_2
+      name: Type_Move_Water
       rect:
         serializedVersion: 2
         x: 192
@@ -215,7 +215,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Type_Move_3
+      name: Type_Move_Grass
       rect:
         serializedVersion: 2
         x: 0
@@ -237,7 +237,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Type_Move_4
+      name: Type_Move_Electric
       rect:
         serializedVersion: 2
         x: 96
@@ -259,7 +259,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Type_Move_5
+      name: Type_Move_Flying
       rect:
         serializedVersion: 2
         x: 192
@@ -281,7 +281,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Type_Move_6
+      name: Type_Move_Bug
       rect:
         serializedVersion: 2
         x: 0
@@ -303,7 +303,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Type_Move_7
+      name: Type_Move_Ice
       rect:
         serializedVersion: 2
         x: 0
@@ -325,7 +325,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Type_Move_8
+      name: Type_Move_Dark
       rect:
         serializedVersion: 2
         x: 0
@@ -347,7 +347,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Type_Move_9
+      name: Type_Move_Fairy
       rect:
         serializedVersion: 2
         x: 0
@@ -369,7 +369,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Type_Move_10
+      name: Type_Move_Fighting
       rect:
         serializedVersion: 2
         x: 96
@@ -391,7 +391,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Type_Move_11
+      name: Type_Move_Ground
       rect:
         serializedVersion: 2
         x: 96
@@ -413,7 +413,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Type_Move_12
+      name: Type_Move_Steel
       rect:
         serializedVersion: 2
         x: 96
@@ -435,7 +435,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Type_Move_13
+      name: Type_Move_Psyhic
       rect:
         serializedVersion: 2
         x: 96
@@ -457,7 +457,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Type_Move_14
+      name: Type_Move_Poison
       rect:
         serializedVersion: 2
         x: 192
@@ -479,7 +479,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Type_Move_15
+      name: Type_Move_Rock
       rect:
         serializedVersion: 2
         x: 192
@@ -501,7 +501,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Type_Move_16
+      name: Type_Move_Ghost
       rect:
         serializedVersion: 2
         x: 192
@@ -523,7 +523,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Type_Move_17
+      name: Type_Move_Dragon
       rect:
         serializedVersion: 2
         x: 192
@@ -558,24 +558,24 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Type_Move_0: -2019658246
-      Type_Move_1: -181590860
-      Type_Move_10: -1491281474
-      Type_Move_11: -85568160
-      Type_Move_12: -668124276
-      Type_Move_13: -2099711625
-      Type_Move_14: 128343384
-      Type_Move_15: -1762778918
-      Type_Move_16: 1381157619
-      Type_Move_17: 1798566638
-      Type_Move_2: 793988958
-      Type_Move_3: -1031072118
-      Type_Move_4: 479049906
-      Type_Move_5: 600448693
-      Type_Move_6: -21437274
-      Type_Move_7: -89571074
-      Type_Move_8: -1245704102
-      Type_Move_9: 1009169937
+      Type_Move_Bug: -21437274
+      Type_Move_Dark: -1245704102
+      Type_Move_Dragon: 1798566638
+      Type_Move_Electric: 479049906
+      Type_Move_Fairy: 1009169937
+      Type_Move_Fighting: -1491281474
+      Type_Move_Fire: -181590860
+      Type_Move_Flying: 600448693
+      Type_Move_Ghost: 1381157619
+      Type_Move_Grass: -1031072118
+      Type_Move_Ground: -85568160
+      Type_Move_Ice: -89571074
+      Type_Move_Normal: -2019658246
+      Type_Move_Poison: 128343384
+      Type_Move_Psyhic: -2099711625
+      Type_Move_Rock: -1762778918
+      Type_Move_Steel: -668124276
+      Type_Move_Water: 793988958
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

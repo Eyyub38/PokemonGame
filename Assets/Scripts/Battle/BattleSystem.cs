@@ -9,14 +9,21 @@ public enum BattleState { Start, ActionSelection, MoveSelection, RunningTurn, Pa
 public enum BattleAction { Move, SwitchPokemon, UseItem, Run}
 
 public class BattleSystem : MonoBehaviour{
+    [Header("Battle Units")]
     [SerializeField] BattleUnit playerUnit;
     [SerializeField] BattleUnit enemyUnit;
+
+    [Header("UI")]
     [SerializeField] BattleDialogBox dialogBox;
     [SerializeField] PartyScreen partyScreen;
+    [SerializeField] MoveSelectionUI moveSelectionUI; 
+    
+    [Header("Character Images")]
     [SerializeField] Image playerImage;
     [SerializeField] Image trainerImage;
+
+    [Header("Pokeball")]
     [SerializeField] GameObject pokeballSprite;
-    [SerializeField] MoveSelectionUI moveSelectionUI; 
 
     BattleState state;
     int currentAction;

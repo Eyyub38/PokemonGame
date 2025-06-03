@@ -149,7 +149,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BagUI_0
+      name: Money_UI
       rect:
         serializedVersion: 2
         x: 4
@@ -171,7 +171,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BagUI_2
+      name: Bag_Background
       rect:
         serializedVersion: 2
         x: 16
@@ -193,7 +193,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BagUI_3
+      name: Arrow
       rect:
         serializedVersion: 2
         x: 241
@@ -215,7 +215,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BagUI_4
+      name: TM&HM
       rect:
         serializedVersion: 2
         x: 16
@@ -237,7 +237,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BagUI_5
+      name: Item_Slot
       rect:
         serializedVersion: 2
         x: 144
@@ -259,7 +259,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BagUI_11
+      name: Pokeball
       rect:
         serializedVersion: 2
         x: 16
@@ -281,7 +281,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BagUI_6
+      name: Medicine
       rect:
         serializedVersion: 2
         x: 97
@@ -303,7 +303,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BagUI_7
+      name: Evolution
       rect:
         serializedVersion: 2
         x: 80
@@ -338,10 +338,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      BagUI_0: -1871455274
+      Arrow: 2066402001
       BagUI_1: 985299511
       BagUI_10: -1016321265
-      BagUI_11: 711720956
       BagUI_12: 1976177391
       BagUI_13: 992786472
       BagUI_14: -2145718817
@@ -350,15 +349,16 @@ TextureImporter:
       BagUI_17: 1352152936
       BagUI_18: -967768941
       BagUI_19: 2120577351
-      BagUI_2: -634782420
       BagUI_20: 727153101
-      BagUI_3: 2066402001
-      BagUI_4: 279392201
-      BagUI_5: -1957863015
-      BagUI_6: -1492440481
-      BagUI_7: -1943471964
       BagUI_8: -477885818
       BagUI_9: 214830778
+      Bag_Background: -634782420
+      Evolution: -1943471964
+      Item_Slot: -1957863015
+      Medicine: -1492440481
+      Money_UI: -1871455274
+      Pokeball: 711720956
+      TM&HM: 279392201
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

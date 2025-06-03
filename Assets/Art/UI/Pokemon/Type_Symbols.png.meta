@@ -149,7 +149,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Type_Symbols_0
+      name: Normal_Symbol
       rect:
         serializedVersion: 2
         x: 0
@@ -157,7 +157,7 @@ TextureImporter:
         width: 48
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -171,7 +171,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Type_Symbols_1
+      name: Fire_Symbol
       rect:
         serializedVersion: 2
         x: 48
@@ -179,7 +179,7 @@ TextureImporter:
         width: 48
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -193,7 +193,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Type_Symbols_2
+      name: Water_Symbols
       rect:
         serializedVersion: 2
         x: 96
@@ -201,7 +201,7 @@ TextureImporter:
         width: 48
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -215,7 +215,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Type_Symbols_3
+      name: Grass_Symbols
       rect:
         serializedVersion: 2
         x: 0
@@ -223,7 +223,7 @@ TextureImporter:
         width: 48
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -237,7 +237,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Type_Symbols_4
+      name: Electric_Symbols
       rect:
         serializedVersion: 2
         x: 48
@@ -245,7 +245,7 @@ TextureImporter:
         width: 48
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -259,7 +259,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Type_Symbols_5
+      name: Flying_Symbols
       rect:
         serializedVersion: 2
         x: 96
@@ -267,7 +267,7 @@ TextureImporter:
         width: 48
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -281,7 +281,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Type_Symbols_6
+      name: Bug_Symbol
       rect:
         serializedVersion: 2
         x: 0
@@ -289,7 +289,7 @@ TextureImporter:
         width: 48
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -303,7 +303,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Type_Symbols_7
+      name: Fighting_Symbols
       rect:
         serializedVersion: 2
         x: 48
@@ -311,7 +311,7 @@ TextureImporter:
         width: 48
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -325,7 +325,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Type_Symbols_8
+      name: Poison_Symbols
       rect:
         serializedVersion: 2
         x: 96
@@ -333,7 +333,7 @@ TextureImporter:
         width: 48
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -347,7 +347,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Type_Symbols_9
+      name: Ice_Symbols
       rect:
         serializedVersion: 2
         x: 0
@@ -355,7 +355,7 @@ TextureImporter:
         width: 48
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -369,7 +369,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Type_Symbols_10
+      name: Ground_Symbols
       rect:
         serializedVersion: 2
         x: 48
@@ -377,7 +377,7 @@ TextureImporter:
         width: 48
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -391,7 +391,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Type_Symbols_11
+      name: Rock_Symbols
       rect:
         serializedVersion: 2
         x: 96
@@ -399,7 +399,7 @@ TextureImporter:
         width: 48
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -413,7 +413,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Type_Symbols_12
+      name: Dark_Symbols
       rect:
         serializedVersion: 2
         x: 0
@@ -421,7 +421,7 @@ TextureImporter:
         width: 48
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -435,7 +435,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Type_Symbols_13
+      name: Steel_Symbols
       rect:
         serializedVersion: 2
         x: 48
@@ -443,7 +443,7 @@ TextureImporter:
         width: 48
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -457,7 +457,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Type_Symbols_14
+      name: Ghost_Symbols
       rect:
         serializedVersion: 2
         x: 96
@@ -465,7 +465,7 @@ TextureImporter:
         width: 48
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -479,7 +479,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Type_Symbols_15
+      name: Fairy_Symbols
       rect:
         serializedVersion: 2
         x: 0
@@ -487,7 +487,7 @@ TextureImporter:
         width: 48
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -501,7 +501,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Type_Symbols_16
+      name: Psychic_Symbols
       rect:
         serializedVersion: 2
         x: 48
@@ -509,7 +509,7 @@ TextureImporter:
         width: 48
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -523,7 +523,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Type_Symbols_17
+      name: Dragon_Symbols
       rect:
         serializedVersion: 2
         x: 96
@@ -531,7 +531,7 @@ TextureImporter:
         width: 48
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -558,24 +558,24 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Type_Symbols_0: 429686878
-      Type_Symbols_1: -1857918650
-      Type_Symbols_10: 444076368
-      Type_Symbols_11: -844147625
-      Type_Symbols_12: 1329932341
-      Type_Symbols_13: 1977098569
-      Type_Symbols_14: 1005827784
-      Type_Symbols_15: 1337907778
-      Type_Symbols_16: -77441530
-      Type_Symbols_17: 1285369537
-      Type_Symbols_2: 877476758
-      Type_Symbols_3: 873573866
-      Type_Symbols_4: 1439314694
-      Type_Symbols_5: -719693677
-      Type_Symbols_6: 1052042085
-      Type_Symbols_7: -2071684474
-      Type_Symbols_8: -1708994710
-      Type_Symbols_9: 1289418507
+      Bug_Symbol: 1052042085
+      Dark_Symbols: 1329932341
+      Dragon_Symbols: 1285369537
+      Electric_Symbols: 1439314694
+      Fairy_Symbols: 1337907778
+      Fighting_Symbols: -2071684474
+      Fire_Symbol: -1857918650
+      Flying_Symbols: -719693677
+      Ghost_Symbols: 1005827784
+      Grass_Symbols: 873573866
+      Ground_Symbols: 444076368
+      Ice_Symbols: 1289418507
+      Normal_Symbol: 429686878
+      Poison_Symbols: -1708994710
+      Psychic_Symbols: -77441530
+      Rock_Symbols: -844147625
+      Steel_Symbols: 1977098569
+      Water_Symbols: 877476758
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

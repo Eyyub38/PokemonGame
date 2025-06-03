@@ -4,7 +4,10 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class GlobalSettings : MonoBehaviour{
+    [Header("Color")]
     [SerializeField] Color highlightedColor;
+    
+    [Header("MoveBar Backgrounds")]
     [SerializeField] List<Sprite> typeBarSprites = new List<Sprite>();
     [SerializeField] Sprite empty;
 
