@@ -37,14 +37,11 @@ public class BattleHud : MonoBehaviour{
     public void SetData(Pokemon pokemon){
         if(_pokemon != null){
             _pokemon.OnStatusChanged -= SetStatusImage;
-            _pokemon.OnHpChanged -= UpdateHpBar;
+            _pokemon.OnHpChanged -= UpdateHp;
             _pokemon.OnExpChanged -= UpdateExpBar;
         }
 
         _pokemon = pokemon;
-        _pokemon.OnStatusChanged += SetStatusImage;
-        _pokemon.OnHpChanged += UpdateHpBar;
-        _pokemon.OnExpChanged += UpdateExpBar;
 
         nameText.text = pokemon.Base.Name;
         levelText.text ="Lvl." + pokemon.Level.ToString();
@@ -76,14 +73,9 @@ public class BattleHud : MonoBehaviour{
         };
 
         SetStatusImage();
-    }
-
-    private void OnDestroy(){
-        if(_pokemon != null){
-            _pokemon.OnStatusChanged -= SetStatusImage;
-            _pokemon.OnHpChanged -= UpdateHpBar;
-            _pokemon.OnExpChanged -= UpdateExpBar;
-        }
+        _pokemon.OnStatusChanged += SetStatusImage;
+        _pokemon.OnHpChanged += UpdateHp;
+        _pokemon.OnExpChanged += UpdateExpBar;
     }
 
     void SetStatusImage(){
@@ -116,11 +108,8 @@ public class BattleHud : MonoBehaviour{
         levelText.text = "Lvl." + _pokemon.Level;
     }
 
-    public IEnumerator UpdateHP(){
-        if(_pokemon.HpChanged){
-            yield return StartCoroutine(hpBar.SetHPSmooth((float)_pokemon.HP / (float)_pokemon.MaxHp));
-            _pokemon.HpChanged = false;
-        }
+    public IEnumerator UpdateHPAsync(){
+        yield return StartCoroutine(hpBar.SetHPSmooth((float)_pokemon.HP / (float)_pokemon.MaxHp));
     }
 
     float GetNormalizedExp(){
@@ -131,13 +120,12 @@ public class BattleHud : MonoBehaviour{
         return Mathf.Clamp01(normilizedExp);
     }
 
-    private void UpdateHpBar(){
-        if(gameObject.activeInHierarchy){
-            StartCoroutine(UpdateHP());
-        } else {
-            hpBar.SetHP((float)_pokemon.HP / (float)_pokemon.MaxHp);
-            _pokemon.HpChanged = false;
-        }
+    private void UpdateHp(){
+        StartCoroutine(UpdateHPAsync());
+    }
+
+    public IEnumerator WaitForHPUpdate(){
+        yield return new WaitUntil(() => hpBar.IsUpdating == false);
     }
 
     private void UpdateExpBar(){

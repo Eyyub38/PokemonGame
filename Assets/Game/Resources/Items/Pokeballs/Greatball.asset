@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c21aadc1b1b42d24eb95169d711a0b31, type: 3}
+  m_Name: Greatball
+  m_EditorClassIdentifier: 
+  _name: Greatball
+  description: The ball with higher capture rate than Pokeball.
+  message: 
+  icon: {fileID: -380897440077541507, guid: ee4052b6e7a2f494fa6ef632b686fa09, type: 3}
+  itemType: 5

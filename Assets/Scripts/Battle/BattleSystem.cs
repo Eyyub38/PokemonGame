@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public enum BattleState { Start, ActionSelection, MoveSelection, RunningTurn, PartyScreen, AboutToUse, MoveToForget, BattleOver, Busy}
+public enum BattleState { Start, ActionSelection, MoveSelection, RunningTurn, PartyScreen, Bag,AboutToUse, MoveToForget, BattleOver, Busy}
 public enum BattleAction { Move, SwitchPokemon, UseItem, Run}
 
 public class BattleSystem : MonoBehaviour{
@@ -16,6 +16,7 @@ public class BattleSystem : MonoBehaviour{
     [Header("UI")]
     [SerializeField] BattleDialogBox dialogBox;
     [SerializeField] PartyScreen partyScreen;
+    [SerializeField] InventoryUI inventoryUI;
     [SerializeField] MoveSelectionUI moveSelectionUI; 
     
     [Header("Character Images")]
@@ -143,6 +144,11 @@ public class BattleSystem : MonoBehaviour{
         partyScreen.gameObject.SetActive(true);
     }
 
+    void OpenBag(){
+        state = BattleState.Bag;
+        inventoryUI.gameObject.SetActive(true);
+    }
+
     IEnumerator RunTurns(BattleAction playerAction){
         state = BattleState.RunningTurn;
 
@@ -181,13 +187,11 @@ public class BattleSystem : MonoBehaviour{
                 yield return SwitchPokemon(selectedPokemon);
             } else if(playerAction == BattleAction.UseItem){
                 dialogBox.EnableActionSelector(false);
-                yield return ThrowPokeball();
             } else if(playerAction == BattleAction.Run){
-                dialogBox.EnableActionSelector(false);
                 yield return TryToEscape();
             }
 
-                var enemyMove = enemyUnit.Pokemon.GetRandomMove();
+            var enemyMove = enemyUnit.Pokemon.GetRandomMove();
             yield return RunMove(enemyUnit, playerUnit, enemyMove);
             yield return RunAfterTurn(enemyUnit);
             if(state == BattleState.BattleOver) yield break;
@@ -201,7 +205,7 @@ public class BattleSystem : MonoBehaviour{
         bool canRunMove = sourceUnit.Pokemon.OnBeforeTurn();
         if(canRunMove == false){
             yield return ShowStatusChanges(sourceUnit.Pokemon);
-            yield return sourceUnit.Hud.UpdateHP();
+            yield return sourceUnit.Hud.WaitForHPUpdate();
             yield break;
         }
         yield return ShowStatusChanges(sourceUnit.Pokemon);
@@ -219,7 +223,7 @@ public class BattleSystem : MonoBehaviour{
                 yield return RunMoveEffects(move.Base.Effects, sourceUnit.Pokemon, targetUnit.Pokemon, move.Base.Target);
             } else {
                 var damageDetails = targetUnit.Pokemon.TakeDamage(move, sourceUnit.Pokemon);
-                yield return targetUnit.Hud.UpdateHP();
+                yield return targetUnit.Hud.WaitForHPUpdate();
                 yield return ShowDamageDetails(damageDetails);
             }
 
@@ -246,7 +250,7 @@ public class BattleSystem : MonoBehaviour{
 
         sourceUnit.Pokemon.OnAfterTurn();
         yield return ShowStatusChanges(sourceUnit.Pokemon);
-        yield return sourceUnit.Hud.UpdateHP();
+        yield return sourceUnit.Hud.WaitForHPUpdate();
         
         if(sourceUnit.Pokemon.HP <= 0){
             yield return HandlePokemonFainted(sourceUnit);
@@ -346,6 +350,18 @@ public class BattleSystem : MonoBehaviour{
             HandleMoveSelection();
         } else if(state == BattleState.PartyScreen){
             HandlePartySelection();
+        } else if(state == BattleState.Bag){
+            Action onBack = () => {
+                inventoryUI.gameObject.SetActive(false);
+                state = BattleState.ActionSelection;
+            };
+
+            Action onItemUsed = () => {
+                state = BattleState.Busy;
+                inventoryUI.gameObject.SetActive(false);
+                StartCoroutine(RunTurns(BattleAction.UseItem));
+            };
+            inventoryUI.HandleUpdate(onBack, onItemUsed);
         } else if(state == BattleState.AboutToUse){
             HandleAboutToUse();
         } else if(state == BattleState.MoveToForget){
@@ -392,7 +408,7 @@ public class BattleSystem : MonoBehaviour{
                 OpenPartyScreen();
             } else if(currentAction == 2){
                 //Bag
-                StartCoroutine(RunTurns(BattleAction.UseItem));
+                OpenBag();
             } else if(currentAction == 3){
                 //Run
                 StartCoroutine(RunTurns(BattleAction.Run));

@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 1455701257405269780}
   - component: {fileID: 2798485968593032633}
   m_Layer: 5
-  m_Name: currCategoryText
+  m_Name: categoryText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -232,7 +232,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 0
-  m_Text: POKEBALL
+  m_Text: Recovery
 --- !u!1 &2059629230318669721
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,7 +373,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1492440481, guid: bc86a5795856da34da58e0b26992a6da, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -875,6 +875,15 @@ MonoBehaviour:
   itemSlotUI: {fileID: 7837512569498477046, guid: 81a8919fe4146bb469892b3a10712ff6, type: 3}
   description: {fileID: 2441572371566785615}
   itemTypeText: {fileID: 2273126003771348238}
+  categoryText: {fileID: 2798485968593032633}
+  prevCategoryImage: {fileID: 7484468803941575555}
+  currCategoryImage: {fileID: 3964233791971149330}
+  nextCategoryImage: {fileID: 6698650057251286369}
+  categoryImages:
+  - {fileID: -1492440481, guid: bc86a5795856da34da58e0b26992a6da, type: 3}
+  - {fileID: 711720956, guid: bc86a5795856da34da58e0b26992a6da, type: 3}
+  - {fileID: 279392201, guid: bc86a5795856da34da58e0b26992a6da, type: 3}
+  - {fileID: -1943471964, guid: bc86a5795856da34da58e0b26992a6da, type: 3}
   upArrow: {fileID: 264448711578038745}
   downArrow: {fileID: 1992077172089311337}
   partyScreen: {fileID: 0}

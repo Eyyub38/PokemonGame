@@ -184,25 +184,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2e2a272855cf13449c149a128fe79a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slots:
+  recoverySlots:
   - item: {fileID: 11400000, guid: 9b04392d8decbd341bf3a1dc6638e369, type: 2}
     count: 10
-  - item: {fileID: 11400000, guid: 3182acda9f533ce4e9d5b216d662d04d, type: 2}
-    count: 10
   - item: {fileID: 11400000, guid: f8b5f6d95f536fa468bad982f981bfa0, type: 2}
-    count: 2
-  - item: {fileID: 11400000, guid: 97e306c967978bf49ace4656ec88a8ba, type: 2}
-    count: 2
-  - item: {fileID: 11400000, guid: e4ddb4fe322b99141b939252858c9815, type: 2}
-    count: 2
+    count: 5
+  - item: {fileID: 11400000, guid: 3182acda9f533ce4e9d5b216d662d04d, type: 2}
+    count: 4
   - item: {fileID: 11400000, guid: 4ee2792640d95384daf56020122ba9ad, type: 2}
     count: 10
-  - item: {fileID: 11400000, guid: 99f9a19311e9e0d4d9f2969191adde01, type: 2}
-    count: 2
-  - item: {fileID: 11400000, guid: 99f9a19311e9e0d4d9f2969191adde01, type: 2}
-    count: 2
-  - item: {fileID: 11400000, guid: 058d220bf424f774fbfad82a8f2d8a27, type: 2}
-    count: 1
+  - item: {fileID: 11400000, guid: 4ee2792640d95384daf56020122ba9ad, type: 2}
+    count: 10
+  - item: {fileID: 11400000, guid: 4ee2792640d95384daf56020122ba9ad, type: 2}
+    count: 10
+  - item: {fileID: 11400000, guid: 4ee2792640d95384daf56020122ba9ad, type: 2}
+    count: 10
+  - item: {fileID: 11400000, guid: 4ee2792640d95384daf56020122ba9ad, type: 2}
+    count: 10
+  - item: {fileID: 11400000, guid: 4ee2792640d95384daf56020122ba9ad, type: 2}
+    count: 10
+  - item: {fileID: 11400000, guid: 4ee2792640d95384daf56020122ba9ad, type: 2}
+    count: 10
+  pokeballSlots:
+  - item: {fileID: 11400000, guid: 6f2070f7e40f97c4db8e767f154d4265, type: 2}
+    count: 10
+  - item: {fileID: 11400000, guid: 78ea5903124a1c04f987c21403094afe, type: 2}
+    count: 5
+  tmSlots: []
+  evolutionSlots: []
 --- !u!114 &7530823447165788642
 MonoBehaviour:
   m_ObjectHideFlags: 0
