@@ -14,6 +14,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Pokeball
   description: The ball for catching Pokemons.
-  message: 
-  icon: {fileID: -4117433167197658869, guid: 08e73a76c38d05243a246e7e7b6f7198, type: 3}
+  icon: {fileID: 21300000, guid: 08e73a76c38d05243a246e7e7b6f7198, type: 3}
   itemType: 5
+  throwFrames:
+  - {fileID: 308370984, guid: fc4535f5e1ad74a44973caa5fc23941d, type: 3}
+  - {fileID: 501860867, guid: fc4535f5e1ad74a44973caa5fc23941d, type: 3}
+  - {fileID: -159183232, guid: fc4535f5e1ad74a44973caa5fc23941d, type: 3}
+  - {fileID: 1885874383, guid: fc4535f5e1ad74a44973caa5fc23941d, type: 3}
+  - {fileID: -1347831844, guid: fc4535f5e1ad74a44973caa5fc23941d, type: 3}
+  - {fileID: 1660202269, guid: fc4535f5e1ad74a44973caa5fc23941d, type: 3}
+  - {fileID: 3002639, guid: fc4535f5e1ad74a44973caa5fc23941d, type: 3}
+  - {fileID: -178314641, guid: fc4535f5e1ad74a44973caa5fc23941d, type: 3}
+  - {fileID: -881348230, guid: fc4535f5e1ad74a44973caa5fc23941d, type: 3}
+  - {fileID: -103682827, guid: fc4535f5e1ad74a44973caa5fc23941d, type: 3}
+  - {fileID: -83204188, guid: fc4535f5e1ad74a44973caa5fc23941d, type: 3}
+  - {fileID: -274702355, guid: fc4535f5e1ad74a44973caa5fc23941d, type: 3}
+  - {fileID: -172922894, guid: fc4535f5e1ad74a44973caa5fc23941d, type: 3}
+  - {fileID: -1762779548, guid: fc4535f5e1ad74a44973caa5fc23941d, type: 3}
+  idleFrames:
+  - {fileID: -274702355, guid: fc4535f5e1ad74a44973caa5fc23941d, type: 3}
+  - {fileID: -1576643946, guid: fc4535f5e1ad74a44973caa5fc23941d, type: 3}
+  - {fileID: -274702355, guid: fc4535f5e1ad74a44973caa5fc23941d, type: 3}
+  shakeFrames:
+  - {fileID: -274702355, guid: fc4535f5e1ad74a44973caa5fc23941d, type: 3}
+  - {fileID: 370705181, guid: fc4535f5e1ad74a44973caa5fc23941d, type: 3}
+  - {fileID: -1576643946, guid: fc4535f5e1ad74a44973caa5fc23941d, type: 3}
+  - {fileID: -1340188104, guid: fc4535f5e1ad74a44973caa5fc23941d, type: 3}
+  - {fileID: -274702355, guid: fc4535f5e1ad74a44973caa5fc23941d, type: 3}
+  catchFrames:
+  - {fileID: -274702355, guid: fc4535f5e1ad74a44973caa5fc23941d, type: 3}
+  - {fileID: -1913476231, guid: fc4535f5e1ad74a44973caa5fc23941d, type: 3}
+  - {fileID: -1913476231, guid: fc4535f5e1ad74a44973caa5fc23941d, type: 3}
+  - {fileID: -274702355, guid: fc4535f5e1ad74a44973caa5fc23941d, type: 3}

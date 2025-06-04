@@ -327,6 +327,8 @@ public class BattleSystem : MonoBehaviour{
     void BattleOver(bool won){
         state = BattleState.BattleOver;
         playerParty.Pokemons.ForEach(p => p.OnBattleOver());
+        playerUnit.Hud.ClearData();
+        enemyUnit.Hud.ClearData();
         OnBattleOver(won);
     }
 
@@ -355,13 +357,11 @@ public class BattleSystem : MonoBehaviour{
                 inventoryUI.gameObject.SetActive(false);
                 state = BattleState.ActionSelection;
             };
-
-            Action onItemUsed = () => {
-                state = BattleState.Busy;
-                inventoryUI.gameObject.SetActive(false);
-                StartCoroutine(RunTurns(BattleAction.UseItem));
+            Action<ItemBase> onItemUsed = (ItemBase usedItem) => {
+                StartCoroutine(OnItemUsed(usedItem));
             };
             inventoryUI.HandleUpdate(onBack, onItemUsed);
+
         } else if(state == BattleState.AboutToUse){
             HandleAboutToUse();
         } else if(state == BattleState.MoveToForget){
@@ -547,7 +547,16 @@ public class BattleSystem : MonoBehaviour{
 
         CheckForBattleOver(faintedUnit);
     }
-    
+
+    IEnumerator OnItemUsed(ItemBase usedItem){
+        state = BattleState.Busy;
+        inventoryUI.gameObject.SetActive(false);
+        if(usedItem is PokeballItem){
+            yield return ThrowPokeball((PokeballItem) usedItem);    
+        }
+        StartCoroutine(RunTurns(BattleAction.UseItem));
+    }
+
     IEnumerator SwitchPokemon(Pokemon newPokemon, bool isTrainerAboutToUse = false){
         if (playerUnit.Pokemon.HP > 0){
             yield return dialogBox.TypeDialog($"Come back {playerUnit.Pokemon.Base.Name}!. Thank you for your hard work!");
@@ -582,72 +591,71 @@ public class BattleSystem : MonoBehaviour{
         }
     }
 
-    IEnumerator ThrowPokeball() {
+    IEnumerator ThrowPokeball(PokeballItem pokeball){
         state = BattleState.Busy;
 
-        if(isTrainerBattle){
+        if (isTrainerBattle){
             yield return dialogBox.TypeDialog("You are trying to steal someone's pokemon... You cannot do it!");
             state = BattleState.RunningTurn;
             yield break;
         }
 
-        yield return dialogBox.TypeDialog($"{player.Name} used Pokeball");
+        yield return dialogBox.TypeDialog($"{player.Name} used {pokeball.Name}");
 
-         var pokeballObj = Instantiate(pokeballSprite, playerUnit.transform.position - new Vector3(2, 0), Quaternion.identity);
-        var pokeball = pokeballObj.GetComponent<SpriteRenderer>();
-        var animator = pokeballObj.GetComponent<Animator>();
+        var pokeballObj = Instantiate(pokeballSprite, playerUnit.transform.position + new Vector3(0, 2), Quaternion.identity);
+        var pokeballRenderer = pokeballObj.GetComponent<SpriteRenderer>();
+        var pokeballAnim = pokeballObj.GetComponent<PokeballAnimator>();
 
-        if (animator != null)
-            animator.Play("Throw");
+        pokeballAnim.PlayThrow(pokeball);
 
-        yield return pokeball.transform
-            .DOJump(enemyUnit.transform.position + new Vector3(0, 2), 2f, 1, 1.4f)
-            .WaitForCompletion();
+        Vector3 jumpTarget = enemyUnit.transform.position + new Vector3(0, 2f);
+        Tween jumpTween = pokeballRenderer.transform
+            .DOJump(jumpTarget, 2f, 1, 1.0f);
 
+        yield return jumpTween.WaitForCompletion();
         yield return enemyUnit.PlayCaptureAnimation();
 
-        yield return pokeball.transform
+        pokeballAnim.PlayIdle(pokeball, 0.25f);
+        yield return pokeballRenderer.transform
             .DOMoveY(enemyUnit.transform.position.y - 1.8f, 0.5f)
             .WaitForCompletion();
 
-        yield return new WaitForSeconds(2f);
-        if(animator!=null)
-            animator.Play("Idle", 0, 0.25f);
+        yield return new WaitForSeconds(0.3f);
 
-        int shakeCount = TryCatchPokemon( enemyUnit.Pokemon);
-        for (int i = 0; i < Mathf.Min( shakeCount, 3); i++) {
-            if (animator != null)
-                animator.Play("Shake", 0, 0f);
+        int shakeCount = TryCatchPokemon(enemyUnit.Pokemon);
 
+        for (int i = 0; i < Mathf.Min(shakeCount, 3); i++){
+            pokeballAnim.PlayShake(pokeball);
             yield return new WaitForSeconds(2f);
         }
 
-        if(shakeCount == 4){
+        if (shakeCount == 4){
+            pokeballAnim.PlayCatch(pokeball);
             yield return dialogBox.TypeDialog($" Congrats!! {enemyUnit.Pokemon.Base.Name} was caught.");
-            animator.Play("Catch");
-            yield return pokeball.DOFade(0, 1.5f).WaitForCompletion();
+            yield return pokeballRenderer.DOFade(0, 1.5f).WaitForCompletion();
 
             playerParty.AddPokemon(enemyUnit.Pokemon);
             yield return dialogBox.TypeDialog($"{enemyUnit.Pokemon.Base.Name} has been added to your party.");
 
-
-            Destroy(pokeball);
+            Destroy(pokeballObj);
             BattleOver(true);
         } else {
             yield return new WaitForSeconds(1f);
-            pokeball.DOFade(0, 0.2f);
+            pokeballRenderer.DOFade(0, 0.2f);
             yield return enemyUnit.PlayBreakAnimation();
 
-            if(shakeCount < 2){
+            if (shakeCount < 2){
                 yield return dialogBox.TypeDialog($"{enemyUnit.Pokemon.Base.Name} broke free.");
             } else {
                 yield return dialogBox.TypeDialog($"Almost caught it!");
             }
 
-            Destroy(pokeball);
+            Destroy(pokeballObj);
             state = BattleState.RunningTurn;
         }
     }
+
+
     
     int TryCatchPokemon(Pokemon pokemon){
         float a = ( 3 * pokemon.MaxHp - 2 * pokemon.HP) * pokemon.Base.CatchRate * ConditionsDB.GetStatusBonus(pokemon.Status) / ( 3 * pokemon.MaxHp);

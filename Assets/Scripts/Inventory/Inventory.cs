@@ -4,6 +4,8 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+public enum ItemCategory{ Recovery, Pokeball, TMs, Evolution}
+
 public class Inventory : MonoBehaviour{
     [Header("Slots")]
     [SerializeField] List<ItemSlot> recoverySlots;
@@ -29,22 +31,23 @@ public class Inventory : MonoBehaviour{
         return allSlots[categoryIndex];
     }
 
-    public ItemBase UseItem(int itemIndex, Pokemon selected){
-        var item = recoverySlots[itemIndex].Item;
+    public ItemBase UseItem(int itemIndex, Pokemon selected, int categoryIndex){
+        var currSlots = GetItemSlotsByCategory(categoryIndex);
+        var item = currSlots[itemIndex].Item;
         bool itemUsed = item.Use(selected);
         if(itemUsed){
-            RemoveItem(item);
+            RemoveItem(item, categoryIndex);
             return item;
         }
-
         return null;
     }
 
-    public void RemoveItem(ItemBase item){
-        var itemSlot = recoverySlots.First( slot => slot.Item == item);
+    public void RemoveItem(ItemBase item, int categoryIndex){
+        var currSlots = GetItemSlotsByCategory(categoryIndex);
+        var itemSlot = currSlots.First( slot => slot.Item == item);
         itemSlot.Count--;
         if(itemSlot.Count == 0){
-            recoverySlots.Remove(itemSlot);
+            currSlots.Remove(itemSlot);
         }
 
         OnUpdated?.Invoke();

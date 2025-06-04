@@ -34,7 +34,7 @@ public class InventoryUI : MonoBehaviour{
     RectTransform itemListRect;
     List<ItemSlotUI> slotUIList;
 
-    Action onItemUsed;
+    Action<ItemBase> onItemUsed;
     
     int selectedItem = 0;
     int selectedCategory = 0;
@@ -69,7 +69,7 @@ public class InventoryUI : MonoBehaviour{
         UpdateItemSelection();
     }
 
-    public void HandleUpdate(Action onBack, Action onItemUsed = null){
+    public void HandleUpdate(Action onBack, Action<ItemBase> onItemUsed = null){
         this.onItemUsed = onItemUsed;
         int prevCategory = selectedCategory;
 
@@ -93,7 +93,7 @@ public class InventoryUI : MonoBehaviour{
             } else if(selectedCategory < 0){
                 selectedCategory = Inventory.ItemCategories.Count - 1;
             }
-            
+
             selectedItem = Mathf.Clamp(selectedItem, 0, inventory.GetItemSlotsByCategory(selectedCategory).Count - 1);
 
             if(prevCategory != selectedCategory){
@@ -106,13 +106,13 @@ public class InventoryUI : MonoBehaviour{
                 UpdateItemSelection();
             }
             if(Input.GetKeyDown(KeyCode.Return)){
-                OpenPartyScreen();
+                ItemSelected();
             } else if(Input.GetKeyDown(KeyCode.Escape)){
                 onBack?.Invoke();
             }
         } else if(state == InventoryUIState.PartySelection){
             Action onSelected = () => {
-                StartCoroutine(UseItem());
+                OpenPartyScreen();
             };
             Action onBackPartyScreen = () => {
                 ClosePartyScreen();
@@ -135,6 +135,15 @@ public class InventoryUI : MonoBehaviour{
         }
     }
 
+    void ItemSelected(){
+        Debug.Log(selectedCategory);
+        if(selectedCategory != (int)ItemCategory.Pokeball){
+            OpenPartyScreen();
+        } else {
+            StartCoroutine(UseItem());
+        }
+    }
+
     void ResetSelection(){
         selectedItem = 0;
         upArrow.gameObject.SetActive(false);
@@ -146,16 +155,12 @@ public class InventoryUI : MonoBehaviour{
 
     IEnumerator UseItem(){
         state = InventoryUIState.Busy;
-        var usedItem = inventory.UseItem(selectedItem, partyScreen.SelectedMember);
+        var usedItem = inventory.UseItem(selectedItem, partyScreen.SelectedMember,selectedCategory);
         if(usedItem != null){
-            if(usedItem.Message != ""){
-                yield return DialogManager.i.ShowDialogText(usedItem.Message);
-            } else {
-                yield return DialogManager.i.ShowDialogText($"You use {usedItem.Name}!");
-            }
-            onItemUsed?.Invoke();
+            yield return DialogManager.i.ShowDialogText($"You use {usedItem.Name}!");
+            onItemUsed?.Invoke(usedItem);
         } else {
-            yield return DialogManager.i.ShowDialogText($"{usedItem.Name} is not");
+            yield return DialogManager.i.ShowDialogText($"It won't have any effect.");
         }
 
         ClosePartyScreen();
@@ -163,6 +168,8 @@ public class InventoryUI : MonoBehaviour{
 
     void UpdateItemSelection(){
         var slots = inventory.GetItemSlotsByCategory(selectedCategory);
+
+        selectedItem = Mathf.Clamp(selectedItem, 0, slots.Count - 1);
 
         for(int i = 0; i < slotUIList.Count; ++i){
             if(i == selectedItem){
@@ -173,8 +180,6 @@ public class InventoryUI : MonoBehaviour{
                 slotUIList[i].CountText.color = Color.white;
             }
         }
-        selectedItem = Mathf.Clamp(selectedItem, 0, slots.Count - 1);
-
         if(slots.Count > 0){
             var item = slots[selectedItem].Item;
             description.text = item.Description;

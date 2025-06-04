@@ -35,12 +35,7 @@ public class BattleHud : MonoBehaviour{
     public Dictionary<ConditionID, Sprite> StatusImages { get { return statusImages; } set { statusImages = value; }}
     
     public void SetData(Pokemon pokemon){
-        if(_pokemon != null){
-            _pokemon.OnStatusChanged -= SetStatusImage;
-            _pokemon.OnHpChanged -= UpdateHp;
-            _pokemon.OnExpChanged -= UpdateExpBar;
-        }
-
+        ClearData();
         _pokemon = pokemon;
 
         nameText.text = pokemon.Base.Name;
@@ -76,6 +71,14 @@ public class BattleHud : MonoBehaviour{
         _pokemon.OnStatusChanged += SetStatusImage;
         _pokemon.OnHpChanged += UpdateHp;
         _pokemon.OnExpChanged += UpdateExpBar;
+    }
+
+    public void ClearData(){
+        if(_pokemon != null){
+            _pokemon.OnStatusChanged -= SetStatusImage;
+            _pokemon.OnHpChanged -= UpdateHp;
+            _pokemon.OnExpChanged -= UpdateExpBar;
+        }
     }
 
     void SetStatusImage(){
