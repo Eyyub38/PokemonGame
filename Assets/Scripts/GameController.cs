@@ -26,6 +26,8 @@ public class GameController : MonoBehaviour{
     public static GameController Instance { get; private set; }
     public GameObject LocationUI => locationUI;
     public Text LocationText => locationText;
+
+    public GameState State {get; private set;}
     public GameState PrevState {get; private set;}
     public SceneDetails CurrentScene {get; private set;}
     public SceneDetails PrevScene {get; private set;}

@@ -11,6 +11,7 @@ public class Pokemon{
     [SerializeField] int level;
     [SerializeField] Gender gender;
 
+
     public PokemonBase Base { get{ return _base; }}
     public int Level { get{ return level; } }
     public Gender Gender { get{ return gender; } }
@@ -160,11 +161,15 @@ public class Pokemon{
         return saveData;
     }
 
-    public void LearnMove(LearnableMove moveToLearn){
+    public bool HasMove(MoveBase moveToCheck){
+        return Moves.Count( m => m.Base == moveToCheck) > 0;
+    }
+
+    public void LearnMove(MoveBase moveToLearn){
         if(Moves.Count > PokemonBase.MaxNumberOfMoves) {
             return;
         }
-        Moves.Add(new Move(moveToLearn.Base));
+        Moves.Add(new Move(moveToLearn));
     }
     
     public void SetStatus(ConditionID conditionID){

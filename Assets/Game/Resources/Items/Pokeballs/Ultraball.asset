@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c21aadc1b1b42d24eb95169d711a0b31, type: 3}
+  m_Name: Ultraball
+  m_EditorClassIdentifier: 
+  _name: Ultraball
+  description: The ball with higher capture rate than Greatball.
+  icon: {fileID: 21300000, guid: a4c4b41cfa366a44baa464ad8db70f91, type: 3}
+  itemType: 5
+  throwFrames:
+  - {fileID: 5208926071438152112, guid: b43052bcdd15cb645ac4ac64b6a9f83a, type: 3}
+  - {fileID: -4088614160627361860, guid: b43052bcdd15cb645ac4ac64b6a9f83a, type: 3}
+  - {fileID: 6218652723162969650, guid: b43052bcdd15cb645ac4ac64b6a9f83a, type: 3}
+  - {fileID: 3141040160918815050, guid: b43052bcdd15cb645ac4ac64b6a9f83a, type: 3}
+  - {fileID: 1008876922945932578, guid: b43052bcdd15cb645ac4ac64b6a9f83a, type: 3}
+  - {fileID: 203261429168675183, guid: b43052bcdd15cb645ac4ac64b6a9f83a, type: 3}
+  - {fileID: -2885181256308772021, guid: b43052bcdd15cb645ac4ac64b6a9f83a, type: 3}
+  - {fileID: 7015405705409765844, guid: b43052bcdd15cb645ac4ac64b6a9f83a, type: 3}
+  - {fileID: -7648221794802754623, guid: b43052bcdd15cb645ac4ac64b6a9f83a, type: 3}
+  - {fileID: 2989813746469858344, guid: b43052bcdd15cb645ac4ac64b6a9f83a, type: 3}
+  - {fileID: -4246562031035250600, guid: b43052bcdd15cb645ac4ac64b6a9f83a, type: 3}
+  - {fileID: 4117323616395163897, guid: b43052bcdd15cb645ac4ac64b6a9f83a, type: 3}
+  - {fileID: -7319393848556652558, guid: b43052bcdd15cb645ac4ac64b6a9f83a, type: 3}
+  - {fileID: 2135585805077900190, guid: b43052bcdd15cb645ac4ac64b6a9f83a, type: 3}
+  idleFrames:
+  - {fileID: 4117323616395163897, guid: b43052bcdd15cb645ac4ac64b6a9f83a, type: 3}
+  - {fileID: 5872285050860883894, guid: b43052bcdd15cb645ac4ac64b6a9f83a, type: 3}
+  - {fileID: 4117323616395163897, guid: b43052bcdd15cb645ac4ac64b6a9f83a, type: 3}
+  shakeFrames:
+  - {fileID: 4117323616395163897, guid: b43052bcdd15cb645ac4ac64b6a9f83a, type: 3}
+  - {fileID: -256438419351877238, guid: b43052bcdd15cb645ac4ac64b6a9f83a, type: 3}
+  - {fileID: 5905406859722709572, guid: b43052bcdd15cb645ac4ac64b6a9f83a, type: 3}
+  - {fileID: 5872285050860883894, guid: b43052bcdd15cb645ac4ac64b6a9f83a, type: 3}
+  - {fileID: 4117323616395163897, guid: b43052bcdd15cb645ac4ac64b6a9f83a, type: 3}
+  catchFrames:
+  - {fileID: 4117323616395163897, guid: b43052bcdd15cb645ac4ac64b6a9f83a, type: 3}
+  - {fileID: 5163995812014479824, guid: b43052bcdd15cb645ac4ac64b6a9f83a, type: 3}
+  - {fileID: 5163995812014479824, guid: b43052bcdd15cb645ac4ac64b6a9f83a, type: 3}
+  - {fileID: 4117323616395163897, guid: b43052bcdd15cb645ac4ac64b6a9f83a, type: 3}
+  catchRateModifier: 1.5

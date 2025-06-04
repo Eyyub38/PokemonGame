@@ -119,7 +119,7 @@ public class MoveSelectionUI : MonoBehaviour{
         }
     }
 
-    public void HandleMoveSelection(BattleUnit playerUnit, Action<int> onSelected){
+    public void HandleMoveSelection(Pokemon pokemon, Action<int> onSelected){
         if(Input.GetKeyDown(KeyCode.DownArrow)){
             ++currentSelection;
         } else if(Input.GetKeyDown(KeyCode.UpArrow)){
@@ -127,7 +127,7 @@ public class MoveSelectionUI : MonoBehaviour{
         }
         currentSelection = Mathf.Clamp(currentSelection, 0, PokemonBase.MaxNumberOfMoves);
 
-        UpdateMoveSelection(currentSelection, playerUnit.Pokemon.Moves, newMove);
+        UpdateMoveSelection(currentSelection, pokemon.Moves, newMove);
 
         if(Input.GetKeyDown(KeyCode.Return)){
             onSelected?.Invoke(currentSelection);

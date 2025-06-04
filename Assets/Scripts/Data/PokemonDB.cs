@@ -11,7 +11,6 @@ public class PokemonDB{
         var pokemonArray = Resources.LoadAll<PokemonBase>("");
         foreach(var pokemon in pokemonArray){
             if(pokemons.ContainsKey(pokemon.Name)){
-                Debug.Log($"There are two pokemons with name {pokemon.Name}");
                 continue;
             }
             pokemons[pokemon.Name] = pokemon;
@@ -20,7 +19,6 @@ public class PokemonDB{
 
     public static PokemonBase GetPokemonByName(string name){
         if(!pokemons.ContainsKey(name)){
-            Debug.Log($"Pokemon with name {name} not found in the database");
             return null;
         }
 

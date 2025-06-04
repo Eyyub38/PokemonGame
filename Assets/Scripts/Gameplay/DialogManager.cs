@@ -36,7 +36,7 @@ public class DialogManager : MonoBehaviour{
         StartCoroutine(TypeDialog(dialog.Lines[0]));
     }
 
-    public IEnumerator ShowDialogText(string text, bool waitForInput = true){
+    public IEnumerator ShowDialogText(string text, bool waitForInput = true, bool autoClose = true){
         IsShowing = true;
         dialogBox.SetActive(true);
         yield return TypeDialog(text);
@@ -44,6 +44,12 @@ public class DialogManager : MonoBehaviour{
         if(waitForInput){
             yield return new WaitUntil( () => Input.GetKeyDown(KeyCode.Return));
         }
+        if(autoClose){
+            CloseDialog();
+        }
+    }
+
+    public void CloseDialog(){
         dialogBox.SetActive(false);
         IsShowing = false;
     }

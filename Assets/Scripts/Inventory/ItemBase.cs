@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public enum ItemType{ HealHP, HealStatus, TempBoost, PermBoost, Evolution, Pokeball, RestoreMove, Revive}
+public enum ItemType{ HealHP, HealStatus, TempBoost, PermBoost, Evolution, Pokeball, RestoreMove, Revive, TeachMove}
 
 public class ItemBase : ScriptableObject{
     [SerializeField] string _name;

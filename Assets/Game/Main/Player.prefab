@@ -210,7 +210,9 @@ MonoBehaviour:
     count: 10
   - item: {fileID: 11400000, guid: 78ea5903124a1c04f987c21403094afe, type: 2}
     count: 5
-  tmSlots: []
+  tmSlots:
+  - item: {fileID: 11400000, guid: ebdef8ec5013e0744a26b06e13cb3d29, type: 2}
+    count: 1
   evolutionSlots: []
 --- !u!114 &7530823447165788642
 MonoBehaviour:

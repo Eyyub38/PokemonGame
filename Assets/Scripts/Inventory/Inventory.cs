@@ -31,9 +31,13 @@ public class Inventory : MonoBehaviour{
         return allSlots[categoryIndex];
     }
 
-    public ItemBase UseItem(int itemIndex, Pokemon selected, int categoryIndex){
+    public ItemBase GetItem(int itemIndex, int categoryIndex){
         var currSlots = GetItemSlotsByCategory(categoryIndex);
-        var item = currSlots[itemIndex].Item;
+        return currSlots[itemIndex].Item;
+    }
+
+    public ItemBase UseItem(int itemIndex, Pokemon selected, int categoryIndex){
+        var item = GetItem(itemIndex, categoryIndex);
         bool itemUsed = item.Use(selected);
         if(itemUsed){
             RemoveItem(item, categoryIndex);

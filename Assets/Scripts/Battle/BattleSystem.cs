@@ -380,7 +380,7 @@ public class BattleSystem : MonoBehaviour{
                 state = BattleState.RunningTurn;
             };
 
-            moveSelectionUI.HandleMoveSelection(playerUnit, onMoveSelected);
+            moveSelectionUI.HandleMoveSelection(playerUnit.Pokemon, onMoveSelected);
         }
     }
     
@@ -528,7 +528,7 @@ public class BattleSystem : MonoBehaviour{
                 var newMove = playerUnit.Pokemon.GetLearnableMoveAtCurrLevel();
                 if(newMove != null) {
                     if(playerUnit.Pokemon.Moves.Count < PokemonBase.MaxNumberOfMoves){
-                        playerUnit.Pokemon.LearnMove(newMove);
+                        playerUnit.Pokemon.LearnMove(newMove.Base);
                         yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name} learned {newMove.Base.Name}");
                         dialogBox.SetMoveBars(playerUnit.Pokemon.Moves);
                     } else {
@@ -622,7 +622,7 @@ public class BattleSystem : MonoBehaviour{
 
         yield return new WaitForSeconds(0.3f);
 
-        int shakeCount = TryCatchPokemon(enemyUnit.Pokemon);
+        int shakeCount = TryCatchPokemon(enemyUnit.Pokemon, pokeball);
 
         for (int i = 0; i < Mathf.Min(shakeCount, 3); i++){
             pokeballAnim.PlayShake(pokeball);
@@ -654,11 +654,9 @@ public class BattleSystem : MonoBehaviour{
             state = BattleState.RunningTurn;
         }
     }
-
-
     
-    int TryCatchPokemon(Pokemon pokemon){
-        float a = ( 3 * pokemon.MaxHp - 2 * pokemon.HP) * pokemon.Base.CatchRate * ConditionsDB.GetStatusBonus(pokemon.Status) / ( 3 * pokemon.MaxHp);
+    int TryCatchPokemon(Pokemon pokemon, PokeballItem pokeball){
+        float a = ( 3 * pokemon.MaxHp - 2 * pokemon.HP) * pokemon.Base.CatchRate * pokeball.CatchRateModifier * ConditionsDB.GetStatusBonus(pokemon.Status) / ( 3 * pokemon.MaxHp);
         if(a >= 255){
             return 4;
         }

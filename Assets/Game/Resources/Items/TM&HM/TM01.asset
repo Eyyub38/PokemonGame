@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53c949daa45c6b947968ab5ae55a0c37, type: 3}
+  m_Name: TM01
+  m_EditorClassIdentifier: 
+  _name: TM 01
+  description: A CD that lets you teach a Pokemon the move "Bite".
+  icon: {fileID: 21300000, guid: ca482a1f5c4b3bb459a11eff6062889f, type: 3}
+  itemType: 8
+  move: {fileID: 11400000, guid: e91719678adf9e74bbef0919ed69dd23, type: 2}

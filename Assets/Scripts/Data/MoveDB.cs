@@ -11,7 +11,6 @@ public class MoveDB{
         var moveArray = Resources.LoadAll<MoveBase>("");
         foreach(var move in moveArray){
             if(moves.ContainsKey(move.Name)){
-                Debug.Log($"There are two moves with name {move.Name}");
                 continue;
             }
             moves[move.Name] = move;
@@ -20,7 +19,6 @@ public class MoveDB{
 
     public static MoveBase GetMoveByName(string name){
         if(!moves.ContainsKey(name)){
-            Debug.Log($"Move with name {name} not found in the database");
             return null;
         }
 
