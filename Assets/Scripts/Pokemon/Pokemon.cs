@@ -10,11 +10,13 @@ public class Pokemon{
     [SerializeField] PokemonBase _base;
     [SerializeField] int level;
     [SerializeField] Gender gender;
+    [SerializeField] PokeballItem pokeball;
 
 
     public PokemonBase Base { get{ return _base; }}
     public int Level { get{ return level; } }
     public Gender Gender { get{ return gender; } }
+    public PokeballItem Pokeball { get => pokeball; set => pokeball = value; }
 
     public int HP{ get; set; }
     public int Exp{ get; set; }
@@ -40,10 +42,10 @@ public class Pokemon{
     public int SpDefense{ get{ return GetStat(Stat.SpDefense);}}
     public int Speed{ get{ return GetStat(Stat.Speed);}}
     
-    public Pokemon(PokemonBase pBase, int pLvl){
+    public Pokemon(PokemonBase pBase, int pLvl, PokeballItem pokeball = null){
         _base = pBase;
         level = pLvl;
-
+        this.pokeball = pokeball;
         Init();
     }
 
@@ -52,6 +54,7 @@ public class Pokemon{
         HP = saveData.Hp;
         level = saveData.level;
         Exp = saveData.xp;
+        pokeball = saveData.pokeball;
         
         if(saveData.statusId != null){
             Status = ConditionsDB.Conditions[saveData.statusId.Value];
@@ -155,6 +158,7 @@ public class Pokemon{
             Hp = HP,
             level = level,
             xp = Exp,
+            pokeball = Pokeball,
             statusId = Status?.Id,
             moves = Moves.Select(x => x.GetSaveData()).ToList()
         };
@@ -295,6 +299,7 @@ public class PokemonSaveData{
     public int Hp;
     public int level;
     public int xp;
+    public PokeballItem pokeball;
     public ConditionID? statusId;
     public List<MoveSaveData> moves;
 }

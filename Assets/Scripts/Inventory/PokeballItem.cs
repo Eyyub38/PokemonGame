@@ -9,7 +9,10 @@ public class PokeballItem : ItemBase{
     [SerializeField] List<Sprite> idleFrames;
     [SerializeField] List<Sprite> shakeFrames;
     [SerializeField] List<Sprite> catchFrames;
+
     
+    [Header ("Pokeball Details")]
+    [SerializeField] Sprite background;
     [SerializeField] float catchRateModifier = 1;
 
     public List<Sprite> ThrowFrames => throwFrames;
@@ -17,12 +20,11 @@ public class PokeballItem : ItemBase{
     public List<Sprite> ShakeFrames => shakeFrames;
     public List<Sprite> CatchFrames => catchFrames;
 
+    public Sprite Background => background;
     public float CatchRateModifier => catchRateModifier;
+    public override bool CanUseInOffsideBattle => false;
 
     public override bool Use(Pokemon pokemon){
-        if(GameController.Instance.State == GameState.Battle){
-            return true;
-        }
-        return false;
+        return true;
     }
 }

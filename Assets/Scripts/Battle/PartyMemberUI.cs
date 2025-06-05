@@ -73,25 +73,28 @@ public class PartyMemberUI : MonoBehaviour{
         _pokemon.OnExpChanged += UpdateData;
         _pokemon.OnStatusChanged += UpdateData;
 
-        if(GameController.Instance.PrevState == GameState.Bag){
+        if(GameController.i.PrevState == GameState.Bag){
             if(_pokemon.HP <= 0){
                 details.sprite = detailBackground[1];
-                icon.sprite = iconBacgrounrd[1];
+                icon.color = Color.gray;
             } else {
                 details.sprite = detailBackground[2];
-                icon.sprite = iconBacgrounrd[2];
             }
         } else {
             if(_pokemon.HP <= 0){
                 details.sprite = detailBackground[1];
-                icon.sprite = iconBacgrounrd[1];
+                icon.color = Color.gray;
             } else if(_pokemon == currUnit?.Pokemon){
                details.sprite = detailBackground[0];
-                icon.sprite = iconBacgrounrd[0];
             } else {
                 details.sprite = detailBackground[2];
-                icon.sprite = iconBacgrounrd[2];
             }
+        }
+
+        if(_pokemon.Pokeball != null){
+            icon.sprite = _pokemon.Pokeball.Background;
+        } else {
+            icon.sprite = iconBacgrounrd[0];   
         }
 
         if(pokemon.Base.IsGenderless){

@@ -8,6 +8,8 @@ public class TmItems : ItemBase{
 
     public MoveBase Move => move;
 
+    public override bool CanUseInBattle => false;
+
     public override bool Use(Pokemon pokemon){
         return pokemon.HasMove(move);
     }

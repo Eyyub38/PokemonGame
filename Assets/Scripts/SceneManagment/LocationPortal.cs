@@ -24,14 +24,14 @@ public class LocationPortal : MonoBehaviour, IPlayerTriggerable{
     }
 
     IEnumerator Teleport(){
-        GameController.Instance.PauseGame(true);
+        GameController.i.PauseGame(true);
         yield return fader.FadeIn(0.5f);
 
         var destPortal = FindObjectsOfType<LocationPortal>().First( x => x != this && x.destinationPortal == this.destinationPortal);
         player.Character.SetPositionAndSnapToTile(destPortal.SpawnPoint.position);
         yield return fader.FadeOut(0.5f);
 
-        GameController.Instance.PauseGame(false);
+        GameController.i.PauseGame(false);
         Destroy(gameObject);
     }
 }

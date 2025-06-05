@@ -44,7 +44,7 @@ public class TrainerController : MonoBehaviour, Interactable, ISavable{
 
         yield return character.Move( moveVec);
         StartCoroutine(DialogManager.i.ShowDialog( dialog, ()=> {
-            GameController.Instance.StartTrainerBattle(this);
+            GameController.i.StartTrainerBattle(this);
         }));
     }
 
@@ -71,7 +71,7 @@ public class TrainerController : MonoBehaviour, Interactable, ISavable{
         character.LookTowards(initiator.position);
         if(!battleLost){
             StartCoroutine(DialogManager.i.ShowDialog(dialog, ()=> {
-                GameController.Instance.StartTrainerBattle(this);
+                GameController.i.StartTrainerBattle(this);
             }));
         } else {
             StartCoroutine(DialogManager.i.ShowDialog(dialogAfterBattle));

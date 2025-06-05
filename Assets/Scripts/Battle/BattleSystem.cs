@@ -351,8 +351,10 @@ public class BattleSystem : MonoBehaviour{
         } else if(state == BattleState.MoveSelection){
             HandleMoveSelection();
         } else if(state == BattleState.PartyScreen){
+            Debug.Log($"Pokemons: {GameController.i.State}");
             HandlePartySelection();
         } else if(state == BattleState.Bag){
+            Debug.Log($"Bag: {GameController.i.State}");
             Action onBack = () => {
                 inventoryUI.gameObject.SetActive(false);
                 state = BattleState.ActionSelection;
@@ -549,6 +551,7 @@ public class BattleSystem : MonoBehaviour{
     }
 
     IEnumerator OnItemUsed(ItemBase usedItem){
+        Debug.Log($"OnItemUsed: {GameController.i.State}");
         state = BattleState.Busy;
         inventoryUI.gameObject.SetActive(false);
         if(usedItem is PokeballItem){
@@ -634,6 +637,7 @@ public class BattleSystem : MonoBehaviour{
             yield return dialogBox.TypeDialog($" Congrats!! {enemyUnit.Pokemon.Base.Name} was caught.");
             yield return pokeballRenderer.DOFade(0, 1.5f).WaitForCompletion();
 
+            enemyUnit.Pokemon.Pokeball = pokeball;
             playerParty.AddPokemon(enemyUnit.Pokemon);
             yield return dialogBox.TypeDialog($"{enemyUnit.Pokemon.Base.Name} has been added to your party.");
 

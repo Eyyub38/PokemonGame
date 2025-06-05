@@ -14,14 +14,14 @@ public class SceneDetails : MonoBehaviour{
     private void OnTriggerEnter2D(Collider2D collision){
         if(collision.tag == "Player"){
             LoadScene();
-            GameController.Instance.SetCurrentScene(this);
+            GameController.i.SetCurrentScene(this);
             StartCoroutine(SetLocationUI(this.name.ToUpper()));
 
             foreach(var scene in connectedScenes){
                 scene.LoadScene();
             }
 
-            var prevScene = GameController.Instance.PrevScene;
+            var prevScene = GameController.i.PrevScene;
 
             if(prevScene != null){
                 var prevLoadedScenes = prevScene.connectedScenes;
@@ -67,9 +67,9 @@ public class SceneDetails : MonoBehaviour{
     }
 
     IEnumerator SetLocationUI(string location){
-        GameController.Instance.LocationUI.gameObject.SetActive(true);
-        GameController.Instance.LocationText.text = location;
+        GameController.i.LocationUI.gameObject.SetActive(true);
+        GameController.i.LocationText.text = location;
         yield return new WaitForSeconds(2f);
-        GameController.Instance.LocationUI.gameObject.SetActive(false);
+        GameController.i.LocationUI.gameObject.SetActive(false);
     }
 }

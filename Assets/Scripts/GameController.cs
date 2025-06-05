@@ -23,17 +23,23 @@ public class GameController : MonoBehaviour{
     TrainerController trainer;
     MenuController menuController;
 
-    public static GameController Instance { get; private set; }
+    public static GameController i { get; private set; }
     public GameObject LocationUI => locationUI;
     public Text LocationText => locationText;
 
-    public GameState State {get; private set;}
-    public GameState PrevState {get; private set;}
+    public GameState State { get { return state; } }
+    public GameState PrevState { get; private set; }
     public SceneDetails CurrentScene {get; private set;}
     public SceneDetails PrevScene {get; private set;}
 
+    private void SetState(GameState newState)
+    {
+        PrevState = state;
+        state = newState;
+    }
+
     private void Awake(){
-        Instance = this;
+        i = this;
 
         menuController = GetComponent<MenuController>();
 
@@ -50,7 +56,7 @@ public class GameController : MonoBehaviour{
             playerController.HandleUpdate();
             if(Input.GetKeyDown(KeyCode.Tab)){
                 menuController.OpenMenu();
-                state = GameState.Menu;
+                SetState(GameState.Menu);
             }
         } else if(state == GameState.Battle){
             battleSystem.HandleUpdate();
@@ -65,13 +71,21 @@ public class GameController : MonoBehaviour{
             };
             Action onBack = () => {
                 partyScreen.gameObject.SetActive(false);
-                state = GameState.FreeRoam;
+                if(PrevState == GameState.Battle){
+                    SetState(GameState.Battle);
+                } else {
+                    SetState(GameState.FreeRoam);
+                }
             };
             partyScreen.HandleUpdate(OnSelected, onBack);
         } else if(state == GameState.Bag){
             Action onBack = () => {
                 inventoryUI.gameObject.SetActive(false);
-                state = GameState.FreeRoam;
+                if(PrevState == GameState.Battle){
+                    SetState(GameState.Battle);
+                } else {
+                    SetState(GameState.FreeRoam);
+                }
             };
             inventoryUI.HandleUpdate(onBack);
         }
@@ -80,19 +94,19 @@ public class GameController : MonoBehaviour{
     void Start(){
         battleSystem.OnBattleOver += EndBattle;
         partyScreen.Init();
-        DialogManager.i.OnShowDialog += () => state = GameState.Dialog;
+        DialogManager.i.OnShowDialog += () => SetState(GameState.Dialog);
         DialogManager.i.OnCloseDialog += () =>{
             if(state == GameState.Dialog){
-                state = GameState.FreeRoam;
+                SetState(GameState.FreeRoam);
             }
         };
 
-        menuController.onBack += () => state = GameState.FreeRoam;
+        menuController.onBack += () => SetState(GameState.FreeRoam);
         menuController.onMenuSelected += OnMenuSelected;
     }
 
     public void OnEnterTrainersView(TrainerController trainer){
-        state = GameState.CutScene;
+        SetState(GameState.CutScene);
         StartCoroutine(trainer.TriggerTrainerBattle(playerController));
     }
 
@@ -101,13 +115,13 @@ public class GameController : MonoBehaviour{
             trainer.BattleLost();
             trainer = null;
         }
-        state = GameState.FreeRoam;
+        SetState(GameState.FreeRoam);
         battleSystem.gameObject.SetActive(false);
         worldCamera.gameObject.SetActive(true);
     }
 
     public void StartBattle(){
-        state = GameState.Battle;
+        SetState(GameState.Battle);
         battleSystem.gameObject.SetActive(true);
         worldCamera.gameObject.SetActive(false);
 
@@ -121,7 +135,7 @@ public class GameController : MonoBehaviour{
     public void StartTrainerBattle(TrainerController trainer){
         this.trainer = trainer;
 
-        state = GameState.Battle;
+        SetState(GameState.Battle);
         battleSystem.gameObject.SetActive(true);
         worldCamera.gameObject.SetActive(false);
 
@@ -134,9 +148,9 @@ public class GameController : MonoBehaviour{
     public void PauseGame(bool pause){
         if(pause){
             stateBeforePause = state;
-            state = GameState.Paused;
+            SetState(GameState.Paused);
         } else {
-            state = stateBeforePause;
+            SetState(stateBeforePause);
         }
     }
 
@@ -148,20 +162,20 @@ public class GameController : MonoBehaviour{
     void OnMenuSelected(int selectedItem){
         if(selectedItem == 0){
             //Pokemon
+            SetState(GameState.PartyScreen);
             partyScreen.gameObject.SetActive(true);
-            state = GameState.PartyScreen;
         } else if(selectedItem == 1){
             //Bag
+            SetState(GameState.Bag);
             inventoryUI.gameObject.SetActive(true);
-            state = GameState.Bag;
         } else if(selectedItem == 2){
             //Save
             SavingSystem.i.Save("saveSlot1");
-            state = GameState.FreeRoam;
+            SetState(GameState.FreeRoam);
         } else if(selectedItem == 3){
             //Load
             SavingSystem.i.Load("saveSlot1");
-            state = GameState.FreeRoam;
+            SetState(GameState.FreeRoam);
         }
     }
 }

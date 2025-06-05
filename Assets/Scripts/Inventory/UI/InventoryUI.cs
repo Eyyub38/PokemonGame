@@ -74,6 +74,8 @@ public class InventoryUI : MonoBehaviour{
     }
 
     public void HandleUpdate(Action onBack, Action<ItemBase> onItemUsed = null){
+        Debug.Log($"InventoryUI HandleUpdate: {GameController.i.State}");
+
         this.onItemUsed = onItemUsed;
         int prevCategory = selectedCategory;
 
@@ -110,7 +112,7 @@ public class InventoryUI : MonoBehaviour{
                 UpdateItemSelection();
             }
             if(Input.GetKeyDown(KeyCode.Return)){
-                ItemSelected();
+                StartCoroutine(ItemSelected());
             } else if(Input.GetKeyDown(KeyCode.Escape)){
                 onBack?.Invoke();
             }
@@ -145,7 +147,25 @@ public class InventoryUI : MonoBehaviour{
         }
     }
 
-    void ItemSelected(){
+    IEnumerator ItemSelected(){
+        state = InventoryUIState.Busy;
+        var item = inventory.GetItem(selectedItem, selectedCategory);
+        Debug.Log($"InventoryUI ItemSelected: {GameController.i.State}");
+        
+        if(GameController.i.State == GameState.Battle){
+            if(!item.CanUseInBattle){
+                yield return DialogManager.i.ShowDialogText("This item can't be used in battle");
+                state = InventoryUIState.ItemSelection;
+                yield break;
+            }
+        } else {
+            if(!item.CanUseInOffsideBattle){
+                yield return DialogManager.i.ShowDialogText("This item can't be used in outside battle");
+                state = InventoryUIState.ItemSelection;
+                yield break;
+            }
+        }
+        
         if(selectedCategory != (int)ItemCategory.Pokeball){
             OpenPartyScreen();
         } else {
