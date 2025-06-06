@@ -899,6 +899,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -25
       objectReference: {fileID: 0}
+    - target: {fileID: 8969468467286899719, guid: 02c4ce5024c363743a1fb1b8e11d7e30, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 9062630101536173063, guid: 02c4ce5024c363743a1fb1b8e11d7e30, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 30.099976
@@ -1150,6 +1154,99 @@ PrefabInstance:
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7182161047606405265, guid: ef6468f31fd0b214695244dd76454603, type: 3}
   m_PrefabInstance: {fileID: 1882520523}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb07179abcb25d3408a8183498185bd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &1890125928
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2184495870889204477, guid: ef6468f31fd0b214695244dd76454603, type: 3}
+      propertyPath: m_Name
+      value: OakLab
+      objectReference: {fileID: 0}
+    - target: {fileID: 4905943893616285412, guid: ef6468f31fd0b214695244dd76454603, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 103
+      objectReference: {fileID: 0}
+    - target: {fileID: 4905943893616285412, guid: ef6468f31fd0b214695244dd76454603, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 4905943893616285412, guid: ef6468f31fd0b214695244dd76454603, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4905943893616285412, guid: ef6468f31fd0b214695244dd76454603, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4905943893616285412, guid: ef6468f31fd0b214695244dd76454603, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4905943893616285412, guid: ef6468f31fd0b214695244dd76454603, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4905943893616285412, guid: ef6468f31fd0b214695244dd76454603, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4905943893616285412, guid: ef6468f31fd0b214695244dd76454603, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4905943893616285412, guid: ef6468f31fd0b214695244dd76454603, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4905943893616285412, guid: ef6468f31fd0b214695244dd76454603, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7182161047606405265, guid: ef6468f31fd0b214695244dd76454603, type: 3}
+      propertyPath: connectedScenes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7182161047606405265, guid: ef6468f31fd0b214695244dd76454603, type: 3}
+      propertyPath: 'connectedScenes.Array.data[0]'
+      value: 
+      objectReference: {fileID: 5531741956096561919}
+    - target: {fileID: 7318308256899295542, guid: ef6468f31fd0b214695244dd76454603, type: 3}
+      propertyPath: m_Size.x
+      value: 51
+      objectReference: {fileID: 0}
+    - target: {fileID: 7318308256899295542, guid: ef6468f31fd0b214695244dd76454603, type: 3}
+      propertyPath: m_Size.y
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7318308256899295542, guid: ef6468f31fd0b214695244dd76454603, type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7318308256899295542, guid: ef6468f31fd0b214695244dd76454603, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4889994261358544069, guid: ef6468f31fd0b214695244dd76454603, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ef6468f31fd0b214695244dd76454603, type: 3}
+--- !u!114 &1890125929 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7182161047606405265, guid: ef6468f31fd0b214695244dd76454603, type: 3}
+  m_PrefabInstance: {fileID: 1890125928}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -1423,7 +1520,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7182161047606405265, guid: ef6468f31fd0b214695244dd76454603, type: 3}
       propertyPath: connectedScenes.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7182161047606405265, guid: ef6468f31fd0b214695244dd76454603, type: 3}
       propertyPath: 'connectedScenes.Array.data[0]'
@@ -1433,6 +1530,10 @@ PrefabInstance:
       propertyPath: 'connectedScenes.Array.data[1]'
       value: 
       objectReference: {fileID: 1784414041}
+    - target: {fileID: 7182161047606405265, guid: ef6468f31fd0b214695244dd76454603, type: 3}
+      propertyPath: 'connectedScenes.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1890125929}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1455,6 +1556,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 5531741956096561918}
   - {fileID: 1784414040}
+  - {fileID: 1890125928}
   - {fileID: 1962751956}
   - {fileID: 1882520523}
   - {fileID: 805910723}
