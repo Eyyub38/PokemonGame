@@ -449,7 +449,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4291622380426278062, guid: 02c4ce5024c363743a1fb1b8e11d7e30, type: 3}
       propertyPath: tmSlots.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4291622380426278062, guid: 02c4ce5024c363743a1fb1b8e11d7e30, type: 3}
       propertyPath: tmSlots.Array.data[1].item
@@ -460,8 +460,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 408333d9f3234bd49b74141150e1e547, type: 2}
     - target: {fileID: 4291622380426278062, guid: 02c4ce5024c363743a1fb1b8e11d7e30, type: 3}
+      propertyPath: tmSlots.Array.data[3].item
+      value: 
+      objectReference: {fileID: 11400000, guid: 1735fed010b5c0549adb23e60b9a165e, type: 2}
+    - target: {fileID: 4291622380426278062, guid: 02c4ce5024c363743a1fb1b8e11d7e30, type: 3}
       propertyPath: tmSlots.Array.data[0].count
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4291622380426278062, guid: 02c4ce5024c363743a1fb1b8e11d7e30, type: 3}
       propertyPath: tmSlots.Array.data[1].count
@@ -469,6 +473,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4291622380426278062, guid: 02c4ce5024c363743a1fb1b8e11d7e30, type: 3}
       propertyPath: tmSlots.Array.data[2].count
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4291622380426278062, guid: 02c4ce5024c363743a1fb1b8e11d7e30, type: 3}
+      propertyPath: tmSlots.Array.data[3].count
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4776551896828490733, guid: 02c4ce5024c363743a1fb1b8e11d7e30, type: 3}

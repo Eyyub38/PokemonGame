@@ -35,6 +35,9 @@ public class PartyMemberUI : MonoBehaviour{
     [Header("Status Icon")]
     [SerializeField] Image statusIcon;
 
+    [Header("Able/Not Able Text")]
+    [SerializeField] Text messageText;
+
     [Header("Bounce Animation")]
     [SerializeField] float bounceHeight = 10f;
     [SerializeField] float bounceDuration = 0.5f;
@@ -169,5 +172,9 @@ public class PartyMemberUI : MonoBehaviour{
 
     private void OnDestroy(){
         StopBounceAnimation();
+    }
+
+    public void SetMessageText(string message){
+        messageText.text = message;
     }
 }

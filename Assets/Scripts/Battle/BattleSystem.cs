@@ -351,10 +351,8 @@ public class BattleSystem : MonoBehaviour{
         } else if(state == BattleState.MoveSelection){
             HandleMoveSelection();
         } else if(state == BattleState.PartyScreen){
-            Debug.Log($"Pokemons: {GameController.i.State}");
             HandlePartySelection();
         } else if(state == BattleState.Bag){
-            Debug.Log($"Bag: {GameController.i.State}");
             Action onBack = () => {
                 inventoryUI.gameObject.SetActive(false);
                 state = BattleState.ActionSelection;

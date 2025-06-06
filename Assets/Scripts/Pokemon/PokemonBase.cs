@@ -45,7 +45,8 @@ public class PokemonBase : ScriptableObject{
     [SerializeField] GrowthRate growthRate;
 
     [Header("Learnable Moves")]
-    [SerializeField] List<LearnableMove> learnableMoves;
+    [SerializeField] List<LearnableMove> learnableMovesLevelUp;
+    [SerializeField] List<MoveBase> learnableMovesByTm;
 
     //Properties
     public string Name{ get{return _name;}}
@@ -69,7 +70,8 @@ public class PokemonBase : ScriptableObject{
     public int SpDefense{ get{return spDefense;}}
     public int CatchRate => catchRate;
     public int XpYield => xpYield;
-    public List<LearnableMove> LearnableMoves{ get{return learnableMoves;}}
+    public List<LearnableMove> LearnableMoves{ get{return learnableMovesLevelUp;}}
+    public List<MoveBase> LearnableMovesByTm{ get{return learnableMovesByTm;}}
 
     public static int MaxNumberOfMoves { get; set; } = 4;
 

@@ -10,15 +10,17 @@ public class ItemBase : ScriptableObject{
     [SerializeField] Sprite icon;
     [SerializeField] ItemType itemType;
 
-    public string Name => _name;
+    public virtual string Name => _name;
     public string Description => description;
     public Sprite Icon => icon;
     public ItemType ItemType => itemType;
+
+    public virtual bool CanUseInBattle => true;
+    public virtual bool CanUseInOffsideBattle => true;
+    public virtual bool IsUsable => true;
 
     public virtual bool Use(Pokemon pokemon){
         return false;
     }
 
-    public virtual bool CanUseInBattle => true;
-    public virtual bool CanUseInOffsideBattle => true;
 }

@@ -14,11 +14,9 @@ public class ItemSlotUI : MonoBehaviour{
 
     RectTransform rectTransform;
 
-    void Awake(){
-        rectTransform = GetComponent<RectTransform>();
-    }
-
     public void SetData(ItemSlot itemSlot){
+        rectTransform = GetComponent<RectTransform>();
+
         nameText.text = itemSlot.Item.Name;
         countText.text = $"x {itemSlot.Count}";
         iconImage.sprite = itemSlot.Item.Icon;

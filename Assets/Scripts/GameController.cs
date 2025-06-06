@@ -32,8 +32,7 @@ public class GameController : MonoBehaviour{
     public SceneDetails CurrentScene {get; private set;}
     public SceneDetails PrevScene {get; private set;}
 
-    private void SetState(GameState newState)
-    {
+    private void SetState(GameState newState){
         PrevState = state;
         state = newState;
     }
@@ -97,7 +96,7 @@ public class GameController : MonoBehaviour{
         DialogManager.i.OnShowDialog += () => SetState(GameState.Dialog);
         DialogManager.i.OnCloseDialog += () =>{
             if(state == GameState.Dialog){
-                SetState(GameState.FreeRoam);
+                SetState(PrevState);
             }
         };
 

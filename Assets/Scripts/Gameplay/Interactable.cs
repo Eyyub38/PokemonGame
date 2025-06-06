@@ -4,5 +4,5 @@ using System.Collections.Generic;
 
 public interface Interactable{
 
-    void Interact(Transform initiator);
+    IEnumerator Interact(Transform initiator);
 }

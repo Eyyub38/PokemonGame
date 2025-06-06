@@ -19,7 +19,6 @@ public class PokeballItem : ItemBase{
     public List<Sprite> IdleFrames => idleFrames;
     public List<Sprite> ShakeFrames => shakeFrames;
     public List<Sprite> CatchFrames => catchFrames;
-
     public Sprite Background => background;
     public float CatchRateModifier => catchRateModifier;
     public override bool CanUseInOffsideBattle => false;
