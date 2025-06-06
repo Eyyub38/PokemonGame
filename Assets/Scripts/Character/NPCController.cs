@@ -13,19 +13,26 @@ public class NPCController : MonoBehaviour, Interactable{
     [SerializeField] float timeBetweenPattern;
 
     Character character;
+    ItemGiver itemGiver;
     NPCState state;
     float idleTimer = 0f;
     int currentPattern = 0;
 
     void Awake(){
         character = GetComponent<Character>();
+        itemGiver = GetComponent<ItemGiver>();
     }
 
     public IEnumerator Interact(Transform initiator){
         if(state == NPCState.Idle){
             state = NPCState.Dialog;
             character.LookTowards(initiator.position);
-            yield return DialogManager.i.ShowDialog( dialog);
+
+            if(itemGiver != null && itemGiver.CanBeGiven()){
+                yield return itemGiver.GiveItem(initiator.GetComponent<PlayerController>());
+            } else {
+                yield return DialogManager.i.ShowDialog( dialog);
+            }
             idleTimer = 0f;
             state = NPCState.Idle;
         }

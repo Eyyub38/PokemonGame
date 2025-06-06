@@ -94,7 +94,7 @@ public class GameController : MonoBehaviour{
         battleSystem.OnBattleOver += EndBattle;
         partyScreen.Init();
         DialogManager.i.OnShowDialog += () => SetState(GameState.Dialog);
-        DialogManager.i.OnCloseDialog += () =>{
+        DialogManager.i.OnDialogFinished += () =>{
             if(state == GameState.Dialog){
                 SetState(PrevState);
             }

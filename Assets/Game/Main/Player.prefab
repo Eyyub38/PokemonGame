@@ -207,8 +207,6 @@ MonoBehaviour:
     count: 10
   - item: {fileID: 11400000, guid: 4ee2792640d95384daf56020122ba9ad, type: 2}
     count: 10
-  - item: {fileID: 11400000, guid: 4ee2792640d95384daf56020122ba9ad, type: 2}
-    count: 10
   pokeballSlots:
   - item: {fileID: 11400000, guid: 6f2070f7e40f97c4db8e767f154d4265, type: 2}
     count: 10
@@ -216,6 +214,8 @@ MonoBehaviour:
     count: 5
   tmSlots:
   - item: {fileID: 11400000, guid: ebdef8ec5013e0744a26b06e13cb3d29, type: 2}
+    count: 1
+  - item: {fileID: 11400000, guid: 826fad7528b8ca046a08e448d5c95f79, type: 2}
     count: 1
   evolutionSlots: []
 --- !u!114 &7530823447165788642

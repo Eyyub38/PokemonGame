@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2539626266252847352}
   - component: {fileID: 7381077636331352071}
   - component: {fileID: 4210890416528326232}
+  - component: {fileID: 4321450732582420451}
   - component: {fileID: 1829044926830253448}
   - component: {fileID: 3426225111526566017}
   - component: {fileID: 895888407462498066}
@@ -111,6 +112,22 @@ MonoBehaviour:
     - Nobody inside in the Lab. Try another time.
   movementPattern: []
   timeBetweenPattern: 0
+--- !u!114 &4321450732582420451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5360220045568618052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb6a7658aea606541a3852b63d84fc4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 0}
+  amount: 0
+  dialog:
+    lines: []
 --- !u!114 &1829044926830253448
 MonoBehaviour:
   m_ObjectHideFlags: 0

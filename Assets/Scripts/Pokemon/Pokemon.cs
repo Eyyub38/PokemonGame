@@ -62,7 +62,7 @@ public class Pokemon{
             Status = null;
         }
 
-        saveData.moves.Select(s => new Move(s)).ToList();
+        Moves = saveData.moves.Select(s => new Move(s)).ToList();
 
         CalculateStats();
         StatusChanges = new Queue<string>();

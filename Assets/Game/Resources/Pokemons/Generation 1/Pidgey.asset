@@ -34,7 +34,7 @@ MonoBehaviour:
   catchRate: 255
   xpYield: 50
   growthRate: 2
-  learnableMoves:
+  learnableMovesLevelUp:
   - moveBase: {fileID: 11400000, guid: 72353876ccbec0941bd1511e241c07c0, type: 2}
     level: 1
   - moveBase: {fileID: 11400000, guid: 91cbd15ef1defc94a8309855076ee474, type: 2}
@@ -44,6 +44,7 @@ MonoBehaviour:
   - moveBase: {fileID: 11400000, guid: c38d326c31b40b64ab7495b6015b282f, type: 2}
     level: 9
   - moveBase: {fileID: 11400000, guid: 7473037950fece24cb670182ab9447d0, type: 2}
-    level: 13
+    level: 12
   - moveBase: {fileID: 11400000, guid: 39c72ef5ce16e6943a131d60d2626b41, type: 2}
     level: 15
+  learnableMovesByTm: []

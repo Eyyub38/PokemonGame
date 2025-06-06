@@ -13,7 +13,7 @@ public class SpriteAnimator{
     public bool IsDone { get; private set; } = false;
     public List<Sprite> Frames { get { return frames; } }
 
-    public SpriteAnimator(List<Sprite> frames, SpriteRenderer spriteRenderer, float frameRate = 0.16f, bool isLooping = true){
+    public SpriteAnimator(List<Sprite> frames, SpriteRenderer spriteRenderer, float frameRate = 0.1f, bool isLooping = true){
         this.spriteRenderer = spriteRenderer;
         Start(frames, frameRate, isLooping);
     }
@@ -26,7 +26,7 @@ public class SpriteAnimator{
             spriteRenderer.sprite = frames[0];
     }
 
-    public void Start(List<Sprite> newFrames, float frameRate = 0.16f, bool isLooping = true){
+    public void Start(List<Sprite> newFrames, float frameRate = 0.1f, bool isLooping = true){
         this.frames = newFrames;
         this.frameRate = frameRate;
         this.isLooping = isLooping;
