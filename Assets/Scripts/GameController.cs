@@ -48,6 +48,7 @@ public class GameController : MonoBehaviour{
         PokemonDB.Init();
         MoveDB.Init();
         ConditionsDB.Init();
+        ItemDB.Init();
     }
 
     public void Update(){

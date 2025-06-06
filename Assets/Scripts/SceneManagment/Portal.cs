@@ -14,6 +14,7 @@ public class Portal : MonoBehaviour, IPlayerTriggerable{
     Fader fader;
 
     public Transform SpawnPoint => spawnPoint;
+    public bool TriggerRepeatedly => false;
 
     PlayerController player;
 

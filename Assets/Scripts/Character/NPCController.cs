@@ -12,9 +12,13 @@ public class NPCController : MonoBehaviour, Interactable{
     [SerializeField] List<Vector2> movementPattern;
     [SerializeField] float timeBetweenPattern;
 
+    [Header("Quest Giver")]
+    [SerializeField] QuestBase questToStart;
+
     Character character;
     ItemGiver itemGiver;
     NPCState state;
+    Quest activeQuest;
     float idleTimer = 0f;
     int currentPattern = 0;
 
@@ -30,6 +34,17 @@ public class NPCController : MonoBehaviour, Interactable{
 
             if(itemGiver != null && itemGiver.CanBeGiven()){
                 yield return itemGiver.GiveItem(initiator.GetComponent<PlayerController>());
+            } else if(questToStart != null){
+                activeQuest = new Quest(questToStart);
+                yield return activeQuest.StartQuest();
+                questToStart = null;
+            } else if(activeQuest != null){
+                if(activeQuest.CanBeCompleted()){
+                    yield return activeQuest.CompleteQuest(initiator);
+                    activeQuest = null;
+                } else {
+                    yield return DialogManager.i.ShowDialog(activeQuest.Base.InProgressDialog);
+                }
             } else {
                 yield return DialogManager.i.ShowDialog( dialog);
             }

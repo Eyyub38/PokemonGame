@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class ItemGiver : MonoBehaviour{
+public class ItemGiver : MonoBehaviour, ISavable{
     [SerializeField] ItemBase item;
     [SerializeField] int amount = 1;
     [SerializeField] Dialog dialog;
@@ -18,5 +18,13 @@ public class ItemGiver : MonoBehaviour{
 
     public bool CanBeGiven(){
         return item != null && amount > 0 && !used;
+    }
+
+    public object CaptureState(){
+        return used;
+    }
+
+    public void RestoreState(object state){
+        used = (bool) state;
     }
 }

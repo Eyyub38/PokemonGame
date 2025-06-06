@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 public enum ItemCategory{ Recovery, Pokeball, TMs, Evolution}
 
-public class Inventory : MonoBehaviour{
+public class Inventory : MonoBehaviour, ISavable{
     [Header("Slots")]
     [SerializeField] List<ItemSlot> recoverySlots;
     [SerializeField] List<ItemSlot> pokeballSlots;
@@ -41,14 +41,16 @@ public class Inventory : MonoBehaviour{
         bool itemUsed = item.Use(selected);
         if(itemUsed){
             if(!item.IsUsable){
-                RemoveItem(item, categoryIndex);
+                RemoveItem(item);
             }
             return item;
         }
         return null;
     }
 
-    public void RemoveItem(ItemBase item, int categoryIndex){
+    public void RemoveItem(ItemBase item){
+        int categoryIndex = (int)GetCategoryFromItem(item);
+
         var currSlots = GetItemSlotsByCategory(categoryIndex);
         var itemSlot = currSlots.First( slot => slot.Item == item);
         itemSlot.Count--;
@@ -75,7 +77,7 @@ public class Inventory : MonoBehaviour{
         OnUpdated?.Invoke();
     }
 
-    ItemCategory GetCategoryFromItem(ItemBase item){
+    public ItemCategory GetCategoryFromItem(ItemBase item){
         if(item is RecoveryItem){
             return ItemCategory.Recovery;
         } else if(item is PokeballItem){
@@ -84,9 +86,39 @@ public class Inventory : MonoBehaviour{
             return ItemCategory.TMs;
         }
     }
+
+    public object CaptureState(){
+        var saveData = new InventorySaveData(){
+            recovery = recoverySlots.Select(i => i.GetSaveData()).ToList(),
+            pokeball = pokeballSlots.Select(i => i.GetSaveData()).ToList(),
+            tm = tmSlots.Select(i => i.GetSaveData()).ToList(),
+            evolution = evolutionSlots.Select(i => i.GetSaveData()).ToList()
+        };
+        return saveData;
+    }
+
+    public void RestoreState(object state){
+        var saveData = (InventorySaveData)state;
+
+        recoverySlots = saveData.recovery.Select(i => new ItemSlot(i)).ToList();
+        pokeballSlots = saveData.pokeball.Select(i => new ItemSlot(i)).ToList();
+        tmSlots = saveData.tm.Select(i => new ItemSlot(i)).ToList();
+        evolutionSlots = saveData.evolution.Select(i => new ItemSlot(i)).ToList();
+
+        allSlots = new List<List<ItemSlot>>(){recoverySlots, pokeballSlots, tmSlots, evolutionSlots};
+
+        OnUpdated?.Invoke();
+    }
+
+    public bool HasItemEnough(ItemBase item, int count = 1){
+        int categoryIndex = (int)GetCategoryFromItem(item);
+        var currSlots = GetItemSlotsByCategory(categoryIndex);
+
+        return currSlots.Exists(slot => slot.Item == item && slot.Count >= count);
+    }
 }
 
-[System.Serializable]
+[Serializable]
 public class ItemSlot{
     [Header("Item Slot")]
     [SerializeField] ItemBase item;
@@ -94,4 +126,33 @@ public class ItemSlot{
 
     public ItemBase Item {get => item; set => item = value; }
     public int Count {get => count; set => count = value; }
+
+    public ItemSlot(){}
+
+    public ItemSlot(ItemSaveData saveData){
+        item = ItemDB.GetItemByName(saveData.name);
+        count = saveData.count;
+    }
+
+    public ItemSaveData GetSaveData(){
+        var saveData = new ItemSaveData(){
+            name = item.name,
+            count = count
+        };
+        return saveData;
+    }
+}
+
+[Serializable]
+public class ItemSaveData{
+    public string name;
+    public int count;
+}
+
+[Serializable]
+public class InventorySaveData{
+    public List<ItemSaveData> recovery;
+    public List<ItemSaveData> pokeball;
+    public List<ItemSaveData> tm;
+    public List<ItemSaveData> evolution;
 }

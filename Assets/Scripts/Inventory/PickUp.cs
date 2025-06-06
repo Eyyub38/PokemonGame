@@ -18,16 +18,20 @@ public class PickUp : MonoBehaviour, Interactable, ISavable{
 
             string playerName = initiator.GetComponent<PlayerController>().Name;
 
-            yield return DialogManager.i.ShowDialogText($"{playerName} picked up {item.Name}!");
+            yield return DialogManager.i.ShowDialogText($"{playerName} picked up {item.Name}{(count > 1 ? "s" : "")}!");
         }
     }
     
     public object CaptureState(){
-        
+        return Used;
     }
 
-    public void RestoreState(object state)
-    {
-        throw new System.NotImplementedException();
+    public void RestoreState(object state){
+        Used = (bool) state;
+
+        if(Used){
+            GetComponent<SpriteRenderer>().enabled = false;
+            GetComponent<BoxCollider2D>().enabled = false;
+        }
     }
 }
