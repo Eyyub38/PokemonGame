@@ -34,6 +34,5 @@ public class LocationPortal : MonoBehaviour, IPlayerTriggerable{
         yield return fader.FadeOut(0.5f);
 
         GameController.i.PauseGame(false);
-        Destroy(gameObject);
     }
 }
