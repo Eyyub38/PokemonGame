@@ -54,6 +54,7 @@ public class PartyMemberUI : MonoBehaviour{
     
     private void Start(){
         originalIconPosition = pokemonIcon.transform.localPosition;
+        SetMessageText("");
     }
 
     public void SetSelected(bool selected){

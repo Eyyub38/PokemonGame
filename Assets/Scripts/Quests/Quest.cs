@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public enum QuestStatus { None , Started, InProgress, Completed}
 
+[System.Serializable]
 public class Quest{
     public QuestBase Base{ get; private set; }
     public QuestStatus Status { get; private set; }
@@ -15,6 +16,9 @@ public class Quest{
     public IEnumerator StartQuest(){
         Status = QuestStatus.Started;
         yield return DialogManager.i.ShowDialog(Base.StartDialog);
+
+        var questList = QuestList.GetQuestList();
+        questList.AddQuest(this);
     }
 
     public IEnumerator CompleteQuest(Transform player){
@@ -34,6 +38,9 @@ public class Quest{
             string name = player.GetComponent<PlayerController>().Name;
             yield return DialogManager.i.TypeDialog($"{name} received {Base.RewardItemCount} {Base.RewardItem.Name}{(Base.RewardItemCount > 1 ? "s" : "")} as a reward for completing the quest.");
         }
+
+        var questList = QuestList.GetQuestList();
+        questList.AddQuest(this);
     }
 
     public bool CanBeCompleted(){

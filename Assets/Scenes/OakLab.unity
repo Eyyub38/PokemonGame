@@ -3833,6 +3833,85 @@ Transform:
   - {fileID: 1130701960}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &860553268
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 860553271}
+  - component: {fileID: 860553270}
+  - component: {fileID: 860553269}
+  m_Layer: 0
+  m_Name: EventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &860553269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 860553268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_XRTrackingOrigin: {fileID: 0}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_DeselectOnBackgroundClick: 1
+  m_PointerBehavior: 0
+  m_CursorLockBehavior: 0
+  m_ScrollDeltaPerTick: 6
+--- !u!114 &860553270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 860553268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!4 &860553271
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 860553268}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &941210013
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16931,11 +17010,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2539626266252847352, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 112.5
+      value: 115.5
       objectReference: {fileID: 0}
     - target: {fileID: 2539626266252847352, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 29.2
+      value: 28.8
       objectReference: {fileID: 0}
     - target: {fileID: 2539626266252847352, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
       propertyPath: m_LocalPosition.z
@@ -16971,7 +17050,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3426225111526566017, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
       propertyPath: defaultDirection
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3426225111526566017, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
       propertyPath: walkUpSprites.Array.size
@@ -17125,6 +17204,14 @@ PrefabInstance:
       propertyPath: 'dialog.lines.Array.data[0]'
       value: Craving coffee? The machine here doesn't disappoint.
       objectReference: {fileID: 0}
+    - target: {fileID: 4321450732582420451, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4745997923367454509, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.5625
+      objectReference: {fileID: 0}
     - target: {fileID: 5360220045568618052, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
       propertyPath: m_Name
       value: Researcher(NPC)4
@@ -17137,7 +17224,13 @@ PrefabInstance:
       propertyPath: uniqueId
       value: 4bc0141e-effe-4f49-8aaf-0665c98066bf
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7430964702008008001, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7430964702008008001, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
+    - {fileID: 4321450732582420451, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -17350,6 +17443,14 @@ PrefabInstance:
       propertyPath: 'dialog.lines.Array.data[1]'
       value: The data is consistent, but the results are... strange.
       objectReference: {fileID: 0}
+    - target: {fileID: 4321450732582420451, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4745997923367454509, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.5625
+      objectReference: {fileID: 0}
     - target: {fileID: 5360220045568618052, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
       propertyPath: m_Name
       value: Researcher(NPC)3
@@ -17362,7 +17463,13 @@ PrefabInstance:
       propertyPath: uniqueId
       value: 6688da05-df1d-4625-b602-f6cdb0570d05
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7430964702008008001, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7430964702008008001, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
+    - {fileID: 4321450732582420451, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -17553,16 +17660,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7235649777975286498, guid: 517486ba9c2534b4d9a648f045c2b581, type: 3}
     - target: {fileID: 4210890416528326232, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
+      propertyPath: questToComplete
+      value: 
+      objectReference: {fileID: 11400000, guid: 47d49c79be270e04dab11b9af157e365, type: 2}
+    - target: {fileID: 4210890416528326232, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
+      propertyPath: dialog.lines.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4210890416528326232, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
       propertyPath: 'dialog.lines.Array.data[0]'
-      value: Ohh welcome.
+      value: You are too late.
       objectReference: {fileID: 0}
     - target: {fileID: 4210890416528326232, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
       propertyPath: 'dialog.lines.Array.data[1]'
-      value: Come here you are too late.
+      value: Sorry but I just have this.
       objectReference: {fileID: 0}
     - target: {fileID: 4210890416528326232, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
       propertyPath: 'dialog.lines.Array.data[2]'
-      value: Sorry but I just have this.
+      value: Ohh welcome.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4745997923367454509, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.625
       objectReference: {fileID: 0}
     - target: {fileID: 5360220045568618052, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
       propertyPath: m_Name
@@ -17575,6 +17694,34 @@ PrefabInstance:
     - target: {fileID: 7412884999247721354, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
       propertyPath: uniqueId
       value: 86ebb040-86ff-4998-9cdb-6d87878ac5e8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7430964702008008001, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
+      propertyPath: pokemonToGive._base
+      value: 
+      objectReference: {fileID: 11400000, guid: 5701d7c52774a5c46aa9f3fa6f493bca, type: 2}
+    - target: {fileID: 7430964702008008001, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
+      propertyPath: pokemonToGive.level
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7430964702008008001, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
+      propertyPath: pokemonToGive.gender
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7430964702008008001, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
+      propertyPath: pokemonToGive.pokeball
+      value: 
+      objectReference: {fileID: 11400000, guid: 6f2070f7e40f97c4db8e767f154d4265, type: 2}
+    - target: {fileID: 7430964702008008001, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
+      propertyPath: dialog.lines.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7430964702008008001, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
+      propertyPath: 'dialog.lines.Array.data[0]'
+      value: Hello. Welcome to your start point.
+      objectReference: {fileID: 0}
+    - target: {fileID: 7430964702008008001, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
+      propertyPath: 'dialog.lines.Array.data[1]'
+      value: Here your Pokemon.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -17790,6 +17937,10 @@ PrefabInstance:
       value: Some of the volumes here are centuries old. Be careful when touching
         them.
       objectReference: {fileID: 0}
+    - target: {fileID: 4321450732582420451, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4745997923367454509, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 1.5625
@@ -17806,7 +17957,13 @@ PrefabInstance:
       propertyPath: uniqueId
       value: d3357f80-2841-43c0-8d31-c565190cb16c
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7430964702008008001, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7430964702008008001, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
+    - {fileID: 4321450732582420451, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -20087,6 +20244,10 @@ PrefabInstance:
       propertyPath: 'dialog.lines.Array.data[3]'
       value: If this solution stays stable, we can start testing tomorrow
       objectReference: {fileID: 0}
+    - target: {fileID: 4321450732582420451, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4745997923367454509, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 1.5625
@@ -20103,7 +20264,13 @@ PrefabInstance:
       propertyPath: uniqueId
       value: 37ab2e85-e03d-4614-812e-10d2000d613c
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7430964702008008001, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7430964702008008001, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
+    - {fileID: 4321450732582420451, guid: 1199b35b095ffce4db70bf0100ee9bbf, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -20179,3 +20346,4 @@ SceneRoots:
   - {fileID: 941210013}
   - {fileID: 1070815819}
   - {fileID: 1437398424}
+  - {fileID: 860553271}
