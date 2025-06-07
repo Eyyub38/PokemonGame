@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 public enum MoveTarget{ Foe, Self}
 public enum MoveCategory{ Physical, Special, Status}
+public enum CritBehaviour{ None, HighCritRatio, AlwaysCrit, NeverCrit}
+public enum RecoilType{ None, RecoilByMaxHP, RecoilByCurrentHP, RecoilByDamage}
+public enum MoveTag{ Contact, MinimizeBonusDamage, SoundBased, BallOrBomb, AuraOrPulse, Bite, Dance, Explosive, PowderOrSpore, Punching, WindBased, SlicingMove, SemiInvulnerableBonusDamageFlying}
 
 [CreateAssetMenu(fileName = "Move", menuName = "Move/Create new Move")]
 public class MoveBase : ScriptableObject{
@@ -27,6 +30,10 @@ public class MoveBase : ScriptableObject{
     [SerializeField] MoveEffects effects;
     [SerializeField] List<SecondaryEffects> secondaries;
     [SerializeField] MoveTarget target;
+    [SerializeField] RecoilMoveEffect recoil = new RecoilMoveEffect();
+
+    [Header("Crit Behaviour")]
+    [SerializeField] CritBehaviour critBehaviour;
 
     //Properties
     public string Name{ get{return _name;}} 
@@ -41,6 +48,8 @@ public class MoveBase : ScriptableObject{
     public MoveEffects Effects{ get{return effects;}}
     public MoveTarget Target{ get{return target;}}
     public List<SecondaryEffects> Secondaries{ get{return secondaries;}}
+    public RecoilMoveEffect Recoil{ get{return recoil;} }
+    public CritBehaviour CritBehaviour{ get{return critBehaviour;} }
 }
 
 [System.Serializable]
@@ -67,6 +76,12 @@ public class SecondaryEffects : MoveEffects{
 public class StatBoosts{
     public Stat stat;
     public int boost;
+}
+
+[System.Serializable]
+public class RecoilMoveEffect{
+    public RecoilType recoilType;
+    public int recoilDamage = 0;
 }
 
 

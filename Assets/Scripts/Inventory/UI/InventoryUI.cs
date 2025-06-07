@@ -110,6 +110,9 @@ public class InventoryUI : MonoBehaviour{
                 UpdateItemSelection();
             }
             if(Input.GetKeyDown(KeyCode.Return)){
+                if(slotUIList.Count == 0){
+                    return;
+                }
                 StartCoroutine(ItemSelected());
             } else if(Input.GetKeyDown(KeyCode.Escape)){
                 onBack?.Invoke();

@@ -214,6 +214,7 @@ public class BattleSystem : MonoBehaviour{
         yield return dialogBox.TypeDialog($"{sourceUnit.Pokemon.Base.Name} used {move.Base.Name}.");
 
         if(CheckIfMoveHits(move, sourceUnit.Pokemon, targetUnit.Pokemon)){
+            var damageDetails = new DamageDetails();
             sourceUnit.PlayAttackAnimation();
             yield return new WaitForSeconds(1f);
 
@@ -222,7 +223,7 @@ public class BattleSystem : MonoBehaviour{
             if(move.Base.Category == MoveCategory.Status){
                 yield return RunMoveEffects(move.Base.Effects, sourceUnit.Pokemon, targetUnit.Pokemon, move.Base.Target);
             } else {
-                var damageDetails = targetUnit.Pokemon.TakeDamage(move, sourceUnit.Pokemon);
+                damageDetails = targetUnit.Pokemon.TakeDamage(move, sourceUnit.Pokemon);
                 yield return targetUnit.Hud.WaitForHPUpdate();
                 yield return ShowDamageDetails(damageDetails);
             }
@@ -236,12 +237,46 @@ public class BattleSystem : MonoBehaviour{
                 }
             }
 
+            yield return RunAfterMove(damageDetails, move.Base, sourceUnit.Pokemon, targetUnit.Pokemon);
+
             if(targetUnit.Pokemon.HP <= 0){
                 yield return HandlePokemonFainted(targetUnit);
             }
         } else {
             yield return dialogBox.TypeDialog($"{sourceUnit.Pokemon.Base.Name}'s attack missed!");
         }
+    }
+
+    IEnumerator RunAfterMove(DamageDetails damageDetails, MoveBase move, Pokemon source, Pokemon target){
+        if(damageDetails == null){
+            yield break;
+        }
+
+        if(move.Recoil.recoilType != RecoilType.None){
+            int damage = 0;
+            switch(move.Recoil.recoilType){
+                case RecoilType.RecoilByMaxHP:
+                    int maxHp = source.MaxHp;
+                    damage = Mathf.FloorToInt(maxHp * move.Recoil.recoilDamage / 100f);
+                    source.TakeRecoilDamage(damage);
+                    break;
+                case RecoilType.RecoilByCurrentHP:
+                    int currentHp = source.HP;
+                    damage = Mathf.FloorToInt(currentHp * move.Recoil.recoilDamage / 100f);
+                    source.TakeRecoilDamage(damage);
+                    break;
+                case RecoilType.RecoilByDamage:
+                    damage = Mathf.FloorToInt(damageDetails.DamageDealt * move.Recoil.recoilDamage / 100f);
+                    source.TakeRecoilDamage(damage);
+                    break;
+                default:
+                    Debug.LogError($"Unknown recoil type: {move.Recoil.recoilType}");
+                    break;
+            }
+        }
+
+        yield return ShowStatusChanges(source);
+        yield return ShowStatusChanges(target);
     }
 
     IEnumerator RunAfterTurn(BattleUnit sourceUnit){

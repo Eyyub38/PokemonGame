@@ -13,12 +13,13 @@ public class HPBar : MonoBehaviour{
 
     public IEnumerator SetHPSmooth(float newHP){
         IsUpdating = true;
-        float curHp = health.transform.localScale.x;
-        float changeAmt = curHp - newHP;
+        float currHp = health.transform.localScale.x;
+        bool isDamaging = (currHp - newHP > 0 ) ? true : false;
+        float changeAmt = currHp - newHP;
 
-        while (curHp - newHP > Mathf.Epsilon){
-            curHp -= changeAmt * Time.deltaTime;
-            health.transform.localScale = new Vector3( curHp, 1f);
+        while ((isDamaging) ? (currHp - newHP > Mathf.Epsilon) : (newHP - currHp < Mathf.Epsilon)){
+            currHp -= changeAmt * Time.deltaTime;
+            health.transform.localScale = new Vector3( currHp, 1f);
             yield return null;
         }
         health.transform.localScale = new Vector3( newHP, 1f);

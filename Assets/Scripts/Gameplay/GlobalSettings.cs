@@ -7,6 +7,7 @@ public class GlobalSettings : MonoBehaviour{
     [Header("Color")]
     [SerializeField] Color highlightedColor;
     
+    
     public Color HighlightedColor => highlightedColor;
 
     public static GlobalSettings i {get; private set;}

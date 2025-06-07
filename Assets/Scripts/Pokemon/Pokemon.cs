@@ -50,7 +50,7 @@ public class Pokemon{
     }
 
     public Pokemon(PokemonSaveData saveData){
-        _base = PokemonDB.GetPokemonByName(saveData.name);
+        _base = PokemonDB.GetObjectByName(saveData.name);
         HP = saveData.Hp;
         level = saveData.level;
         Exp = saveData.xp;
@@ -154,7 +154,7 @@ public class Pokemon{
 
     public PokemonSaveData GetSaveData(){
         var saveData = new PokemonSaveData(){
-            name = Base.Name,
+            name = Base.name,
             Hp = HP,
             level = level,
             xp = Exp,
@@ -206,13 +206,16 @@ public class Pokemon{
         foreach(var statBoost in statBoosts){
             var stat = statBoost.stat;
             var boost = statBoost.boost;
+            bool changeIsPositive = (boost > 0)? true : false;
 
-            StatBoosts[stat] = Mathf.Clamp(StatBoosts[stat] += boost,-6, 6);
-
-            if(statBoost.boost > 0){
-                StatusChanges.Enqueue($"{Base.Name}'s {stat} rose!");
+            if(changeIsPositive && StatBoosts[stat] == 6 || !changeIsPositive && StatBoosts[stat] == -6){
+                string riseOrFall = changeIsPositive ? "rose" : "fell";
+                StatusChanges.Enqueue($"{Base.Name}'s {stat} cannot go any higher, it has already {riseOrFall} to the maximum!");
             } else {
-                StatusChanges.Enqueue($"{Base.Name}'s {stat} fell!");
+                StatBoosts[stat] = Mathf.Clamp(StatBoosts[stat] += boost,-6, 6);
+                string riseOrFall = changeIsPositive ? "rose" : "fell";
+                string bigChance = Mathf.Abs(boost) >= 3 ? "severly" : Mathf.Abs(boost) == 2 ? "harshly" : "";
+                StatusChanges.Enqueue($"{Base.Name}'s {stat} {bigChance} {riseOrFall}!");
             }
         }
     }
@@ -220,16 +223,28 @@ public class Pokemon{
     public DamageDetails TakeDamage(Move move, Pokemon attacker){
         float critical = 1f;
 
-        if(UnityEngine.Random.value * 100f <= 6.25f){
-            critical = 2f;
+        if(!(move.Base.CritBehaviour == CritBehaviour.NeverCrit)){
+            if(move.Base.CritBehaviour == CritBehaviour.AlwaysCrit){
+                critical = 1.5f;
+            } else {
+                int critChance = 0 + (move.Base.CritBehaviour == CritBehaviour.HighCritRatio ? 1 : 0);
+                float[] chances = new float[]{(4.146f), (12.5f),(50f), 100f};
+                if(UnityEngine.Random.value * 100f <= chances[Mathf.Clamp(critChance, 0, 3)]){
+                    critical = 1.5f;
+                }
+
+            }
         }
+
         
         float typeEffectiveness = TypeChart.GetEffectiveness(move.Base.Type, this.Base.Type1) * TypeChart.GetEffectiveness(move.Base.Type, this.Base.Type2);
         
         var damageDetails = new DamageDetails(){
             Critical = critical,
             TypeEffectiveness = typeEffectiveness,
-            Fainted = false
+            Fainted = false,
+
+            DamageDealt = 0
         };
 
         float attack = (move.Base.Category == MoveCategory.Special)? attacker.SpAttack : attacker.Attack;
@@ -241,8 +256,17 @@ public class Pokemon{
         int damage = Mathf.FloorToInt(d * modifiers);
 
         DecreaseHP(damage);
+        damageDetails.DamageDealt = damage;
 
         return damageDetails;
+    }
+
+    public void TakeRecoilDamage(int damage){
+        if(damage < 1){
+            damage = 1;
+        }
+        DecreaseHP(damage);
+        StatusChanges.Enqueue($"{Base.Name} took {damage} recoil damage!");
     }
 
     public void OnBattleOver(){
@@ -291,6 +315,8 @@ public class DamageDetails{
     public bool Fainted { get; set;}
     public float Critical { get; set;}
     public float TypeEffectiveness { get; set;}
+
+    public int DamageDealt {get; set;}
 }
 
 [System.Serializable]
