@@ -21,14 +21,12 @@ public class QuestList : MonoBehaviour, ISavable{
     }
 
     public bool IsStarted(string questName){
-        var questStatus = quests.FirstOrDefault(q => q.Base.Name == questName) ?.Status;
-
+        var questStatus = quests.FirstOrDefault(q => q.Base.Name == questName)?.Status;
         return questStatus == QuestStatus.Started || questStatus == QuestStatus.Completed;
     }
 
     public bool IsCompleted(string questName){
-        var questStatus = quests.FirstOrDefault(q => q.Base.Name == questName) ?.Status;
-
+        var questStatus = quests.FirstOrDefault(q => q.Base.Name == questName)?.Status;
         return questStatus == QuestStatus.Completed;
     }
 

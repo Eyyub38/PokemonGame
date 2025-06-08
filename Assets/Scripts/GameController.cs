@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public enum GameState{ FreeRoam, Battle, Dialog, PartyScreen, Menu, Bag, CutScene, Paused }
+public enum GameState{ FreeRoam, Battle, Dialog, PartyScreen, Evolution, Menu, Bag, CutScene, Paused }
 
 public class GameController : MonoBehaviour{
     [Header("Referances")]
@@ -20,6 +20,7 @@ public class GameController : MonoBehaviour{
 
     GameState state;
     GameState stateBeforePause;
+    GameState stateBeforeEvolution;
     TrainerController trainer;
     MenuController menuController;
 
@@ -104,6 +105,15 @@ public class GameController : MonoBehaviour{
 
         menuController.onBack += () => SetState(GameState.FreeRoam);
         menuController.onMenuSelected += OnMenuSelected;
+
+        EvolutionManager.i.OnStartEvolution += () => {
+            stateBeforeEvolution = state;    
+            SetState(GameState.Evolution);
+        };
+        EvolutionManager.i.OnCompleteEvolution += () => {
+            partyScreen.SetPartyData();
+            SetState(stateBeforeEvolution);  
+        };
     }
 
     public void OnEnterTrainersView(TrainerController trainer){
@@ -116,7 +126,10 @@ public class GameController : MonoBehaviour{
             trainer.BattleLost();
             trainer = null;
         }
+        partyScreen.SetPartyData();
+
         SetState(GameState.FreeRoam);
+        
         battleSystem.gameObject.SetActive(false);
         worldCamera.gameObject.SetActive(true);
 

@@ -162,7 +162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pokemons:
   - _base: {fileID: 11400000, guid: f11f6a84ab7fa8847baad6ab50441aa4, type: 2}
-    level: 12
+    level: 15
     gender: 1
     pokeball: {fileID: 11400000, guid: 78ea5903124a1c04f987c21403094afe, type: 2}
   - _base: {fileID: 11400000, guid: 5701d7c52774a5c46aa9f3fa6f493bca, type: 2}
@@ -208,7 +208,9 @@ MonoBehaviour:
     count: 1
   - item: {fileID: 11400000, guid: 826fad7528b8ca046a08e448d5c95f79, type: 2}
     count: 1
-  evolutionSlots: []
+  evolutionSlots:
+  - item: {fileID: 11400000, guid: 141f298b0872a52499069f25f3c3225a, type: 2}
+    count: 1
 --- !u!114 &7530823447165788642
 MonoBehaviour:
   m_ObjectHideFlags: 0

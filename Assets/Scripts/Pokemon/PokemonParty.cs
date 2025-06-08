@@ -38,10 +38,8 @@ public class PokemonParty : MonoBehaviour{
         foreach(var pokemon in pokemons){
             var evolution = pokemon.CheckForEvolution();
             if(evolution != null){
-                yield return DialogManager.i.ShowDialogText($"{pokemon.Base.Name} is evolving into {evolution.EvolvesInto.Name}!");
-                pokemon.Evolve(evolution);
+                yield return EvolutionManager.i.Evolve(pokemon, evolution);
             }
         }
-        OnUpdated?.Invoke();
     }
 }

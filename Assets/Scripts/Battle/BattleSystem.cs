@@ -403,7 +403,7 @@ public class BattleSystem : MonoBehaviour{
             Action<int> onMoveSelected = (moveIndex) => {
                 if(moveIndex == PokemonBase.MaxNumberOfMoves){
                     moveSelectionUI.gameObject.SetActive(false);
-                    StartCoroutine(dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name} didn't learn{moveToLearn.Name}"));
+                    StartCoroutine(dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name} didn't learn {moveToLearn.Name}"));
                 } else {
                     var selectedMove = playerUnit.Pokemon.Moves[ moveIndex ].Base;
                     moveSelectionUI.gameObject.SetActive(false);
@@ -584,7 +584,6 @@ public class BattleSystem : MonoBehaviour{
     }
 
     IEnumerator OnItemUsed(ItemBase usedItem){
-        Debug.Log($"OnItemUsed: {GameController.i.State}");
         state = BattleState.Busy;
         inventoryUI.gameObject.SetActive(false);
         if(usedItem is PokeballItem){

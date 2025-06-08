@@ -105,12 +105,16 @@ public class Pokemon{
         Stats.Add(Stat.SpDefense, Mathf.FloorToInt((Base.SpDefense * Level) / 100f) + 5);
         Stats.Add(Stat.Speed, Mathf.FloorToInt((Base.Speed * Level) / 100f) + 5);
 
+        int oldMaxHP = MaxHp;
         MaxHp = Mathf.FloorToInt((Base.MaxHp * Level) / 100f) + 10 + Level;
+
+        HP += MaxHp - oldMaxHP;
     }
 
     public bool CheckForLevelUp(){
         if(Exp > Base.GetExpForLevel(level + 1)){
             ++level;
+            CalculateStats();
             return true;
         }
         return false;
@@ -203,11 +207,17 @@ public class Pokemon{
     }
 
     public Evolution CheckForEvolution(){
-        return Base.Evolutions.FirstOrDefault(e => e.RequiredLevel == level);
+        return Base.Evolutions.FirstOrDefault(e => e.RequiredLevel <= level);
+    }
+    
+    public Evolution CheckForEvolution(ItemBase item){
+        return Base.Evolutions.FirstOrDefault(e => e.RequiredItem == item);
     }
 
     public void Evolve(Evolution evolution){
+        Debug.Log($"{_base.Name}");
         _base = evolution.EvolvesInto;
+        Debug.Log($"{_base.Name}");
         CalculateStats(); 
     }
 

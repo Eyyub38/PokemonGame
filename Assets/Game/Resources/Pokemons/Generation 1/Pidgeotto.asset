@@ -66,3 +66,6 @@ MonoBehaviour:
   - moveBase: {fileID: 11400000, guid: c02e77aa8a88cc34fa6c832d7a06ddb2, type: 2}
     level: 45
   learnableMovesByTm: []
+  evolutions:
+  - evolvesInto: {fileID: 11400000, guid: 4bd1513a2b5cf0f4ba50173d190019a7, type: 2}
+    requiredLevel: 36

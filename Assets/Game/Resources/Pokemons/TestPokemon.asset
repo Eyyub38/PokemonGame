@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: TestPokemon
   description: This Pokemon just for Test'ing some systems
-  frontSprite: {fileID: 21300000, guid: 173fc35a4d85d10448fdd04d7ac82096, type: 3}
   backSprite: {fileID: 21300000, guid: 173fc35a4d85d10448fdd04d7ac82096, type: 3}
+  frontSprite: {fileID: 21300000, guid: 173fc35a4d85d10448fdd04d7ac82096, type: 3}
   iconSprite: {fileID: 1098523144, guid: 416a56eab8014ae43b31191cca7a8d8b, type: 3}
-  femaleFrontSprite: {fileID: 0}
-  femaleBackSprite: {fileID: 0}
-  hasGenderDifferences: 0
-  maleRatio: 0.5
   isGenderless: 0
+  hasGenderDifferences: 0
+  femaleBackSprite: {fileID: 0}
+  femaleFrontSprite: {fileID: 0}
+  maleRatio: 0.5
   type1: 1
   type2: 12
   maxHp: 10
@@ -33,12 +33,14 @@ MonoBehaviour:
   catchRate: 255
   xpYield: 255
   growthRate: 0
-  learnableMoves:
+  learnableMovesLevelUp:
   - moveBase: {fileID: 11400000, guid: e91719678adf9e74bbef0919ed69dd23, type: 2}
     level: 1
-  - moveBase: {fileID: 11400000, guid: fd4ce293205921d46b745d8ff68c6be1, type: 2}
+  - moveBase: {fileID: 11400000, guid: 18a8378a59854f94594092123f28de4c, type: 2}
     level: 1
-  - moveBase: {fileID: 11400000, guid: a884d60a0f30ddb4193226b9f423cc5b, type: 2}
-    level: 3
-  - moveBase: {fileID: 11400000, guid: 72353876ccbec0941bd1511e241c07c0, type: 2}
-    level: 5
+  - moveBase: {fileID: 11400000, guid: 5ca1d2b311b8b5041955ad056a5e47f2, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: d193c5a83424a2e4fb5e24fd70e67b02, type: 2}
+    level: 1
+  learnableMovesByTm: []
+  evolutions: []

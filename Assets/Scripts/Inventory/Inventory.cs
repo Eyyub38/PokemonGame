@@ -15,7 +15,7 @@ public class Inventory : MonoBehaviour, ISavable{
 
     List<List<ItemSlot>> allSlots;
 
-    public static List<string> ItemCategories {get; set;} = new List<string>(){"Recovery", "Pokeball", "TMs & HMs", "Evolution"};
+    public static List<string> ItemCategories {get; set;} = new List<string>(){"Recovery", "Pokeball", "TM", "Evolution"};
     
     public event Action OnUpdated;
 
@@ -82,6 +82,8 @@ public class Inventory : MonoBehaviour, ISavable{
             return ItemCategory.Recovery;
         } else if(item is PokeballItem){
             return ItemCategory.Pokeball;
+        } else if(item is EvolutionItem){
+            return ItemCategory.Evolution;
         } else {
             return ItemCategory.TMs;
         }

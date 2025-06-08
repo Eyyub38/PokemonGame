@@ -1133,8 +1133,7 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4889994261358544069, guid: ef6468f31fd0b214695244dd76454603, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1382,8 +1381,7 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4889994261358544069, guid: ef6468f31fd0b214695244dd76454603, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1413,15 +1411,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4889994261358544069, guid: ef6468f31fd0b214695244dd76454603, type: 3}
       propertyPath: wildPokemons.Array.size
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4889994261358544069, guid: ef6468f31fd0b214695244dd76454603, type: 3}
       propertyPath: wildPokemons.Array.data[0]._base
       value: 
-      objectReference: {fileID: 11400000, guid: f3da621f39f4452418f05134a077863e, type: 2}
+      objectReference: {fileID: 11400000, guid: 84ff778521f7eda499cf104ac5988ded, type: 2}
     - target: {fileID: 4889994261358544069, guid: ef6468f31fd0b214695244dd76454603, type: 3}
       propertyPath: wildPokemons.Array.data[0].level
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4889994261358544069, guid: ef6468f31fd0b214695244dd76454603, type: 3}
       propertyPath: wildPokemons.Array.data[1]._base
@@ -1573,15 +1571,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4889994261358544069, guid: ef6468f31fd0b214695244dd76454603, type: 3}
       propertyPath: wildPokemons.Array.size
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4889994261358544069, guid: ef6468f31fd0b214695244dd76454603, type: 3}
       propertyPath: wildPokemons.Array.data[0]._base
       value: 
-      objectReference: {fileID: 11400000, guid: d9683147ddde6114fbd659dd26b1db88, type: 2}
+      objectReference: {fileID: 11400000, guid: 84ff778521f7eda499cf104ac5988ded, type: 2}
     - target: {fileID: 4889994261358544069, guid: ef6468f31fd0b214695244dd76454603, type: 3}
       propertyPath: wildPokemons.Array.data[0].level
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4889994261358544069, guid: ef6468f31fd0b214695244dd76454603, type: 3}
       propertyPath: wildPokemons.Array.data[1]._base

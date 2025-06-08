@@ -15,13 +15,13 @@ MonoBehaviour:
   _name: Caterpie
   description: Its short feet are tipped with suction pads that enable it to tirelessly
     climb slopes and walls.
-  frontSprite: {fileID: 21300000, guid: 0495fe1ca19da6b42bea0f364335df14, type: 3}
   backSprite: {fileID: 21300000, guid: 6e9a2e454d5ba734686aef3761203b7e, type: 3}
+  frontSprite: {fileID: 21300000, guid: 0495fe1ca19da6b42bea0f364335df14, type: 3}
   iconSprite: {fileID: -600957054, guid: fbdf3c195147d5b46b69c622d4223998, type: 3}
   isGenderless: 0
   hasGenderDifferences: 0
-  femaleFrontSprite: {fileID: 0}
   femaleBackSprite: {fileID: 0}
+  femaleFrontSprite: {fileID: 0}
   maleRatio: 0.5
   type1: 12
   type2: 0
@@ -42,3 +42,6 @@ MonoBehaviour:
   - moveBase: {fileID: 11400000, guid: a884d60a0f30ddb4193226b9f423cc5b, type: 2}
     level: 9
   learnableMovesByTm: []
+  evolutions:
+  - evolvesInto: {fileID: 11400000, guid: e09a46e603710eb4f8aca66d24d7c1b7, type: 2}
+    requiredLevel: 7

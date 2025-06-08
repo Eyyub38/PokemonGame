@@ -79,3 +79,7 @@ MonoBehaviour:
     level: 44
   learnableMovesByTm:
   - {fileID: 11400000, guid: 89cb066b8e4caf84bbd73bcc656cfe03, type: 2}
+  evolutions:
+  - evolvesInto: {fileID: 11400000, guid: 6bbc7a9f24d659d4984728102f7e418d, type: 2}
+    requiredLevel: 0
+    requiredItem: {fileID: 11400000, guid: 141f298b0872a52499069f25f3c3225a, type: 2}
