@@ -10,20 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ef9f53284bbc2445b03e93459fa2577, type: 3}
-  m_Name: Take Down
+  m_Name: Stun Spore
   m_EditorClassIdentifier: 
-  _name: Take Down
-  description: A tackle that also hurts the user.
-  type: 1
-  power: 90
-  accuracy: 85
+  _name: Stun Spore
+  description: ' A move that may paralyze the foe.'
+  type: 4
+  power: 0
+  accuracy: 75
   alwaysHits: 0
-  pp: 20
+  pp: 30
   priority: 0
-  category: 0
+  category: 2
   effects:
     boosts: []
-    status: 0
+    status: 4
     volatileStatus: 0
   secondaries: []
   target: 0
+  recoil:
+    recoilType: 0
+    recoilDamage: 0
+  critBehaviour: 0

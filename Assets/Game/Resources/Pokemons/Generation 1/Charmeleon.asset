@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e17b5636463d23c489f99c873ed40ff6, type: 3}
+  m_Name: Charmeleon
+  m_EditorClassIdentifier: 
+  _name: Charmeleon
+  description: "When it swings its burning tail, it elevates the\ftemperature to
+    unbearably high levels."
+  backSprite: {fileID: 21300000, guid: a306922523cda3441be928af93f86b64, type: 3}
+  frontSprite: {fileID: 21300000, guid: 9137495296da3c4449431f0719d07719, type: 3}
+  iconSprite: {fileID: 210846667, guid: 9aa33cdfb55e87a4e89e796cbf1a5a53, type: 3}
+  isGenderless: 0
+  hasGenderDifferences: 0
+  femaleBackSprite: {fileID: 0}
+  femaleFrontSprite: {fileID: 0}
+  maleRatio: 0.875
+  type1: 2
+  type2: 0
+  maxHp: 58
+  attack: 64
+  defense: 58
+  spAttack: 80
+  spDefense: 65
+  speed: 80
+  catchRate: 45
+  xpYield: 142
+  growthRate: 2
+  learnableMovesLevelUp:
+  - moveBase: {fileID: 11400000, guid: 16cd2f4c728b5dd4798fbbe775ea6bca, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: d193c5a83424a2e4fb5e24fd70e67b02, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: c3ce78d56bcb93f47af05acc2f3eb27e, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: 1fac3d4a2cb503c41a5cad165ec04c80, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: 585f123a0f86e6e47872579b847fc21f, type: 2}
+    level: 12
+  - moveBase: {fileID: 11400000, guid: 3efe04b642a1ce5469d629ed8d5591b5, type: 2}
+    level: 15
+  - moveBase: {fileID: 11400000, guid: 87da30360ecd22e4baf367373a65bc34, type: 2}
+    level: 19
+  - moveBase: {fileID: 11400000, guid: 5aaa87ee408c41d4f9cda7ec8c0f23ba, type: 2}
+    level: 24
+  - moveBase: {fileID: 11400000, guid: 742b57e981191ac419d0ccf879b0e834, type: 2}
+    level: 30
+  - moveBase: {fileID: 11400000, guid: bffdf7dbaf031304a8046052d7e6efc7, type: 2}
+    level: 37
+  - moveBase: {fileID: 11400000, guid: b580752c737f4b54daab097bed972cd2, type: 2}
+    level: 42
+  - moveBase: {fileID: 11400000, guid: aee75bf4fa4cb2e408688f4862ae9fb9, type: 2}
+    level: 48
+  - moveBase: {fileID: 11400000, guid: 9bc2e59d38e0a13479021d545c3e4b83, type: 2}
+    level: 54
+  learnableMovesByTm: []

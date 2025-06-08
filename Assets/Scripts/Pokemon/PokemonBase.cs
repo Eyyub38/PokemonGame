@@ -17,15 +17,15 @@ public class PokemonBase : ScriptableObject{
     [SerializeField] string description;
 
     [Header("Default Sprites")]
-    [SerializeField] Sprite frontSprite;
     [SerializeField] Sprite backSprite;
+    [SerializeField] Sprite frontSprite;
     [SerializeField] Sprite iconSprite;
     
     [Header("Female Sprites")]
     [SerializeField] bool isGenderless;
     [SerializeField] bool hasGenderDifferences;
-    [SerializeField] Sprite femaleFrontSprite;
     [SerializeField] Sprite femaleBackSprite;
+    [SerializeField] Sprite femaleFrontSprite;
     [SerializeField] float maleRatio = 0.5f;
 
     [Header("Types")]

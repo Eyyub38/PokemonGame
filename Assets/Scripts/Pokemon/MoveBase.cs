@@ -28,8 +28,8 @@ public class MoveBase : ScriptableObject{
 
     [Header("Effects")]
     [SerializeField] MoveEffects effects;
-    [SerializeField] List<SecondaryEffects> secondaries;
     [SerializeField] MoveTarget target;
+    [SerializeField] List<SecondaryEffects> secondaries;
     [SerializeField] RecoilMoveEffect recoil = new RecoilMoveEffect();
 
     [Header("Crit Behaviour")]

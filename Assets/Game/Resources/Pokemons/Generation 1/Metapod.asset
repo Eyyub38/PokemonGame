@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e17b5636463d23c489f99c873ed40ff6, type: 3}
+  m_Name: Metapod
+  m_EditorClassIdentifier: 
+  _name: Metapod
+  description: This Pokemon is vulnerable to attack while its shell is soft, exposing
+    its weak and tender body.
+  backSprite: {fileID: 21300000, guid: 61fa64d7cfd75de4f8120fd0ff9c105a, type: 3}
+  frontSprite: {fileID: 21300000, guid: b3e9244b6ad4ce644b0c339380d1cd24, type: 3}
+  iconSprite: {fileID: 1716350937, guid: 6c6bd639bd0d01e408d7c10382740309, type: 3}
+  isGenderless: 0
+  hasGenderDifferences: 0
+  femaleBackSprite: {fileID: 0}
+  femaleFrontSprite: {fileID: 0}
+  maleRatio: 0.5
+  type1: 12
+  type2: 0
+  maxHp: 50
+  attack: 20
+  defense: 55
+  spAttack: 25
+  spDefense: 25
+  speed: 30
+  catchRate: 120
+  xpYield: 72
+  growthRate: 3
+  learnableMovesLevelUp:
+  - moveBase: {fileID: 11400000, guid: 6f7b7d1bd3967a34fbcab9d45ca6aeea, type: 2}
+    level: 1
+  learnableMovesByTm: []

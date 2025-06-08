@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e17b5636463d23c489f99c873ed40ff6, type: 3}
+  m_Name: Kakuna
+  m_EditorClassIdentifier: 
+  _name: Kakuna
+  description: Almost incapable of moving, this Pokemon can only harden its shell
+    to protect itself from predators.
+  backSprite: {fileID: 21300000, guid: d633ab76ebd1388489c4a37f87d66750, type: 3}
+  frontSprite: {fileID: 21300000, guid: cf725c97fa8b07849a60a56ed2d949c6, type: 3}
+  iconSprite: {fileID: -2027240371, guid: cc52315f99e1b33479e68485ca8ec028, type: 3}
+  isGenderless: 0
+  hasGenderDifferences: 0
+  femaleBackSprite: {fileID: 0}
+  femaleFrontSprite: {fileID: 0}
+  maleRatio: 0.5
+  type1: 12
+  type2: 8
+  maxHp: 45
+  attack: 25
+  defense: 50
+  spAttack: 25
+  spDefense: 25
+  speed: 35
+  catchRate: 120
+  xpYield: 72
+  growthRate: 3
+  learnableMovesLevelUp:
+  - moveBase: {fileID: 11400000, guid: 6f7b7d1bd3967a34fbcab9d45ca6aeea, type: 2}
+    level: 1
+  learnableMovesByTm: []

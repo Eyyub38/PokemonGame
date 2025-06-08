@@ -15,13 +15,13 @@ MonoBehaviour:
   _name: Charmander
   description: Obviously prefers hot places. When it rains, steam is said to spout
     from the tip of its tail.
-  frontSprite: {fileID: 21300000, guid: 3597f8aa7d2d23140919cf6c36e704fb, type: 3}
   backSprite: {fileID: 21300000, guid: b46db68134deba1479936e63a7510bdd, type: 3}
+  frontSprite: {fileID: 21300000, guid: 3597f8aa7d2d23140919cf6c36e704fb, type: 3}
   iconSprite: {fileID: 321632432, guid: 3b3c3030c313bca4fb6763ee4c783018, type: 3}
   isGenderless: 0
   hasGenderDifferences: 0
-  femaleFrontSprite: {fileID: 0}
   femaleBackSprite: {fileID: 0}
+  femaleFrontSprite: {fileID: 0}
   maleRatio: 0.875
   type1: 2
   type2: 0
@@ -38,14 +38,28 @@ MonoBehaviour:
   - moveBase: {fileID: 11400000, guid: 16cd2f4c728b5dd4798fbbe775ea6bca, type: 2}
     level: 1
   - moveBase: {fileID: 11400000, guid: d193c5a83424a2e4fb5e24fd70e67b02, type: 2}
-    level: 4
+    level: 1
   - moveBase: {fileID: 11400000, guid: c3ce78d56bcb93f47af05acc2f3eb27e, type: 2}
-    level: 7
+    level: 4
   - moveBase: {fileID: 11400000, guid: 1fac3d4a2cb503c41a5cad165ec04c80, type: 2}
-    level: 10
-  - moveBase: {fileID: 11400000, guid: 6fd94424916f8564fa757e8a35167554, type: 2}
-    level: 13
+    level: 8
+  - moveBase: {fileID: 11400000, guid: 585f123a0f86e6e47872579b847fc21f, type: 2}
+    level: 12
   - moveBase: {fileID: 11400000, guid: 3efe04b642a1ce5469d629ed8d5591b5, type: 2}
     level: 15
+  - moveBase: {fileID: 11400000, guid: 87da30360ecd22e4baf367373a65bc34, type: 2}
+    level: 17
+  - moveBase: {fileID: 11400000, guid: 5aaa87ee408c41d4f9cda7ec8c0f23ba, type: 2}
+    level: 20
+  - moveBase: {fileID: 11400000, guid: 742b57e981191ac419d0ccf879b0e834, type: 2}
+    level: 24
+  - moveBase: {fileID: 11400000, guid: bffdf7dbaf031304a8046052d7e6efc7, type: 2}
+    level: 28
+  - moveBase: {fileID: 11400000, guid: b580752c737f4b54daab097bed972cd2, type: 2}
+    level: 32
+  - moveBase: {fileID: 11400000, guid: aee75bf4fa4cb2e408688f4862ae9fb9, type: 2}
+    level: 36
+  - moveBase: {fileID: 11400000, guid: 9bc2e59d38e0a13479021d545c3e4b83, type: 2}
+    level: 40
   learnableMovesByTm:
   - {fileID: 11400000, guid: 5ca1d2b311b8b5041955ad056a5e47f2, type: 2}

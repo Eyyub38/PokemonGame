@@ -15,13 +15,13 @@ MonoBehaviour:
   _name: Pidgey
   description: A common sight in forests and woods. It flaps its wings at ground
     level to kick up blinding sand.
-  frontSprite: {fileID: 21300000, guid: c69e747db49c61e4da83801308ce240f, type: 3}
   backSprite: {fileID: 21300000, guid: 9f0a2cef9e7e67541ba82f58855c9a4f, type: 3}
+  frontSprite: {fileID: 21300000, guid: c69e747db49c61e4da83801308ce240f, type: 3}
   iconSprite: {fileID: 674138605, guid: 032534ce725c49348b401040894c5889, type: 3}
   isGenderless: 0
   hasGenderDifferences: 0
-  femaleFrontSprite: {fileID: 0}
   femaleBackSprite: {fileID: 0}
+  femaleFrontSprite: {fileID: 0}
   maleRatio: 0.5
   type1: 1
   type2: 10
@@ -38,13 +38,31 @@ MonoBehaviour:
   - moveBase: {fileID: 11400000, guid: 72353876ccbec0941bd1511e241c07c0, type: 2}
     level: 1
   - moveBase: {fileID: 11400000, guid: 91cbd15ef1defc94a8309855076ee474, type: 2}
-    level: 3
-  - moveBase: {fileID: 11400000, guid: d7ae1266562df174684939a647d9d142, type: 2}
     level: 5
-  - moveBase: {fileID: 11400000, guid: c38d326c31b40b64ab7495b6015b282f, type: 2}
+  - moveBase: {fileID: 11400000, guid: d7ae1266562df174684939a647d9d142, type: 2}
     level: 9
   - moveBase: {fileID: 11400000, guid: 7473037950fece24cb670182ab9447d0, type: 2}
-    level: 12
+    level: 13
+  - moveBase: {fileID: 11400000, guid: 47a9fae7d19e3b445968f4acde802ca7, type: 2}
+    level: 17
+  - moveBase: {fileID: 11400000, guid: 2a95bebc16653234480b8cbed495ee39, type: 2}
+    level: 21
+  - moveBase: {fileID: 11400000, guid: 9c194be276fb14242bb01e6b34171480, type: 2}
+    level: 25
+  - moveBase: {fileID: 11400000, guid: 18a8378a59854f94594092123f28de4c, type: 2}
+    level: 29
   - moveBase: {fileID: 11400000, guid: 39c72ef5ce16e6943a131d60d2626b41, type: 2}
-    level: 15
+    level: 33
+  - moveBase: {fileID: 11400000, guid: 515c8609b01c2a04bafbae3a0909dfca, type: 2}
+    level: 37
+  - moveBase: {fileID: 11400000, guid: 1779443bb30aa474b9c8ded198276ace, type: 2}
+    level: 41
+  - moveBase: {fileID: 11400000, guid: 698fd4452f6c7bb4ab5925ab9f1c2b17, type: 2}
+    level: 45
+  - moveBase: {fileID: 11400000, guid: 601e743c70f1af84f9bb85116cc6ccc1, type: 2}
+    level: 49
+  - moveBase: {fileID: 11400000, guid: cdf143fdef0e8bd438f8e7a2de657018, type: 2}
+    level: 53
+  - moveBase: {fileID: 11400000, guid: c02e77aa8a88cc34fa6c832d7a06ddb2, type: 2}
+    level: 29
   learnableMovesByTm: []

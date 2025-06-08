@@ -15,13 +15,13 @@ MonoBehaviour:
   _name: Bulbasaur
   description: A strange seed was planted on its back at birth. The plant sprouts
     and grows with this Pokemon.
-  frontSprite: {fileID: 21300000, guid: 915ce0698d9e2cf499d98837ea399881, type: 3}
   backSprite: {fileID: 21300000, guid: e0e443f8c161c7d47894dfe3d1b986d9, type: 3}
+  frontSprite: {fileID: 21300000, guid: 915ce0698d9e2cf499d98837ea399881, type: 3}
   iconSprite: {fileID: -798701266, guid: 5add131ec37b1334599c9ef87677d9ad, type: 3}
   isGenderless: 0
   hasGenderDifferences: 0
-  femaleFrontSprite: {fileID: 0}
   femaleBackSprite: {fileID: 0}
+  femaleFrontSprite: {fileID: 0}
   maleRatio: 0.875
   type1: 4
   type2: 8
@@ -38,15 +38,33 @@ MonoBehaviour:
   - moveBase: {fileID: 11400000, guid: 72353876ccbec0941bd1511e241c07c0, type: 2}
     level: 1
   - moveBase: {fileID: 11400000, guid: d193c5a83424a2e4fb5e24fd70e67b02, type: 2}
-    level: 4
+    level: 1
   - moveBase: {fileID: 11400000, guid: 95669cc533deb5b4fbcfa65f8fc58e6b, type: 2}
-    level: 5
+    level: 3
   - moveBase: {fileID: 11400000, guid: 30360a4e31bff334f9fb6d254bad77d0, type: 2}
     level: 6
   - moveBase: {fileID: 11400000, guid: 379a58511a6d4ce4288c1d1f4ae21ba2, type: 2}
     level: 9
+  - moveBase: {fileID: 11400000, guid: 6f49f3209d7f2d54494b268fa256f6a6, type: 2}
+    level: 12
   - moveBase: {fileID: 11400000, guid: 6ed6f548afff5a8448f7fe3a08a32c01, type: 2}
-    level: 13
+    level: 15
   - moveBase: {fileID: 11400000, guid: b4e78ff1eca36364d93d4d38b4fcc2f0, type: 2}
-    level: 14
+    level: 15
+  - moveBase: {fileID: 11400000, guid: 71b8710b99046ed4aa642c07fc5ee36d, type: 2}
+    level: 18
+  - moveBase: {fileID: 11400000, guid: 642bf57c4a85fe64bb22c001ad7b26ce, type: 2}
+    level: 21
+  - moveBase: {fileID: 11400000, guid: 581e02b7477b30c4d8cdcd28226f3f62, type: 2}
+    level: 24
+  - moveBase: {fileID: 11400000, guid: 8d794d567fd8c4b4abefdb7647f980f0, type: 2}
+    level: 27
+  - moveBase: {fileID: 11400000, guid: ef09b0af9c752cf4fb2d049e04dae669, type: 2}
+    level: 30
+  - moveBase: {fileID: 11400000, guid: f666acb4611747f428286084906d9ea3, type: 2}
+    level: 33
+  - moveBase: {fileID: 11400000, guid: 85a9358d47044c2438d6988796751eb0, type: 2}
+    level: 35
+  - moveBase: {fileID: 11400000, guid: 1c3c80f1dbcf47e48b2b1a263345543d, type: 2}
+    level: 38
   learnableMovesByTm: []

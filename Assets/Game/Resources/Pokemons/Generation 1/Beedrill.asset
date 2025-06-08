@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e17b5636463d23c489f99c873ed40ff6, type: 3}
+  m_Name: Beedrill
+  m_EditorClassIdentifier: 
+  _name: Beedrill
+  description: It has three poisonous stingers on its forelegs and its tail. They
+    are used to jab its enemy repeatedly.
+  backSprite: {fileID: 21300000, guid: 0cd870b1aef0e654d9bda5ccc9871e31, type: 3}
+  frontSprite: {fileID: 21300000, guid: 0f7b4e803289a5245b528047924f5ed2, type: 3}
+  iconSprite: {fileID: -980017041, guid: 1fc0e27684d260e41a37bd40b72fc1ef, type: 3}
+  isGenderless: 0
+  hasGenderDifferences: 0
+  femaleBackSprite: {fileID: 0}
+  femaleFrontSprite: {fileID: 0}
+  maleRatio: 0.5
+  type1: 12
+  type2: 8
+  maxHp: 65
+  attack: 90
+  defense: 40
+  spAttack: 45
+  spDefense: 80
+  speed: 75
+  catchRate: 45
+  xpYield: 178
+  growthRate: 3
+  learnableMovesLevelUp:
+  - moveBase: {fileID: 11400000, guid: a884d60a0f30ddb4193226b9f423cc5b, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: b7f2f74b525b4074c9a39f4dff5ac12e, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: 6f7b7d1bd3967a34fbcab9d45ca6aeea, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: 626119af64f270b4b8dd19b569d0103c, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: fd4ce293205921d46b745d8ff68c6be1, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: 0a66ae5e31f1006489cc3e086718c9d7, type: 2}
+    level: 11
+  - moveBase: {fileID: 11400000, guid: fea5a92848eff7f408e614ef0327bf88, type: 2}
+    level: 14
+  - moveBase: {fileID: 11400000, guid: 69091685fd886ad448329b452cc41416, type: 2}
+    level: 20
+  - moveBase: {fileID: 11400000, guid: c741f6f83130b534789484185c7643c6, type: 2}
+    level: 23
+  - moveBase: {fileID: 11400000, guid: 794b9212ae31593448219accd9db64a0, type: 2}
+    level: 26
+  - moveBase: {fileID: 11400000, guid: d6029c71cf03d1f41b7f4073ba1ab4a7, type: 2}
+    level: 29
+  - moveBase: {fileID: 11400000, guid: c944a5541d89a8d4f9dca56674f59afe, type: 2}
+    level: 32
+  - moveBase: {fileID: 11400000, guid: 962f33b98354cc84f846b95f74d19c1d, type: 2}
+    level: 35
+  - moveBase: {fileID: 11400000, guid: 18a8378a59854f94594092123f28de4c, type: 2}
+    level: 38
+  - moveBase: {fileID: 11400000, guid: dbc0d8ebe1f3ba74cb2813b3ad9ebc66, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: 7ca8331d0a7cd274cb90ec1d9acd297d, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: 16087ccb93bf61c4da2e0a501317278a, type: 2}
+    level: 13
+  - moveBase: {fileID: 11400000, guid: 0cb2c53231dc0ce4a857e3308572ca1f, type: 2}
+    level: 31
+  learnableMovesByTm: []

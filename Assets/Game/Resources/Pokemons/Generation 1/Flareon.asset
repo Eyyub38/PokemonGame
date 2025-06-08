@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e17b5636463d23c489f99c873ed40ff6, type: 3}
+  m_Name: Flareon
+  m_EditorClassIdentifier: 
+  _name: Flareon
+  description: "When storing thermal energy in its body, its\ftemperature could soar
+    to over 1600 degrees."
+  backSprite: {fileID: 21300000, guid: b6580687d79cfb144b965e61d17047a4, type: 3}
+  frontSprite: {fileID: 21300000, guid: 7d6827e72f42a0f48908c659b91da354, type: 3}
+  iconSprite: {fileID: 932717352, guid: 5cdf203c264ae4d4693cd4c837188512, type: 3}
+  isGenderless: 0
+  hasGenderDifferences: 0
+  femaleBackSprite: {fileID: 0}
+  femaleFrontSprite: {fileID: 0}
+  maleRatio: 0.875
+  type1: 2
+  type2: 0
+  maxHp: 65
+  attack: 130
+  defense: 60
+  spAttack: 95
+  spDefense: 110
+  speed: 65
+  catchRate: 45
+  xpYield: 184
+  growthRate: 3
+  learnableMovesLevelUp: []
+  learnableMovesByTm: []

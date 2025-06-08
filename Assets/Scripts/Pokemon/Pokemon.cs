@@ -54,7 +54,7 @@ public class Pokemon{
         HP = saveData.Hp;
         level = saveData.level;
         Exp = saveData.xp;
-        pokeball = saveData.pokeball;
+        pokeball = ItemDB.GetObjectByName(saveData.pokeball) as PokeballItem;
         
         if(saveData.statusId != null){
             Status = ConditionsDB.Conditions[saveData.statusId.Value];
@@ -158,7 +158,7 @@ public class Pokemon{
             Hp = HP,
             level = level,
             xp = Exp,
-            pokeball = Pokeball,
+            pokeball = Pokeball.name,
             statusId = Status?.Id,
             moves = Moves.Select(x => x.GetSaveData()).ToList()
         };
@@ -325,7 +325,7 @@ public class PokemonSaveData{
     public int Hp;
     public int level;
     public int xp;
-    public PokeballItem pokeball;
+    public string pokeball;
     public ConditionID? statusId;
     public List<MoveSaveData> moves;
 }
