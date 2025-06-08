@@ -202,6 +202,15 @@ public class Pokemon{
         VolatileStatus = null;
     }
 
+    public Evolution CheckForEvolution(){
+        return Base.Evolutions.FirstOrDefault(e => e.RequiredLevel == level);
+    }
+
+    public void Evolve(Evolution evolution){
+        _base = evolution.EvolvesInto;
+        CalculateStats(); 
+    }
+
     public void ApplyBoosts(List<StatBoosts> statBoosts){
         foreach(var statBoost in statBoosts){
             var stat = statBoost.stat;

@@ -33,4 +33,15 @@ public class PokemonParty : MonoBehaviour{
     public static PokemonParty GetPlayerParty(){
         return FindObjectOfType<PlayerController>().GetComponent<PokemonParty>();
     }
+
+    public IEnumerator CheckForEvolutions(){
+        foreach(var pokemon in pokemons){
+            var evolution = pokemon.CheckForEvolution();
+            if(evolution != null){
+                yield return DialogManager.i.ShowDialogText($"{pokemon.Base.Name} is evolving into {evolution.EvolvesInto.Name}!");
+                pokemon.Evolve(evolution);
+            }
+        }
+        OnUpdated?.Invoke();
+    }
 }

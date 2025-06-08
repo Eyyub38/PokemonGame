@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ef9f53284bbc2445b03e93459fa2577, type: 3}
-  m_Name: Sky Attack
+  m_Name: Nuzzle
   m_EditorClassIdentifier: 
-  _name: 
-  description: 
-  type: 0
-  power: 0
-  accuracy: 0
+  _name: Nuzzle
+  description: The user attacks by nuzzling its electrified cheeks against the target.
+    This also leaves the target with paralysis.
+  type: 5
+  power: 20
+  accuracy: 100
   alwaysHits: 0
-  pp: 0
+  pp: 20
   priority: 0
   category: 0
   effects:
@@ -26,7 +27,12 @@ MonoBehaviour:
     status: 0
     volatileStatus: 0
   target: 0
-  secondaries: []
+  secondaries:
+  - boosts: []
+    status: 0
+    volatileStatus: 4
+    chance: 100
+    target: 0
   recoil:
     recoilType: 0
     recoilDamage: 0

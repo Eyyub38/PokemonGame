@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ef9f53284bbc2445b03e93459fa2577, type: 3}
-  m_Name: Razor Wind
+  m_Name: Aerial Ace
   m_EditorClassIdentifier: 
-  _name: 
-  description: 
-  type: 0
-  power: 0
+  _name: Aeriel Ace
+  description: An extremely speedy and unavoidable attack.
+  type: 10
+  power: 60
   accuracy: 0
-  alwaysHits: 0
-  pp: 0
+  alwaysHits: 1
+  pp: 20
   priority: 0
   category: 0
   effects:

@@ -15,13 +15,13 @@ MonoBehaviour:
   _name: Pikachu
   description: When several of these Pokemon gather, their electricity could build
     and cause lightning storms.
-  frontSprite: {fileID: 21300000, guid: 36bc5cebbed131c47b16f3dc8377b859, type: 3}
   backSprite: {fileID: 21300000, guid: 024b4eea3bd305b4887dfa17012006d5, type: 3}
+  frontSprite: {fileID: 21300000, guid: 36bc5cebbed131c47b16f3dc8377b859, type: 3}
   iconSprite: {fileID: 1817739217, guid: 670c026318d0a3149947903cee2f2a53, type: 3}
   isGenderless: 0
   hasGenderDifferences: 1
-  femaleFrontSprite: {fileID: 21300000, guid: 7441b9199c14acc408d5f6bdc97123e2, type: 3}
   femaleBackSprite: {fileID: 21300000, guid: 06cc1a385cbb72a4c950657999e50d43, type: 3}
+  femaleFrontSprite: {fileID: 21300000, guid: 7441b9199c14acc408d5f6bdc97123e2, type: 3}
   maleRatio: 0.5
   type1: 5
   type2: 0
@@ -35,25 +35,47 @@ MonoBehaviour:
   xpYield: 112
   growthRate: 3
   learnableMovesLevelUp:
-  - moveBase: {fileID: 11400000, guid: a6b8406180161b94395a7c5bbd9e53cd, type: 2}
+  - moveBase: {fileID: 11400000, guid: d882c3f4d81656d4d9175088ece48981, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: d193c5a83424a2e4fb5e24fd70e67b02, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: 9d19263d2ed0a9a45b62d45fee50e7b6, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: e943a92914eb4484582c291007da3a14, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: 864401159f45c0a4fb3577b220419231, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: 7473037950fece24cb670182ab9447d0, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: 64c819ad737fd4a4b98a501570ae88ee, type: 2}
     level: 1
   - moveBase: {fileID: 11400000, guid: bf6fb07aa47d15a44a7e8a619815702c, type: 2}
-    level: 5
+    level: 1
+  - moveBase: {fileID: 11400000, guid: a6b8406180161b94395a7c5bbd9e53cd, type: 2}
+    level: 1
   - moveBase: {fileID: 11400000, guid: 38365e79393695c49ae483d861838f71, type: 2}
     level: 4
-  - moveBase: {fileID: 11400000, guid: d193c5a83424a2e4fb5e24fd70e67b02, type: 2}
-    level: 5
-  - moveBase: {fileID: 11400000, guid: 7473037950fece24cb670182ab9447d0, type: 2}
-    level: 6
-  - moveBase: {fileID: 11400000, guid: 864401159f45c0a4fb3577b220419231, type: 2}
-    level: 7
-  - moveBase: {fileID: 11400000, guid: bb52bcd52f9d32f4a9571ff1cddcbb52, type: 2}
-    level: 12
   - moveBase: {fileID: 11400000, guid: a5d7ae0bbe5fbaf458591025593264ba, type: 2}
     level: 8
   - moveBase: {fileID: 11400000, guid: 474635de21477004e947d8ab85e2f688, type: 2}
-    level: 13
-  - moveBase: {fileID: 11400000, guid: 474635de21477004e947d8ab85e2f688, type: 2}
-    level: 13
+    level: 12
+  - moveBase: {fileID: 11400000, guid: bb6abbd45e0a5584ab817ee065e7fc5f, type: 2}
+    level: 15
+  - moveBase: {fileID: 11400000, guid: 7d4f713dc2597e947b6671776e02b480, type: 2}
+    level: 16
+  - moveBase: {fileID: 11400000, guid: df6a29f9893a53f4bb5efe9905a76ed8, type: 2}
+    level: 20
+  - moveBase: {fileID: 11400000, guid: 18a8378a59854f94594092123f28de4c, type: 2}
+    level: 24
+  - moveBase: {fileID: 11400000, guid: 636e3485369140743b36e9e38ff6d5f2, type: 2}
+    level: 28
+  - moveBase: {fileID: 11400000, guid: ec309e32699d7ad4b885afc2deac03ba, type: 2}
+    level: 32
+  - moveBase: {fileID: 11400000, guid: 6b3ffdcbc38207949a7daa2d24a76121, type: 2}
+    level: 36
+  - moveBase: {fileID: 11400000, guid: 6b60f4e9c305632449775f327218eaca, type: 2}
+    level: 40
+  - moveBase: {fileID: 11400000, guid: 89cb066b8e4caf84bbd73bcc656cfe03, type: 2}
+    level: 44
   learnableMovesByTm:
   - {fileID: 11400000, guid: 89cb066b8e4caf84bbd73bcc656cfe03, type: 2}

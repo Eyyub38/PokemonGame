@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef9f53284bbc2445b03e93459fa2577, type: 3}
+  m_Name: Roost
+  m_EditorClassIdentifier: 
+  _name: Roost
+  description: " The user lands and rests its body. It restores the user\u2019s HP
+    by up to half of its max HP."
+  type: 10
+  power: 0
+  accuracy: 0
+  alwaysHits: 0
+  pp: 5
+  priority: 0
+  category: 2
+  effects:
+    boosts:
+    - stat: 1
+      boost: 3
+    status: 0
+    volatileStatus: 0
+  target: 1
+  secondaries: []
+  recoil:
+    recoilType: 0
+    recoilDamage: 0
+  critBehaviour: 0

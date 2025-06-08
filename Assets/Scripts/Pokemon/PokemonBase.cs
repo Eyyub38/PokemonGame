@@ -48,6 +48,9 @@ public class PokemonBase : ScriptableObject{
     [SerializeField] List<LearnableMove> learnableMovesLevelUp;
     [SerializeField] List<MoveBase> learnableMovesByTm;
 
+    [Header("Evolutions")]
+    [SerializeField] List<Evolution> evolutions;
+
     //Properties
     public string Name{ get{return _name;}}
     public string Description{ get{return description;}}
@@ -72,6 +75,7 @@ public class PokemonBase : ScriptableObject{
     public int XpYield => xpYield;
     public List<LearnableMove> LearnableMoves{ get{return learnableMovesLevelUp;}}
     public List<MoveBase> LearnableMovesByTm{ get{return learnableMovesByTm;}}
+    public List<Evolution> Evolutions => evolutions;
 
     public static int MaxNumberOfMoves { get; set; } = 4;
 
@@ -119,6 +123,15 @@ public class LearnableMove{
 
     public MoveBase Base{ get{return moveBase;}}
     public int Level{ get{return level;}}
+}
+
+[System.Serializable]
+public class Evolution{
+    [SerializeField] PokemonBase evolvesInto;
+    [SerializeField] int requiredLevel;
+
+    public PokemonBase EvolvesInto => evolvesInto;
+    public int RequiredLevel => requiredLevel;
 }
 
 public class TypeChart{
