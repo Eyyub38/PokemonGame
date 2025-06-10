@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour, ISavable{
             
             if(input.x != 0 ) input.y = 0;
 
+            character.IsRunning = Input.GetKey(KeyCode.LeftShift);
+
             if(input != Vector2.zero){
                 
                 StartCoroutine( character.Move(input, OnMoveOver));

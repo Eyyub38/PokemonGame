@@ -264,6 +264,8 @@ MonoBehaviour:
   - {fileID: 7457252426022176498, guid: 56e57d424736abf41ae1949abdbf046a, type: 3}
   - {fileID: 5027312071007194417, guid: 56e57d424736abf41ae1949abdbf046a, type: 3}
   defaultDirection: 1
+  walkFrameRate: 0.1
+  runFrameRate: 0.1
 --- !u!114 &2910947406915275775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,6 +279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movingSpeed: 5
+  runningSpeed: 2
 --- !u!114 &5076646080851347248
 MonoBehaviour:
   m_ObjectHideFlags: 0

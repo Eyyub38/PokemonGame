@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class Character : MonoBehaviour{
     CharacterAnimator animator;
     public float movingSpeed;
+    public float runningSpeed = 2.5f;
 
     public bool IsMoving{ get; private set; }
     public bool IsRunning {get; set;} = false;
@@ -19,6 +20,7 @@ public class Character : MonoBehaviour{
     
     public void HandleUpdate(){
         animator.IsMoving = IsMoving;
+        animator.IsRunning = IsRunning;
     }
 
     private bool IsWalkable(Vector3 targetPos){
@@ -54,10 +56,10 @@ public class Character : MonoBehaviour{
         }
 
         IsMoving = true;
-        float speed = this.movingSpeed;
+        float currentSpeed = IsRunning ? movingSpeed * runningSpeed : movingSpeed;
 
         while((targetPos - transform.position).sqrMagnitude > Mathf.Epsilon){
-            transform.position = Vector3.MoveTowards(transform.position, targetPos, movingSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, currentSpeed * Time.deltaTime);
             yield return null;
         }
         transform.position = targetPos;
