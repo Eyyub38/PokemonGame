@@ -1,37 +1,55 @@
 fileFormatVersion: 2
-guid: aa529e035a575f34887a6456fd753ff9
+guid: 08bb514223ff177449f6b66cff54d8db
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3046803964929333848
-    second: NPC_littleBoy1_0
+      213: 1747426252812545672
+    second: NPC09_0
   - first:
-      213: 6812484584322315465
-    second: NPC_littleBoy1_1
+      213: 2092516813567971142
+    second: NPC09_1
   - first:
-      213: 5464430622133108085
-    second: NPC_littleBoy1_2
+      213: -5254918757690103677
+    second: NPC09_2
   - first:
-      213: 28700944885424693
-    second: NPC_littleBoy1_3
+      213: 8864695101124876047
+    second: NPC09_3
   - first:
-      213: -3992226122099978379
-    second: NPC_littleBoy1_4
+      213: -8539463078029607870
+    second: NPC09_4
   - first:
-      213: 6443351915398675848
-    second: NPC_littleBoy1_5
+      213: -2142589646587450545
+    second: NPC09_5
   - first:
-      213: 275617199296931720
-    second: NPC_littleBoy1_6
+      213: 4060373181393989572
+    second: NPC09_6
   - first:
-      213: 6542947367287197657
-    second: NPC_littleBoy1_7
+      213: 812342701978424514
+    second: NPC09_7
   - first:
-      213: -8145516731394849824
-    second: NPC_littleBoy1_8
+      213: -1087616315651276148
+    second: NPC09_8
   - first:
-      213: 5031120361225324517
-    second: NPC_littleBoy1_9
+      213: -3718909048396863932
+    second: NPC09_9
+  - first:
+      213: -2516991162419074195
+    second: NPC09_10
+  - first:
+      213: -4364323607834702847
+    second: NPC09_11
+  - first:
+      213: -3486205557836936918
+    second: NPC09_12
+  - first:
+      213: 5203338786516254996
+    second: NPC09_13
+  - first:
+      213: 7352148376789990757
+    second: NPC09_14
+  - first:
+      213: 4162910009094770377
+    second: NPC09_15
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -64,7 +82,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -140,13 +158,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: NPC_littleBoy1_0
+      name: NPC09_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 161
-        width: 16
-        height: 21
+        x: 13
+        y: 195
+        width: 36
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -155,20 +173,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 85a5ddd301c684a20800000000000000
-      internalID: 3046803964929333848
+      spriteID: 88e651e2bea104810800000000000000
+      internalID: 1747426252812545672
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC_littleBoy1_1
+      name: NPC09_1
       rect:
         serializedVersion: 2
-        x: 40
-        y: 160
-        width: 16
-        height: 23
+        x: 77
+        y: 193
+        width: 36
+        height: 44
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -177,20 +195,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9c43b56a2aeca8e50800000000000000
-      internalID: 6812484584322315465
+      spriteID: 64f404f84fc1a0d10800000000000000
+      internalID: 2092516813567971142
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC_littleBoy1_2
+      name: NPC09_2
       rect:
         serializedVersion: 2
-        x: 8
-        y: 129
-        width: 16
-        height: 22
+        x: 141
+        y: 195
+        width: 36
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -199,20 +217,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 57db204f2be85db40800000000000000
-      internalID: 5464430622133108085
+      spriteID: 388285c4b37c217b0800000000000000
+      internalID: -5254918757690103677
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC_littleBoy1_3
+      name: NPC09_3
       rect:
         serializedVersion: 2
-        x: 40
-        y: 128
-        width: 16
-        height: 24
+        x: 205
+        y: 193
+        width: 36
+        height: 44
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -221,20 +239,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5322d987b57f56000800000000000000
-      internalID: 28700944885424693
+      spriteID: f0791b03a39b50b70800000000000000
+      internalID: 8864695101124876047
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC_littleBoy1_4
+      name: NPC09_4
       rect:
         serializedVersion: 2
-        x: 8
-        y: 97
-        width: 16
-        height: 22
+        x: 19
+        y: 131
+        width: 30
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -243,20 +261,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 57f02316e73c898c0800000000000000
-      internalID: -3992226122099978379
+      spriteID: 24c3b75139bbd7980800000000000000
+      internalID: -8539463078029607870
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC_littleBoy1_5
+      name: NPC09_5
       rect:
         serializedVersion: 2
-        x: 40
-        y: 97
-        width: 16
-        height: 23
+        x: 83
+        y: 131
+        width: 30
+        height: 42
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -265,20 +283,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 88dbb20cd626b6950800000000000000
-      internalID: 6443351915398675848
+      spriteID: f4ba9bf711ef342e0800000000000000
+      internalID: -2142589646587450545
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC_littleBoy1_6
+      name: NPC09_6
       rect:
         serializedVersion: 2
-        x: 8
-        y: 65
-        width: 16
-        height: 23
+        x: 147
+        y: 131
+        width: 30
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -287,20 +305,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 887e41ae16033d300800000000000000
-      internalID: 275617199296931720
+      spriteID: 4cfe28c45e7595830800000000000000
+      internalID: 4060373181393989572
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC_littleBoy1_7
+      name: NPC09_7
       rect:
         serializedVersion: 2
-        x: 40
-        y: 65
-        width: 16
-        height: 22
+        x: 211
+        y: 131
+        width: 30
+        height: 42
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -309,20 +327,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9df0b3be6f73dca50800000000000000
-      internalID: 6542947367287197657
+      spriteID: 2c41e4b2265064b00800000000000000
+      internalID: 812342701978424514
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC_littleBoy1_8
+      name: NPC09_8
       rect:
         serializedVersion: 2
-        x: 8
-        y: 33
-        width: 16
-        height: 23
+        x: 15
+        y: 67
+        width: 30
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -331,20 +349,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0e3853980bf45fe80800000000000000
-      internalID: -8145516731394849824
+      spriteID: c82cfad29b208e0f0800000000000000
+      internalID: -1087616315651276148
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC_littleBoy1_9
+      name: NPC09_9
       rect:
         serializedVersion: 2
-        x: 40
-        y: 33
-        width: 16
-        height: 23
+        x: 79
+        y: 67
+        width: 30
+        height: 42
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -353,52 +371,140 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5e70211005122d540800000000000000
-      internalID: 5031120361225324517
+      spriteID: 446a1529ce7c36cc0800000000000000
+      internalID: -3718909048396863932
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC_littleBoy1_10
+      name: NPC09_10
       rect:
         serializedVersion: 2
-        x: 8
-        y: 0
-        width: 16
-        height: 24
+        x: 143
+        y: 67
+        width: 30
+        height: 40
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: e1e7107865a8b6541bac82f533c1a9ba
-      internalID: -2142547682
+      spriteID: d6ba6359fd9d11dd0800000000000000
+      internalID: -2516991162419074195
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: NPC_littleBoy1_11
+      name: NPC09_11
       rect:
         serializedVersion: 2
-        x: 40
-        y: 0
-        width: 16
-        height: 23
+        x: 207
+        y: 67
+        width: 30
+        height: 42
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 94fe9827641683d4f999b404cd188f68
-      internalID: -659412492
+      spriteID: 10c49264dcece63c0800000000000000
+      internalID: -4364323607834702847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC09_12
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 3
+        width: 36
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a29032f04828e9fc0800000000000000
+      internalID: -3486205557836936918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC09_13
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 1
+        width: 36
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4114050de09f53840800000000000000
+      internalID: 5203338786516254996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC09_14
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 3
+        width: 36
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56d388ecef3180660800000000000000
+      internalID: 7352148376789990757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC09_15
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 1
+        width: 36
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ce0304e890a5c930800000000000000
+      internalID: 4162910009094770377
       vertices: []
       indices: 
       edges: []
@@ -407,7 +513,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: f15191e93bb3ef1458b4d10ded60f587
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -415,22 +521,24 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      NPC_littleBoy1_0: 3046803964929333848
-      NPC_littleBoy1_1: 6812484584322315465
-      NPC_littleBoy1_10: -2142547682
-      NPC_littleBoy1_11: -659412492
-      NPC_littleBoy1_2: 5464430622133108085
-      NPC_littleBoy1_3: 28700944885424693
-      NPC_littleBoy1_4: -3992226122099978379
-      NPC_littleBoy1_5: 6443351915398675848
-      NPC_littleBoy1_6: 275617199296931720
-      NPC_littleBoy1_7: 6542947367287197657
-      NPC_littleBoy1_8: -8145516731394849824
-      NPC_littleBoy1_9: 5031120361225324517
+      NPC09_0: 1747426252812545672
+      NPC09_1: 2092516813567971142
+      NPC09_10: -2516991162419074195
+      NPC09_11: -4364323607834702847
+      NPC09_12: -3486205557836936918
+      NPC09_13: 5203338786516254996
+      NPC09_14: 7352148376789990757
+      NPC09_15: 4162910009094770377
+      NPC09_2: -5254918757690103677
+      NPC09_3: 8864695101124876047
+      NPC09_4: -8539463078029607870
+      NPC09_5: -2142589646587450545
+      NPC09_6: 4060373181393989572
+      NPC09_7: 812342701978424514
+      NPC09_8: -1087616315651276148
+      NPC09_9: -3718909048396863932
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

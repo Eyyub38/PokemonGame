@@ -26,15 +26,18 @@ public class PlayerController : MonoBehaviour, ISavable{
     
     public void HandleUpdate(){
         if(!character.IsMoving){
+  
             input.x = Input.GetAxisRaw("Horizontal");
             input.y = Input.GetAxisRaw("Vertical");
             
             if(input.x != 0 ) input.y = 0;
 
             if(input != Vector2.zero){
+                
                 StartCoroutine( character.Move(input, OnMoveOver));
             }
         }
+
         character.HandleUpdate();
 
         if(Input.GetKeyDown(KeyCode.Return)){

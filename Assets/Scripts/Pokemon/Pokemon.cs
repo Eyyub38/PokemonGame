@@ -108,7 +108,9 @@ public class Pokemon{
         int oldMaxHP = MaxHp;
         MaxHp = Mathf.FloorToInt((Base.MaxHp * Level) / 100f) + 10 + Level;
 
-        HP += MaxHp - oldMaxHP;
+        if(oldMaxHP != 0){
+            HP += MaxHp - oldMaxHP;
+        }
     }
 
     public bool CheckForLevelUp(){
@@ -215,9 +217,7 @@ public class Pokemon{
     }
 
     public void Evolve(Evolution evolution){
-        Debug.Log($"{_base.Name}");
         _base = evolution.EvolvesInto;
-        Debug.Log($"{_base.Name}");
         CalculateStats(); 
     }
 
@@ -291,6 +291,12 @@ public class Pokemon{
     public void OnBattleOver(){
         VolatileStatus = null;
         ResetStatBoosts();
+    }
+
+    public void Heal(){
+        HP = MaxHp;
+        OnHpChanged?.Invoke();
+        
     }
 
     public bool OnBeforeTurn(){

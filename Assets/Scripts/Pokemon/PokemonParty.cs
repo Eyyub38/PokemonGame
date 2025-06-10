@@ -37,9 +37,13 @@ public class PokemonParty : MonoBehaviour{
     public IEnumerator CheckForEvolutions(){
         foreach(var pokemon in pokemons){
             var evolution = pokemon.CheckForEvolution();
-            if(evolution != null){
+            if(evolution != null && evolution.RequiredItem == null){
                 yield return EvolutionManager.i.Evolve(pokemon, evolution);
             }
         }
+    }
+
+    public void PartyUptaded(){
+        OnUpdated?.Invoke();
     }
 }

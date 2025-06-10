@@ -5,22 +5,32 @@ using System.Collections.Generic;
 public enum FacingDirection {Up, Down, Right, Left}
 
 public class CharacterAnimator : MonoBehaviour{
+    [Header("Walking Sprites")]
     [SerializeField] List<Sprite> walkDownSprites;
     [SerializeField] List<Sprite> walkUpSprites;
     [SerializeField] List<Sprite> walkLeftSprites;
     [SerializeField] List<Sprite> walkRightSprites;
+    [Header("Running Sprites")]
+    [SerializeField] List<Sprite> runDownSprites;
+    [SerializeField] List<Sprite> runUpSprites;
+    [SerializeField] List<Sprite> runLeftSprites;
+    [SerializeField] List<Sprite> runRightSprites;
+
+    [Header("Default Facing Direction")]
     [SerializeField] FacingDirection defaultDirection = FacingDirection.Down;
 
 
     public float MoveX { get; set; }
     public float MoveY { get; set; }
     public bool IsMoving { get; set; }
+    public bool IsRunning { get; set; }
     public FacingDirection DefaultDirection => defaultDirection;
 
     SpriteAnimator walkDownAnim;
     SpriteAnimator walkUpAnim;
     SpriteAnimator walkLeftAnim;
     SpriteAnimator walkRightAnim;
+
     SpriteAnimator currentAnim;
 
     bool wasPreviouslyMoving;

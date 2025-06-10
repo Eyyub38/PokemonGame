@@ -8,6 +8,7 @@ public class Character : MonoBehaviour{
     public float movingSpeed;
 
     public bool IsMoving{ get; private set; }
+    public bool IsRunning {get; set;} = false;
     public CharacterAnimator Animator => animator;
     public float OffSetY {get; private set;} = 0.3f;
     
@@ -53,6 +54,7 @@ public class Character : MonoBehaviour{
         }
 
         IsMoving = true;
+        float speed = this.movingSpeed;
 
         while((targetPos - transform.position).sqrMagnitude > Mathf.Epsilon){
             transform.position = Vector3.MoveTowards(transform.position, targetPos, movingSpeed * Time.deltaTime);
@@ -74,7 +76,7 @@ public class Character : MonoBehaviour{
             animator.MoveX = Mathf.Clamp(xDiff, -1f, 1f);
             animator.MoveY = Mathf.Clamp(yDiff, -1f, 1f);
         } else {
-            Debug.Log($"Error in Look Towards: You cannto ask the character to look diagonally!!!");
+            Debug.Log($"Error in Look Towards: You cannot ask the character to look diagonally!!!");
         }
     }
 
