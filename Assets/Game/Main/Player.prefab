@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 4213203068204416339}
   - component: {fileID: 7530823447165788642}
   - component: {fileID: 2910947406915275775}
+  - component: {fileID: 367991154144026237}
   - component: {fileID: 5076646080851347248}
   - component: {fileID: 3971893604026267208}
   - component: {fileID: 1181391121118234357}
@@ -280,6 +281,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movingSpeed: 5
   runningSpeed: 2
+--- !u!114 &367991154144026237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3860890692304561109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5245d3f73164fa347903f5e9c59786c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  money: 2000
 --- !u!114 &5076646080851347248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -421,15 +435,15 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.0033330917, y: 0.0020071268}
+  m_Offset: {x: 0, y: -0.22764325}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.5, y: 1.75}
+    oldSize: {x: 1.2, y: 1.4}
     newSize: {x: 1.5, y: 1.75}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.085001, y: 1.6434872}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0

@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Burn Heal
   description: Heals Pokemon of a burn.
-  message: The burned area has healed.
   icon: {fileID: 21300000, guid: 20a9fda95183ed640b81aba8ff3038b8, type: 3}
   itemType: 1
+  price: 60
+  isSellable: 1
   hpAmount: 0
   restoreMaxHp: 0
   ppAmount: 0

@@ -10,7 +10,7 @@ public class Character : MonoBehaviour{
 
     public bool IsMoving{ get; private set; }
     public bool IsRunning {get; set;} = false;
-    public CharacterAnimator Animator => animator;
+    public CharacterAnimator Animator {get => animator;}
     public float OffSetY {get; private set;} = 0.3f;
     
     private void Awake(){
@@ -35,7 +35,9 @@ public class Character : MonoBehaviour{
         var diff = targetPos - transform.position;
         var dir = diff.normalized;
 
-        if(Physics2D.BoxCast(transform.position + dir, new Vector2(0.2f,0.2f), 0f, dir, diff.magnitude - 1, GameLayers.i.SolidObjectsLayer | GameLayers.i.InteractableLayer | GameLayers.i.PlayerLayer) == true){
+        var collisionLayers = GameLayers.i.SolidObjectsLayer | GameLayers.i.InteractableLayer | GameLayers.i.PlayerLayer;
+
+        if(Physics2D.BoxCast(transform.position + dir, new Vector2(0.2f,0.2f), 0f, dir, diff.magnitude - 1, collisionLayers) == true){
             return false;
         }
         return true;

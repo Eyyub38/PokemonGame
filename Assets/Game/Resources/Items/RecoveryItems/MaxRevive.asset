@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Max Revive
   description: Revives a fainted Pokemon with all its HP.
-  message: Its regained her health.
   icon: {fileID: 21300000, guid: bc6856537915ae1428f6ee03abc38aac, type: 3}
   itemType: 7
+  price: 2000
+  isSellable: 1
   hpAmount: 0
   restoreMaxHp: 0
   ppAmount: 0

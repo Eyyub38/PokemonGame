@@ -14,6 +14,7 @@ public class InventoryUI : MonoBehaviour{
     [Header("Item Details")]
     [SerializeField] Text description;
     [SerializeField] Text itemTypeText;
+    [SerializeField] Text priceText;
 
     [Header("Categories")]
     [SerializeField] Text categoryText;
@@ -151,7 +152,11 @@ public class InventoryUI : MonoBehaviour{
     IEnumerator ItemSelected(){
         state = InventoryUIState.Busy;
         var item = inventory.GetItem(selectedItem, selectedCategory);
-        
+        if(GameController.i.State == GameState.Shop){
+            onItemUsed?.Invoke(item);
+            state = InventoryUIState.ItemSelection;
+            yield break;
+        }
         if(GameController.i.State == GameState.Battle){
             if(!item.CanUseInBattle){
                 yield return DialogManager.i.ShowDialogText("This item can't be used in battle");
@@ -183,6 +188,7 @@ public class InventoryUI : MonoBehaviour{
 
         description.text = "";
         itemTypeText.text = "";
+        priceText.text = "";
     }
 
     IEnumerator UseItem(){
@@ -238,6 +244,9 @@ public class InventoryUI : MonoBehaviour{
             var item = slots[selectedItem].Item;
             description.text = item.Description;
             itemTypeText.text = item.ItemType.ToString();
+            if(item.IsSellable){
+                priceText.text = "$ " + item.Price.ToString();
+            }
         }
         HandleScrolling();
     }

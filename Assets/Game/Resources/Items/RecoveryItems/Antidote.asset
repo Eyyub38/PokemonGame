@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Antidote
   description: Heals a poisoned Pokemon.
-  message: The effects of the poison are wearing off
   icon: {fileID: 21300000, guid: 8274a4099e3b9f04fa9f0b7439dbdcd1, type: 3}
   itemType: 1
+  price: 50
+  isSellable: 1
   hpAmount: 0
   restoreMaxHp: 0
   ppAmount: 0

@@ -16,6 +16,8 @@ MonoBehaviour:
   description: The ball with higher capture rate than Greatball.
   icon: {fileID: 21300000, guid: a4c4b41cfa366a44baa464ad8db70f91, type: 3}
   itemType: 5
+  price: 400
+  isSellable: 1
   throwFrames:
   - {fileID: 5208926071438152112, guid: b43052bcdd15cb645ac4ac64b6a9f83a, type: 3}
   - {fileID: -4088614160627361860, guid: b43052bcdd15cb645ac4ac64b6a9f83a, type: 3}

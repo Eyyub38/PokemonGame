@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public enum GameState{ FreeRoam, Battle, Dialog, PartyScreen, Evolution, Menu, Bag, CutScene, Paused }
+public enum GameState{ FreeRoam, Battle, Dialog, PartyScreen, Evolution, Menu, Bag, CutScene , Shop, Paused }
 
 public class GameController : MonoBehaviour{
     [Header("Referances")]
@@ -90,6 +90,8 @@ public class GameController : MonoBehaviour{
                 }
             };
             inventoryUI.HandleUpdate(onBack);
+        } else if(state == GameState.Shop){
+            ShopController.i.HandleUpdate();
         }
     }
 
@@ -114,6 +116,9 @@ public class GameController : MonoBehaviour{
             partyScreen.SetPartyData();
             SetState(stateBeforeEvolution);  
         };
+
+        ShopController.i.OnStart += () => SetState(GameState.Shop);
+        ShopController.i.OnFinish += () => SetState(GameState.FreeRoam);
     }
 
     public void OnEnterTrainersView(TrainerController trainer){

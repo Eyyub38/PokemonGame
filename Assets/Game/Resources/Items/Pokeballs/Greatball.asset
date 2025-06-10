@@ -16,6 +16,8 @@ MonoBehaviour:
   description: The ball with higher capture rate than Pokeball.
   icon: {fileID: 21300000, guid: ee4052b6e7a2f494fa6ef632b686fa09, type: 3}
   itemType: 5
+  price: 200
+  isSellable: 1
   throwFrames:
   - {fileID: 6500793534561700178, guid: f2544956148fbba4ab7ce145066c1a9b, type: 3}
   - {fileID: -3382594629908157768, guid: f2544956148fbba4ab7ce145066c1a9b, type: 3}

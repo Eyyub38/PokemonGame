@@ -295,8 +295,9 @@ public class Pokemon{
 
     public void Heal(){
         HP = MaxHp;
-        OnHpChanged?.Invoke();
         
+        OnHpChanged?.Invoke();        
+        CureStatus();
     }
 
     public bool OnBeforeTurn(){

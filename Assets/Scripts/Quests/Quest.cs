@@ -32,9 +32,7 @@ public class Quest{
 
         var inventory = Inventory.GetInventory();
         if(Base.RequiredItem != null){
-            for(int i = 0; i < Base.RequiredItemCount; i++){
-                inventory.RemoveItem(Base.RequiredItem);
-            }
+            inventory.RemoveItem(Base.RequiredItem, Base.RewardItemCount);
         }
         
         if(Base.RewardItem != null){

@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Max Ether
   description: Fully restores the PP of a selected move.
-  message: Move PP fully restored
   icon: {fileID: 21300000, guid: 67e20f5a058d4d54babf2a0830af99a9, type: 3}
   itemType: 6
+  price: 200
+  isSellable: 1
   hpAmount: 0
   restoreMaxHp: 0
   ppAmount: 0

@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Ether
   description: Restores the PP of a selected move by 10.
-  message: The PP value of the move has been increased by 10.
   icon: {fileID: 21300000, guid: f848642caf1d96a44ad2043cf780fb89, type: 3}
   itemType: 6
+  price: 90
+  isSellable: 1
   hpAmount: 0
   restoreMaxHp: 0
   ppAmount: 10
