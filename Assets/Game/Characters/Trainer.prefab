@@ -225,6 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movingSpeed: 5
+  runningSpeed: 2.5
 --- !u!114 &2989173461090793051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,7 +258,13 @@ MonoBehaviour:
   - {fileID: 619697694, guid: 5dd3006015410c143825c7c085e417aa, type: 3}
   - {fileID: 254490517, guid: 5dd3006015410c143825c7c085e417aa, type: 3}
   - {fileID: 484721160, guid: 5dd3006015410c143825c7c085e417aa, type: 3}
+  runDownSprites: []
+  runUpSprites: []
+  runLeftSprites: []
+  runRightSprites: []
   defaultDirection: 2
+  walkFrameRate: 0.1
+  runFrameRate: 0.08
 --- !u!114 &8035932286902448032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,9 +281,11 @@ MonoBehaviour:
   - _base: {fileID: 11400000, guid: 8cc7dd316f742dd4ab256f8a21e85d46, type: 2}
     level: 5
     gender: 2
+    pokeball: {fileID: 0}
   - _base: {fileID: 11400000, guid: d9683147ddde6114fbd659dd26b1db88, type: 2}
     level: 5
     gender: 2
+    pokeball: {fileID: 0}
 --- !u!114 &7734656956146693234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,7 +360,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.0025320053, y: 0.0017046332}
+  m_Offset: {x: 0.0005761385, y: -0.27651358}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -361,7 +370,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.1545963, y: 1.7045246}
+  m_Size: {x: 0.9942324, y: 0.9634924}
   m_EdgeRadius: 0
 --- !u!1 &6184710908653229683
 GameObject:

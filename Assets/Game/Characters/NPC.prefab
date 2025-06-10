@@ -115,6 +115,7 @@ MonoBehaviour:
   movementPattern: []
   timeBetweenPattern: 0
   questToStart: {fileID: 0}
+  questToComplete: {fileID: 0}
 --- !u!114 &4321450732582420451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,6 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movingSpeed: 5
+  runningSpeed: 2.5
 --- !u!114 &3426225111526566017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,7 +197,13 @@ MonoBehaviour:
   - {fileID: -259069297611274827, guid: 9b83c2746f2b85f489ac6d626b17ff6b, type: 3}
   - {fileID: 2507581144604635015, guid: 9b83c2746f2b85f489ac6d626b17ff6b, type: 3}
   - {fileID: -8897871985624621383, guid: 9b83c2746f2b85f489ac6d626b17ff6b, type: 3}
+  runDownSprites: []
+  runUpSprites: []
+  runLeftSprites: []
+  runRightSprites: []
   defaultDirection: 1
+  walkFrameRate: 0.1
+  runFrameRate: 0.08
 --- !u!50 &895888407462498066
 Rigidbody2D:
   serializedVersion: 5
@@ -257,17 +265,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.0025320053, y: 0.0017046332}
+  m_Offset: {x: 0.0038638115, y: -0.24347305}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.125, y: 1.6875}
+    oldSize: {x: 0.9, y: 1.35}
     newSize: {x: 1.25, y: 1.8125}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.1545963, y: 1.7045246}
+  m_Size: {x: 0.9213457, y: 0.877594}
   m_EdgeRadius: 0
 --- !u!114 &7412884999247721354
 MonoBehaviour:

@@ -67,6 +67,11 @@ public class CharacterAnimator : MonoBehaviour{
     private void Update(){
         var prevAnim = currentAnim;
 
+        if(!IsMoving){
+            MoveX = 0f;
+            MoveY = 0f;
+        }
+
         if(MoveX == 1){
             currentAnim = IsRunning ? runRightAnim : walkRightAnim;
         } else if(MoveX == -1){

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class Character : MonoBehaviour{
     CharacterAnimator animator;
-    public float movingSpeed;
+    public float movingSpeed = 5f;
     public float runningSpeed = 2.5f;
 
     public bool IsMoving{ get; private set; }
@@ -24,7 +24,7 @@ public class Character : MonoBehaviour{
     }
 
     private bool IsWalkable(Vector3 targetPos){
-        if(Physics2D.OverlapCircle(targetPos, 0.2f, GameLayers.i.SolidObjectsLayer | GameLayers.i.InteractableLayer) != null){
+        if(Physics2D.OverlapCircle(targetPos, 0.1f, GameLayers.i.SolidObjectsLayer | GameLayers.i.InteractableLayer) != null){
             return false;
         }
         
@@ -32,12 +32,9 @@ public class Character : MonoBehaviour{
     }
 
     private bool IsPathClear(Vector3 targetPos){
-        var diff = targetPos - transform.position;
-        var dir = diff.normalized;
-
-        var collisionLayers = GameLayers.i.SolidObjectsLayer | GameLayers.i.InteractableLayer | GameLayers.i.PlayerLayer;
-
-        if(Physics2D.BoxCast(transform.position + dir, new Vector2(0.2f,0.2f), 0f, dir, diff.magnitude - 1, collisionLayers) == true){
+        var collider = Physics2D.OverlapCircle(targetPos, 0.1f, GameLayers.i.SolidObjectsLayer | GameLayers.i.InteractableLayer);
+        if(collider != null){
+            Debug.Log($"Path blocked at {targetPos} by {collider.name} on layer {collider.gameObject.layer}");
             return false;
         }
         return true;
@@ -54,20 +51,40 @@ public class Character : MonoBehaviour{
 
         if(!IsPathClear(targetPos)){
             animator.IsMoving = false;
+            animator.MoveX = 0f;
+            animator.MoveY = 0f;
             yield break;
         }
 
         IsMoving = true;
         float currentSpeed = IsRunning ? movingSpeed * runningSpeed : movingSpeed;
 
-        while((targetPos - transform.position).sqrMagnitude > Mathf.Epsilon){
+        int maxIterations = 1000;
+        int iterations = 0;
+
+        while((targetPos - transform.position).sqrMagnitude > 0.01f && iterations < maxIterations){
+            var oldPos = transform.position;
             transform.position = Vector3.MoveTowards(transform.position, targetPos, currentSpeed * Time.deltaTime);
+            
+            if(Vector3.Distance(oldPos, transform.position) < 0.001f){
+                Debug.LogWarning($"Character not moving! Old pos: {oldPos}, New pos: {transform.position}, Target: {targetPos}, Speed: {currentSpeed}");
+                break;
+            }
+            
+            iterations++;
             yield return null;
         }
+        
+        if(iterations >= maxIterations){
+            Debug.LogWarning($"Move function reached maximum iterations ({maxIterations}), forcing position. Current: {transform.position}, Target: {targetPos}");
+        }
+        
         transform.position = targetPos;
         
         IsMoving = false;
         animator.IsMoving = false;
+        animator.MoveX = 0f;
+        animator.MoveY = 0f;
 
         OnMoveOver?.Invoke();
     }
