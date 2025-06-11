@@ -1,0 +1,530 @@
+fileFormatVersion: 2
+guid: 5fcd2c1bde96aa64288e39a4920cd8f7
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2909892123427282920
+    second: NPC_141_Tower_Tycoon_Palmer_0
+  - first:
+      213: -4544758373575069025
+    second: NPC_141_Tower_Tycoon_Palmer_1
+  - first:
+      213: -7969855152193380772
+    second: NPC_141_Tower_Tycoon_Palmer_2
+  - first:
+      213: 546023442356100909
+    second: NPC_141_Tower_Tycoon_Palmer_3
+  - first:
+      213: -1887283520561481623
+    second: NPC_141_Tower_Tycoon_Palmer_4
+  - first:
+      213: -6364034189578540686
+    second: NPC_141_Tower_Tycoon_Palmer_5
+  - first:
+      213: -1180107793318031227
+    second: NPC_141_Tower_Tycoon_Palmer_6
+  - first:
+      213: 7185323027388783802
+    second: NPC_141_Tower_Tycoon_Palmer_7
+  - first:
+      213: 4183490325947482323
+    second: NPC_141_Tower_Tycoon_Palmer_8
+  - first:
+      213: 24016166937891688
+    second: NPC_141_Tower_Tycoon_Palmer_9
+  - first:
+      213: -7483344087083097716
+    second: NPC_141_Tower_Tycoon_Palmer_10
+  - first:
+      213: 7215550285691668705
+    second: NPC_141_Tower_Tycoon_Palmer_11
+  - first:
+      213: 6781477317068299220
+    second: NPC_141_Tower_Tycoon_Palmer_12
+  - first:
+      213: -5672404708725017618
+    second: NPC_141_Tower_Tycoon_Palmer_13
+  - first:
+      213: -3983494955736076346
+    second: NPC_141_Tower_Tycoon_Palmer_14
+  - first:
+      213: 5399101596739921413
+    second: NPC_141_Tower_Tycoon_Palmer_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: NPC_141_Tower_Tycoon_Palmer_0
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 195
+        width: 42
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ef179f0873026820800000000000000
+      internalID: 2909892123427282920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_141_Tower_Tycoon_Palmer_1
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 193
+        width: 42
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f927311a656cde0c0800000000000000
+      internalID: -4544758373575069025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_141_Tower_Tycoon_Palmer_2
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 195
+        width: 42
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5e523617f2656190800000000000000
+      internalID: -7969855152193380772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_141_Tower_Tycoon_Palmer_3
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 193
+        width: 42
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2fdba88d6dd39700800000000000000
+      internalID: 546023442356100909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_141_Tower_Tycoon_Palmer_4
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 131
+        width: 38
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 968fb7623a50fc5e0800000000000000
+      internalID: -1887283520561481623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_141_Tower_Tycoon_Palmer_5
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 131
+        width: 38
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 279eab76f986ea7a0800000000000000
+      internalID: -6364034189578540686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_141_Tower_Tycoon_Palmer_6
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 131
+        width: 38
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 580db96e63a6f9fe0800000000000000
+      internalID: -1180107793318031227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_141_Tower_Tycoon_Palmer_7
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 131
+        width: 38
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abc51f3593567b360800000000000000
+      internalID: 7185323027388783802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_141_Tower_Tycoon_Palmer_8
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 67
+        width: 38
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d0026f494ebe0a30800000000000000
+      internalID: 4183490325947482323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_141_Tower_Tycoon_Palmer_9
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 67
+        width: 38
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 863133b9392555000800000000000000
+      internalID: 24016166937891688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_141_Tower_Tycoon_Palmer_10
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 67
+        width: 38
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8164658332d52890800000000000000
+      internalID: -7483344087083097716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_141_Tower_Tycoon_Palmer_11
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 67
+        width: 38
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e8ce9551c8c22460800000000000000
+      internalID: 7215550285691668705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_141_Tower_Tycoon_Palmer_12
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 3
+        width: 42
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4db9938a0b5ac1e50800000000000000
+      internalID: 6781477317068299220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_141_Tower_Tycoon_Palmer_13
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 1
+        width: 42
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee3313a98f19741b0800000000000000
+      internalID: -5672404708725017618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_141_Tower_Tycoon_Palmer_14
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 3
+        width: 42
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6cf6ac67178c7b8c0800000000000000
+      internalID: -3983494955736076346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_141_Tower_Tycoon_Palmer_15
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 1
+        width: 42
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5066debeb467dea40800000000000000
+      internalID: 5399101596739921413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

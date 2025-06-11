@@ -1,0 +1,530 @@
+fileFormatVersion: 2
+guid: 3d9354e5ef69fdc47819ad0f4a90bbfa
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3811739507956336375
+    second: NPC_208_Lyra_Pokeathlon_0
+  - first:
+      213: 6372243395837087545
+    second: NPC_208_Lyra_Pokeathlon_1
+  - first:
+      213: -6764095836639712751
+    second: NPC_208_Lyra_Pokeathlon_2
+  - first:
+      213: -2299923584599845058
+    second: NPC_208_Lyra_Pokeathlon_3
+  - first:
+      213: -2618797160204950043
+    second: NPC_208_Lyra_Pokeathlon_4
+  - first:
+      213: -3393377054895838788
+    second: NPC_208_Lyra_Pokeathlon_5
+  - first:
+      213: -6410670435836791228
+    second: NPC_208_Lyra_Pokeathlon_6
+  - first:
+      213: -3198935644674093978
+    second: NPC_208_Lyra_Pokeathlon_7
+  - first:
+      213: -2774563444056736983
+    second: NPC_208_Lyra_Pokeathlon_8
+  - first:
+      213: -8404280974735818646
+    second: NPC_208_Lyra_Pokeathlon_9
+  - first:
+      213: 3152812269862152376
+    second: NPC_208_Lyra_Pokeathlon_10
+  - first:
+      213: -5758461509455192293
+    second: NPC_208_Lyra_Pokeathlon_11
+  - first:
+      213: -965082175975935312
+    second: NPC_208_Lyra_Pokeathlon_12
+  - first:
+      213: 7015443942111716627
+    second: NPC_208_Lyra_Pokeathlon_13
+  - first:
+      213: 8232667073766488942
+    second: NPC_208_Lyra_Pokeathlon_14
+  - first:
+      213: -3728680345746019395
+    second: NPC_208_Lyra_Pokeathlon_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: NPC_208_Lyra_Pokeathlon_0
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 195
+        width: 56
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f64f0413e406e430800000000000000
+      internalID: 3811739507956336375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_208_Lyra_Pokeathlon_1
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 193
+        width: 56
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93fc23f5b91ce6850800000000000000
+      internalID: 6372243395837087545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_208_Lyra_Pokeathlon_2
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 195
+        width: 56
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11a246e9caa1122a0800000000000000
+      internalID: -6764095836639712751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_208_Lyra_Pokeathlon_3
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 193
+        width: 56
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3712617fa70510e0800000000000000
+      internalID: -2299923584599845058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_208_Lyra_Pokeathlon_4
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 131
+        width: 40
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e5ae279bd928abd0800000000000000
+      internalID: -2618797160204950043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_208_Lyra_Pokeathlon_5
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 131
+        width: 40
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb9e8f52c8d48e0d0800000000000000
+      internalID: -3393377054895838788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_208_Lyra_Pokeathlon_6
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 131
+        width: 40
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44679db2439b807a0800000000000000
+      internalID: -6410670435836791228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_208_Lyra_Pokeathlon_7
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 133
+        width: 40
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66c8dd7daf81b93d0800000000000000
+      internalID: -3198935644674093978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_208_Lyra_Pokeathlon_8
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 67
+        width: 40
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92bb6367f35ce79d0800000000000000
+      internalID: -2774563444056736983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_208_Lyra_Pokeathlon_9
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 67
+        width: 40
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a604c443bfefd5b80800000000000000
+      internalID: -8404280974735818646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_208_Lyra_Pokeathlon_10
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 67
+        width: 40
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b860ac1e0a01cb20800000000000000
+      internalID: 3152812269862152376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_208_Lyra_Pokeathlon_11
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 69
+        width: 40
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1fd92c44c5d510b0800000000000000
+      internalID: -5758461509455192293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_208_Lyra_Pokeathlon_12
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 3
+        width: 56
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b2b4e9cfd65b92f0800000000000000
+      internalID: -965082175975935312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_208_Lyra_Pokeathlon_13
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 1
+        width: 56
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3152c3f881ddb5160800000000000000
+      internalID: 7015443942111716627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_208_Lyra_Pokeathlon_14
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 3
+        width: 56
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6bf7e5c51f404270800000000000000
+      internalID: 8232667073766488942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_208_Lyra_Pokeathlon_15
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 1
+        width: 56
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbbe3de1bf0114cc0800000000000000
+      internalID: -3728680345746019395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

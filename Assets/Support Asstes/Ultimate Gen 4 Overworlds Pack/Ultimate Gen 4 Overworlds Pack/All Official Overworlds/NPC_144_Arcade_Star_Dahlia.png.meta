@@ -1,0 +1,530 @@
+fileFormatVersion: 2
+guid: 3f75f9557f5146e4bad2471553e7b1f4
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5966288770456811451
+    second: NPC_144_Arcade_Star_Dahlia_0
+  - first:
+      213: -4066441610608847706
+    second: NPC_144_Arcade_Star_Dahlia_1
+  - first:
+      213: -6181864851170001753
+    second: NPC_144_Arcade_Star_Dahlia_2
+  - first:
+      213: 9171688026094038593
+    second: NPC_144_Arcade_Star_Dahlia_3
+  - first:
+      213: 2801372666055271469
+    second: NPC_144_Arcade_Star_Dahlia_4
+  - first:
+      213: 7753374716108930588
+    second: NPC_144_Arcade_Star_Dahlia_5
+  - first:
+      213: -7886714204056478736
+    second: NPC_144_Arcade_Star_Dahlia_6
+  - first:
+      213: -490814694188995119
+    second: NPC_144_Arcade_Star_Dahlia_7
+  - first:
+      213: -2526335974630943316
+    second: NPC_144_Arcade_Star_Dahlia_8
+  - first:
+      213: 2251800340896740847
+    second: NPC_144_Arcade_Star_Dahlia_9
+  - first:
+      213: -3447586752345302321
+    second: NPC_144_Arcade_Star_Dahlia_10
+  - first:
+      213: -7782975020242610687
+    second: NPC_144_Arcade_Star_Dahlia_11
+  - first:
+      213: -1910552520463094101
+    second: NPC_144_Arcade_Star_Dahlia_12
+  - first:
+      213: 4315919945125590294
+    second: NPC_144_Arcade_Star_Dahlia_13
+  - first:
+      213: -2011604613117753043
+    second: NPC_144_Arcade_Star_Dahlia_14
+  - first:
+      213: 7126870489952280680
+    second: NPC_144_Arcade_Star_Dahlia_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: NPC_144_Arcade_Star_Dahlia_0
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 195
+        width: 46
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb7fa76a6048cc250800000000000000
+      internalID: 5966288770456811451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_144_Arcade_Star_Dahlia_1
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 193
+        width: 46
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a4dacb66e81197c0800000000000000
+      internalID: -4066441610608847706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_144_Arcade_Star_Dahlia_2
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 195
+        width: 46
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7acf988bbaa953aa0800000000000000
+      internalID: -6181864851170001753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_144_Arcade_Star_Dahlia_3
+      rect:
+        serializedVersion: 2
+        x: 201
+        y: 193
+        width: 46
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14ee9028aa1684f70800000000000000
+      internalID: 9171688026094038593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_144_Arcade_Star_Dahlia_4
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 131
+        width: 42
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d24a6b3f89970e620800000000000000
+      internalID: 2801372666055271469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_144_Arcade_Star_Dahlia_5
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 131
+        width: 42
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1efa24a935899b60800000000000000
+      internalID: 7753374716108930588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_144_Arcade_Star_Dahlia_6
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 131
+        width: 42
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fb9f2e8733cc8290800000000000000
+      internalID: -7886714204056478736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_144_Arcade_Star_Dahlia_7
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 131
+        width: 42
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1dda256d2a64039f0800000000000000
+      internalID: -490814694188995119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_144_Arcade_Star_Dahlia_8
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 67
+        width: 42
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca515d0f0d6a0fcd0800000000000000
+      internalID: -2526335974630943316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_144_Arcade_Star_Dahlia_9
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 67
+        width: 42
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe5f040ca70004f10800000000000000
+      internalID: 2251800340896740847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_144_Arcade_Star_Dahlia_10
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 67
+        width: 42
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fca9d166d16b720d0800000000000000
+      internalID: -3447586752345302321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_144_Arcade_Star_Dahlia_11
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 67
+        width: 42
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10653be74715df390800000000000000
+      internalID: -7782975020242610687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_144_Arcade_Star_Dahlia_12
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 3
+        width: 48
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: baee11dea9a5c75e0800000000000000
+      internalID: -1910552520463094101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_144_Arcade_Star_Dahlia_13
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 1
+        width: 48
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 615fb38c25a35eb30800000000000000
+      internalID: 4315919945125590294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_144_Arcade_Star_Dahlia_14
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 3
+        width: 48
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d29449623485514e0800000000000000
+      internalID: -2011604613117753043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: NPC_144_Arcade_Star_Dahlia_15
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 1
+        width: 48
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 860e1d963fab7e260800000000000000
+      internalID: 7126870489952280680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

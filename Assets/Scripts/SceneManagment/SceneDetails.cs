@@ -8,6 +8,9 @@ using System.Linq;
 public class SceneDetails : MonoBehaviour{
     [SerializeField] List<SceneDetails> connectedScenes;
 
+    [Header("Music")]
+    [SerializeField] AudioClip sceneMusic;
+
     public bool IsLoaded{get; private set;}
     List<SavableEntity> savableEntities;
     
@@ -15,6 +18,11 @@ public class SceneDetails : MonoBehaviour{
         if(collision.tag == "Player"){
             LoadScene();
             GameController.i.SetCurrentScene(this);
+
+            if(sceneMusic != null){
+                AudioManager.i.PlayMusic(sceneMusic, fade: true);
+            }
+
             StartCoroutine(SetLocationUI(this.name.ToUpper()));
 
             foreach(var scene in connectedScenes){
