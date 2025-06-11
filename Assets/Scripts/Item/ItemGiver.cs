@@ -13,6 +13,7 @@ public class ItemGiver : MonoBehaviour, ISavable{
         yield return DialogManager.i.ShowDialog(dialog);
         player.GetComponent<Inventory>().AddItem(item, amount);
         used = true;
+        AudioManager.i.PlaySfx(AudioId.ItemObtained, pauseMusic: true);
         yield return DialogManager.i.ShowDialogText($"{player.name} received {amount} {item.name}{(amount > 1 ? "s" : "")}.");
     } 
 

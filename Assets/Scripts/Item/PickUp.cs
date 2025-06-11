@@ -17,7 +17,7 @@ public class PickUp : MonoBehaviour, Interactable, ISavable{
             GetComponent<BoxCollider2D>().enabled = false;
 
             string playerName = initiator.GetComponent<PlayerController>().Name;
-
+            AudioManager.i.PlaySfx(AudioId.ItemObtained, pauseMusic: true);
             yield return DialogManager.i.ShowDialogText($"{playerName} picked up {item.Name}{(count > 1 ? "s" : "")}!");
         }
     }

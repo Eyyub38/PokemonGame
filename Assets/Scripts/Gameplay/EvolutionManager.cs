@@ -7,6 +7,7 @@ using System.Collections.Generic;
 public class EvolutionManager : MonoBehaviour{
     [SerializeField] GameObject evolutionUI;
     [SerializeField] Image evolutionImage;
+    [SerializeField] AudioClip evolutionMusic;
 
     public event Action OnStartEvolution;
     public event Action OnCompleteEvolution;
@@ -19,8 +20,10 @@ public class EvolutionManager : MonoBehaviour{
 
     public IEnumerator Evolve(Pokemon pokemon, Evolution evolution){
         OnStartEvolution?.Invoke();
-
         evolutionUI.SetActive(true);
+
+        AudioManager.i.PlayMusic(evolutionMusic);
+
         evolutionImage.sprite = pokemon.Base.FrontSprite;
         yield return DialogManager.i.ShowDialogText($"{pokemon.Base.Name} is evolving!");
 

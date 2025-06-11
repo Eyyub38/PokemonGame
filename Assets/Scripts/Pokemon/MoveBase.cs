@@ -10,10 +10,11 @@ public enum MoveTag{ Contact, MinimizeBonusDamage, SoundBased, BallOrBomb, AuraO
 
 [CreateAssetMenu(fileName = "Move", menuName = "Move/Create new Move")]
 public class MoveBase : ScriptableObject{
-    [Header("Pokemon Details")]
+    [Header("Move Details")]
     [SerializeField] string _name;
     [TextArea]
     [SerializeField] string description;
+    [SerializeField] AudioClip soundEffect;
 
     [Header("Type")]
     [SerializeField] PokemonType type;
@@ -50,6 +51,7 @@ public class MoveBase : ScriptableObject{
     public List<SecondaryEffects> Secondaries{ get{return secondaries;}}
     public RecoilMoveEffect Recoil{ get{return recoil;} }
     public CritBehaviour CritBehaviour{ get{return critBehaviour;} }
+    public AudioClip SoundEffect{ get{return soundEffect;} }
 }
 
 [System.Serializable]

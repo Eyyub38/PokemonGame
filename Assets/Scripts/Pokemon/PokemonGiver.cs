@@ -13,6 +13,7 @@ public class PokemonGiver : MonoBehaviour, ISavable{
         pokemonToGive.Init();
         player.GetComponent<PokemonParty>().AddPokemon(pokemonToGive);
         used = true;
+        AudioManager.i.PlaySfx(AudioId.PokemonObtained, pauseMusic: true);
         yield return DialogManager.i.ShowDialogText($"{player.name} received {pokemonToGive.Base.name}");
     } 
 

@@ -26,6 +26,12 @@ public class BattleSystem : MonoBehaviour{
     [Header("Pokeball")]
     [SerializeField] GameObject pokeballSprite;
 
+    [Header("Audio")]
+    [SerializeField] AudioClip wildBattleMusic;
+    [SerializeField] AudioClip trainerBattleMusic;
+    [SerializeField] AudioClip wildBattleVictoryMusic;
+    [SerializeField] AudioClip trainerBattleVictoryMusic;
+
     BattleState state;
     int currentAction;
     int currentMove;
@@ -46,19 +52,22 @@ public class BattleSystem : MonoBehaviour{
     public void StartBattle(PokemonParty playerParty, Pokemon wildPokemon){
         this.playerParty = playerParty;
         this.wildPokemon = wildPokemon;
-
-        isTrainerBattle = false;
         player = playerParty.GetComponent<PlayerController>();
+        isTrainerBattle = false;
+
+        AudioManager.i.PlayMusic(wildBattleMusic);
+
         StartCoroutine(SetupBattle());
     }
     
     public void StartTrainerBattle(PokemonParty playerParty, PokemonParty trainerParty){
         this.playerParty = playerParty;
         this.trainerParty = trainerParty;
-
-        isTrainerBattle = true;
         player = playerParty.GetComponent<PlayerController>();
         trainer = trainerParty.GetComponent<TrainerController>();
+        isTrainerBattle = true;
+
+        AudioManager.i.PlayMusic(trainerBattleMusic);
 
         StartCoroutine(SetupBattle());
     }
@@ -216,9 +225,11 @@ public class BattleSystem : MonoBehaviour{
         if(CheckIfMoveHits(move, sourceUnit.Pokemon, targetUnit.Pokemon)){
             var damageDetails = new DamageDetails();
             sourceUnit.PlayAttackAnimation();
+            AudioManager.i.PlaySfx(move.Base.SoundEffect);
             yield return new WaitForSeconds(1f);
 
             targetUnit.PlayHitAnimation();
+            AudioManager.i.PlaySfx(AudioId.Hit);
 
             if(move.Base.Category == MoveCategory.Status){
                 yield return RunMoveEffects(move.Base.Effects, sourceUnit.Pokemon, targetUnit.Pokemon, move.Base.Target);
@@ -546,6 +557,17 @@ public class BattleSystem : MonoBehaviour{
         yield return new WaitForSeconds(2f);
 
         if(!faintedUnit.IsPlayerUnit){
+            bool battleWon = true;
+            if(isTrainerBattle){
+                battleWon = trainerParty.GetHealthyPokemon() == null;
+            }
+            if(battleWon){
+                if(isTrainerBattle){
+                    AudioManager.i.PlayMusic(trainerBattleVictoryMusic);
+                } else if(!isTrainerBattle){
+                    AudioManager.i.PlayMusic(wildBattleVictoryMusic);
+                }
+            }
             int expYield = faintedUnit.Pokemon.Base.XpYield;
             int enemyLevel = faintedUnit.Pokemon.Level;
             float trainerBonus = (isTrainerBattle)? 1.5f : 1f;

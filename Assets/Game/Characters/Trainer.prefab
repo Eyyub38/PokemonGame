@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 3334705090083220343}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalPosition: {x: 0, y: -0.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -212,6 +212,7 @@ MonoBehaviour:
     - After than I can challenge you again.
   exclamation: {fileID: 6184710908653229683}
   fov: {fileID: 3334705090083220343}
+  trainerAppearsClip: {fileID: 8300000, guid: c68dea80f59e7a644aff21d64869d75b, type: 3}
 --- !u!114 &8056377329572524893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -360,17 +361,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.0005761385, y: -0.27651358}
+  m_Offset: {x: 0.0005761385, y: -0.005607605}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.1875, y: 1.5}
+    oldSize: {x: 0.7916667, y: 1}
     newSize: {x: 1.1875, y: 1.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.9942324, y: 0.9634924}
+  m_Size: {x: 0.9942324, y: 1.0260506}
   m_EdgeRadius: 0
 --- !u!1 &6184710908653229683
 GameObject:

@@ -11,9 +11,11 @@ public class SceneDetails : MonoBehaviour{
     [Header("Music")]
     [SerializeField] AudioClip sceneMusic;
 
-    public bool IsLoaded{get; private set;}
     List<SavableEntity> savableEntities;
-    
+
+    public bool IsLoaded{get; private set;}
+    public AudioClip SceneMusic => sceneMusic;
+
     private void OnTriggerEnter2D(Collider2D collision){
         if(collision.tag == "Player"){
             LoadScene();

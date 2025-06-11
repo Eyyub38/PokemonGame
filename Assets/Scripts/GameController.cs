@@ -114,7 +114,9 @@ public class GameController : MonoBehaviour{
         };
         EvolutionManager.i.OnCompleteEvolution += () => {
             partyScreen.SetPartyData();
-            SetState(stateBeforeEvolution);  
+            SetState(stateBeforeEvolution);
+
+            AudioManager.i.PlayMusic(CurrentScene.SceneMusic, fade: true);
         };
 
         ShopController.i.OnStart += () => SetState(GameState.Shop);
@@ -139,7 +141,12 @@ public class GameController : MonoBehaviour{
         worldCamera.gameObject.SetActive(true);
 
         var playerParty = playerController.GetComponent<PokemonParty>();
-        StartCoroutine(playerParty.CheckForEvolutions());
+        bool hasEvolutions = playerParty.CheckForEvolutions();
+        if(hasEvolutions){
+            StartCoroutine(playerParty.RunEvolution());
+        } else {
+            AudioManager.i.PlayMusic(CurrentScene.SceneMusic, fade: true);
+        }
     }
 
     public void StartBattle(){
