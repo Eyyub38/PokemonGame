@@ -149,16 +149,17 @@ public class GameController : MonoBehaviour{
         }
     }
 
-    public void StartBattle(){
+    public void StartBattle(BattleTrigger trigger){
         SetState(GameState.Battle);
         battleSystem.gameObject.SetActive(true);
         worldCamera.gameObject.SetActive(false);
 
         var playerParty = playerController.GetComponent<PokemonParty>();
-        var wildPokemon = CurrentScene.GetComponent<MapArea>().GetRandomWildPokemon();
+        
+        var wildPokemon = CurrentScene.GetComponent<MapArea>().GetRandomWildPokemon(trigger);
 
         var enemyPokemon = new Pokemon(wildPokemon.Base, wildPokemon.Level);
-        battleSystem.StartBattle(playerParty, enemyPokemon);
+        battleSystem.StartBattle(playerParty, enemyPokemon,trigger);
     }
 
     public void StartTrainerBattle(TrainerController trainer){

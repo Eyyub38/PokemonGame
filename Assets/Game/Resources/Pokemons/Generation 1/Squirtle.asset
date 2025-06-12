@@ -40,6 +40,8 @@ MonoBehaviour:
   xpYield: 63
   growthRate: 2
   learnableMovesLevelUp:
+  - moveBase: {fileID: 11400000, guid: 5aa84166411006c488ff14bcbb69ca2e, type: 2}
+    level: 1
   - moveBase: {fileID: 11400000, guid: 72353876ccbec0941bd1511e241c07c0, type: 2}
     level: 1
   - moveBase: {fileID: 11400000, guid: bf6fb07aa47d15a44a7e8a619815702c, type: 2}

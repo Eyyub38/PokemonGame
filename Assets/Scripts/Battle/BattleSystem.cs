@@ -7,6 +7,7 @@ using System.Collections.Generic;
 
 public enum BattleState { Start, ActionSelection, MoveSelection, RunningTurn, PartyScreen, Bag,AboutToUse, MoveToForget, BattleOver, Busy}
 public enum BattleAction { Move, SwitchPokemon, UseItem, Run}
+public enum BattleTrigger {LongGrass, Water}
 
 public class BattleSystem : MonoBehaviour{
     [Header("Battle Units")]
@@ -32,6 +33,17 @@ public class BattleSystem : MonoBehaviour{
     [SerializeField] AudioClip wildBattleVictoryMusic;
     [SerializeField] AudioClip trainerBattleVictoryMusic;
 
+    [Header("Backgrounds & Pokemon Spots")]
+    [SerializeField] Image backgroundImages;
+    [SerializeField] Image playerUnitSpotImage;
+    [SerializeField] Image enemyUnitSpotImage;
+
+    [Header("Battleground Sprites")]
+    [SerializeField] Sprite longGrassBackground;
+    [SerializeField] Sprite longGrassSpot;
+    [SerializeField] Sprite waterBackground;
+    [SerializeField] Sprite waterSpot;
+
     BattleState state;
     int currentAction;
     int currentMove;
@@ -44,29 +56,32 @@ public class BattleSystem : MonoBehaviour{
     PlayerController player;
     TrainerController trainer;
     MoveBase moveToLearn;
+    BattleTrigger battleTrigger;
 
     bool isTrainerBattle = false;
 
     public Action<bool> OnBattleOver;
 
-    public void StartBattle(PokemonParty playerParty, Pokemon wildPokemon){
+    public void StartBattle(PokemonParty playerParty, Pokemon wildPokemon, BattleTrigger trigger = BattleTrigger.LongGrass){
         this.playerParty = playerParty;
         this.wildPokemon = wildPokemon;
         player = playerParty.GetComponent<PlayerController>();
         isTrainerBattle = false;
 
+        battleTrigger = trigger;
         AudioManager.i.PlayMusic(wildBattleMusic);
 
         StartCoroutine(SetupBattle());
     }
     
-    public void StartTrainerBattle(PokemonParty playerParty, PokemonParty trainerParty){
+    public void StartTrainerBattle(PokemonParty playerParty, PokemonParty trainerParty, BattleTrigger trigger = BattleTrigger.LongGrass){
         this.playerParty = playerParty;
         this.trainerParty = trainerParty;
         player = playerParty.GetComponent<PlayerController>();
         trainer = trainerParty.GetComponent<TrainerController>();
         isTrainerBattle = true;
 
+        battleTrigger = trigger;
         AudioManager.i.PlayMusic(trainerBattleMusic);
 
         StartCoroutine(SetupBattle());
@@ -75,6 +90,15 @@ public class BattleSystem : MonoBehaviour{
     public IEnumerator SetupBattle(){
         playerUnit.Clear();
         enemyUnit.Clear();
+        if(battleTrigger == BattleTrigger.Water){
+            backgroundImages.sprite = waterBackground;
+            playerUnitSpotImage.sprite = waterSpot;
+            enemyUnitSpotImage.sprite = waterSpot;
+        } else {
+            backgroundImages.sprite = longGrassBackground;
+            playerUnitSpotImage.sprite = longGrassSpot;
+            enemyUnitSpotImage.sprite = longGrassSpot;
+        }
         if(!isTrainerBattle){
             playerUnit.Setup(playerParty.GetHealthyPokemon());
             enemyUnit.Setup(wildPokemon);

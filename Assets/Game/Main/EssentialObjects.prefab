@@ -1744,6 +1744,13 @@ MonoBehaviour:
   trainerBattleMusic: {fileID: 8300000, guid: 166e93375af419740b2029b20a974fb2, type: 3}
   wildBattleVictoryMusic: {fileID: 8300000, guid: d9df7b6067ba5204d97e4e03ece4b352, type: 3}
   trainerBattleVictoryMusic: {fileID: 8300000, guid: 48b910d4851f77b4ab54c687f2ac703f, type: 3}
+  backgroundImages: {fileID: 1319676095017539271}
+  playerUnitSpotImage: {fileID: 2952405551348956802}
+  enemyUnitSpotImage: {fileID: 5711893370436446743}
+  longGrassBackground: {fileID: 21300000, guid: 569693c5f531d72499bd79adcb256cdf, type: 3}
+  longGrassSpot: {fileID: 21300000, guid: e34340a34701e824da7e8c713b3f2aa0, type: 3}
+  waterBackground: {fileID: 21300000, guid: bb6d64f4e4638d84dbfdbec9ce8de399, type: 3}
+  waterSpot: {fileID: 21300000, guid: 52dfa5f0c001b8d42aa29c1aa4abcb72, type: 3}
 --- !u!1 &4120929420876364515
 GameObject:
   m_ObjectHideFlags: 0
@@ -6303,6 +6310,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -147
       objectReference: {fileID: 0}
+    - target: {fileID: 2928418790155078641, guid: 77a8efe7964f51443b0b65093769857f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 63.800003
+      objectReference: {fileID: 0}
     - target: {fileID: 3104679456403160278, guid: 77a8efe7964f51443b0b65093769857f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -6515,6 +6526,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -25
       objectReference: {fileID: 0}
+    - target: {fileID: 7614902451074255926, guid: 77a8efe7964f51443b0b65093769857f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 63.800003
+      objectReference: {fileID: 0}
     - target: {fileID: 7854511388196344341, guid: 77a8efe7964f51443b0b65093769857f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
@@ -6626,6 +6641,10 @@ PrefabInstance:
     - target: {fileID: 8063237530261168825, guid: 77a8efe7964f51443b0b65093769857f, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -27
+      objectReference: {fileID: 0}
+    - target: {fileID: 8102043151004385465, guid: 77a8efe7964f51443b0b65093769857f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -62.899963
       objectReference: {fileID: 0}
     - target: {fileID: 8713668548357801171, guid: 77a8efe7964f51443b0b65093769857f, type: 3}
       propertyPath: m_AnchorMax.x

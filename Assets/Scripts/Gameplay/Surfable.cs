@@ -4,8 +4,17 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Surfable : MonoBehaviour,  Interactable{
+public class Surfable : MonoBehaviour,  Interactable, IPlayerTriggerable{
+    bool IsJumpingToWater = false;
+
+    public bool TriggerRepeatedly => true;
+
+
     public IEnumerator Interact(Transform initiator){
+        var animator = initiator.GetComponent<CharacterAnimator>();
+        if(animator.IsSurfing || IsJumpingToWater){
+            yield break;
+        }
         yield return DialogManager.i.ShowDialogText("The water is deep blue.");
 
         var pokemonWithSurf = initiator.GetComponent<PokemonParty>().Pokemons.FirstOrDefault( p => p.Moves.Any( m => m.Base.Name == "Surf"));
@@ -18,18 +27,25 @@ public class Surfable : MonoBehaviour,  Interactable{
             if(selectedChoice == 0){
                 yield return DialogManager.i.ShowDialogText($"{pokemonWithSurf.Base.Name} used Surf!");
 
-                var animator = initiator.GetComponent<CharacterAnimator>();
                 var dir = new Vector3(animator.MoveX, animator.MoveY);
                 var targetPos = initiator.position + dir;
 
-                animator.IsSurfing = true;
-                
-                GameObject pokemonAnimatorObj = CreatePokemonAnimator(initiator, pokemonWithSurf.Base);
-                
+                IsJumpingToWater = true;
                 yield return initiator.DOJump(targetPos, 0.3f, 1, 0.5f).WaitForCompletion();
+                IsJumpingToWater = false;
+
+                animator.IsSurfing = true;
+                GameObject pokemonAnimatorObj = CreatePokemonAnimator(initiator, pokemonWithSurf.Base);
             }
         }
     }
+
+    public void OnPlayerTriggered(PlayerController player){
+        if(UnityEngine.Random.Range(1,101) <= 10){
+            GameController.i.StartBattle(BattleTrigger.Water);
+        }
+    }
+
 
     GameObject CreatePokemonAnimator(Transform player, PokemonBase pokemon){
         GameObject pokemonAnimatorObj = new GameObject("PokemonAnimator");

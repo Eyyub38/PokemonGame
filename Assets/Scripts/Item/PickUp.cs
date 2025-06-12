@@ -8,7 +8,6 @@ public class PickUp : MonoBehaviour, Interactable, ISavable{
 
     public bool Used { get; set; } = false;
 
-
     public IEnumerator Interact(Transform initiator){
         if(!Used){
             initiator.GetComponent<Inventory>().AddItem(item, count);

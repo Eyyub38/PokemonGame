@@ -21,7 +21,7 @@ public class GameLayers : MonoBehaviour{
     public LayerMask WaterLayer => waterLayer;
 
     public LayerMask TriggerableLayers {
-        get => grassLayer | fovLayer | portalLayer | triggersLayer;
+        get => grassLayer | fovLayer | portalLayer | triggersLayer | waterLayer;
     }
 
     public static GameLayers i { get; set; }

@@ -42848,8 +42848,16 @@ PrefabInstance:
       value: 30ffdaca-3c08-4224-ac1d-1b595d320ab0
       objectReference: {fileID: 0}
     - target: {fileID: 3630502596911388949, guid: 4abe2754a56efa54fb573cd6f1fe2bb6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3630502596911388949, guid: 4abe2754a56efa54fb573cd6f1fe2bb6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3630502596911388949, guid: 4abe2754a56efa54fb573cd6f1fe2bb6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.5
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 3630502596911388949, guid: 4abe2754a56efa54fb573cd6f1fe2bb6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -42885,6 +42893,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3630502596911388949, guid: 4abe2754a56efa54fb573cd6f1fe2bb6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6573750745239603365, guid: 4abe2754a56efa54fb573cd6f1fe2bb6, type: 3}
+      propertyPath: m_Size.x
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6573750745239603365, guid: 4abe2754a56efa54fb573cd6f1fe2bb6, type: 3}
+      propertyPath: m_Size.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6573750745239603365, guid: 4abe2754a56efa54fb573cd6f1fe2bb6, type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6573750745239603365, guid: 4abe2754a56efa54fb573cd6f1fe2bb6, type: 3}
+      propertyPath: m_EdgeRadius
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6573750745239603365, guid: 4abe2754a56efa54fb573cd6f1fe2bb6, type: 3}
+      propertyPath: m_CompositeOperation
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9133653927294688112, guid: 4abe2754a56efa54fb573cd6f1fe2bb6, type: 3}

@@ -8,15 +8,15 @@ public class MapAreaEditor : Editor{
     public override void OnInspectorGUI(){
         base.OnInspectorGUI();
 
-        int totalCahnce = serializedObject.FindProperty("totalChance").intValue;
+        int totalCahnceInGrass = serializedObject.FindProperty("totalChance").intValue;
+        int totalCahnceInWater = serializedObject.FindProperty("totalChanceWater").intValue;
 
-        var style = new GUIStyle();
-        style.fontStyle = FontStyle.Bold;
-
-        GUILayout.Label($"Total Chance:  {totalCahnce}", style);
-        
-        if(totalCahnce != 100){
-            EditorGUILayout.HelpBox("The total chance is not 100", MessageType.Error);
+        if(totalCahnceInGrass != 100 && totalCahnceInWater != -1){
+            EditorGUILayout.HelpBox($"The total chance in Grass is {totalCahnceInGrass} and not 100", MessageType.Error);
+        }
+                
+        if(totalCahnceInWater != 100 && totalCahnceInWater != -1){
+            EditorGUILayout.HelpBox($"The total chance in Water is {totalCahnceInWater} and not 100", MessageType.Error);
         }
     }
 }
