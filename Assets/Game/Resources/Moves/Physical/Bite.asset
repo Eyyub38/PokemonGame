@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Bite
   description: ' An attack that may cause flinching.'
+  soundEffect: {fileID: 8300000, guid: d7fcaf5503b76984bb36efc521a9f02d, type: 3}
   type: 16
   power: 60
   accuracy: 100
@@ -25,8 +26,8 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
-  secondaries: []
   target: 0
+  secondaries: []
   recoil:
     recoilType: 0
     recoilDamage: 0

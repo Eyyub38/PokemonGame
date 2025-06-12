@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Twineedle
   description: Jabs the foe twice using stingers.
+  soundEffect: {fileID: 8300000, guid: 450b8f12cd3da2e4abcae9bd7285cdc3, type: 3}
   type: 12
   power: 25
   accuracy: 100

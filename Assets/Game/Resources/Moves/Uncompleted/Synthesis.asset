@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Synthesis
   description: estores HP (varies by time).
+  soundEffect: {fileID: 8300000, guid: a76a264f83296914db563db52c794a88, type: 3}
   type: 4
   power: 0
   accuracy: 0
@@ -25,8 +26,8 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
-  secondaries: []
   target: 0
+  secondaries: []
   recoil:
     recoilType: 0
     recoilDamage: 0

@@ -14,12 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Sleep Powder
   description: ' May cause the foe to fall asleep.'
+  soundEffect: {fileID: 8300000, guid: 7e548ad4a47e1344598c90362f6f46cf, type: 3}
   type: 4
   power: 0
   accuracy: 75
+  alwaysHits: 0
   pp: 15
+  priority: 0
   category: 2
   effects:
     boosts: []
     status: 3
+    volatileStatus: 0
   target: 0
+  secondaries: []
+  recoil:
+    recoilType: 0
+    recoilDamage: 0
+  critBehaviour: 0

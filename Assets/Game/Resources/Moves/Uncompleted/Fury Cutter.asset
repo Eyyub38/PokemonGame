@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Fury Cutter
   description: Successive hits raise power.
+  soundEffect: {fileID: 8300000, guid: f733d8fd4cbadf041b18bbe3c200f9d9, type: 3}
   type: 12
   power: 40
   accuracy: 95
@@ -25,8 +26,8 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
-  secondaries: []
   target: 0
+  secondaries: []
   recoil:
     recoilType: 0
     recoilDamage: 0

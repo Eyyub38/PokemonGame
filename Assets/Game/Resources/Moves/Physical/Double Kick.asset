@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Double Kick
   description: A double kicking attack.
+  soundEffect: {fileID: 8300000, guid: 1111ee5e2c935fe4eba945d96d0a15f6, type: 3}
   type: 7
   power: 30
   accuracy: 100
@@ -25,5 +26,9 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
-  secondaries: []
   target: 0
+  secondaries: []
+  recoil:
+    recoilType: 0
+    recoilDamage: 0
+  critBehaviour: 0

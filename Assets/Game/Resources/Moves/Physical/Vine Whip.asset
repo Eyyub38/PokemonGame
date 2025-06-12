@@ -14,12 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Vine Whip
   description: Whips the foe with slender vines.
+  soundEffect: {fileID: 8300000, guid: 64ed76c99345e2e4381cd7abb6068295, type: 3}
   type: 4
   power: 45
   accuracy: 100
+  alwaysHits: 0
   pp: 25
+  priority: 0
   category: 0
   effects:
     boosts: []
     status: 0
+    volatileStatus: 0
   target: 0
+  secondaries: []
+  recoil:
+    recoilType: 0
+    recoilDamage: 0
+  critBehaviour: 0

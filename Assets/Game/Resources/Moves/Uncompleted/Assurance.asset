@@ -15,6 +15,7 @@ MonoBehaviour:
   _name: Assurance
   description: "If the foe has already taken some damage in the same turn, this attack\u2019s
     power is doubled."
+  soundEffect: {fileID: 8300000, guid: 42193ee7d187ed449a14e07218a65e01, type: 3}
   type: 16
   power: 60
   accuracy: 100
@@ -26,8 +27,8 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
-  secondaries: []
   target: 0
+  secondaries: []
   recoil:
     recoilType: 0
     recoilDamage: 0

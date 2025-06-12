@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Take Down
   description: A tackle that also hurts the user.
+  soundEffect: {fileID: 8300000, guid: bbaafd360d4cba74f8ce9b3a46f6705e, type: 3}
   type: 1
   power: 90
   accuracy: 85
@@ -25,8 +26,8 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
-  secondaries: []
   target: 0
+  secondaries: []
   recoil:
     recoilType: 3
     recoilDamage: 25

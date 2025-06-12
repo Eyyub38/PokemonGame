@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Metal Claw
   description: ' An attack that may up user''s Attack.'
+  soundEffect: {fileID: 8300000, guid: 83458b86397759648874628a6a01dc07, type: 3}
   type: 17
   power: 50
   accuracy: 95
@@ -25,6 +26,7 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
+  target: 0
   secondaries:
   - boosts:
     - stat: 0
@@ -33,4 +35,7 @@ MonoBehaviour:
     volatileStatus: 0
     chance: 10
     target: 1
-  target: 0
+  recoil:
+    recoilType: 0
+    recoilDamage: 0
+  critBehaviour: 0

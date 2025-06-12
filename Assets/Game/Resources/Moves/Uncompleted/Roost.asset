@@ -15,6 +15,7 @@ MonoBehaviour:
   _name: Roost
   description: " The user lands and rests its body. It restores the user\u2019s HP
     by up to half of its max HP."
+  soundEffect: {fileID: 8300000, guid: 8dff7cb405ed938419c1bc4d6b38932b, type: 3}
   type: 10
   power: 0
   accuracy: 0

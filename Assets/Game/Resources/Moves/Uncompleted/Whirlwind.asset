@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Whirlwind
   description: Blows away the foe & ends battle.
+  soundEffect: {fileID: 8300000, guid: d48efce2ed096d64eaad9c52d7c6f14b, type: 3}
   type: 1
   power: 0
   accuracy: 0
@@ -29,8 +30,8 @@ MonoBehaviour:
       boost: -6
     status: 0
     volatileStatus: 0
-  secondaries: []
   target: 0
+  secondaries: []
   recoil:
     recoilType: 0
     recoilDamage: 0

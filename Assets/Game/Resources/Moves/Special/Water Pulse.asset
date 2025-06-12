@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Water Pulse
   description: Attacks with ultrasonic waves. May confuse the foe
+  soundEffect: {fileID: 8300000, guid: fe92f1e1ebc1db8488a76de5275e08ae, type: 3}
   type: 3
   power: 60
   accuracy: 100
@@ -25,10 +26,14 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
+  target: 0
   secondaries:
   - boosts: []
     status: 0
     volatileStatus: 8
     chance: 20
     target: 0
-  target: 0
+  recoil:
+    recoilType: 0
+    recoilDamage: 0
+  critBehaviour: 0

@@ -14,12 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Sand Attack
   description: Reduces accuracy by throwing sand.
+  soundEffect: {fileID: 8300000, guid: a95339f4173eda349a1107eb373995f2, type: 3}
   type: 9
   power: 0
   accuracy: 100
+  alwaysHits: 0
   pp: 15
+  priority: 0
   category: 2
   effects:
     boosts: []
     status: 0
+    volatileStatus: 0
   target: 0
+  secondaries: []
+  recoil:
+    recoilType: 0
+    recoilDamage: 0
+  critBehaviour: 0

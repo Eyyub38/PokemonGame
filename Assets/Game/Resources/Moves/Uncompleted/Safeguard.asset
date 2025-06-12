@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Safeguard
   description: Prevents all status problems.
+  soundEffect: {fileID: 8300000, guid: bf2a8c95248d8eb4cb2f449c3d16221d, type: 3}
   type: 1
   power: 0
   accuracy: 0
@@ -27,8 +28,8 @@ MonoBehaviour:
       boost: 6
     status: 0
     volatileStatus: 0
-  secondaries: []
   target: 1
+  secondaries: []
   recoil:
     recoilType: 0
     recoilDamage: 0

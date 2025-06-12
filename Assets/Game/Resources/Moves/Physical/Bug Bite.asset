@@ -15,12 +15,21 @@ MonoBehaviour:
   _name: Bug Bite
   description: The user bites the foe. If the foe is holding a Berry, the user eats
     it and gains its effect.
+  soundEffect: {fileID: 8300000, guid: eeff34b9d52d86146b7ffa4459e83309, type: 3}
   type: 12
   power: 60
   accuracy: 100
+  alwaysHits: 0
   pp: 20
+  priority: 0
   category: 0
   effects:
     boosts: []
     status: 0
+    volatileStatus: 0
   target: 0
+  secondaries: []
+  recoil:
+    recoilType: 0
+    recoilDamage: 0
+  critBehaviour: 0

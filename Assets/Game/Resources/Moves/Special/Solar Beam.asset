@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Solar Beam
   description: '1st turn: Prepare 2nd turn: Attack'
+  soundEffect: {fileID: 8300000, guid: 8ba835a639a5e764685539e2731f02f3, type: 3}
   type: 4
   power: 120
   accuracy: 100
@@ -25,8 +26,8 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
-  secondaries: []
   target: 0
+  secondaries: []
   recoil:
     recoilType: 0
     recoilDamage: 0

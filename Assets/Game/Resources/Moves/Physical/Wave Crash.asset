@@ -16,6 +16,7 @@ MonoBehaviour:
   description: "The user shrouds itself in water and slams into the target with its
     whole body to inflict damage. This also damages the user and raises the user\u2019s
     action speed."
+  soundEffect: {fileID: 8300000, guid: 2e0b8c50dbbe45a40baf3e1715c2ebe6, type: 3}
   type: 3
   power: 120
   accuracy: 100
@@ -27,8 +28,8 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
-  secondaries: []
   target: 0
+  secondaries: []
   recoil:
     recoilType: 0
     recoilDamage: 0

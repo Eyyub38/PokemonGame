@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Focus Energy
   description: "Raises the criti\xAD cal hit ratio."
+  soundEffect: {fileID: 8300000, guid: ddda4e1d66617de48ab40537610970ac, type: 3}
   type: 1
   power: 0
   accuracy: 0
@@ -27,8 +28,8 @@ MonoBehaviour:
       boost: 6
     status: 0
     volatileStatus: 0
-  secondaries: []
   target: 0
+  secondaries: []
   recoil:
     recoilType: 0
     recoilDamage: 0

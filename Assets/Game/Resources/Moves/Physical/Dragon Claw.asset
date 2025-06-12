@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Dragon Claw
   description: ' Slashes the foe with sharp claws.'
+  soundEffect: {fileID: 8300000, guid: 133bd10c5a0662846b36ec2e2a1b16f5, type: 3}
   type: 15
   power: 80
   accuracy: 100
@@ -25,8 +26,8 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
-  secondaries: []
   target: 0
+  secondaries: []
   recoil:
     recoilType: 0
     recoilDamage: 0

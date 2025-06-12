@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Growth
   description: Raises the SpAttack rating.
+  soundEffect: {fileID: 8300000, guid: d25733957c689224c833f5f76dbc2641, type: 3}
   type: 1
   power: 0
   accuracy: 0
@@ -29,5 +30,9 @@ MonoBehaviour:
       boost: 1
     status: 0
     volatileStatus: 0
-  secondaries: []
   target: 1
+  secondaries: []
+  recoil:
+    recoilType: 0
+    recoilDamage: 0
+  critBehaviour: 0

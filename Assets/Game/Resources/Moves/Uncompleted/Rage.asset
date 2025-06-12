@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Rage
   description: Raises attack if the user is hit.
+  soundEffect: {fileID: 8300000, guid: 97b09ce783f5e514a90e6c93a5678cee, type: 3}
   type: 1
   power: 20
   accuracy: 100
@@ -25,6 +26,7 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
+  target: 0
   secondaries:
   - boosts:
     - stat: 0
@@ -33,7 +35,6 @@ MonoBehaviour:
     volatileStatus: 0
     chance: 0
     target: 1
-  target: 0
   recoil:
     recoilType: 0
     recoilDamage: 0

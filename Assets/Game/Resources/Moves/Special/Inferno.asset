@@ -15,6 +15,7 @@ MonoBehaviour:
   _name: Inferno
   description: The user attacks by engulfing the target in an intense fire. It leaves
     the target with a burn.
+  soundEffect: {fileID: 8300000, guid: e3ebe1eed6208b549b8d0be5889c4b06, type: 3}
   type: 2
   power: 100
   accuracy: 50
@@ -26,13 +27,13 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
+  target: 0
   secondaries:
   - boosts: []
     status: 2
     volatileStatus: 0
     chance: 100
     target: 0
-  target: 0
   recoil:
     recoilType: 0
     recoilDamage: 0

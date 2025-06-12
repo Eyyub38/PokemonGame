@@ -15,6 +15,7 @@ MonoBehaviour:
   _name: Electro Ball
   description: The user hurls an electric orb at the target. The faster the user
     is than the target, the greater the damage.
+  soundEffect: {fileID: 8300000, guid: c1e392d7317ac8c479d4c89f91e33354, type: 3}
   type: 5
   power: 150
   accuracy: 100
@@ -26,5 +27,9 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
-  secondaries: []
   target: 0
+  secondaries: []
+  recoil:
+    recoilType: 0
+    recoilDamage: 0
+  critBehaviour: 0

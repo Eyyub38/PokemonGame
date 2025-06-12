@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Mirror Move
   description: Counters with the same move.
+  soundEffect: {fileID: 8300000, guid: a431bcd014ad4c546b408052781dd9b2, type: 3}
   type: 10
   power: 0
   accuracy: 0
@@ -25,5 +26,9 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
-  secondaries: []
   target: 0
+  secondaries: []
+  recoil:
+    recoilType: 0
+    recoilDamage: 0
+  critBehaviour: 0

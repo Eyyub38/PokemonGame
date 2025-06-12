@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Protect
   description: Foils attack that turn. It may fail.
+  soundEffect: {fileID: 8300000, guid: 65878e0c943aefc44bd3e4d32de8bd1e, type: 3}
   type: 0
   power: 0
   accuracy: 0
@@ -27,8 +28,8 @@ MonoBehaviour:
       boost: 6
     status: 0
     volatileStatus: 0
-  secondaries: []
   target: 1
+  secondaries: []
   recoil:
     recoilType: 0
     recoilDamage: 0

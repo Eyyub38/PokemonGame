@@ -15,6 +15,7 @@ MonoBehaviour:
   _name: Laser Focus
   description: The user concentrates intensely. The attack on the next turn always
     results in a critical hit.
+  soundEffect: {fileID: 8300000, guid: e826ce2baaae0904094756587461de87, type: 3}
   type: 1
   power: 0
   accuracy: 0
@@ -28,8 +29,8 @@ MonoBehaviour:
       boost: 6
     status: 0
     volatileStatus: 0
-  secondaries: []
   target: 0
+  secondaries: []
   recoil:
     recoilType: 0
     recoilDamage: 0

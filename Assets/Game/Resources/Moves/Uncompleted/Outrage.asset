@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Outrage
   description: Works 2-3 turns and confuses user.
+  soundEffect: {fileID: 8300000, guid: 5fffe98ae27ef204d8b923155c30bbd0, type: 3}
   type: 15
   power: 120
   accuracy: 100
@@ -25,13 +26,13 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
+  target: 0
   secondaries:
   - boosts: []
     status: 0
     volatileStatus: 8
     chance: 100
     target: 0
-  target: 0
   recoil:
     recoilType: 0
     recoilDamage: 0

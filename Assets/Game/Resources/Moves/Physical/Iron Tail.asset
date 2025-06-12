@@ -14,14 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Iron Tail
   description: An attack that may reduce defense.
+  soundEffect: {fileID: 8300000, guid: 478728540cb9f404e9afaf0a731201cb, type: 3}
   type: 0
   power: 100
   accuracy: 75
+  alwaysHits: 0
   pp: 15
+  priority: 0
   category: 0
   effects:
     boosts:
     - stat: 1
       boost: -1
     status: 0
+    volatileStatus: 0
   target: 0
+  secondaries: []
+  recoil:
+    recoilType: 0
+    recoilDamage: 0
+  critBehaviour: 0

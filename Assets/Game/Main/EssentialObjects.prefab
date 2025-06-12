@@ -413,7 +413,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   evolutionUI: {fileID: 8228631686933087784}
   evolutionImage: {fileID: 9056574366429004151}
-  evolutionMusic: {fileID: 8300000, guid: 7760936f1c5ff3545bd2f252a37fdcf9, type: 3}
+  evolutionMusic: {fileID: 8300000, guid: 12376ac8d1955c64980d41a107e82208, type: 3}
 --- !u!1 &1025353801506284044
 GameObject:
   m_ObjectHideFlags: 0
@@ -1734,9 +1734,9 @@ MonoBehaviour:
   playerImage: {fileID: 235466175986944993}
   trainerImage: {fileID: 5138801045670261400}
   pokeballSprite: {fileID: 8603953037000960197, guid: 4f492726bf12e014ca2c93d7bd4a241f, type: 3}
-  wildBattleMusic: {fileID: 8300000, guid: 408dea41850ffd04a9fb67e577dd7ad0, type: 3}
+  wildBattleMusic: {fileID: 8300000, guid: b058d8ed1020d714a967ca18bde72bb3, type: 3}
   trainerBattleMusic: {fileID: 8300000, guid: 166e93375af419740b2029b20a974fb2, type: 3}
-  wildBattleVictoryMusic: {fileID: 8300000, guid: 6548270f3f68c454b93a720e383cff97, type: 3}
+  wildBattleVictoryMusic: {fileID: 8300000, guid: d9df7b6067ba5204d97e4e03ece4b352, type: 3}
   trainerBattleVictoryMusic: {fileID: 8300000, guid: 48b910d4851f77b4ab54c687f2ac703f, type: 3}
 --- !u!1 &4120929420876364515
 GameObject:
@@ -3251,11 +3251,17 @@ MonoBehaviour:
   fadeDuration: 0.75
   sfxList:
   - id: 0
-    clip: {fileID: 8300000, guid: 2cff751f128c94347a66476fb74f63e5, type: 3}
+    clip: {fileID: 8300000, guid: b13c121a7f58376418f41c000051330f, type: 3}
   - id: 1
-    clip: {fileID: 8300000, guid: 1e244cdef0ffeb942a677f209c184cd1, type: 3}
+    clip: {fileID: 8300000, guid: 6f2fd3f751f79fd40abad38a16a60a38, type: 3}
   - id: 2
     clip: {fileID: 8300000, guid: 1e244cdef0ffeb942a677f209c184cd1, type: 3}
+  - id: 4
+    clip: {fileID: 8300000, guid: f4fb2c2ef9dd9db4883e00fc42921d3f, type: 3}
+  - id: 5
+    clip: {fileID: 8300000, guid: 0aa0eb368f9f99a4eb6014b260780e94, type: 3}
+  - id: 3
+    clip: {fileID: 8300000, guid: 7db3e6b3fd4d5cf459724ee1a7e5d6ab, type: 3}
 --- !u!1 &9169251941663611607
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Poison Sting
   description: An attack that may poison the target.
+  soundEffect: {fileID: 8300000, guid: 3cd70b3a599ee5b41a9d77f8eee95880, type: 3}
   type: 8
   power: 13
   accuracy: 100
@@ -25,13 +26,13 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
+  target: 0
   secondaries:
   - boosts: []
     status: 1
     volatileStatus: 0
     chance: 30
     target: 0
-  target: 0
   recoil:
     recoilType: 0
     recoilDamage: 0

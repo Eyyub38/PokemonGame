@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Sludge
   description: An attack that may poison the foe.
+  soundEffect: {fileID: 8300000, guid: 00b1a20370ea9ea42bb447e1e625b885, type: 3}
   type: 8
   power: 65
   accuracy: 100
@@ -25,10 +26,14 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
+  target: 0
   secondaries:
   - boosts: []
     status: 1
     volatileStatus: 0
     chance: 30
     target: 0
-  target: 0
+  recoil:
+    recoilType: 0
+    recoilDamage: 0
+  critBehaviour: 0

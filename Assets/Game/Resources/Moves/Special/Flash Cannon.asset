@@ -15,6 +15,7 @@ MonoBehaviour:
   _name: Flash Cannon
   description: "The user gathers all its light energy and releases it at once. It
     may also lower the foe\u2019s Sp. Def stat."
+  soundEffect: {fileID: 8300000, guid: 3c8704aae8fbf644781f89b83b76384d, type: 3}
   type: 17
   power: 80
   accuracy: 100
@@ -26,6 +27,7 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
+  target: 0
   secondaries:
   - boosts:
     - stat: 3
@@ -34,7 +36,6 @@ MonoBehaviour:
     volatileStatus: 0
     chance: 10
     target: 0
-  target: 0
   recoil:
     recoilType: 0
     recoilDamage: 0

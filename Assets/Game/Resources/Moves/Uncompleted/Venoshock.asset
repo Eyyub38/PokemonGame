@@ -15,6 +15,7 @@ MonoBehaviour:
   _name: Venoshock
   description: The user drenches the target in a special poisonous liquid. Its power
     is doubled if the target is poisoned.
+  soundEffect: {fileID: 8300000, guid: 3603df3edbab4b7438faf3089658c0a6, type: 3}
   type: 8
   power: 65
   accuracy: 100
@@ -26,8 +27,8 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
-  secondaries: []
   target: 0
+  secondaries: []
   recoil:
     recoilType: 0
     recoilDamage: 0

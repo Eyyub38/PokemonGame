@@ -14,12 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Water Gun
   description: ' Squirts water to attack.'
+  soundEffect: {fileID: 8300000, guid: 8d0823ade934f2b4c837b7bf2a13e5a5, type: 3}
   type: 3
   power: 40
   accuracy: 100
+  alwaysHits: 0
   pp: 25
+  priority: 0
   category: 1
   effects:
     boosts: []
     status: 0
+    volatileStatus: 0
   target: 0
+  secondaries: []
+  recoil:
+    recoilType: 0
+    recoilDamage: 0
+  critBehaviour: 0

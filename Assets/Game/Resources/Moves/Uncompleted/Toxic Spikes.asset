@@ -15,6 +15,7 @@ MonoBehaviour:
   _name: Toxic Spikes
   description: "The user lays a trap of poison spikes at the foe\u2019s feet. They
     poison foes that switch into battle."
+  soundEffect: {fileID: 8300000, guid: 462cb8bbf0394d34c94e747d1539b70c, type: 3}
   type: 8
   power: 0
   accuracy: 0
@@ -26,8 +27,8 @@ MonoBehaviour:
     boosts: []
     status: 1
     volatileStatus: 0
-  secondaries: []
   target: 0
+  secondaries: []
   recoil:
     recoilType: 0
     recoilDamage: 0

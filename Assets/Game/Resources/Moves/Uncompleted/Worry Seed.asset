@@ -15,6 +15,7 @@ MonoBehaviour:
   _name: Worry Seed
   description: A seed that causes worry is planted on the foe. It prevents sleep
     by making its ability Insomnia.
+  soundEffect: {fileID: 8300000, guid: 7cb056a339a8da548901bdf768aafd26, type: 3}
   type: 4
   power: 0
   accuracy: 100
@@ -26,8 +27,8 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
-  secondaries: []
   target: 0
+  secondaries: []
   recoil:
     recoilType: 0
     recoilDamage: 0

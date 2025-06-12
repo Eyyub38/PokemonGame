@@ -14,12 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Ember
   description: The foe is attacked with small flames. The foe may suffer a burn.
+  soundEffect: {fileID: 8300000, guid: c3eab42810b0e4844b56cbefbcc5964b, type: 3}
   type: 2
   power: 40
   accuracy: 100
+  alwaysHits: 0
   pp: 25
+  priority: 0
   category: 1
   effects:
     boosts: []
     status: 2
+    volatileStatus: 0
   target: 0
+  secondaries: []
+  recoil:
+    recoilType: 0
+    recoilDamage: 0
+  critBehaviour: 0

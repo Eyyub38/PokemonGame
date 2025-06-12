@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Withdraw
   description: Heightens the user's Defense.
+  soundEffect: {fileID: 8300000, guid: 5033a1c40edb7654bbf2323319c25e77, type: 3}
   type: 3
   power: 0
   accuracy: 0
@@ -27,5 +28,9 @@ MonoBehaviour:
       boost: 1
     status: 0
     volatileStatus: 0
-  secondaries: []
   target: 1
+  secondaries: []
+  recoil:
+    recoilType: 0
+    recoilDamage: 0
+  critBehaviour: 0

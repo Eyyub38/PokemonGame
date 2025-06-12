@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Supersonic
   description: Sound waves that cause confusion.
+  soundEffect: {fileID: 8300000, guid: 96997b233fda8bb4aa2b09fcc3e5e9e4, type: 3}
   type: 1
   power: 0
   accuracy: 55
@@ -25,8 +26,8 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 8
-  secondaries: []
   target: 0
+  secondaries: []
   recoil:
     recoilType: 0
     recoilDamage: 0

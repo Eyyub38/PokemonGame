@@ -14,12 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Dragon Breath
   description: A strong breath attack.
+  soundEffect: {fileID: 8300000, guid: 5559b6fb5f83bf046a01bf6ec279760b, type: 3}
   type: 15
   power: 60
   accuracy: 100
+  alwaysHits: 0
   pp: 20
+  priority: 0
   category: 1
   effects:
     boosts: []
     status: 4
+    volatileStatus: 0
   target: 0
+  secondaries: []
+  recoil:
+    recoilType: 0
+    recoilDamage: 0
+  critBehaviour: 0

@@ -15,6 +15,7 @@ MonoBehaviour:
   _name: Poison Jab
   description: The foe is stabbed with a tentacle or arm steeped in poison. It may
     also poison the foe.
+  soundEffect: {fileID: 8300000, guid: 2df05755af20d3e4cb5c9e2777b03547, type: 3}
   type: 8
   power: 80
   accuracy: 100
@@ -26,13 +27,13 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
+  target: 0
   secondaries:
   - boosts: []
     status: 1
     volatileStatus: 0
     chance: 30
     target: 0
-  target: 0
   recoil:
     recoilType: 0
     recoilDamage: 0

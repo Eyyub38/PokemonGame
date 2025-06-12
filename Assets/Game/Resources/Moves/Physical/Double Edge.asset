@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Double Edge
   description: A tackle that also hurts the user.
+  soundEffect: {fileID: 8300000, guid: 5a11adb5326693f4c818f77c1ed92e9c, type: 3}
   type: 1
   power: 120
   accuracy: 100
@@ -25,8 +26,8 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
-  secondaries: []
   target: 0
+  secondaries: []
   recoil:
     recoilType: 3
     recoilDamage: 33

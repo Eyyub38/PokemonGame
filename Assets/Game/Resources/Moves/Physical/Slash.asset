@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Slash
   description: " Has a high criti\xAD cal hit ratio."
+  soundEffect: {fileID: 8300000, guid: e89f8549eabcc57409f2ac297eaa6bbd, type: 3}
   type: 1
   power: 70
   accuracy: 100
@@ -25,8 +26,8 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
-  secondaries: []
   target: 0
+  secondaries: []
   recoil:
     recoilType: 0
     recoilDamage: 0

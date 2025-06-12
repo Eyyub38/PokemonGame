@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Pin Missile
   description: Fires pins that strike 2-5 times.
+  soundEffect: {fileID: 8300000, guid: 3228b27917548cb40b964d65c8c7be23, type: 3}
   type: 12
   power: 25
   accuracy: 95
@@ -25,8 +26,8 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
-  secondaries: []
   target: 0
+  secondaries: []
   recoil:
     recoilType: 0
     recoilDamage: 0

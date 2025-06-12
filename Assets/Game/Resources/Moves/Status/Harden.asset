@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Harden
   description: "Stiffens the body\u2019s muscles to raise Defense."
+  soundEffect: {fileID: 8300000, guid: f2fae97bfac52cd46a73b4cfa73ab9e4, type: 3}
   type: 1
   power: 0
   accuracy: 0
@@ -27,8 +28,8 @@ MonoBehaviour:
       boost: 1
     status: 0
     volatileStatus: 0
-  secondaries: []
   target: 1
+  secondaries: []
   recoil:
     recoilType: 0
     recoilDamage: 0

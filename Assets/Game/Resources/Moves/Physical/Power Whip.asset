@@ -15,6 +15,7 @@ MonoBehaviour:
   _name: Power Whip
   description: 'The user violently whirls its vines or tentacles to harshly lash
     the foe. '
+  soundEffect: {fileID: 8300000, guid: a764e5e42fbe0654c99844dd0ce9872e, type: 3}
   type: 4
   power: 120
   accuracy: 85
@@ -26,8 +27,8 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
-  secondaries: []
   target: 0
+  secondaries: []
   recoil:
     recoilType: 0
     recoilDamage: 0

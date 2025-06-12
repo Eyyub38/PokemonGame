@@ -15,6 +15,7 @@ MonoBehaviour:
   _name: Feint
   description: An attack that hits a foe using Protect or Detect. It also lifts the
     effects of those moves.
+  soundEffect: {fileID: 8300000, guid: 125a8e7d02781d74cbd83cf682e8569e, type: 3}
   type: 1
   power: 30
   accuracy: 100

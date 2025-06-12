@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Stun Spore
   description: ' A move that may paralyze the foe.'
+  soundEffect: {fileID: 8300000, guid: b90aba986c2f2aa4b93ad813d726b290, type: 3}
   type: 4
   power: 0
   accuracy: 75
@@ -25,8 +26,8 @@ MonoBehaviour:
     boosts: []
     status: 4
     volatileStatus: 0
-  secondaries: []
   target: 0
+  secondaries: []
   recoil:
     recoilType: 0
     recoilDamage: 0

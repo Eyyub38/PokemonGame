@@ -15,6 +15,7 @@ MonoBehaviour:
   _name: Air Slash
   description: The user attacks with a blade of air that slices even the sky. It
     may also make the target flinch.
+  soundEffect: {fileID: 8300000, guid: d925a698e0e4486408334bd85473208e, type: 3}
   type: 10
   power: 75
   accuracy: 95
@@ -26,8 +27,8 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
-  secondaries: []
   target: 0
+  secondaries: []
   recoil:
     recoilType: 0
     recoilDamage: 0

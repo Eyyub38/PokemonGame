@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Thunder
   description: An attack that may cause paralysis.
+  soundEffect: {fileID: 8300000, guid: e4361416a0936f84ba32eede9d4947fd, type: 3}
   type: 5
   power: 110
   accuracy: 70
@@ -25,10 +26,14 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
+  target: 0
   secondaries:
   - boosts: []
     status: 4
     volatileStatus: 0
     chance: 30
     target: 0
-  target: 0
+  recoil:
+    recoilType: 0
+    recoilDamage: 0
+  critBehaviour: 0

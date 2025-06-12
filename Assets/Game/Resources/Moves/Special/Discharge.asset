@@ -15,6 +15,7 @@ MonoBehaviour:
   _name: Discharge
   description: "A flare of electricity is loosed to strike all Pok\xE9mon in battle.
     It may also cause paralysis."
+  soundEffect: {fileID: 8300000, guid: 72be408ad6b882b4da9d9e750c0c5fe9, type: 3}
   type: 5
   power: 80
   accuracy: 100

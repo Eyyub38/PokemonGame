@@ -15,6 +15,7 @@ MonoBehaviour:
   _name: Fell Stinger
   description: "When the user knocks out a target with this move, the user\u2019s
     Attack stat rises sharply."
+  soundEffect: {fileID: 8300000, guid: 36ae3fed6b8ebd74fb5253fbf82abd4d, type: 3}
   type: 12
   power: 50
   accuracy: 100
@@ -26,8 +27,8 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
-  secondaries: []
   target: 0
+  secondaries: []
   recoil:
     recoilType: 0
     recoilDamage: 0

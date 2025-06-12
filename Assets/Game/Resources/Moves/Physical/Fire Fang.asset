@@ -15,6 +15,7 @@ MonoBehaviour:
   _name: Fire Fang
   description: The user bites with flame-cloaked fangs. It may also make the foe
     flinch or sustain a burn.
+  soundEffect: {fileID: 8300000, guid: bb66c4ae6cd922245bc57524745ae3b7, type: 3}
   type: 2
   power: 65
   accuracy: 95
@@ -26,13 +27,13 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
+  target: 0
   secondaries:
   - boosts: []
     status: 2
     volatileStatus: 0
     chance: 10
     target: 0
-  target: 0
   recoil:
     recoilType: 0
     recoilDamage: 0

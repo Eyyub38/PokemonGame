@@ -15,6 +15,7 @@ MonoBehaviour:
   _name: Seed Bomb
   description: The user slams a barrage of hard- shelled seeds down on the foe from
     above.
+  soundEffect: {fileID: 8300000, guid: 8e29de3e4fa182f4b99367166e333622, type: 3}
   type: 4
   power: 80
   accuracy: 100
@@ -26,8 +27,8 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
-  secondaries: []
   target: 0
+  secondaries: []
   recoil:
     recoilType: 0
     recoilDamage: 0

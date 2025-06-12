@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Swift
   description: Sprays star-shaped rays that never miss.
+  soundEffect: {fileID: 8300000, guid: aef77de0e9c662d4fb8d5c3d6de48a1c, type: 3}
   type: 1
   power: 60
   accuracy: 0
@@ -25,5 +26,9 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
-  secondaries: []
   target: 0
+  secondaries: []
+  recoil:
+    recoilType: 0
+    recoilDamage: 0
+  critBehaviour: 0

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Skull Bash
   description: '1st turn: Prepare 2nd turn: Attack'
+  soundEffect: {fileID: 8300000, guid: c96ccb457c6473d48991a312af60e05f, type: 3}
   type: 1
   power: 130
   accuracy: 100
@@ -25,6 +26,7 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
+  target: 0
   secondaries:
   - boosts:
     - stat: 1
@@ -33,7 +35,6 @@ MonoBehaviour:
     volatileStatus: 0
     chance: 0
     target: 1
-  target: 0
   recoil:
     recoilType: 0
     recoilDamage: 0

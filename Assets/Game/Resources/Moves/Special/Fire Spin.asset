@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Fire Spin
   description: Traps foe in fire for 2-5 turns.
+  soundEffect: {fileID: 8300000, guid: 648ab192c4548a647be2177709b16d35, type: 3}
   type: 2
   power: 35
   accuracy: 85
@@ -25,8 +26,8 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
-  secondaries: []
   target: 0
+  secondaries: []
   recoil:
     recoilType: 0
     recoilDamage: 0

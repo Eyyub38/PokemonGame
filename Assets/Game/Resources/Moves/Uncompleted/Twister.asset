@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Twister
   description: Whips up a tornado to attack.
+  soundEffect: {fileID: 8300000, guid: 74936fa5c68f20b4da1a4f19020169a2, type: 3}
   type: 15
   power: 40
   accuracy: 100

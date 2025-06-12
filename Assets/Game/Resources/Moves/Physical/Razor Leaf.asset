@@ -15,6 +15,7 @@ MonoBehaviour:
   _name: Razor Leaf
   description: A sharp-edged leaf is launched to slash at the foe. It has a high
     critical-hit ratio.
+  soundEffect: {fileID: 8300000, guid: 9d62b831234946244bb71b44333cc26d, type: 3}
   type: 4
   power: 55
   accuracy: 95
@@ -26,8 +27,8 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
-  secondaries: []
   target: 0
+  secondaries: []
   recoil:
     recoilType: 0
     recoilDamage: 0

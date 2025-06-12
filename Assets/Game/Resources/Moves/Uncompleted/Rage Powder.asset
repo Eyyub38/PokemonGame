@@ -15,6 +15,7 @@ MonoBehaviour:
   _name: Rage Powder
   description: ' The user scatters a cloud of irritating powder to draw attention
     to itself. Opponents aim only at the user.'
+  soundEffect: {fileID: 8300000, guid: ca880a61c8922e449a2dfc055a6804b0, type: 3}
   type: 12
   power: 0
   accuracy: 0
@@ -28,8 +29,8 @@ MonoBehaviour:
       boost: -2
     status: 0
     volatileStatus: 0
-  secondaries: []
   target: 0
+  secondaries: []
   recoil:
     recoilType: 0
     recoilDamage: 0

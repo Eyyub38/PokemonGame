@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Psybeam
   description: ' An attack that may confuse the foe.'
+  soundEffect: {fileID: 8300000, guid: 6b92cd81b03767040b989b6366780eb8, type: 3}
   type: 11
   power: 65
   accuracy: 100
@@ -25,13 +26,13 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
+  target: 0
   secondaries:
   - boosts: []
     status: 0
     volatileStatus: 8
     chance: 10
     target: 0
-  target: 0
   recoil:
     recoilType: 0
     recoilDamage: 0

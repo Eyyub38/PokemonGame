@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Wing Attack
   description: Strikes the target with wings.
+  soundEffect: {fileID: 8300000, guid: dde7521f1e1b7b7449cc199127d7c9c6, type: 3}
   type: 10
   power: 60
   accuracy: 100
@@ -25,5 +26,9 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
-  secondaries: []
   target: 0
+  secondaries: []
+  recoil:
+    recoilType: 0
+    recoilDamage: 0
+  critBehaviour: 0

@@ -14,12 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Tackle
   description: A full-body charge attack.
+  soundEffect: {fileID: 8300000, guid: c4ab5bbd293e81547aa944992130048d, type: 3}
   type: 1
   power: 40
   accuracy: 100
+  alwaysHits: 0
   pp: 35
+  priority: 0
   category: 0
   effects:
     boosts: []
     status: 0
+    volatileStatus: 0
   target: 0
+  secondaries: []
+  recoil:
+    recoilType: 0
+    recoilDamage: 0
+  critBehaviour: 0

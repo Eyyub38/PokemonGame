@@ -14,12 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Thunder Wave
   description: A move that may cause paralysis.
+  soundEffect: {fileID: 8300000, guid: c9a4cf20afcf2544b9e40763e0d15cb8, type: 3}
   type: 5
   power: 0
   accuracy: 90
+  alwaysHits: 0
   pp: 20
+  priority: 0
   category: 2
   effects:
     boosts: []
     status: 4
+    volatileStatus: 0
   target: 0
+  secondaries: []
+  recoil:
+    recoilType: 0
+    recoilDamage: 0
+  critBehaviour: 0

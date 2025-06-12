@@ -15,6 +15,7 @@ MonoBehaviour:
   _name: Play Nice
   description: " The user and the target become friends, and the target loses its
     will to fight. This lowers the target\u2019s Attack stat."
+  soundEffect: {fileID: 8300000, guid: bd9dc4cd533740549bbf7d4d5e077f44, type: 3}
   type: 1
   power: 0
   accuracy: 0
@@ -28,5 +29,9 @@ MonoBehaviour:
       boost: -1
     status: 0
     volatileStatus: 0
-  secondaries: []
   target: 0
+  secondaries: []
+  recoil:
+    recoilType: 0
+    recoilDamage: 0
+  critBehaviour: 0

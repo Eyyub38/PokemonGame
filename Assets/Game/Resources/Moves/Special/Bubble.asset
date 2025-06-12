@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Bubble
   description: An attack that may reduce Speed.
+  soundEffect: {fileID: 8300000, guid: 99ca63a5d8f01a742b926fefb74e7519, type: 3}
   type: 3
   power: 40
   accuracy: 100
@@ -25,6 +26,7 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
+  target: 0
   secondaries:
   - boosts:
     - stat: 4
@@ -33,4 +35,7 @@ MonoBehaviour:
     volatileStatus: 0
     chance: 10
     target: 0
-  target: 0
+  recoil:
+    recoilType: 0
+    recoilDamage: 0
+  critBehaviour: 0

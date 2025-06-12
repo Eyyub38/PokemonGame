@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Leech Seed
   description: Steals HP from the foe on every turn.
+  soundEffect: {fileID: 8300000, guid: d667d1279b4984641917d63258318aa9, type: 3}
   type: 4
   power: 0
   accuracy: 90
@@ -25,5 +26,9 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
-  secondaries: []
   target: 0
+  secondaries: []
+  recoil:
+    recoilType: 0
+    recoilDamage: 0
+  critBehaviour: 0

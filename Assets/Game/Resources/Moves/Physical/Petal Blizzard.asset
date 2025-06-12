@@ -15,6 +15,7 @@ MonoBehaviour:
   _name: Petal Blizzard
   description: The user stirs up a violent petal blizzard and attacks everything
     around it.
+  soundEffect: {fileID: 8300000, guid: 2cb8453b9a617034a897c1c3c5821732, type: 3}
   type: 4
   power: 90
   accuracy: 100
@@ -26,8 +27,8 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
-  secondaries: []
   target: 0
+  secondaries: []
   recoil:
     recoilType: 0
     recoilDamage: 0

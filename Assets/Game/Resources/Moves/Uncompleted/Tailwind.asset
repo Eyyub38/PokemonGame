@@ -15,6 +15,7 @@ MonoBehaviour:
   _name: Tailwind
   description: "The user whips up a turbulent whirlwind that ups the Speed of all
     party Pok\xE9mon for three turns."
+  soundEffect: {fileID: 8300000, guid: f12d6e1484ee76049ae732f996168a0b, type: 3}
   type: 10
   power: 0
   accuracy: 0
@@ -28,8 +29,8 @@ MonoBehaviour:
       boost: 6
     status: 0
     volatileStatus: 0
-  secondaries: []
   target: 1
+  secondaries: []
   recoil:
     recoilType: 0
     recoilDamage: 0

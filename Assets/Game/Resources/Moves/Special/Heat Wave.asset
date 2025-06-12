@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Heat Wave
   description: Exhales a hot breath on the foe. May inflict a burn.
+  soundEffect: {fileID: 8300000, guid: b20f2170a67b8e14594584f1ed32d622, type: 3}
   type: 2
   power: 95
   accuracy: 90
@@ -25,13 +26,13 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
+  target: 0
   secondaries:
   - boosts: []
     status: 2
     volatileStatus: 0
     chance: 10
     target: 0
-  target: 0
   recoil:
     recoilType: 0
     recoilDamage: 0

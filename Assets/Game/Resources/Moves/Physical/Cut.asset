@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Cut
   description: Cuts using claws, scythes, etc.
+  soundEffect: {fileID: 8300000, guid: 377d83fbcd6f3244789c8f37821ae763, type: 3}
   type: 1
   power: 50
   accuracy: 95
@@ -25,5 +26,9 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
-  secondaries: []
   target: 0
+  secondaries: []
+  recoil:
+    recoilType: 0
+    recoilDamage: 0
+  critBehaviour: 0

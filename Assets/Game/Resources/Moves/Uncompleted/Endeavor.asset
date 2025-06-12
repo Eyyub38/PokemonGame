@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Endeavor
   description: "Gains power if the user\u2019s HP is lower than the foe\u2019s HP."
+  soundEffect: {fileID: 8300000, guid: 4b9056f9e10c4d94ebe5a2591d069418, type: 3}
   type: 1
   power: 50
   accuracy: 100
@@ -25,8 +26,8 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
-  secondaries: []
   target: 0
+  secondaries: []
   recoil:
     recoilType: 0
     recoilDamage: 0

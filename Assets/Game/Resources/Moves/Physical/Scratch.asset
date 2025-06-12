@@ -14,12 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Scratch
   description: Scratches with sharp claws.
+  soundEffect: {fileID: 8300000, guid: aa36fe96cfe50034e850fd8e7a0f58c7, type: 3}
   type: 1
   power: 40
   accuracy: 100
+  alwaysHits: 0
   pp: 35
+  priority: 0
   category: 0
   effects:
     boosts: []
     status: 0
+    volatileStatus: 0
   target: 0
+  secondaries: []
+  recoil:
+    recoilType: 0
+    recoilDamage: 0
+  critBehaviour: 0

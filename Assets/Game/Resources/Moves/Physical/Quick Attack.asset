@@ -14,12 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Quick Attack
   description: Lets the user get in the first hit.
+  soundEffect: {fileID: 8300000, guid: eb6cf0024eb49c549a96ea05cc8e9332, type: 3}
   type: 1
   power: 40
   accuracy: 100
+  alwaysHits: 0
   pp: 30
+  priority: 0
   category: 0
   effects:
     boosts: []
     status: 0
+    volatileStatus: 0
   target: 0
+  secondaries: []
+  recoil:
+    recoilType: 0
+    recoilDamage: 0
+  critBehaviour: 0

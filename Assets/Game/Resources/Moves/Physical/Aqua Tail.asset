@@ -15,6 +15,7 @@ MonoBehaviour:
   _name: Aqua Tail
   description: ' The user attacks by swinging its tail as if it were a vicious wave
     in a raging storm. '
+  soundEffect: {fileID: 8300000, guid: a9f6b669509937d49bd00941cc5e3fc3, type: 3}
   type: 3
   power: 90
   accuracy: 90
@@ -26,8 +27,8 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
-  secondaries: []
   target: 0
+  secondaries: []
   recoil:
     recoilType: 0
     recoilDamage: 0

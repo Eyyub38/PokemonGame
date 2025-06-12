@@ -15,6 +15,7 @@ MonoBehaviour:
   _name: Bug Buzz
   description: "The user vibrates its wings to generate a damaging sound wave. It
     may also lower the foe\u2019s Sp. Def stat."
+  soundEffect: {fileID: 8300000, guid: 3b827f2b960fa1b4da2d6216be65b746, type: 3}
   type: 12
   power: 90
   accuracy: 100
@@ -26,6 +27,7 @@ MonoBehaviour:
     boosts: []
     status: 0
     volatileStatus: 0
+  target: 0
   secondaries:
   - boosts:
     - stat: 3
@@ -34,7 +36,6 @@ MonoBehaviour:
     volatileStatus: 0
     chance: 10
     target: 0
-  target: 0
   recoil:
     recoilType: 0
     recoilDamage: 0
