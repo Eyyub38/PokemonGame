@@ -54,7 +54,6 @@ public class PartyMemberUI : MonoBehaviour{
     
     private void Start(){
         originalIconPosition = pokemonIcon.transform.localPosition;
-        SetMessageText("");
     }
 
     public void SetSelected(bool selected){
@@ -71,6 +70,7 @@ public class PartyMemberUI : MonoBehaviour{
     
     public void SetData(Pokemon pokemon){
         _pokemon = pokemon;
+        SetMessageText("");
         UpdateData();
 
         _pokemon.OnHpChanged += UpdateData;

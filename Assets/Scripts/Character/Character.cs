@@ -24,7 +24,7 @@ public class Character : MonoBehaviour{
     }
 
     private bool IsWalkable(Vector3 targetPos){
-        if(Physics2D.OverlapCircle(targetPos, 0.1f, GameLayers.i.SolidObjectsLayer | GameLayers.i.InteractableLayer) != null){
+        if(Physics2D.OverlapCircle(targetPos, 0.2f, GameLayers.i.SolidObjectsLayer | GameLayers.i.InteractableLayer) != null){
             return false;
         }
         
@@ -32,8 +32,14 @@ public class Character : MonoBehaviour{
     }
 
     private bool IsPathClear(Vector3 targetPos){
-        var collider = Physics2D.OverlapCircle(targetPos, 0.1f, GameLayers.i.SolidObjectsLayer | GameLayers.i.InteractableLayer);
-        if(collider != null){
+        var diff = targetPos - transform.position;
+        var dir = diff.normalized;
+
+        var collusionLayer = GameLayers.i.SolidObjectsLayer | GameLayers.i.InteractableLayer | GameLayers.i.PlayerLayer;
+        if(animator.IsSurfing == false){
+            collusionLayer = collusionLayer | GameLayers.i.WaterLayer;
+        }
+        if(Physics2D.BoxCast(transform.position + dir , new Vector2(0.2f, 0.2f), 0f, dir, diff.magnitude - 1, collusionLayer) == true){
             return false;
         }
         return true;

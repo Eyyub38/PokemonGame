@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -18,7 +19,6 @@ public class PlayerController : MonoBehaviour, ISavable{
     public string Name => _name;
     public Sprite BattleImage => battleImage;
     public Character Character => character;
-
 
     private void Awake(){
         character = GetComponent<Character>();
@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour, ISavable{
         var facingDir = new Vector3(character.Animator.MoveX, character.Animator.MoveY);
         var interactPos = transform.position + facingDir;
 
-        var collider = Physics2D.OverlapCircle(interactPos, 0.3f, GameLayers.i.InteractableLayer);
+        var collider = Physics2D.OverlapCircle(interactPos, 0.3f, GameLayers.i.InteractableLayer | GameLayers.i.WaterLayer);
         if(collider != null){
             yield return collider.GetComponent<Interactable>()?.Interact(transform);
         }

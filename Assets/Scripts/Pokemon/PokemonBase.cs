@@ -3,9 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public enum GrowthRate{ Fluctuating ,Slow, MediumSlow, MediumFast, Fast, Erratic}
-
 public enum PokemonType{ None, Normal, Fire, Water, Grass, Electric, Ice, Fighting, Poison, Ground, Flying, Psychic, Bug, Rock, Ghost, Dragon, Dark, Steel, Fairy}
-
 public enum Stat{ Attack, Defense , SpAttack, SpDefense, Speed, Accuracy, Evasion}
 
 [CreateAssetMenu(fileName = "Pokemon", menuName = "Pokemon/Create new Pokemon")]
@@ -51,7 +49,6 @@ public class PokemonBase : ScriptableObject{
     [Header("Evolutions")]
     [SerializeField] List<Evolution> evolutions;
 
-    //Properties
     public string Name{ get{return _name;}}
     public string Description{ get{return description;}}
     public Sprite FrontSprite{ get{return frontSprite;}}

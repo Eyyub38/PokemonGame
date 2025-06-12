@@ -23,6 +23,9 @@ public class CharacterAnimator : MonoBehaviour{
     [SerializeField] List<Sprite> jumpLeftSprites;
     [SerializeField] List<Sprite> jumpRightSprites;
 
+    [Header("Surfing Sprites")]
+    [SerializeField] List<Sprite> surfSprites;
+
     [Header("Default Facing Direction")]
     [SerializeField] FacingDirection defaultDirection = FacingDirection.Down;
 
@@ -32,6 +35,7 @@ public class CharacterAnimator : MonoBehaviour{
     public bool IsMoving { get; set; }
     public bool IsRunning { get; set; }
     public bool IsJumping { get; set; }
+    public bool IsSurfing { get; set; }
     public FacingDirection DefaultDirection => defaultDirection;
 
     SpriteAnimator walkDownAnim;
@@ -92,39 +96,49 @@ public class CharacterAnimator : MonoBehaviour{
             lastMoveX = MoveX;
             lastMoveY = MoveY;
         }
+        if(!IsSurfing){
+            if(IsJumping){
+                if(lastMoveX == 1){
+                    currentAnim = jumpRightAnim;
+                } else if(lastMoveX == -1){
+                    currentAnim = jumpLeftAnim;
+                } else if(lastMoveY == 1){
+                    currentAnim = jumpUpAnim;
+                } else if(lastMoveY == -1){
+                    currentAnim = jumpDownAnim;
+                }
+            } else {
+                if(MoveX == 1){
+                    currentAnim = IsRunning ? runRightAnim : walkRightAnim;
+                } else if(MoveX == -1){
+                    currentAnim = IsRunning ? runLeftAnim : walkLeftAnim;
+                } else if(MoveY == 1){
+                    currentAnim = IsRunning ? runUpAnim : walkUpAnim;
+                } else if(MoveY == -1){
+                    currentAnim = IsRunning ? runDownAnim : walkDownAnim;
+                }
+            }
+            if(currentAnim != prevAnim || IsMoving != wasPreviouslyMoving || IsRunning != wasPreviouslyRunning || IsJumping != wasPreviouslyJumping){
+                currentAnim.Start();
+            }
 
-        if(IsJumping){
-            if(lastMoveX == 1){
-                currentAnim = jumpRightAnim;
-            } else if(lastMoveX == -1){
-                currentAnim = jumpLeftAnim;
-            } else if(lastMoveY == 1){
-                currentAnim = jumpUpAnim;
-            } else if(lastMoveY == -1){
-                currentAnim = jumpDownAnim;
+            if(IsJumping){
+                currentAnim.HandleUpdate();
+            } else if(IsMoving){
+                currentAnim.HandleUpdate();
+            } else {
+                spriteRenderer.sprite = currentAnim.Frames[0];
             }
         } else {
-            if(MoveX == 1){
-                currentAnim = IsRunning ? runRightAnim : walkRightAnim;
-            } else if(MoveX == -1){
-                currentAnim = IsRunning ? runLeftAnim : walkLeftAnim;
-            } else if(MoveY == 1){
-                currentAnim = IsRunning ? runUpAnim : walkUpAnim;
+            if(MoveY == 1){
+                spriteRenderer.sprite = surfSprites[0];
             } else if(MoveY == -1){
-                currentAnim = IsRunning ? runDownAnim : walkDownAnim;
+                spriteRenderer.sprite = surfSprites[1];
+            } else if(MoveX == 1){
+                spriteRenderer.sprite = surfSprites[3];
+            } else if(MoveX == -1){
+                spriteRenderer.sprite = surfSprites[2];
             }
-        }
-
-        if(currentAnim != prevAnim || IsMoving != wasPreviouslyMoving || IsRunning != wasPreviouslyRunning || IsJumping != wasPreviouslyJumping){
-            currentAnim.Start();
-        }
-        
-        if(IsJumping){
-            currentAnim.HandleUpdate();
-        } else if(IsMoving){
-            currentAnim.HandleUpdate();
-        } else {
-            spriteRenderer.sprite = currentAnim.Frames[0];
         }
         
         wasPreviouslyMoving = IsMoving;

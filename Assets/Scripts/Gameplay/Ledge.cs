@@ -20,15 +20,15 @@ public class Ledge : MonoBehaviour{
     }
 
     IEnumerator Jump(Character character){
+        GameController.i.PauseGame(true);
         character.Animator.IsJumping = true;
         
-        GameController.i.PauseGame(true);
         
         var landingPoint = character.transform.position + new Vector3(xDir,yDir) * 2;
         yield return character.transform.DOJump(landingPoint, 0.3f, 1, 0.5f).WaitForCompletion();
         
-        GameController.i.PauseGame(false);
         
         character.Animator.IsJumping = false;
+        GameController.i.PauseGame(false);
     }
 }

@@ -101,15 +101,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1801119618800852856}
+  - component: {fileID: 1181391121118234357}
+  - component: {fileID: 7530823447165788642}
   - component: {fileID: 7573879844018487043}
   - component: {fileID: 1706078320481970831}
   - component: {fileID: 4213203068204416339}
-  - component: {fileID: 7530823447165788642}
   - component: {fileID: 2910947406915275775}
   - component: {fileID: 367991154144026237}
   - component: {fileID: 5076646080851347248}
   - component: {fileID: 3971893604026267208}
-  - component: {fileID: 1181391121118234357}
   - component: {fileID: 4610450899944117206}
   - component: {fileID: 3681230856629645195}
   m_Layer: 9
@@ -135,83 +135,61 @@ Transform:
   - {fileID: 9062857018545044580}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7573879844018487043
-MonoBehaviour:
+--- !u!212 &1181391121118234357
+SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3860890692304561109}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7eb6184d4ffdbf8498c3321cf94e2087, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _name: Red
-  battleImage: {fileID: 5799124150812420617, guid: f5e8695acd16a5247a7eaa655d9444b5, type: 3}
---- !u!114 &1706078320481970831
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3860890692304561109}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40b8d91ebe08ba54c900fc965320acb2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pokemons:
-  - _base: {fileID: 11400000, guid: 5701d7c52774a5c46aa9f3fa6f493bca, type: 2}
-    level: 15
-    gender: 1
-    pokeball: {fileID: 11400000, guid: 7976b18e77265444eb510ddc60bae1dd, type: 2}
-  - _base: {fileID: 11400000, guid: f11f6a84ab7fa8847baad6ab50441aa4, type: 2}
-    level: 15
-    gender: 1
-    pokeball: {fileID: 11400000, guid: 78ea5903124a1c04f987c21403094afe, type: 2}
-  - _base: {fileID: 11400000, guid: d9683147ddde6114fbd659dd26b1db88, type: 2}
-    level: 8
-    gender: 2
-    pokeball: {fileID: 11400000, guid: 6f2070f7e40f97c4db8e767f154d4265, type: 2}
-  - _base: {fileID: 11400000, guid: f3da621f39f4452418f05134a077863e, type: 2}
-    level: 13
-    gender: 1
-    pokeball: {fileID: 11400000, guid: 6f2070f7e40f97c4db8e767f154d4265, type: 2}
---- !u!114 &4213203068204416339
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3860890692304561109}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2e2a272855cf13449c149a128fe79a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  recoverySlots:
-  - item: {fileID: 11400000, guid: 9b04392d8decbd341bf3a1dc6638e369, type: 2}
-    count: 10
-  - item: {fileID: 11400000, guid: f8b5f6d95f536fa468bad982f981bfa0, type: 2}
-    count: 5
-  - item: {fileID: 11400000, guid: 3182acda9f533ce4e9d5b216d662d04d, type: 2}
-    count: 2
-  - item: {fileID: 11400000, guid: 4ee2792640d95384daf56020122ba9ad, type: 2}
-    count: 10
-  pokeballSlots:
-  - item: {fileID: 11400000, guid: 6f2070f7e40f97c4db8e767f154d4265, type: 2}
-    count: 10
-  - item: {fileID: 11400000, guid: 78ea5903124a1c04f987c21403094afe, type: 2}
-    count: 5
-  tmSlots:
-  - item: {fileID: 11400000, guid: ebdef8ec5013e0744a26b06e13cb3d29, type: 2}
-    count: 1
-  - item: {fileID: 11400000, guid: 826fad7528b8ca046a08e448d5c95f79, type: 2}
-    count: 1
-  evolutionSlots:
-  - item: {fileID: 11400000, guid: 141f298b0872a52499069f25f3c3225a, type: 2}
-    count: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 1384333211
+  m_SortingLayer: 3
+  m_SortingOrder: 0
+  m_Sprite: {fileID: -1402173647332007545, guid: 56e57d424736abf41ae1949abdbf046a, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1.5, y: 1.75}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!114 &7530823447165788642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,10 +262,91 @@ MonoBehaviour:
   - {fileID: -4789480595554764128, guid: 56e57d424736abf41ae1949abdbf046a, type: 3}
   - {fileID: -5595318747192065725, guid: 56e57d424736abf41ae1949abdbf046a, type: 3}
   - {fileID: -5653807336355364005, guid: 56e57d424736abf41ae1949abdbf046a, type: 3}
+  surfSprites:
+  - {fileID: -5314666224170338005, guid: 56e57d424736abf41ae1949abdbf046a, type: 3}
+  - {fileID: -1402173647332007545, guid: 56e57d424736abf41ae1949abdbf046a, type: 3}
+  - {fileID: -6196072181190583596, guid: 56e57d424736abf41ae1949abdbf046a, type: 3}
+  - {fileID: 3887140577524922755, guid: 56e57d424736abf41ae1949abdbf046a, type: 3}
   defaultDirection: 1
-  walkFrameRate: 0.2
-  runFrameRate: 0.15
-  jumpFrameRate: 0.1
+--- !u!114 &7573879844018487043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3860890692304561109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eb6184d4ffdbf8498c3321cf94e2087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _name: Red
+  battleImage: {fileID: 5799124150812420617, guid: f5e8695acd16a5247a7eaa655d9444b5, type: 3}
+--- !u!114 &1706078320481970831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3860890692304561109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40b8d91ebe08ba54c900fc965320acb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pokemons:
+  - _base: {fileID: 11400000, guid: 5701d7c52774a5c46aa9f3fa6f493bca, type: 2}
+    level: 15
+    gender: 1
+    pokeball: {fileID: 11400000, guid: 7976b18e77265444eb510ddc60bae1dd, type: 2}
+  - _base: {fileID: 11400000, guid: f11f6a84ab7fa8847baad6ab50441aa4, type: 2}
+    level: 15
+    gender: 1
+    pokeball: {fileID: 11400000, guid: 78ea5903124a1c04f987c21403094afe, type: 2}
+  - _base: {fileID: 11400000, guid: 8cc7dd316f742dd4ab256f8a21e85d46, type: 2}
+    level: 15
+    gender: 1
+    pokeball: {fileID: 11400000, guid: 6f2070f7e40f97c4db8e767f154d4265, type: 2}
+  - _base: {fileID: 11400000, guid: f3da621f39f4452418f05134a077863e, type: 2}
+    level: 15
+    gender: 1
+    pokeball: {fileID: 11400000, guid: 6f2070f7e40f97c4db8e767f154d4265, type: 2}
+--- !u!114 &4213203068204416339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3860890692304561109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2e2a272855cf13449c149a128fe79a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recoverySlots:
+  - item: {fileID: 11400000, guid: 9b04392d8decbd341bf3a1dc6638e369, type: 2}
+    count: 10
+  - item: {fileID: 11400000, guid: f8b5f6d95f536fa468bad982f981bfa0, type: 2}
+    count: 5
+  - item: {fileID: 11400000, guid: 3182acda9f533ce4e9d5b216d662d04d, type: 2}
+    count: 2
+  - item: {fileID: 11400000, guid: 4ee2792640d95384daf56020122ba9ad, type: 2}
+    count: 10
+  pokeballSlots:
+  - item: {fileID: 11400000, guid: 6f2070f7e40f97c4db8e767f154d4265, type: 2}
+    count: 10
+  - item: {fileID: 11400000, guid: 78ea5903124a1c04f987c21403094afe, type: 2}
+    count: 5
+  tmSlots:
+  - item: {fileID: 11400000, guid: ebdef8ec5013e0744a26b06e13cb3d29, type: 2}
+    count: 1
+  - item: {fileID: 11400000, guid: 826fad7528b8ca046a08e448d5c95f79, type: 2}
+    count: 1
+  - item: {fileID: 11400000, guid: d5de6669983bdba41890259d04c0b984, type: 2}
+    count: 1
+  evolutionSlots:
+  - item: {fileID: 11400000, guid: 141f298b0872a52499069f25f3c3225a, type: 2}
+    count: 1
 --- !u!114 &2910947406915275775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,61 +399,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uniqueId: 
---- !u!212 &1181391121118234357
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3860890692304561109}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1384333211
-  m_SortingLayer: 3
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -8200344204186834244, guid: 56e57d424736abf41ae1949abdbf046a, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1.5, y: 1.75}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
 --- !u!50 &4610450899944117206
 Rigidbody2D:
   serializedVersion: 5
@@ -456,15 +460,15 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.22764325}
+  m_Offset: {x: 0, y: 0.0059792995}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.2, y: 1.4}
+    oldSize: {x: 1.2, y: 1.3}
     newSize: {x: 1.5, y: 1.75}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 1.3194313}
   m_EdgeRadius: 0

@@ -23,6 +23,11 @@ MonoBehaviour:
   femaleBackSprite: {fileID: 0}
   femaleFrontSprite: {fileID: 0}
   maleRatio: 0.875
+  surfSprites:
+  - {fileID: 1177680466, guid: e7142f4843e33694bbcf87bec5591c67, type: 3}
+  - {fileID: -1900175708, guid: e7142f4843e33694bbcf87bec5591c67, type: 3}
+  - {fileID: -129054681, guid: e7142f4843e33694bbcf87bec5591c67, type: 3}
+  - {fileID: 985747888, guid: e7142f4843e33694bbcf87bec5591c67, type: 3}
   type1: 3
   type2: 0
   maxHp: 59
@@ -65,7 +70,9 @@ MonoBehaviour:
     level: 50
   - moveBase: {fileID: 11400000, guid: 81321c4c1168093489e2d403bbab5b02, type: 2}
     level: 55
-  learnableMovesByTm: []
+  learnableMovesByTm:
+  - {fileID: 11400000, guid: 5aa84166411006c488ff14bcbb69ca2e, type: 2}
   evolutions:
   - evolvesInto: {fileID: 11400000, guid: bf82e4d8658f4a944a88b412e9881810, type: 2}
     requiredLevel: 32
+    requiredItem: {fileID: 0}
