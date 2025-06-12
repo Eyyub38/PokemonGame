@@ -6,22 +6,25 @@ using System.Collections.Generic;
 public class MapArea : MonoBehaviour{
     [SerializeField] List<PokemonEncounterRecord> wildPokemons;
 
-    private void Start(){
-        int totalChance = 0;
-
-        foreach(var record in wildPokemons){
-            record.chanceLower = totalChance;
-            record.chanceUpper = totalChance + record.chancePercentage;
-
-            totalChance += record.chancePercentage;
-        }
-    }
+    [HideInInspector]
+    [SerializeField] int totalChance = 0;
 
     Gender SetPokemonGender(PokemonBase pokemon){
         if(pokemon.IsGenderless){
             return Gender.Genderless;
         } else {
             return (Random.Range(1, 101)) < (pokemon.MaleRatio * 100) ? Gender.Male : Gender.Female;
+        }
+    }
+
+    private void OnValidate(){
+        totalChance = 0;
+
+        foreach(var record in wildPokemons){
+            record.chanceLower = totalChance;
+            record.chanceUpper = totalChance + record.chancePercentage;
+
+            totalChance += record.chancePercentage;
         }
     }
 
