@@ -8,6 +8,7 @@ public class GameLayers : MonoBehaviour{
     [SerializeField] LayerMask fovLayer;
     [SerializeField] LayerMask portalLayer;
     [SerializeField] LayerMask triggersLayer;
+    [SerializeField] LayerMask ledgesLayer;
 
     public LayerMask SolidObjectsLayer => solidObjectsLayer;
     public LayerMask GrassLayer => grassLayer;
@@ -15,6 +16,7 @@ public class GameLayers : MonoBehaviour{
     public LayerMask PlayerLayer => playerLayer;
     public LayerMask FovLayer => fovLayer;
     public LayerMask PortalLayer => portalLayer;
+    public LayerMask LedgesLayer => ledgesLayer;
 
     public LayerMask TriggerableLayers {
         get => grassLayer | fovLayer | portalLayer | triggersLayer;

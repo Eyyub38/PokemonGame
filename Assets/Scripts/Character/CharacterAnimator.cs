@@ -17,17 +17,21 @@ public class CharacterAnimator : MonoBehaviour{
     [SerializeField] List<Sprite> runLeftSprites;
     [SerializeField] List<Sprite> runRightSprites;
 
+    [Header("Jumping Sprites")]
+    [SerializeField] List<Sprite> jumpDownSprites;
+    [SerializeField] List<Sprite> jumpUpSprites;
+    [SerializeField] List<Sprite> jumpLeftSprites;
+    [SerializeField] List<Sprite> jumpRightSprites;
+
     [Header("Default Facing Direction")]
     [SerializeField] FacingDirection defaultDirection = FacingDirection.Down;
 
-    [Header("Animation Settings")]
-    [SerializeField] float walkFrameRate = 0.1f;
-    [SerializeField] float runFrameRate = 0.08f;
 
     public float MoveX { get; set; }
     public float MoveY { get; set; }
     public bool IsMoving { get; set; }
     public bool IsRunning { get; set; }
+    public bool IsJumping { get; set; }
     public FacingDirection DefaultDirection => defaultDirection;
 
     SpriteAnimator walkDownAnim;
@@ -40,25 +44,39 @@ public class CharacterAnimator : MonoBehaviour{
     SpriteAnimator runLeftAnim;
     SpriteAnimator runRightAnim;
 
+    SpriteAnimator jumpDownAnim;
+    SpriteAnimator jumpUpAnim;
+    SpriteAnimator jumpLeftAnim;
+    SpriteAnimator jumpRightAnim;
+
     SpriteAnimator currentAnim;
 
     bool wasPreviouslyMoving;
     bool wasPreviouslyRunning;
+    bool wasPreviouslyJumping;
+
+    float lastMoveX;
+    float lastMoveY;
 
     SpriteRenderer spriteRenderer;
 
     private void Start(){
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        walkDownAnim = new SpriteAnimator(walkDownSprites, spriteRenderer, walkFrameRate);
-        walkUpAnim = new SpriteAnimator(walkUpSprites, spriteRenderer, walkFrameRate);
-        walkLeftAnim = new SpriteAnimator(walkLeftSprites, spriteRenderer, walkFrameRate);
-        walkRightAnim = new SpriteAnimator(walkRightSprites, spriteRenderer, walkFrameRate);
+        walkDownAnim = new SpriteAnimator(walkDownSprites, spriteRenderer, 0.2f);
+        walkUpAnim = new SpriteAnimator(walkUpSprites, spriteRenderer, 0.2f);
+        walkLeftAnim = new SpriteAnimator(walkLeftSprites, spriteRenderer, 0.2f);
+        walkRightAnim = new SpriteAnimator(walkRightSprites, spriteRenderer, 0.2f);
 
-        runDownAnim = new SpriteAnimator(runDownSprites, spriteRenderer, runFrameRate);
-        runUpAnim = new SpriteAnimator(runUpSprites, spriteRenderer, runFrameRate);
-        runLeftAnim = new SpriteAnimator(runLeftSprites, spriteRenderer, runFrameRate);
-        runRightAnim = new SpriteAnimator(runRightSprites, spriteRenderer, runFrameRate);
+        runDownAnim = new SpriteAnimator(runDownSprites, spriteRenderer, 0.15f);
+        runUpAnim = new SpriteAnimator(runUpSprites, spriteRenderer, 0.15f);
+        runLeftAnim = new SpriteAnimator(runLeftSprites, spriteRenderer, 0.15f);
+        runRightAnim = new SpriteAnimator(runRightSprites, spriteRenderer, 0.15f);
+
+        jumpDownAnim = new SpriteAnimator(jumpDownSprites, spriteRenderer, 0.1f);
+        jumpUpAnim = new SpriteAnimator(jumpUpSprites, spriteRenderer, 0.1f);
+        jumpLeftAnim = new SpriteAnimator(jumpLeftSprites, spriteRenderer, 0.1f);
+        jumpRightAnim = new SpriteAnimator(jumpRightSprites, spriteRenderer, 0.1f);
 
         SetFacingDirection(defaultDirection);
         currentAnim = walkDownAnim;
@@ -70,23 +88,40 @@ public class CharacterAnimator : MonoBehaviour{
         if(!IsMoving){
             MoveX = 0f;
             MoveY = 0f;
+        } else {
+            lastMoveX = MoveX;
+            lastMoveY = MoveY;
         }
 
-        if(MoveX == 1){
-            currentAnim = IsRunning ? runRightAnim : walkRightAnim;
-        } else if(MoveX == -1){
-            currentAnim = IsRunning ? runLeftAnim : walkLeftAnim;
-        } else if(MoveY == 1){
-            currentAnim = IsRunning ? runUpAnim : walkUpAnim;
-        } else if(MoveY == -1){
-            currentAnim = IsRunning ? runDownAnim : walkDownAnim;
+        if(IsJumping){
+            if(lastMoveX == 1){
+                currentAnim = jumpRightAnim;
+            } else if(lastMoveX == -1){
+                currentAnim = jumpLeftAnim;
+            } else if(lastMoveY == 1){
+                currentAnim = jumpUpAnim;
+            } else if(lastMoveY == -1){
+                currentAnim = jumpDownAnim;
+            }
+        } else {
+            if(MoveX == 1){
+                currentAnim = IsRunning ? runRightAnim : walkRightAnim;
+            } else if(MoveX == -1){
+                currentAnim = IsRunning ? runLeftAnim : walkLeftAnim;
+            } else if(MoveY == 1){
+                currentAnim = IsRunning ? runUpAnim : walkUpAnim;
+            } else if(MoveY == -1){
+                currentAnim = IsRunning ? runDownAnim : walkDownAnim;
+            }
         }
 
-        if(currentAnim != prevAnim || IsMoving != wasPreviouslyMoving || IsRunning != wasPreviouslyRunning){
+        if(currentAnim != prevAnim || IsMoving != wasPreviouslyMoving || IsRunning != wasPreviouslyRunning || IsJumping != wasPreviouslyJumping){
             currentAnim.Start();
         }
-
-        if(IsMoving){
+        
+        if(IsJumping){
+            currentAnim.HandleUpdate();
+        } else if(IsMoving){
             currentAnim.HandleUpdate();
         } else {
             spriteRenderer.sprite = currentAnim.Frames[0];
@@ -94,6 +129,7 @@ public class CharacterAnimator : MonoBehaviour{
         
         wasPreviouslyMoving = IsMoving;
         wasPreviouslyRunning = IsRunning;
+        wasPreviouslyJumping = IsJumping;
     }
 
     public void SetFacingDirection(FacingDirection dir){

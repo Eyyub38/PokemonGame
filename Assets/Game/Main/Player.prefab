@@ -264,9 +264,30 @@ MonoBehaviour:
   - {fileID: -1026123137517417863, guid: 56e57d424736abf41ae1949abdbf046a, type: 3}
   - {fileID: 7457252426022176498, guid: 56e57d424736abf41ae1949abdbf046a, type: 3}
   - {fileID: 5027312071007194417, guid: 56e57d424736abf41ae1949abdbf046a, type: 3}
+  jumpDownSprites:
+  - {fileID: 7603431028214720904, guid: 56e57d424736abf41ae1949abdbf046a, type: 3}
+  - {fileID: -6223101448605851351, guid: 56e57d424736abf41ae1949abdbf046a, type: 3}
+  - {fileID: -203274893290834764, guid: 56e57d424736abf41ae1949abdbf046a, type: 3}
+  - {fileID: -2457447824721122273, guid: 56e57d424736abf41ae1949abdbf046a, type: 3}
+  jumpUpSprites:
+  - {fileID: 5159197076611793759, guid: 56e57d424736abf41ae1949abdbf046a, type: 3}
+  - {fileID: 3096173716815533234, guid: 56e57d424736abf41ae1949abdbf046a, type: 3}
+  - {fileID: -3138953318408869515, guid: 56e57d424736abf41ae1949abdbf046a, type: 3}
+  - {fileID: 5886297152815863103, guid: 56e57d424736abf41ae1949abdbf046a, type: 3}
+  jumpLeftSprites:
+  - {fileID: -6894302601329128400, guid: 56e57d424736abf41ae1949abdbf046a, type: 3}
+  - {fileID: 5931714024146945394, guid: 56e57d424736abf41ae1949abdbf046a, type: 3}
+  - {fileID: -8677437143978234538, guid: 56e57d424736abf41ae1949abdbf046a, type: 3}
+  - {fileID: -2098848262580248076, guid: 56e57d424736abf41ae1949abdbf046a, type: 3}
+  jumpRightSprites:
+  - {fileID: 6307765193645473909, guid: 56e57d424736abf41ae1949abdbf046a, type: 3}
+  - {fileID: -4789480595554764128, guid: 56e57d424736abf41ae1949abdbf046a, type: 3}
+  - {fileID: -5595318747192065725, guid: 56e57d424736abf41ae1949abdbf046a, type: 3}
+  - {fileID: -5653807336355364005, guid: 56e57d424736abf41ae1949abdbf046a, type: 3}
   defaultDirection: 1
-  walkFrameRate: 0.1
-  runFrameRate: 0.1
+  walkFrameRate: 0.2
+  runFrameRate: 0.15
+  jumpFrameRate: 0.1
 --- !u!114 &2910947406915275775
 MonoBehaviour:
   m_ObjectHideFlags: 0

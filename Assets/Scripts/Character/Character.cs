@@ -34,7 +34,6 @@ public class Character : MonoBehaviour{
     private bool IsPathClear(Vector3 targetPos){
         var collider = Physics2D.OverlapCircle(targetPos, 0.1f, GameLayers.i.SolidObjectsLayer | GameLayers.i.InteractableLayer);
         if(collider != null){
-            Debug.Log($"Path blocked at {targetPos} by {collider.name} on layer {collider.gameObject.layer}");
             return false;
         }
         return true;
@@ -48,6 +47,14 @@ public class Character : MonoBehaviour{
         var targetPos = transform.position;
         targetPos.x += moveVector.x;
         targetPos.y += moveVector.y;
+
+        var ledge = CheckForLedge(targetPos);
+
+        if(ledge != null){
+            if(ledge.TryToJump(this, moveVector)) {
+                yield break;
+            }
+        }
 
         if(!IsPathClear(targetPos)){
             animator.IsMoving = false;
@@ -106,5 +113,10 @@ public class Character : MonoBehaviour{
         pos.y = Mathf.Floor(pos.y) + 0.5f + OffSetY;
     
         transform.position = pos;
+    }
+
+    Ledge CheckForLedge(Vector3 targetPos){
+        var collider = Physics2D.OverlapCircle(targetPos, 0.15f, GameLayers.i.LedgesLayer);
+        return collider?.GetComponent<Ledge>();
     }
 }

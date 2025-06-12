@@ -3916,7 +3916,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4889994261358544069, guid: ef6468f31fd0b214695244dd76454603, type: 3}
       propertyPath: wildPokemons.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4889994261358544069, guid: ef6468f31fd0b214695244dd76454603, type: 3}
       propertyPath: wildPokemons.Array.data[0]._base
@@ -3965,6 +3965,38 @@ PrefabInstance:
     - target: {fileID: 4889994261358544069, guid: ef6468f31fd0b214695244dd76454603, type: 3}
       propertyPath: wildPokemons.Array.data[3].gender
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4889994261358544069, guid: ef6468f31fd0b214695244dd76454603, type: 3}
+      propertyPath: wildPokemons.Array.data[0].pokemon
+      value: 
+      objectReference: {fileID: 11400000, guid: 4a226997b1746e14a8bf1852ddcdd471, type: 2}
+    - target: {fileID: 4889994261358544069, guid: ef6468f31fd0b214695244dd76454603, type: 3}
+      propertyPath: wildPokemons.Array.data[1].pokemon
+      value: 
+      objectReference: {fileID: 11400000, guid: cd2fc93a5fb83c14d8bc315e3ac8beb6, type: 2}
+    - target: {fileID: 4889994261358544069, guid: ef6468f31fd0b214695244dd76454603, type: 3}
+      propertyPath: wildPokemons.Array.data[0].levelRange.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4889994261358544069, guid: ef6468f31fd0b214695244dd76454603, type: 3}
+      propertyPath: wildPokemons.Array.data[0].levelRange.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4889994261358544069, guid: ef6468f31fd0b214695244dd76454603, type: 3}
+      propertyPath: wildPokemons.Array.data[1].levelRange.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4889994261358544069, guid: ef6468f31fd0b214695244dd76454603, type: 3}
+      propertyPath: wildPokemons.Array.data[1].levelRange.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4889994261358544069, guid: ef6468f31fd0b214695244dd76454603, type: 3}
+      propertyPath: wildPokemons.Array.data[0].chancePercentage
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4889994261358544069, guid: ef6468f31fd0b214695244dd76454603, type: 3}
+      propertyPath: wildPokemons.Array.data[1].chancePercentage
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4905943893616285412, guid: ef6468f31fd0b214695244dd76454603, type: 3}
       propertyPath: m_LocalPosition.x
