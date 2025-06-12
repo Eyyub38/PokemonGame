@@ -49,11 +49,62 @@ public class PlayerController : MonoBehaviour, ISavable{
 
     IEnumerator Interact(){
         var facingDir = new Vector3(character.Animator.MoveX, character.Animator.MoveY);
+        
+        if(facingDir == Vector3.zero){
+            facingDir = GetLastFacingDirection();
+        }
+        
         var interactPos = transform.position + facingDir;
 
-        var collider = Physics2D.OverlapCircle(interactPos, 0.3f, GameLayers.i.InteractableLayer | GameLayers.i.WaterLayer);
+        var collider = Physics2D.OverlapCircle(interactPos, 0.5f, GameLayers.i.InteractableLayer | GameLayers.i.WaterLayer);
         if(collider != null){
-            yield return collider.GetComponent<Interactable>()?.Interact(transform);
+            var interactable = collider.GetComponent<Interactable>();
+            if(interactable != null){
+                yield return interactable.Interact(transform);
+            }
+        } else {
+            var allColliders = Physics2D.OverlapCircleAll(transform.position, 1f);
+            yield return TryInteractInAllDirections();
+        }
+    }
+
+    private Vector3 GetLastFacingDirection(){
+        var animator = character.Animator;
+        
+        if(animator.MoveX != 0){
+            return new Vector3(animator.MoveX, 0, 0);
+        } else if(animator.MoveY != 0){
+            return new Vector3(0, animator.MoveY, 0);
+        }
+        
+        if(animator.LastMoveX != 0){
+            return new Vector3(animator.LastMoveX, 0, 0);
+        } else if(animator.LastMoveY != 0){
+            return new Vector3(0, animator.LastMoveY, 0);
+        }
+        
+        switch(animator.DefaultDirection){
+            case FacingDirection.Up: return Vector3.up;
+            case FacingDirection.Down: return Vector3.down;
+            case FacingDirection.Left: return Vector3.left;
+            case FacingDirection.Right: return Vector3.right;
+            default: return Vector3.down;
+        }
+    }
+
+    private IEnumerator TryInteractInAllDirections(){
+        Vector3[] directions = { Vector3.up, Vector3.down, Vector3.left, Vector3.right };
+        
+        foreach(var dir in directions){
+            var interactPos = transform.position + dir;
+            var collider = Physics2D.OverlapCircle(interactPos, 0.5f, GameLayers.i.InteractableLayer | GameLayers.i.WaterLayer);
+            if(collider != null){
+                var interactable = collider.GetComponent<Interactable>();
+                if(interactable != null){
+                    yield return interactable.Interact(transform);
+                    yield break;
+                }
+            }
         }
     }
 

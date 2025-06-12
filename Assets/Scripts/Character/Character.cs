@@ -117,11 +117,10 @@ public class Character : MonoBehaviour{
         var xDiff = Mathf.Floor(targetPos.x) - Mathf.Floor(transform.position.x);
         var yDiff = Mathf.Floor(targetPos.y) - Mathf.Floor(transform.position.y);
 
-        if(xDiff == 0 || yDiff == 0){
-            animator.MoveX = Mathf.Clamp(xDiff, -1f, 1f);
-            animator.MoveY = Mathf.Clamp(yDiff, -1f, 1f);
+        if(Mathf.Abs(xDiff) > Mathf.Abs(yDiff)){
+            animator.SetFacingDirection(xDiff, 0f);
         } else {
-            Debug.Log($"Error in Look Towards: You cannot ask the character to look diagonally!!!");
+            animator.SetFacingDirection(0f, yDiff);
         }
     }
 

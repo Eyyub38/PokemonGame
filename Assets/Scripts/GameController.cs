@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public enum GameState{ FreeRoam, Battle, Dialog, PartyScreen, Evolution, Menu, Bag, CutScene , Shop, Paused }
+public enum GameState{ FreeRoam, Battle, Dialog, PartyScreen, Evolution, Menu, Bag, Cutscene , Shop, Paused }
 
 public class GameController : MonoBehaviour{
     [Header("Referances")]
@@ -69,7 +69,6 @@ public class GameController : MonoBehaviour{
         } else if(state == GameState.PartyScreen){
             Action OnSelected = () => {
                 //Summary Screen
-                Debug.Log("Summary Screen");
             };
             Action onBack = () => {
                 partyScreen.gameObject.SetActive(false);
@@ -124,7 +123,7 @@ public class GameController : MonoBehaviour{
     }
 
     public void OnEnterTrainersView(TrainerController trainer){
-        SetState(GameState.CutScene);
+        SetState(GameState.Cutscene);
         StartCoroutine(trainer.TriggerTrainerBattle(playerController));
     }
 
@@ -173,6 +172,14 @@ public class GameController : MonoBehaviour{
         var trainerParty = trainer.GetComponent<PokemonParty>();
 
         battleSystem.StartTrainerBattle(playerParty, trainerParty);
+    }
+
+    public void StartCutsceneState(){
+        SetState(GameState.Cutscene);
+    }
+
+    public void StartFreeRoamState(){
+        SetState(GameState.FreeRoam);
     }
 
     public void PauseGame(bool pause){

@@ -41,6 +41,7 @@ public class NPCController : MonoBehaviour, Interactable, ISavable{
             state = NPCState.Dialog;
 
             character.LookTowards(initiator.position);
+            yield return new WaitForEndOfFrame();
 
             if(questToComplete != null){
                 var quest = new Quest(questToComplete);
@@ -50,8 +51,10 @@ public class NPCController : MonoBehaviour, Interactable, ISavable{
 
             if(itemGiver != null && itemGiver.CanBeGiven()){
                 yield return itemGiver.GiveItem(initiator.GetComponent<PlayerController>());
+
             } else if(pokemonGiver != null && pokemonGiver.CanBeGiven()){
                 yield return pokemonGiver.GivePokemon(initiator.GetComponent<PlayerController>());
+
             } else if(questToStart != null){
                 activeQuest = new Quest(questToStart);
                 yield return activeQuest.StartQuest();
@@ -61,6 +64,7 @@ public class NPCController : MonoBehaviour, Interactable, ISavable{
                     yield return activeQuest.CompleteQuest(initiator);
                     activeQuest = null;
                 }
+
             } else if(activeQuest != null){
                 if(activeQuest.CanBeCompleted()){
                     yield return activeQuest.CompleteQuest(initiator);
@@ -68,12 +72,16 @@ public class NPCController : MonoBehaviour, Interactable, ISavable{
                 } else {
                     yield return DialogManager.i.ShowDialog(activeQuest.Base.InProgressDialog);
                 }
+
             } else if(healer != null){
                 yield return healer.Heal(initiator, dialog);
+
             } else if(merchant != null){
                 yield return merchant.Trade();
+
             } else {
                 yield return DialogManager.i.ShowDialog( dialog);
+
             }
             idleTimer = 0f;
             state = NPCState.Idle;

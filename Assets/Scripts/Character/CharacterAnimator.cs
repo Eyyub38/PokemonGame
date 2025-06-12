@@ -37,6 +37,8 @@ public class CharacterAnimator : MonoBehaviour{
     public bool IsJumping { get; set; }
     public bool IsSurfing { get; set; }
     public FacingDirection DefaultDirection => defaultDirection;
+    public float LastMoveX => lastMoveX;
+    public float LastMoveY => lastMoveY;
 
     SpriteAnimator walkDownAnim;
     SpriteAnimator walkUpAnim;
@@ -89,10 +91,7 @@ public class CharacterAnimator : MonoBehaviour{
     private void Update(){
         var prevAnim = currentAnim;
 
-        if(!IsMoving){
-            MoveX = 0f;
-            MoveY = 0f;
-        } else {
+        if(IsMoving){
             lastMoveX = MoveX;
             lastMoveY = MoveY;
         }
@@ -156,5 +155,10 @@ public class CharacterAnimator : MonoBehaviour{
         } else if(dir == FacingDirection.Up){
             MoveY = 1;
         }
+    }
+
+    public void SetFacingDirection(float x, float y){
+        MoveX = Mathf.Clamp(x, -1f, 1f);
+        MoveY = Mathf.Clamp(y, -1f, 1f);
     }
 }
