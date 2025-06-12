@@ -44,13 +44,13 @@ public class SavingSystem : MonoBehaviour{
     }
 
     private void CaptureState(Dictionary<string, object> state){
-        foreach (SavableEntity savable in FindObjectsOfType<SavableEntity>()){
+        foreach (SavableEntity savable in FindObjectsByType<SavableEntity>(FindObjectsSortMode.None)){
             state[savable.UniqueId] = savable.CaptureState();
         }
     }
 
     private void RestoreState(Dictionary<string, object> state){
-        foreach (SavableEntity savable in FindObjectsOfType<SavableEntity>()){
+        foreach (SavableEntity savable in FindObjectsByType<SavableEntity>(FindObjectsSortMode.None)){
             string id = savable.UniqueId;
             if (state.ContainsKey(id))
                 savable.RestoreState(state[id]);

@@ -23,8 +23,31 @@ public class Surfable : MonoBehaviour,  Interactable{
                 var targetPos = initiator.position + dir;
 
                 animator.IsSurfing = true;
+                
+                GameObject pokemonAnimatorObj = CreatePokemonAnimator(initiator, pokemonWithSurf.Base);
+                
                 yield return initiator.DOJump(targetPos, 0.3f, 1, 0.5f).WaitForCompletion();
             }
         }
+    }
+
+    GameObject CreatePokemonAnimator(Transform player, PokemonBase pokemon){
+        GameObject pokemonAnimatorObj = new GameObject("PokemonAnimator");
+        pokemonAnimatorObj.transform.SetParent(player);
+        pokemonAnimatorObj.transform.localPosition = Vector3.zero;
+        
+        SpriteRenderer spriteRenderer = pokemonAnimatorObj.AddComponent<SpriteRenderer>();
+        spriteRenderer.sortingOrder = player.GetComponent<SpriteRenderer>().sortingOrder;
+        
+        PokemonAnimator pokemonAnimator = pokemonAnimatorObj.AddComponent<PokemonAnimator>();
+        pokemonAnimator.SetSurferPokemon(pokemon);
+        pokemonAnimator.StartSurfing();
+        
+        Character character = player.GetComponent<Character>();
+        if (character != null){
+            character.SetPokemonAnimator(pokemonAnimator);
+        }
+        
+        return pokemonAnimatorObj;
     }
 }

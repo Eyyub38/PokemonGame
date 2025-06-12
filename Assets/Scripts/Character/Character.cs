@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class Character : MonoBehaviour{
     CharacterAnimator animator;
+    PokemonAnimator pokemonAnimator;
     public float movingSpeed = 5f;
     public float runningSpeed = 2.5f;
 
@@ -21,6 +22,12 @@ public class Character : MonoBehaviour{
     public void HandleUpdate(){
         animator.IsMoving = IsMoving;
         animator.IsRunning = IsRunning;
+        
+        if (pokemonAnimator != null){
+            pokemonAnimator.MoveX = animator.MoveX;
+            pokemonAnimator.MoveY = animator.MoveY;
+            pokemonAnimator.IsSurfing = animator.IsSurfing;
+        }
     }
 
     private bool IsWalkable(Vector3 targetPos){
@@ -70,6 +77,7 @@ public class Character : MonoBehaviour{
         }
         if(animator.IsSurfing && Physics2D.OverlapCircle(targetPos, 0.3f, GameLayers.i.WaterLayer) == null){
             animator.IsSurfing = false;
+            ClearPokemonAnimator();
         }
 
         IsMoving = true;
@@ -127,5 +135,17 @@ public class Character : MonoBehaviour{
     Ledge CheckForLedge(Vector3 targetPos){
         var collider = Physics2D.OverlapCircle(targetPos, 0.15f, GameLayers.i.LedgesLayer);
         return collider?.GetComponent<Ledge>();
+    }
+
+    public void SetPokemonAnimator(PokemonAnimator animator){
+        pokemonAnimator = animator;
+    }
+
+    void ClearPokemonAnimator(){
+        if (pokemonAnimator != null){
+            pokemonAnimator.StopSurfing();
+            Destroy(pokemonAnimator.gameObject);
+            pokemonAnimator = null;
+        }
     }
 }

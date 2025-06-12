@@ -26,6 +26,9 @@ public class PokemonBase : ScriptableObject{
     [SerializeField] Sprite femaleFrontSprite;
     [SerializeField] float maleRatio = 0.5f;
 
+    [Header("Surf Sprites")]
+    [SerializeField] List<Sprite> surfSprites;
+
     [Header("Types")]
     [SerializeField] PokemonType type1;
     [SerializeField] PokemonType type2;
@@ -59,6 +62,7 @@ public class PokemonBase : ScriptableObject{
     public bool HasGenderDifferences { get { return hasGenderDifferences; } }
     public bool IsGenderless { get { return isGenderless; } }
     public float MaleRatio { get { return maleRatio; } }
+    public List<Sprite> SurfSprites { get { return surfSprites; } }
     public PokemonType Type1{ get{return type1;}}
     public PokemonType Type2{ get{return type2;}}
     public GrowthRate GrowthRate => growthRate;
