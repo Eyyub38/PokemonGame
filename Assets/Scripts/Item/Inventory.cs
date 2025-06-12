@@ -24,7 +24,7 @@ public class Inventory : MonoBehaviour, ISavable{
     }
 
     public static Inventory GetInventory(){
-        return FindObjectOfType<PlayerController>().GetComponent<Inventory>();
+        return FindFirstObjectByType<PlayerController>().GetComponent<Inventory>();
     }
 
     public List<ItemSlot> GetItemSlotsByCategory(int categoryIndex){

@@ -31,7 +31,7 @@ public class PokemonParty : MonoBehaviour{
     }
 
     public static PokemonParty GetPlayerParty(){
-        return FindObjectOfType<PlayerController>().GetComponent<PokemonParty>();
+        return FindFirstObjectByType<PlayerController>().GetComponent<PokemonParty>();
     }
 
     public bool CheckForEvolutions(){

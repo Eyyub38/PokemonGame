@@ -83,7 +83,6 @@ public class PartyScreen : MonoBehaviour{
     public void ShowIfTmUsable(TmItem tmItem){
         for(int i= 0; i < pokemons.Count; i++){
             string message = tmItem.CanBeTaught(pokemons[i])? "ABLE" : "NOT ABLE";
-            Debug.Log($"{message}");
             memberSlots[i].SetMessageText($"{message}");
         }
     }

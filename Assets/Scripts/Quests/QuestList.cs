@@ -17,7 +17,7 @@ public class QuestList : MonoBehaviour, ISavable{
     }
 
     public static QuestList GetQuestList(){
-        return FindObjectOfType<PlayerController>().GetComponent<QuestList>();
+        return FindFirstObjectByType<PlayerController>().GetComponent<QuestList>();
     }
 
     public bool IsStarted(string questName){

@@ -41,7 +41,7 @@ public class PokemonBase : ScriptableObject{
     [SerializeField] int catchRate = 255;
     [SerializeField] int xpYield;
     [SerializeField] GrowthRate growthRate;
-
+    
     [Header("Learnable Moves")]
     [SerializeField] List<LearnableMove> learnableMovesLevelUp;
     [SerializeField] List<MoveBase> learnableMovesByTm;
