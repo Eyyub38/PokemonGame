@@ -34,6 +34,8 @@ public class GameController : MonoBehaviour{
     public GameState PrevState { get; private set; }
     public SceneDetails CurrentScene {get; private set;}
     public SceneDetails PrevScene {get; private set;}
+    public PlayerController PlayerController => playerController;
+    public Camera WorldCamera => worldCamera;
 
     private void SetState(GameState newState){
         PrevState = state;
@@ -58,8 +60,6 @@ public class GameController : MonoBehaviour{
 
         if(state == GameState.Cutscene){
             playerController.Character.HandleUpdate();
-        } else if(state == GameState.Battle){
-            battleSystem.HandleUpdate();
         } else if(state == GameState.Dialog){
             DialogManager.i.HandleUpdate();
         } else if(state == GameState.Shop){
@@ -122,29 +122,13 @@ public class GameController : MonoBehaviour{
     }
 
     public void StartBattle(BattleTrigger trigger){
-        SetState(GameState.Battle);
-        battleSystem.gameObject.SetActive(true);
-        worldCamera.gameObject.SetActive(false);
-
-        var playerParty = playerController.GetComponent<PokemonParty>();
-        
-        var wildPokemon = CurrentScene.GetComponent<MapArea>().GetRandomWildPokemon(trigger);
-
-        var enemyPokemon = new Pokemon(wildPokemon.Base, wildPokemon.Level);
-        battleSystem.StartBattle(playerParty, enemyPokemon,trigger);
+        BattleState.i.trigger = trigger;
+        StateMachine.Push(BattleState.i);
     }
 
     public void StartTrainerBattle(TrainerController trainer){
-        this.trainer = trainer;
-
-        SetState(GameState.Battle);
-        battleSystem.gameObject.SetActive(true);
-        worldCamera.gameObject.SetActive(false);
-
-        var playerParty = playerController.GetComponent<PokemonParty>();
-        var trainerParty = trainer.GetComponent<PokemonParty>();
-
-        battleSystem.StartTrainerBattle(playerParty, trainerParty);
+        BattleState.i.trainer = trainer;
+        StateMachine.Push(BattleState.i);
     }
 
     public void StartCutsceneState(){

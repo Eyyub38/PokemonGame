@@ -80,8 +80,24 @@ public class UseItemState : State<GameController>{
         } else {
             yield return DialogManager.i.ShowDialogText($"{pokemon.Base.Name} trying to learn {tmItem.Move.Name}...");
             yield return DialogManager.i.ShowDialogText($"But its is already knew {PokemonBase.MaxNumberOfMoves} moves.");
-            //yield return ChooseMoveToForget(pokemon, tmItem.Move);
-            //yield return new WaitUntil(() => state != InventoryUIState.MoveToForget);
+            
+            yield return DialogManager.i.ShowDialogText($"Choose a move you want {pokemon.Base.Name} to forget.",true, false);
+            
+            MoveForgetState.i.NewMove = tmItem.Move;
+            MoveForgetState.i.CurrentMoves = pokemon.Moves;
+
+            yield return gameController.StateMachine.PushAndWait(MoveForgetState.i);
+            int moveIndex = MoveForgetState.i.Selection;
+
+            DialogManager.i.CloseDialog();
+            if(moveIndex == PokemonBase.MaxNumberOfMoves || moveIndex == -1){
+                yield return DialogManager.i.ShowDialogText($"{pokemon.Base.Name} didn't learn{tmItem.Move.Name}");
+            } else {
+                var selectedMove = pokemon.Moves[ moveIndex ].Base;
+                yield return DialogManager.i.ShowDialogText($"{pokemon.Base.Name} forgot {selectedMove.Name} and learned {tmItem.Move.Name}");
+
+                pokemon.Moves[ moveIndex ] = new Move(tmItem.Move);
+            }
         }
     }
 }

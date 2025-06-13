@@ -3,8 +3,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using GDEUtills.GenerciSelectionUI;
+using System.Linq;
 
-public class MoveSelectionUI : MonoBehaviour{
+public class MoveSelectionUI : SelectionUI<TextSlot>{
     [Header("Move Bars")]
     [SerializeField] List<MoveBar> moveBars;
 
@@ -28,17 +30,13 @@ public class MoveSelectionUI : MonoBehaviour{
     [SerializeField] List<Sprite> typeBarSprites = new List<Sprite>();
     [SerializeField] Sprite empty;
 
-    int currentSelection = 0;
     Color originalColor;
     MoveBase newMove;
-    Color highlightedColor;
-    
-    private void Start(){
-        highlightedColor = GlobalSettings.i.HighlightedColor;
-    }
+    List<Move> currentMoves;
 
     public void SetMoveSelectionBars(List<Move> moves, MoveBase newMove) {
         this.newMove = newMove;
+        this.currentMoves = moves;
 
         for(int i = 0; i < moveBars.Count - 1; i++) {
 
@@ -75,6 +73,8 @@ public class MoveSelectionUI : MonoBehaviour{
             moveBars[ 4 ].PpText.text = "";
             moveBars[ 4 ].TypeImage.sprite = empty;
         }
+
+        SetItems(moveBars.Select(b => b.GetComponent<TextSlot>()).ToList());
     }
 
     public void SetMoveDetails(MoveBase currMove, MoveBase newMove) {
@@ -106,6 +106,38 @@ public class MoveSelectionUI : MonoBehaviour{
         newDescriptionText.text = newMove.Description;
     }
 
+    public override void UpdateSelectionInUI(){
+        base.UpdateSelectionInUI();
+        
+        if(currentMoves != null && newMove != null && selectedItem < currentMoves.Count) {
+            MoveBase selectedMoveBase = currentMoves[selectedItem].Base;
+            
+            if(ReferenceEquals(selectedMoveBase, newMove)){
+                SetCategories(newMove, newCatagoryImage);
+                newPowerText.text = newMove.Power.ToString();
+                newNameText.text = newMove.Name;
+                newAccurText.text = newMove.Accuracy.ToString();
+                newDescriptionText.text = newMove.Description;
+
+                currDetails.gameObject.SetActive(false);
+                return;
+            }
+
+            currDetails.gameObject.SetActive(true);
+            SetCategories(selectedMoveBase, currCatagoryImage);
+            currPowerText.text = selectedMoveBase.Power.ToString();
+            currNameText.text = selectedMoveBase.Name;
+            currAccurText.text = selectedMoveBase.Accuracy.ToString();
+            currDescriptionText.text = selectedMoveBase.Description;
+
+            SetCategories(newMove, newCatagoryImage);
+            newPowerText.text = newMove.Power.ToString();
+            newNameText.text = newMove.Name;
+            newAccurText.text = newMove.Accuracy.ToString();
+            newDescriptionText.text = newMove.Description;
+        }
+    }
+
     void SetCategories(MoveBase moveBase, Image image) {
         var category = moveBase.Category;
         if(category == MoveCategory.Physical) {
@@ -117,47 +149,6 @@ public class MoveSelectionUI : MonoBehaviour{
         } else {
             return;
         }
-    }
-
-    public void HandleMoveSelection(Pokemon pokemon, Action<int> onSelected){
-        if(Input.GetKeyDown(KeyCode.DownArrow)){
-            ++currentSelection;
-        } else if(Input.GetKeyDown(KeyCode.UpArrow)){
-            --currentSelection;
-        }
-        currentSelection = Mathf.Clamp(currentSelection, 0, PokemonBase.MaxNumberOfMoves);
-
-        UpdateMoveSelection(currentSelection, pokemon.Moves, newMove);
-
-        if(Input.GetKeyDown(KeyCode.Return)){
-            onSelected?.Invoke(currentSelection);
-        }
-    }
-
-    public void UpdateMoveSelection(int selectedMove, List<Move> moves, MoveBase newMove){
-        for(int i = 0; i < PokemonBase.MaxNumberOfMoves + 1; i++){
-            bool isSelected = (i == selectedMove);
-
-            if(i < moveBars.Count && moveBars[i] != null){
-                moveBars[i].NameText.color = isSelected ? highlightedColor : Color.black;
-                moveBars[i].PpText.color = isSelected ? highlightedColor : originalColor;
-            }
-        }
-
-        MoveBase selectedMoveBase = null;
-            
-        if(selectedMove < moves.Count && moves[selectedMove] != null){
-            selectedMoveBase = moves[selectedMove].Base;
-        } else if(selectedMove == PokemonBase.MaxNumberOfMoves){
-            selectedMoveBase = newMove;
-        }
-
-        if(selectedMoveBase == null || newMove == null){
-            Debug.LogWarning("Selected move or new move is null. Details panel may not update.");
-            return;
-        }   
-
-        SetMoveDetails(selectedMoveBase, newMove);
     }
 
     void SetMoveSelectionTypeBars(MoveBase move, MoveBar moveBar) {
