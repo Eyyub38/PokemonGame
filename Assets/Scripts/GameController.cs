@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using GDEUtills.StateMachine;
 using System.Collections.Generic;
 
 public enum GameState{ FreeRoam, Battle, Dialog, PartyScreen, Evolution, Menu, Bag, Cutscene , Shop, Paused }
@@ -21,13 +22,14 @@ public class GameController : MonoBehaviour{
     GameState state;
     GameState stateBeforePause;
     GameState stateBeforeEvolution;
+
     TrainerController trainer;
-    MenuController menuController;
 
     public static GameController i { get; private set; }
     public GameObject LocationUI => locationUI;
     public Text LocationText => locationText;
 
+    public StateMachine<GameController> StateMachine { get; private set; }
     public GameState State { get { return state; } }
     public GameState PrevState { get; private set; }
     public SceneDetails CurrentScene {get; private set;}
@@ -41,8 +43,6 @@ public class GameController : MonoBehaviour{
     private void Awake(){
         i = this;
 
-        menuController = GetComponent<MenuController>();
-
         //Cursor.lockState = CursorLockMode.Locked;
         //Cursor.visible = false;
 
@@ -54,49 +54,23 @@ public class GameController : MonoBehaviour{
     }
 
     public void Update(){
-        if(state == GameState.FreeRoam){
-            playerController.HandleUpdate();
-            if(Input.GetKeyDown(KeyCode.Tab)){
-                menuController.OpenMenu();
-                SetState(GameState.Menu);
-            }
-        }else if(state == GameState.Cutscene){
+        StateMachine.Execute();
+
+        if(state == GameState.Cutscene){
             playerController.Character.HandleUpdate();
         } else if(state == GameState.Battle){
             battleSystem.HandleUpdate();
         } else if(state == GameState.Dialog){
             DialogManager.i.HandleUpdate();
-        } else if(state == GameState.Menu){
-            menuController.HandleUpdate();
-        } else if(state == GameState.PartyScreen){
-            Action OnSelected = () => {
-                //Summary Screen
-            };
-            Action onBack = () => {
-                partyScreen.gameObject.SetActive(false);
-                if(PrevState == GameState.Battle){
-                    SetState(GameState.Battle);
-                } else {
-                    SetState(GameState.FreeRoam);
-                }
-            };
-            partyScreen.HandleUpdate(OnSelected, onBack);
-        } else if(state == GameState.Bag){
-            Action onBack = () => {
-                inventoryUI.gameObject.SetActive(false);
-                if(PrevState == GameState.Battle){
-                    SetState(GameState.Battle);
-                } else {
-                    SetState(GameState.FreeRoam);
-                }
-            };
-            inventoryUI.HandleUpdate(onBack);
         } else if(state == GameState.Shop){
             ShopController.i.HandleUpdate();
         }
     }
 
     void Start(){
+        StateMachine = new StateMachine<GameController>(this);
+        StateMachine.ChangeState(FreeRoamState.i);
+
         battleSystem.OnBattleOver += EndBattle;
         partyScreen.Init();
         DialogManager.i.OnShowDialog += () => SetState(GameState.Dialog);
@@ -105,9 +79,6 @@ public class GameController : MonoBehaviour{
                 SetState(PrevState);
             }
         };
-
-        menuController.onBack += () => SetState(GameState.FreeRoam);
-        menuController.onMenuSelected += OnMenuSelected;
 
         EvolutionManager.i.OnStartEvolution += () => {
             stateBeforeEvolution = state;    
@@ -228,4 +199,14 @@ public class GameController : MonoBehaviour{
             StartCoroutine(Fader.i.FadeOut(0.5f));
         }
     }
+
+    private void OnGUI(){
+        var style = new GUIStyle();
+        style.fontSize = 24;
+
+        GUILayout.Label("State Stack", style);
+        foreach(var state in StateMachine.StateStack){
+            GUILayout.Label(state.GetType().ToString(), style);
+        }
+    }  
 }

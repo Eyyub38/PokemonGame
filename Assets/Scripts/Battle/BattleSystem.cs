@@ -172,7 +172,6 @@ public class BattleSystem : MonoBehaviour{
     }
 
     void OpenPartyScreen(){
-        partyScreen.CallFrom = state;
         state = BattleState.PartyScreen;
         partyScreen.gameObject.SetActive(true);
     }
@@ -430,7 +429,7 @@ public class BattleSystem : MonoBehaviour{
             Action<ItemBase> onItemUsed = (ItemBase usedItem) => {
                 StartCoroutine(OnItemUsed(usedItem));
             };
-            inventoryUI.HandleUpdate(onBack, onItemUsed);
+            //inventoryUI.HandleUpdate(onBack, onItemUsed);
 
         } else if(state == BattleState.AboutToUse){
             HandleAboutToUse();
@@ -548,31 +547,28 @@ public class BattleSystem : MonoBehaviour{
             }
 
             partyScreen.gameObject.SetActive(false);
-            if(partyScreen.CallFrom == BattleState.ActionSelection){
-                StartCoroutine(RunTurns(BattleAction.SwitchPokemon));
-            } else {
-                state = BattleState.Busy;
-                bool isTrainerAboutToUse = partyScreen.CallFrom == BattleState.AboutToUse;
-                StartCoroutine(SwitchPokemon(selectedMember,isTrainerAboutToUse));
-            }
-
-            partyScreen.CallFrom = null;
+            //if(partyScreen.CallFrom == BattleState.ActionSelection){
+            //    StartCoroutine(RunTurns(BattleAction.SwitchPokemon));
+            //} else {
+            //    state = BattleState.Busy;
+            //    bool isTrainerAboutToUse = partyScreen.CallFrom == BattleState.AboutToUse;
+            //    StartCoroutine(SwitchPokemon(selectedMember,isTrainerAboutToUse));
+            //}
+            //partyScreen.CallFrom = null;
         };
         Action onBack = () => {
-            if(playerUnit.Pokemon.HP <=0){
-                partyScreen.SetMessageText("Your Pokemon is fainted! You need to choose new Pokemon");
-                return;
-            }
-            partyScreen.gameObject.SetActive(false);
-            if(partyScreen.CallFrom == BattleState.AboutToUse){
-                StartCoroutine(SendNextTrainerPokemon());
-            } else {
-                ActionSelection();
-            }
-            partyScreen.CallFrom = null;
+            //if(playerUnit.Pokemon.HP <=0){
+            //    partyScreen.SetMessageText("Your Pokemon is fainted! You need to choose new Pokemon");
+            //    return;
+            //}
+            //partyScreen.gameObject.SetActive(false);
+            //if(partyScreen.CallFrom == BattleState.AboutToUse){
+            //    StartCoroutine(SendNextTrainerPokemon());
+            //} else {
+            //    ActionSelection();
+            //}
+            //partyScreen.CallFrom = null;
         };
-
-        partyScreen.HandleUpdate(onSelected, onBack);
     }
 
     IEnumerator HandlePokemonFainted(BattleUnit faintedUnit){

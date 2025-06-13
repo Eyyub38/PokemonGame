@@ -38,35 +38,12 @@ public class PartyMemberUI : MonoBehaviour{
     [Header("Able/Not Able Text")]
     [SerializeField] Text messageText;
 
-    [Header("Bounce Animation")]
-    [SerializeField] float bounceHeight = 10f;
-    [SerializeField] float bounceDuration = 0.5f;
-
     [Header("Battle Unit")]
     [SerializeField] BattleUnit currUnit;
     [SerializeField] BattleHud battleHud;
 
-    private Vector3 originalIconPosition;
-    private Sequence bounceSequence;
-    private bool isSelected = false;
-
     Pokemon _pokemon;
-    
-    private void Start(){
-        originalIconPosition = pokemonIcon.transform.localPosition;
-    }
 
-    public void SetSelected(bool selected){
-        if(isSelected == selected) return;
-        
-        isSelected = selected;
-        
-        if(selected){
-            StartBounceAnimation();
-        } else {
-            StopBounceAnimation();
-        }
-    }
     
     public void SetData(Pokemon pokemon){
         _pokemon = pokemon;
@@ -113,10 +90,6 @@ public class PartyMemberUI : MonoBehaviour{
         } else {
             genderIcon.gameObject.SetActive(false);
         }
-    
-        if(isSelected){
-            StartBounceAnimation();
-        }
     }
 
     private void UpdateData(){
@@ -149,30 +122,6 @@ public class PartyMemberUI : MonoBehaviour{
 
         float normalizedExp = (float)(pokemon.Exp - currLevelExp) / (float)(nextLevelExp - currLevelExp);
         return Mathf.Clamp01(normalizedExp);
-    }
-
-    private void StartBounceAnimation(){
-        StopBounceAnimation();
-
-        pokemonIcon.transform.localPosition = originalIconPosition;
-
-        bounceSequence = DOTween.Sequence();
-        bounceSequence.Append(pokemonIcon.transform.DOLocalMoveY(originalIconPosition.y + bounceHeight, bounceDuration / 2))
-                     .Append(pokemonIcon.transform.DOLocalMoveY(originalIconPosition.y, bounceDuration / 2))
-                     .SetLoops(-1)
-                     .SetEase(Ease.InOutQuad);
-    }
-
-    private void StopBounceAnimation(){
-        if (bounceSequence != null){
-            bounceSequence.Kill();
-            bounceSequence = null;
-        }
-        pokemonIcon.transform.localPosition = originalIconPosition;
-    }
-
-    private void OnDestroy(){
-        StopBounceAnimation();
     }
 
     public void SetMessageText(string message){

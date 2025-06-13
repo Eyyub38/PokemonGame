@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7886074870046509710}
   - component: {fileID: 5183788017404664031}
   - component: {fileID: 4788601930421776239}
+  - component: {fileID: 7845178550760717593}
   m_Layer: 0
   m_Name: PartyHud
   m_TagString: Untagged
@@ -84,10 +85,23 @@ MonoBehaviour:
   genderlessIcon: {fileID: -1937198735191076674, guid: cc8110e9df232c4499d7beb1348910c5, type: 3}
   statusIcon: {fileID: 1345415199123443969}
   messageText: {fileID: 748298577564728770}
-  bounceHeight: 10
-  bounceDuration: 0.5
   currUnit: {fileID: 0}
   battleHud: {fileID: 0}
+--- !u!114 &7845178550760717593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1091461951060390021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c71a6c8a5737a6488f68badfe64c91d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 3742394770289290559}
+  bounceHeight: 10
+  bounceDuration: 0.5
 --- !u!1 &1233154580523588510
 GameObject:
   m_ObjectHideFlags: 0
