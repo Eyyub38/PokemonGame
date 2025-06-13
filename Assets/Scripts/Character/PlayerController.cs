@@ -20,7 +20,10 @@ public class PlayerController : MonoBehaviour, ISavable{
     public Sprite BattleImage => battleImage;
     public Character Character => character;
 
+    public static PlayerController i { get; private set; }
+
     private void Awake(){
+        i = this;
         character = GetComponent<Character>();
     }
     
@@ -63,12 +66,11 @@ public class PlayerController : MonoBehaviour, ISavable{
                 yield return interactable.Interact(transform);
             }
         } else {
-            var allColliders = Physics2D.OverlapCircleAll(transform.position, 1f);
             yield return TryInteractInAllDirections();
         }
     }
 
-    private Vector3 GetLastFacingDirection(){
+    public Vector3 GetLastFacingDirection(){
         var animator = character.Animator;
         
         if(animator.MoveX != 0){

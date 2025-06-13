@@ -27,17 +27,51 @@ public class Surfable : MonoBehaviour,  Interactable, IPlayerTriggerable{
             if(selectedChoice == 0){
                 yield return DialogManager.i.ShowDialogText($"{pokemonWithSurf.Base.Name} used Surf!");
 
-                var dir = new Vector3(animator.MoveX, animator.MoveY);
+                var dir = GetDirectionToWater(initiator);
                 var targetPos = initiator.position + dir;
 
-                IsJumpingToWater = true;
-                yield return initiator.DOJump(targetPos, 0.3f, 1, 0.5f).WaitForCompletion();
-                IsJumpingToWater = false;
+                if(IsValidWaterPosition(targetPos)){
+                    IsJumpingToWater = true;
+                    yield return initiator.DOJump(targetPos, 0.3f, 1, 0.5f).WaitForCompletion();
+                    IsJumpingToWater = false;
 
-                animator.IsSurfing = true;
-                GameObject pokemonAnimatorObj = CreatePokemonAnimator(initiator, pokemonWithSurf.Base);
+                    var character = initiator.GetComponent<Character>();
+                    if(character != null){
+                        character.SetPositionAndSnapToTile(targetPos);
+                    } else {
+                        initiator.position = targetPos;
+                    }
+                    
+                    animator.IsSurfing = true;
+                    GameObject pokemonAnimatorObj = CreatePokemonAnimator(initiator, pokemonWithSurf.Base);
+                } else {
+                    yield return DialogManager.i.ShowDialogText("There's no water to surf on!");
+                }
             }
         }
+    }
+
+    private Vector3 GetDirectionToWater(Transform initiator){
+        var playerController = initiator.GetComponent<PlayerController>();
+        if(playerController != null){
+            return playerController.GetLastFacingDirection();
+        }
+        
+        var animator = initiator.GetComponent<CharacterAnimator>();
+        if(animator.MoveX != 0 || animator.MoveY != 0){
+            return new Vector3(animator.MoveX, animator.MoveY, 0);
+        }
+        
+        if(animator.LastMoveX != 0 || animator.LastMoveY != 0){
+            return new Vector3(animator.LastMoveX, animator.LastMoveY, 0);
+        }
+        
+        return Vector3.down;
+    }
+
+    private bool IsValidWaterPosition(Vector3 position){
+        var waterCollider = Physics2D.OverlapCircle(position, 0.1f, GameLayers.i.WaterLayer);
+        return waterCollider != null;
     }
 
     public void OnPlayerTriggered(PlayerController player){

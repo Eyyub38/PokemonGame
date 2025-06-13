@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Cutscenes\Editor\CutsceneEditor.cs" />
+    <Compile Include="Assets\Scripts\Cutscenes\Editor\CutsceneActorDrawer.cs" />
     <Compile Include="Assets\Scripts\Gameplay\Editor\MapAreaEditor.cs" />
   </ItemGroup>
   <ItemGroup>

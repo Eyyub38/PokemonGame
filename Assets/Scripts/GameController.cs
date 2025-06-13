@@ -60,6 +60,8 @@ public class GameController : MonoBehaviour{
                 menuController.OpenMenu();
                 SetState(GameState.Menu);
             }
+        }else if(state == GameState.Cutscene){
+            playerController.Character.HandleUpdate();
         } else if(state == GameState.Battle){
             battleSystem.HandleUpdate();
         } else if(state == GameState.Dialog){

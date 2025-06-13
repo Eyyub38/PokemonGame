@@ -52,7 +52,7 @@ public class Character : MonoBehaviour{
         return true;
     }
     
-    public IEnumerator Move(Vector2 moveVector, Action OnMoveOver = null){
+    public IEnumerator Move(Vector2 moveVector, Action OnMoveOver = null, bool checkCollisions = true){
         animator.MoveX = Mathf.Clamp(moveVector.x, -1f, 1f);
         animator.MoveY = Mathf.Clamp(moveVector.y, -1f, 1f);
         animator.IsMoving = true;
@@ -69,7 +69,7 @@ public class Character : MonoBehaviour{
             }
         }
 
-        if(!IsPathClear(targetPos)){
+        if(checkCollisions &&!IsPathClear(targetPos)){
             animator.IsMoving = false;
             animator.MoveX = 0f;
             animator.MoveY = 0f;
@@ -106,7 +106,9 @@ public class Character : MonoBehaviour{
         transform.position = targetPos;
         
         IsMoving = false;
+        IsRunning = false;
         animator.IsMoving = false;
+        animator.IsRunning = false;
         animator.MoveX = 0f;
         animator.MoveY = 0f;
 

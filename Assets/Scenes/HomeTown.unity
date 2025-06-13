@@ -7971,6 +7971,12 @@ MonoBehaviour:
   actions:
   - rid: 3568286059670536256
   - rid: 3568286059670536257
+  - rid: 3568286059670536258
+  - rid: 3568286059670536259
+  - rid: 3568286059670536262
+  - rid: 3568286059670536264
+  - rid: 3568286059670536265
+  - rid: 3568286059670536266
   references:
     version: 2
     RefIds:
@@ -7978,7 +7984,10 @@ MonoBehaviour:
       type: {class: MoveActorAction, ns: , asm: Assembly-CSharp}
       data:
         name: Officer Came
-        character: {fileID: 1829044928098464479}
+        waitForCompletion: 1
+        actor:
+          isPlayer: 0
+          character: {fileID: 1829044928098464479}
         movePatterns:
         - {x: -6, y: 0}
         - {x: 0, y: 14}
@@ -7986,13 +7995,84 @@ MonoBehaviour:
       type: {class: DialogAction, ns: , asm: Assembly-CSharp}
       data:
         name: Officer Says
+        waitForCompletion: 1
+        character: {fileID: 1829044928098464479}
         dialog:
           lines:
           - Wait where are you going?
-          - Are you new trainer?
-          - I am sorry but I can let you to leave town.
-          - You don't have any pokemon right.
-          - Come with me.
+          - Come here!
+    - rid: 3568286059670536258
+      type: {class: MoveActorAction, ns: , asm: Assembly-CSharp}
+      data:
+        name: PlayerCame
+        waitForCompletion: 1
+        actor:
+          isPlayer: 1
+          character: {fileID: 0}
+        movePatterns:
+        - {x: 0, y: -1}
+    - rid: 3568286059670536259
+      type: {class: DialogAction, ns: , asm: Assembly-CSharp}
+      data:
+        name: Officer Says
+        waitForCompletion: 1
+        character: {fileID: 1829044928098464479}
+        dialog:
+          lines:
+          - "D\u0130d you go to the Lab?"
+          - So you don't have pokemon and you try to go.
+          - No, I can't let you go like this. Come with me.
+    - rid: 3568286059670536262
+      type: {class: MoveActorAction, ns: , asm: Assembly-CSharp}
+      data:
+        name: Officer Go
+        waitForCompletion: 0
+        actor:
+          isPlayer: 0
+          character: {fileID: 1829044928098464479}
+        movePatterns:
+        - {x: 0, y: -15}
+        - {x: 8, y: 0}
+        - {x: 0, y: 4}
+        - {x: 6, y: 0}
+    - rid: 3568286059670536264
+      type: {class: MoveActorAction, ns: , asm: Assembly-CSharp}
+      data:
+        name: Player Go
+        waitForCompletion: 1
+        actor:
+          isPlayer: 1
+          character: {fileID: 0}
+        movePatterns:
+        - {x: 0, y: -16}
+        - {x: 8, y: 0}
+        - {x: 0, y: 4}
+        - {x: 5, y: 0}
+    - rid: 3568286059670536265
+      type: {class: DialogAction, ns: , asm: Assembly-CSharp}
+      data:
+        name: Officer Says
+        waitForCompletion: 1
+        character: {fileID: 1829044928098464479}
+        dialog:
+          lines:
+          - Here Oak's lab. He should be waiting you
+          - I need to go my work. Take care.
+    - rid: 3568286059670536266
+      type: {class: MoveActorAction, ns: , asm: Assembly-CSharp}
+      data:
+        name: Officer Go
+        waitForCompletion: 1
+        actor:
+          isPlayer: 0
+          character: {fileID: 1829044928098464479}
+        movePatterns:
+        - {x: 0, y: -1}
+        - {x: -2, y: 0}
+        - {x: 0, y: 1}
+        - {x: -4, y: 0}
+        - {x: 0, y: -3}
+        - {x: -2, y: 0}
 --- !u!4 &419052806
 Transform:
   m_ObjectHideFlags: 0
