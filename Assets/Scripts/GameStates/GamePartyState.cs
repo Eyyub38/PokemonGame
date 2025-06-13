@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using GDEUtills.StateMachine;
 using System.Collections.Generic;
 
@@ -26,10 +27,15 @@ public class GamePartyState : State<GameController>{
 
     void OnPokemonSelected(int selectedPokemon){
         if(gameController.StateMachine.GetPrevState() == InventoryState.i){
-            Debug.Log("Use Item State");
+            StartCoroutine(GoToUseItemState());
         } else {
             Debug.Log("Summary Screen");
         }
+    }
+
+    IEnumerator GoToUseItemState(){
+        yield return gameController.StateMachine.PushAndWait(UseItemState.i);
+        gameController.StateMachine.Pop();
     }
 
     void OnBack(){

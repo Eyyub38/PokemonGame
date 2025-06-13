@@ -1,6 +1,7 @@
 using UnityEngine;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace GDEUtills.StateMachine {
     public class StateMachine<T> {
@@ -18,6 +19,12 @@ namespace GDEUtills.StateMachine {
             StateStack.Push(newState);
             CurrentState = newState;
             CurrentState.Enter(owner);
+        }
+
+        public IEnumerator PushAndWait(State <T> newState){
+            var oldState = CurrentState;
+            Push(newState);
+            yield return new WaitUntil(() => CurrentState == oldState);
         }
 
         public void Execute(){

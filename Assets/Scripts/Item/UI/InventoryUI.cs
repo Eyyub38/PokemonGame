@@ -47,6 +47,9 @@ public class InventoryUI : SelectionUI<TextSlot>{
 
     const int itemsInViewport = 6;
 
+    public ItemBase SelectedItem => inventory.GetItem(selectedItem, selectedCategory);
+    public int SelectedCategory => selectedCategory;
+
     private void Awake(){
         inventory = Inventory.GetInventory();
         itemListRect = itemList.GetComponent<RectTransform>();
@@ -138,7 +141,7 @@ public class InventoryUI : SelectionUI<TextSlot>{
         }
         
         if(selectedCategory == (int)ItemCategory.Pokeball){
-            StartCoroutine(UseItem());
+            //StartCoroutine(UseItem());
         } else {
             OpenPartyScreen();
             if(item is TmItem){
@@ -157,41 +160,6 @@ public class InventoryUI : SelectionUI<TextSlot>{
         priceText.text = "";
     }
 
-    IEnumerator UseItem(){
-        state = InventoryUIState.Busy;
-
-        yield return HandleTmItems();
-
-        var item = inventory.GetItem(selectedItem, selectedCategory);
-        var pokemon = partyScreen.SelectedMember;
-
-        if(item is EvolutionItem){
-            var evolution = pokemon.CheckForEvolution(item);
-            if(evolution != null){
-                yield return EvolutionManager.i.Evolve(pokemon, evolution);
-            } else {
-                yield return DialogManager.i.ShowDialogText($"{pokemon.Base.Name} can't evolve with {item.Name}");
-                ClosePartyScreen();
-                yield break;
-            }
-        }
-
-        var usedItem = inventory.UseItem(selectedItem, partyScreen.SelectedMember,selectedCategory);
-        if(usedItem != null){
-
-            if(usedItem is RecoveryItem){
-                yield return DialogManager.i.ShowDialogText($"You use {usedItem.Name}!");
-            }
-            onItemUsed?.Invoke(usedItem);
-        } else {
-            if(selectedCategory == (int)ItemCategory.Recovery){
-                yield return DialogManager.i.ShowDialogText($"It won't have any effect.");
-            }
-        }
-
-        ClosePartyScreen();
-    }
-
     public override void UpdateSelectionInUI(){
         base.UpdateSelectionInUI();
 
@@ -207,35 +175,6 @@ public class InventoryUI : SelectionUI<TextSlot>{
             }
         }
         HandleScrolling();
-    }
-
-    IEnumerator HandleTmItems(){
-        var tmItem = inventory.GetItem(selectedItem, selectedCategory) as TmItem;
-        if(tmItem == null){
-            yield break;
-        }
-
-        var pokemon = partyScreen.SelectedMember;
-
-        if(pokemon.HasMove(tmItem.Move)){
-            yield return DialogManager.i.ShowDialogText($"{pokemon.Base.Name} already knows {tmItem.Move.Name}");
-            yield break;
-        }
-
-        if(!tmItem.CanBeTaught(pokemon)){
-            yield return DialogManager.i.ShowDialogText($"{pokemon.Base.Name} can't learn {tmItem.Move.Name}");
-            yield break;
-        }
-
-        if(pokemon.Moves.Count < PokemonBase.MaxNumberOfMoves){
-            pokemon.LearnMove(tmItem.Move);
-            yield return DialogManager.i.ShowDialogText($"{pokemon.Base.Name} learned {tmItem.Move.Name}");
-        } else {
-            yield return DialogManager.i.ShowDialogText($"{pokemon.Base.Name} trying to learn {tmItem.Move.Name}...");
-            yield return DialogManager.i.ShowDialogText($"But its is already knew {PokemonBase.MaxNumberOfMoves} moves.");
-            yield return ChooseMoveToForget(pokemon, tmItem.Move);
-            yield return new WaitUntil(() => state != InventoryUIState.MoveToForget);
-        }
     }
 
     void HandleScrolling(){

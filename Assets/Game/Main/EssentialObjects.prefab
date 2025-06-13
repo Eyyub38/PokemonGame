@@ -257,6 +257,7 @@ GameObject:
   - component: {fileID: 4435990375502678265}
   - component: {fileID: 4973524475285513924}
   - component: {fileID: 240394747343363954}
+  - component: {fileID: 2279001409718497908}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -461,6 +462,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryUI: {fileID: 2487256870943947463}
+--- !u!114 &2279001409718497908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591813233000000370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e68286b7e1497e34395d060395b92795, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventoryUI: {fileID: 2487256870943947463}
+  partyScreen: {fileID: 7770804013979079318}
 --- !u!1 &1025353801506284044
 GameObject:
   m_ObjectHideFlags: 0

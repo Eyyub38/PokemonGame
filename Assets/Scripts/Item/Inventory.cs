@@ -51,6 +51,10 @@ public class Inventory : MonoBehaviour, ISavable{
 
     public ItemBase UseItem(int itemIndex, Pokemon selected, int categoryIndex){
         var item = GetItem(itemIndex, categoryIndex);
+        return UseItem(item, selected);
+    }
+    
+    public ItemBase UseItem(ItemBase item, Pokemon selected){
         bool itemUsed = item.Use(selected);
         if(itemUsed){
             if(!item.IsUsable){
