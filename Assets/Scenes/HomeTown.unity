@@ -7969,6 +7969,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actions:
+  - rid: 3568286066199232574
   - rid: 3568286059670536256
   - rid: 3568286059670536257
   - rid: 3568286059670536258
@@ -7977,6 +7978,7 @@ MonoBehaviour:
   - rid: 3568286059670536264
   - rid: 3568286059670536265
   - rid: 3568286059670536266
+  - rid: 3568286066199232575
   references:
     version: 2
     RefIds:
@@ -8073,6 +8075,24 @@ MonoBehaviour:
         - {x: -4, y: 0}
         - {x: 0, y: -3}
         - {x: -2, y: 0}
+    - rid: 3568286066199232574
+      type: {class: TurnActorAction, ns: , asm: Assembly-CSharp}
+      data:
+        name: Player Look
+        waitForCompletion: 1
+        actor:
+          isPlayer: 1
+          character: {fileID: 0}
+        direction: 1
+    - rid: 3568286066199232575
+      type: {class: TurnActorAction, ns: , asm: Assembly-CSharp}
+      data:
+        name: Officer Look
+        waitForCompletion: 1
+        actor:
+          isPlayer: 0
+          character: {fileID: 1829044928098464479}
+        direction: 1
 --- !u!4 &419052806
 Transform:
   m_ObjectHideFlags: 0

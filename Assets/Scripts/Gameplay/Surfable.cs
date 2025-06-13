@@ -70,7 +70,7 @@ public class Surfable : MonoBehaviour,  Interactable, IPlayerTriggerable{
     }
 
     private bool IsValidWaterPosition(Vector3 position){
-        var waterCollider = Physics2D.OverlapCircle(position, 0.1f, GameLayers.i.WaterLayer);
+        var waterCollider = Physics2D.OverlapCircle(position, 0.5f, GameLayers.i.WaterLayer);
         return waterCollider != null;
     }
 

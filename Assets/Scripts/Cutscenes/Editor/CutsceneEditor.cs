@@ -8,10 +8,32 @@ public class CutsceneEditor : Editor{
     public override void OnInspectorGUI(){
         var cutscene = target as Cutscene;
 
-        if(GUILayout.Button("Add Dialog Action")){
-            cutscene.AddAction(new DialogAction());
-        } else if(GUILayout.Button("Add Move Action")){
-            cutscene.AddAction(new MoveActorAction());
+        using (var scope = new GUILayout.HorizontalScope()){
+            if(GUILayout.Button("Dialog")){
+                cutscene.AddAction(new DialogAction());
+            } else if(GUILayout.Button("Move Actor")){
+                cutscene.AddAction(new MoveActorAction());
+            } else if(GUILayout.Button("Turn Actor")){
+                cutscene.AddAction(new TurnActorAction());
+            }
+        };
+        using(var scope = new GUILayout.HorizontalScope()){   
+            if(GUILayout.Button("Teleport Object")){
+                cutscene.AddAction(new TeleportObjectAction());
+            } else if(GUILayout.Button("Enbale Object")){
+                cutscene.AddAction(new EnableObjectAction());
+            } else if(GUILayout.Button("Disable Object")){
+                cutscene.AddAction(new DisableObjectAction());
+            }
+        }
+        using(var scope = new GUILayout.HorizontalScope()){
+            if(GUILayout.Button("FadeIn")){
+                cutscene.AddAction(new FadeInAction());
+            } else if(GUILayout.Button("FadeOut")){
+                cutscene.AddAction(new FadeOutAction());
+            } else if(GUILayout.Button("NPC Interact")){
+                cutscene.AddAction(new NPCInteractAction());
+            }
         }
         base.OnInspectorGUI();
     }
