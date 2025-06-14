@@ -42,7 +42,8 @@ public class MoveSelectionState : State<BattleSystem>{
     }
 
     private void OnMoveSelected(int selection){
-        
+        battleSystem.SelectedMove = selection;
+        battleSystem.StateMachine.ChangeState(RunTurnState.i);   
     }
 
     private void OnBack(){
