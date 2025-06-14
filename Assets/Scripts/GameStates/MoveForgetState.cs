@@ -5,7 +5,7 @@ using GDEUtills.StateMachine;
 using System.Collections.Generic;
 
 public class MoveForgetState : State<GameController>{
-    [SerializeField] MoveSelectionUI moveSelectionUI;
+    [SerializeField] MoveForgetSelectionUI moveForgetSelectionUI;
 
     GameController gameController;
     
@@ -22,22 +22,22 @@ public class MoveForgetState : State<GameController>{
     public override void Enter(GameController owner){
         gameController = owner;
         Selection = 0;
-        moveSelectionUI.gameObject.SetActive(true);
-        moveSelectionUI.SetMoveSelectionBars(CurrentMoves, NewMove);
-        moveSelectionUI.SetMoveDetails(CurrentMoves[0].Base, NewMove);
+        moveForgetSelectionUI.gameObject.SetActive(true);
+        moveForgetSelectionUI.SetMoveSelectionBars(CurrentMoves, NewMove);
+        moveForgetSelectionUI.SetMoveDetails(CurrentMoves[0].Base, NewMove);
 
-        moveSelectionUI.OnSelected += OnMoveSelected;
-        moveSelectionUI.OnBack += OnBack;
+        moveForgetSelectionUI.OnSelected += OnMoveSelected;
+        moveForgetSelectionUI.OnBack += OnBack;
     }
 
     public override void Execute(){
-        moveSelectionUI.HandleUpdate();
+        moveForgetSelectionUI.HandleUpdate();
     }
 
     public override void Exit(){
-        moveSelectionUI.gameObject.SetActive(false);
-        moveSelectionUI.OnSelected -= OnMoveSelected;
-        moveSelectionUI.OnBack -= OnBack;
+        moveForgetSelectionUI.gameObject.SetActive(false);
+        moveForgetSelectionUI.OnSelected -= OnMoveSelected;
+        moveForgetSelectionUI.OnBack -= OnBack;
     }
 
     private void OnMoveSelected(int selectedMove){

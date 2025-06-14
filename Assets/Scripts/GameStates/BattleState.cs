@@ -27,7 +27,7 @@ public class BattleState : State<GameController>{
         
         var wildPokemon = gameController.CurrentScene.GetComponent<MapArea>().GetRandomWildPokemon(trigger);
 
-        if(trainer != null){
+        if(trainer == null){
             var enemyPokemon = new Pokemon(wildPokemon.Base, wildPokemon.Level);
             battleSystem.StartBattle(playerParty, enemyPokemon,trigger);
         } else {

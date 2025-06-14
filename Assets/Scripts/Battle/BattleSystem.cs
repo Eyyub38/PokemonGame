@@ -3,6 +3,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 using System.Collections;
+using GDEUtills.StateMachine;
 using System.Collections.Generic;
 
 public enum BattleStates { Start, ActionSelection, MoveSelection, RunningTurn, PartyScreen, Bag,AboutToUse, MoveToForget, BattleOver, Busy}
@@ -18,7 +19,7 @@ public class BattleSystem : MonoBehaviour{
     [SerializeField] BattleDialogBox dialogBox;
     [SerializeField] PartyScreen partyScreen;
     [SerializeField] InventoryUI inventoryUI;
-    [SerializeField] MoveSelectionUI moveSelectionUI; 
+    [SerializeField] MoveForgetSelectionUI moveForgetSelectionUI; 
     
     [Header("Character Images")]
     [SerializeField] Image playerImage;
@@ -62,6 +63,11 @@ public class BattleSystem : MonoBehaviour{
 
     public Action<bool> OnBattleOver;
 
+    public StateMachine<BattleSystem> StateMachine {get; private set;}
+    public BattleDialogBox DialogBox => dialogBox;
+    public BattleUnit PlayerUnit => playerUnit;
+    public BattleUnit EnemyUnit => enemyUnit;
+    
     public void StartBattle(PokemonParty playerParty, Pokemon wildPokemon, BattleTrigger trigger = BattleTrigger.LongGrass){
         this.playerParty = playerParty;
         this.wildPokemon = wildPokemon;
@@ -88,6 +94,8 @@ public class BattleSystem : MonoBehaviour{
     }
 
     public IEnumerator SetupBattle(){
+        StateMachine = new StateMachine<BattleSystem>(this);
+
         playerUnit.Clear();
         enemyUnit.Clear();
         if(battleTrigger == BattleTrigger.Water){
@@ -134,7 +142,8 @@ public class BattleSystem : MonoBehaviour{
 
         escapeAttempts = 0;
         partyScreen.Init();
-        ActionSelection();
+        StateMachine.ChangeState(ActionSelectionState.i);
+    
     }
 
     void ActionSelection(){
@@ -162,10 +171,10 @@ public class BattleSystem : MonoBehaviour{
     IEnumerator ChooseMoveToForget(Pokemon pokemon, MoveBase newMove){
         state = BattleStates.Busy;
         yield return dialogBox.TypeDialog($"Choose a move you want {pokemon.Base.Name} to forget!");
-        moveSelectionUI.gameObject.SetActive(true);
+        moveForgetSelectionUI.gameObject.SetActive(true);
 
-        moveSelectionUI.SetMoveSelectionBars(pokemon.Moves, newMove);
-        moveSelectionUI.SetMoveDetails(pokemon.Moves[0].Base, newMove);
+        moveForgetSelectionUI.SetMoveSelectionBars(pokemon.Moves, newMove);
+        moveForgetSelectionUI.SetMoveDetails(pokemon.Moves[0].Base, newMove);
         moveToLearn = newMove;
 
         state = BattleStates.MoveToForget;
@@ -415,11 +424,9 @@ public class BattleSystem : MonoBehaviour{
     }
 
     public void HandleUpdate(){
-        if(state == BattleStates.ActionSelection){
-            HandleActionSelection();
-        } else if(state == BattleStates.MoveSelection){
-            HandleMoveSelection();
-        } else if(state == BattleStates.PartyScreen){
+        StateMachine.Execute();
+
+        if(state == BattleStates.PartyScreen){
             HandlePartySelection();
         } else if(state == BattleStates.Bag){
             Action onBack = () => {
@@ -436,11 +443,11 @@ public class BattleSystem : MonoBehaviour{
         } else if(state == BattleStates.MoveToForget){
             Action<int> onMoveSelected = (moveIndex) => {
                 if(moveIndex == PokemonBase.MaxNumberOfMoves){
-                    moveSelectionUI.gameObject.SetActive(false);
+                    moveForgetSelectionUI.gameObject.SetActive(false);
                     StartCoroutine(dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name} didn't learn {moveToLearn.Name}"));
                 } else {
                     var selectedMove = playerUnit.Pokemon.Moves[ moveIndex ].Base;
-                    moveSelectionUI.gameObject.SetActive(false);
+                    moveForgetSelectionUI.gameObject.SetActive(false);
                     StartCoroutine(dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name} forgot {selectedMove.Name} and learned {moveToLearn.Name}"));
 
                     playerUnit.Pokemon.Moves[ moveIndex ] = new Move(moveToLearn);
@@ -450,38 +457,6 @@ public class BattleSystem : MonoBehaviour{
             };
 
             //moveSelectionUI.HandleMoveSelection(playerUnit.Pokemon, onMoveSelected);
-        }
-    }
-    
-    void HandleActionSelection(){
-        if(Input.GetKeyDown(KeyCode.RightArrow)){
-            ++currentAction;
-        } else if(Input.GetKeyDown(KeyCode.LeftArrow)){
-            --currentAction;
-        } else if(Input.GetKeyDown(KeyCode.DownArrow)){
-            currentAction += 2;
-        } else if(Input.GetKeyDown(KeyCode.UpArrow)){
-            currentAction -= 2;
-        }
-
-        currentAction = Mathf.Clamp(currentAction, 0, 3);
-
-        dialogBox.UpdateActionSelection(currentAction);
-
-        if(Input.GetKeyDown(KeyCode.Return)){
-            if(currentAction == 0){
-                //Fight
-                MoveSelection();
-            } else if(currentAction == 1){
-                //Pokemon
-                OpenPartyScreen();
-            } else if(currentAction == 2){
-                //Bag
-                OpenBag();
-            } else if(currentAction == 3){
-                //Run
-                StartCoroutine(RunTurns(BattleAction.Run));
-            }
         }
     }
 
@@ -504,7 +479,7 @@ public class BattleSystem : MonoBehaviour{
         }
     }
 
-    void HandleMoveSelection(){
+    void HandleMoveForgetSelection(){
         if(Input.GetKeyDown(KeyCode.DownArrow)){
             currentMove++;
         } else if(Input.GetKeyDown(KeyCode.UpArrow)){

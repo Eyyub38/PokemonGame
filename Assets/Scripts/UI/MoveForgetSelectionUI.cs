@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using GDEUtills.GenerciSelectionUI;
 using System.Linq;
 
-public class MoveSelectionUI : SelectionUI<TextSlot>{
+public class MoveForgetSelectionUI : SelectionUI<TextSlot>{
     [Header("Move Bars")]
     [SerializeField] List<MoveBar> moveBars;
 
