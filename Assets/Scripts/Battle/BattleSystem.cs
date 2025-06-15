@@ -49,7 +49,7 @@ public class BattleSystem : MonoBehaviour{
     int currentMove;
     bool aboutToUseChoice = true;
 
-    BattleStates state;
+    public BattleStates state;
     PlayerController player;
     TrainerController trainer;
     MoveBase moveToLearn;
@@ -65,6 +65,7 @@ public class BattleSystem : MonoBehaviour{
     public PokemonParty PlayerParty {get; private set;}
     public PokemonParty TrainerParty {get; private set;}
     public Pokemon WildPokemon {get; private set;}
+    public Pokemon SelectedPokemon {get; set;}
     public PartyScreen PartyScreen => partyScreen;
     public BattleDialogBox DialogBox => dialogBox;
     public BattleAction SelectedAction {get; set;}
@@ -152,12 +153,6 @@ public class BattleSystem : MonoBehaviour{
     
     }
 
-    void ActionSelection(){
-        state = BattleStates.ActionSelection;
-        dialogBox.SetDialog("Choose an Action");
-        dialogBox.EnableActionSelector(true);
-    }
-
     IEnumerator AboutToUse(Pokemon newPokemon){
         state = BattleStates.Busy;
         yield return dialogBox.TypeDialog($"{trainer.Name} is about to use {newPokemon.Base.Name}. Do you want to change your Pokemon?");
@@ -178,12 +173,53 @@ public class BattleSystem : MonoBehaviour{
         state = BattleStates.MoveToForget;
     }
 
-    void OpenPartyScreen(){
+    public void OpenPartyScreen(){
+        Debug.Log("OpenPartyScreen called");
+        if(partyScreen == null){
+            Debug.LogError("partyScreen is null in BattleSystem!");
+            return;
+        }
+        
         state = BattleStates.PartyScreen;
         partyScreen.gameObject.SetActive(true);
+        partyScreen.Init();
+        partyScreen.OnSelected += OnPartyMemberSelected;
+        partyScreen.OnBack += OnPartyScreenBack;
+        Debug.Log("PartyScreen opened successfully");
     }
 
-    
+    void OnPartyMemberSelected(int selectedIndex){
+        Debug.Log($"OnPartyMemberSelected called with index: {selectedIndex}");
+        var selectedMember = partyScreen.SelectedMember;
+        if(selectedMember.HP <= 0){
+            partyScreen.SetMessageText($"{selectedMember.Base.Name} is fainted. You cannot send out to battle.");
+            return;
+        }
+        if(selectedMember == playerUnit.Pokemon){
+            partyScreen.SetMessageText($"{selectedMember.Base.Name} is already in battle.");
+            return;
+        }
+
+        SelectedPokemon = selectedMember;
+        partyScreen.gameObject.SetActive(false);
+        partyScreen.OnSelected -= OnPartyMemberSelected;
+        partyScreen.OnBack -= OnPartyScreenBack;
+        state = BattleStates.ActionSelection;
+        Debug.Log($"Pokemon selected: {SelectedPokemon.Base.Name}");
+    }
+
+    void OnPartyScreenBack(){
+        Debug.Log("OnPartyScreenBack called");
+        if(playerUnit.Pokemon.HP <=0){
+            partyScreen.SetMessageText("Your Pokemon is fainted! You need to choose new Pokemon");
+            return;
+        }
+        partyScreen.gameObject.SetActive(false);
+        partyScreen.OnSelected -= OnPartyMemberSelected;
+        partyScreen.OnBack -= OnPartyScreenBack;
+        state = BattleStates.ActionSelection;
+        Debug.Log("PartyScreen closed");
+    }
 
     public void BattleOver(bool won){
         IsBattleOver = true;
@@ -250,40 +286,7 @@ public class BattleSystem : MonoBehaviour{
     }
 
     void HandlePartySelection(){
-        Action onSelected = () => {
-            var selectedMember = partyScreen.SelectedMember;
-            if(selectedMember.HP <= 0){
-                partyScreen.SetMessageText($"{selectedMember.Base.Name} is fainted. You cannot send out to battle.");
-                return;
-            }
-            if(selectedMember == playerUnit.Pokemon){
-                partyScreen.SetMessageText($"{selectedMember.Base.Name} is already in battle.");
-                return;
-            }
-
-            partyScreen.gameObject.SetActive(false);
-            //if(partyScreen.CallFrom == BattleState.ActionSelection){
-            //    StartCoroutine(RunTurns(BattleAction.SwitchPokemon));
-            //} else {
-            //    state = BattleState.Busy;
-            //    bool isTrainerAboutToUse = partyScreen.CallFrom == BattleState.AboutToUse;
-            //    StartCoroutine(SwitchPokemon(selectedMember,isTrainerAboutToUse));
-            //}
-            //partyScreen.CallFrom = null;
-        };
-        Action onBack = () => {
-            //if(playerUnit.Pokemon.HP <=0){
-            //    partyScreen.SetMessageText("Your Pokemon is fainted! You need to choose new Pokemon");
-            //    return;
-            //}
-            //partyScreen.gameObject.SetActive(false);
-            //if(partyScreen.CallFrom == BattleState.AboutToUse){
-            //    StartCoroutine(SendNextTrainerPokemon());
-            //} else {
-            //    ActionSelection();
-            //}
-            //partyScreen.CallFrom = null;
-        };
+        partyScreen.HandleUpdate();
     }
 
     IEnumerator OnItemUsed(ItemBase usedItem){
@@ -295,7 +298,7 @@ public class BattleSystem : MonoBehaviour{
         //StartCoroutine(RunTurns(BattleAction.UseItem));
     }
 
-    IEnumerator SwitchPokemon(Pokemon newPokemon, bool isTrainerAboutToUse = false){
+    public IEnumerator SwitchPokemon(Pokemon newPokemon){
         if (playerUnit.Pokemon.HP > 0){
             yield return dialogBox.TypeDialog($"Come back {playerUnit.Pokemon.Base.Name}!. Thank you for your hard work!");
             playerUnit.PlayFaintedAnimation();
@@ -306,12 +309,6 @@ public class BattleSystem : MonoBehaviour{
         dialogBox.SetMoveBars(newPokemon.Moves);
 
         yield return dialogBox.TypeDialog($"Your turn {newPokemon.Base.Name}!");
-
-        if(isTrainerAboutToUse){
-            StartCoroutine(SendNextTrainerPokemon());
-        } else {
-            state = BattleStates.RunningTurn;
-        }
     }
 
     IEnumerator SendNextTrainerPokemon(){

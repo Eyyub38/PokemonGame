@@ -47,4 +47,8 @@ public class IconSlot : MonoBehaviour, ISelectableItem{
             StopBounceAnimation();
         }
     }
+
+    public void Clear(){
+        OnDestroy();
+    }
 }

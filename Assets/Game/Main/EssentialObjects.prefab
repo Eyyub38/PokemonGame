@@ -490,7 +490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08ee813038235ba45ac31b310cc92456, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveForgetSelectionUI: {fileID: 0}
+  moveForgetSelectionUI: {fileID: 7637982153988838553}
 --- !u!114 &4403226831691176047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1960,6 +1960,7 @@ MonoBehaviour:
   longGrassSpot: {fileID: 21300000, guid: e34340a34701e824da7e8c713b3f2aa0, type: 3}
   waterBackground: {fileID: 21300000, guid: bb6d64f4e4638d84dbfdbec9ce8de399, type: 3}
   waterSpot: {fileID: 21300000, guid: 52dfa5f0c001b8d42aa29c1aa4abcb72, type: 3}
+  state: 0
 --- !u!114 &4750918489664092010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3646,6 +3647,62 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3801786594285018470}
     m_Modifications:
+    - target: {fileID: 1706078320481970831, guid: 1b94f68f11f463d47b6ce95040256c4c, type: 3}
+      propertyPath: pokemons.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1706078320481970831, guid: 1b94f68f11f463d47b6ce95040256c4c, type: 3}
+      propertyPath: pokemons.Array.data[0]._base
+      value: 
+      objectReference: {fileID: 11400000, guid: 4a226997b1746e14a8bf1852ddcdd471, type: 2}
+    - target: {fileID: 1706078320481970831, guid: 1b94f68f11f463d47b6ce95040256c4c, type: 3}
+      propertyPath: pokemons.Array.data[0].level
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1706078320481970831, guid: 1b94f68f11f463d47b6ce95040256c4c, type: 3}
+      propertyPath: pokemons.Array.data[1]._base
+      value: 
+      objectReference: {fileID: 11400000, guid: 5701d7c52774a5c46aa9f3fa6f493bca, type: 2}
+    - target: {fileID: 1706078320481970831, guid: 1b94f68f11f463d47b6ce95040256c4c, type: 3}
+      propertyPath: pokemons.Array.data[2]._base
+      value: 
+      objectReference: {fileID: 11400000, guid: f11f6a84ab7fa8847baad6ab50441aa4, type: 2}
+    - target: {fileID: 1706078320481970831, guid: 1b94f68f11f463d47b6ce95040256c4c, type: 3}
+      propertyPath: pokemons.Array.data[3]._base
+      value: 
+      objectReference: {fileID: 11400000, guid: 8cc7dd316f742dd4ab256f8a21e85d46, type: 2}
+    - target: {fileID: 1706078320481970831, guid: 1b94f68f11f463d47b6ce95040256c4c, type: 3}
+      propertyPath: pokemons.Array.data[4]._base
+      value: 
+      objectReference: {fileID: 11400000, guid: f3da621f39f4452418f05134a077863e, type: 2}
+    - target: {fileID: 1706078320481970831, guid: 1b94f68f11f463d47b6ce95040256c4c, type: 3}
+      propertyPath: pokemons.Array.data[4].level
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1706078320481970831, guid: 1b94f68f11f463d47b6ce95040256c4c, type: 3}
+      propertyPath: pokemons.Array.data[0].gender
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1706078320481970831, guid: 1b94f68f11f463d47b6ce95040256c4c, type: 3}
+      propertyPath: pokemons.Array.data[4].gender
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1706078320481970831, guid: 1b94f68f11f463d47b6ce95040256c4c, type: 3}
+      propertyPath: pokemons.Array.data[0].pokeball
+      value: 
+      objectReference: {fileID: 11400000, guid: 6f2070f7e40f97c4db8e767f154d4265, type: 2}
+    - target: {fileID: 1706078320481970831, guid: 1b94f68f11f463d47b6ce95040256c4c, type: 3}
+      propertyPath: pokemons.Array.data[1].pokeball
+      value: 
+      objectReference: {fileID: 11400000, guid: 7976b18e77265444eb510ddc60bae1dd, type: 2}
+    - target: {fileID: 1706078320481970831, guid: 1b94f68f11f463d47b6ce95040256c4c, type: 3}
+      propertyPath: pokemons.Array.data[2].pokeball
+      value: 
+      objectReference: {fileID: 11400000, guid: 78ea5903124a1c04f987c21403094afe, type: 2}
+    - target: {fileID: 1706078320481970831, guid: 1b94f68f11f463d47b6ce95040256c4c, type: 3}
+      propertyPath: pokemons.Array.data[4].pokeball
+      value: 
+      objectReference: {fileID: 11400000, guid: 6f2070f7e40f97c4db8e767f154d4265, type: 2}
     - target: {fileID: 1801119618800852856, guid: 1b94f68f11f463d47b6ce95040256c4c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.5
@@ -6091,6 +6148,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb3c63be1b1940c48b905f245008af26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7637982153988838553 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5307363190816344315, guid: c4b851b2ab98bcc4599dcdcb11d66a9b, type: 3}
+  m_PrefabInstance: {fileID: 2330642489478782050}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6459c1736504b04bafea4baef03ce96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!224 &7717908450098721200 stripped

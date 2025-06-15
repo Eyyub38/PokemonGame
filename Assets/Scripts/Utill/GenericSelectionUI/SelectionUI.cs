@@ -25,6 +25,12 @@ namespace  GDEUtills.GenerciSelectionUI {
             UpdateSelectionInUI();
         }
 
+        public void ClearItems(){
+            items.ForEach(i => i.Clear());
+            
+            this.items = null;
+        }
+
         public void SetSelectionSettings(SelectionType selectionType, int gridWith){
             this.selectionType = selectionType;
             this.gridWith = gridWith;

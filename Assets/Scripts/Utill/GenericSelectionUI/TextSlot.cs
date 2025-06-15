@@ -3,8 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public class TextSlot : MonoBehaviour, ISelectableItem
-{
+public class TextSlot : MonoBehaviour, ISelectableItem{
     [SerializeField] Text text;
 
     Color originalColor;
@@ -19,5 +18,9 @@ public class TextSlot : MonoBehaviour, ISelectableItem
 
     public void SetText(string s){
         text.text = s;
+    }
+
+    public void Clear(){
+        text.color = originalColor;
     }
 }

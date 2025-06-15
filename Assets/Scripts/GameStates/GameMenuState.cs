@@ -32,7 +32,7 @@ public class GameMenuState : State<GameController>{
 
     void OnMenuItemSelected(int selection){
         if(selection == 0){
-            gameController.StateMachine.Push(GamePartyState.i);
+            gameController.StateMachine.Push(PartyState.i);
         } else if(selection == 1){
             gameController.StateMachine.Push(InventoryState.i);
         }

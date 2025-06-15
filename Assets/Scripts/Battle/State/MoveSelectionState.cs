@@ -34,6 +34,8 @@ public class MoveSelectionState : State<BattleSystem>{
     }
 
     public override void Exit(){
+        moveSelectionUI.ClearItems();
+
         moveSelectionUI.gameObject.SetActive(false);
         moveSelectionUI.OnSelected -= OnMoveSelected;
         moveSelectionUI.OnBack -= OnBack;
@@ -47,6 +49,9 @@ public class MoveSelectionState : State<BattleSystem>{
     }
 
     private void OnBack(){
+        if(battleSystem?.StateMachine != null){
         battleSystem.StateMachine.Pop();
+            ActionSelectionState.i.ActionSelectionUI.gameObject.SetActive(true);
+        }
     }
 }

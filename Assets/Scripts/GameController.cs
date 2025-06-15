@@ -189,8 +189,14 @@ public class GameController : MonoBehaviour{
         style.fontSize = 24;
 
         GUILayout.Label("State Stack", style);
+        if(StateMachine?.StateStack != null){
         foreach(var state in StateMachine.StateStack){
+                if(state != null){
             GUILayout.Label(state.GetType().ToString(), style);
+                } else {
+                    GUILayout.Label("null", style);
+                }
+            }
         }
     }  
 }

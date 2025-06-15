@@ -10,6 +10,7 @@ public class ActionSelectionState : State<BattleSystem>{
     BattleSystem battleSystem;
 
     public static ActionSelectionState i { get; private set;}
+    public ActionSelectionUI ActionSelectionUI => actionSelectionUI;
 
     void Awake(){
         i = this;
@@ -36,14 +37,29 @@ public class ActionSelectionState : State<BattleSystem>{
         if(selectedAction == 0){
             battleSystem.SelectedAction = BattleAction.Move;
             MoveSelectionState.i.Moves = battleSystem.PlayerUnit.Pokemon.Moves;
-            battleSystem.StateMachine.ChangeState(MoveSelectionState.i);
+            actionSelectionUI.gameObject.SetActive(false);
+            battleSystem.StateMachine.Push(MoveSelectionState.i);
         } else if(selectedAction == 1){
-            //Bag
+            actionSelectionUI.gameObject.SetActive(false);
+            StartCoroutine(GoToPartyState());
         } else if(selectedAction == 2){
-            //Pokemon
+            //BAG BURAYA DOKUNMA
         } else if(selectedAction == 3){
             battleSystem.SelectedAction = BattleAction.Run;
             battleSystem.StateMachine.ChangeState(RunTurnState.i);
+        }
+    }
+
+    IEnumerator GoToPartyState(){
+        battleSystem.OpenPartyScreen();
+        yield return new WaitUntil(() => battleSystem.state != BattleStates.PartyScreen);
+        
+        var selectedPokemon = battleSystem.SelectedPokemon;
+        if(selectedPokemon != null){
+            battleSystem.SelectedAction = BattleAction.SwitchPokemon;
+            battleSystem.StateMachine.ChangeState(RunTurnState.i);
+        } else {
+            actionSelectionUI.gameObject.SetActive(true);
         }
     }
 }
