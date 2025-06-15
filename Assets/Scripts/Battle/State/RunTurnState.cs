@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using GDEUtills.StateMachine;
+using System.Linq;
 
 public class RunTurnState : State<BattleSystem>{
     BattleSystem battleSystem;
@@ -34,8 +35,12 @@ public class RunTurnState : State<BattleSystem>{
         StartCoroutine(RunTurns(battleSystem.SelectedAction));
     }
 
-    IEnumerator HandlePokemonFainted(BattleUnit faintedUnit){
-        yield return dialogBox.TypeDialog($"{faintedUnit.Pokemon.Base.Name} fainted");
+    IEnumerator HandlePokemonFainted(BattleUnit faintedUnit, bool wasOneHitKnockOut = false){
+        if (wasOneHitKnockOut)
+            yield return dialogBox.TypeDialog($"It's a One-hit KO!");
+        else
+            yield return dialogBox.TypeDialog($"{faintedUnit.Pokemon.Base.Name} fainted");
+
         faintedUnit.PlayFaintedAnimation();
         yield return new WaitForSeconds(2f);
 
@@ -55,6 +60,8 @@ public class RunTurnState : State<BattleSystem>{
             int enemyLevel = faintedUnit.Pokemon.Level;
             float trainerBonus = (isTrainerBattle)? 1.5f : 1f;
 
+            playerUnit.Pokemon.GainEvs(faintedUnit.Pokemon.Base.EvYields);
+
             int expGain = Mathf.FloorToInt( expYield * enemyLevel * trainerBonus)  / 7;
             playerUnit.Pokemon.GainExp(expGain);
 
@@ -72,10 +79,25 @@ public class RunTurnState : State<BattleSystem>{
                         yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name} learned {newMove.Base.Name}");
                         dialogBox.SetMoveBars(playerUnit.Pokemon.Moves);
                     } else {
-                        //yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name} trying to learn {newMove.Base.Name}...");
-                        //yield return dialogBox.TypeDialog($"But its is already knew {PokemonBase.MaxNumberOfMoves} moves.");
-                        //yield return ChooseMoveToForget(playerUnit.Pokemon, newMove.Base);
-                        //yield return new WaitForSeconds(2f);
+                        yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name} trying to learn {newMove.Base.Name}...");
+                        yield return dialogBox.TypeDialog($"But its is already knew {PokemonBase.MaxNumberOfMoves} moves.");
+                        yield return dialogBox.TypeDialog($"Choose a move to forget.");
+
+                        MoveForgetState.i.BattleSystem = battleSystem;
+                        MoveForgetState.i.CurrentMoves = playerUnit.Pokemon.Moves;
+                        MoveForgetState.i.NewMove = newMove.Base;
+                        MoveForgetState.i.NewMove = newMove.Base;
+                        
+                        yield return GameController.i.StateMachine.PushAndWait(MoveForgetState.i);
+
+                        var moveIndex = MoveForgetState.i.Selection;
+                        if(moveIndex == PokemonBase.MaxNumberOfMoves){
+                            yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name} didn't learn {newMove.Base.Name}.");
+                        } else {
+                            var selectedMove = playerUnit.Pokemon.Moves[ moveIndex ].Base;
+                            yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name} forgot {selectedMove.Name} and learned {newMove.Base.Name}.");
+                            playerUnit.Pokemon.Moves[ moveIndex ] = new Move(newMove.Base);
+                        }
                     }
                 }
 
@@ -90,8 +112,8 @@ public class RunTurnState : State<BattleSystem>{
     IEnumerator RunTurns(BattleAction playerAction){
         if(playerAction == BattleAction.Move){
 
-            playerUnit.Pokemon.CurrentMove = playerUnit.Pokemon.Moves[battleSystem.SelectedMove];
-            enemyUnit.Pokemon.CurrentMove = enemyUnit.Pokemon.GetRandomMove();
+            playerUnit.Pokemon.CurrentMove = (battleSystem.SelectedMove != -1) ? playerUnit.Pokemon.Moves[battleSystem.SelectedMove] : new Move(GlobalSettings.i.BackUpMove);
+            enemyUnit.Pokemon.CurrentMove = (enemyUnit.Pokemon.GetRandomMove() != null) ? enemyUnit.Pokemon.GetRandomMove() : new Move(GlobalSettings.i.BackUpMove);
 
             int playerMovePriority = playerUnit.Pokemon.CurrentMove.Base.Priority;
             int enemyMovePriority = enemyUnit.Pokemon.CurrentMove.Base.Priority;
@@ -133,8 +155,8 @@ public class RunTurnState : State<BattleSystem>{
                 yield return TryToEscape();
             }
 
-            var enemyMove = enemyUnit.Pokemon.GetRandomMove();
-            yield return RunMove(enemyUnit, playerUnit, enemyMove);
+            enemyUnit.Pokemon.CurrentMove = (enemyUnit.Pokemon.GetRandomMove() != null) ? enemyUnit.Pokemon.GetRandomMove() : new Move(GlobalSettings.i.BackUpMove);
+            yield return RunMove(enemyUnit, playerUnit, enemyUnit.Pokemon.CurrentMove);
             yield return RunAfterTurn(enemyUnit);
             if(battleSystem.IsBattleOver) yield break;
         }
@@ -153,6 +175,9 @@ public class RunTurnState : State<BattleSystem>{
         yield return ShowStatusChanges(sourceUnit.Pokemon);
 
         move.PP--;
+        if(move.Base == GlobalSettings.i.BackUpMove){
+            yield return dialogBox.TypeDialog($"{sourceUnit.Pokemon.Base.Name} has no more moves left!");
+        }
         yield return dialogBox.TypeDialog($"{sourceUnit.Pokemon.Base.Name} used {move.Base.Name}.");
 
         if(CheckIfMoveHits(move, sourceUnit.Pokemon, targetUnit.Pokemon)){
@@ -181,37 +206,43 @@ public class RunTurnState : State<BattleSystem>{
                 }
             }
 
-            yield return RunAfterMove(damageDetails, move.Base, sourceUnit.Pokemon, targetUnit.Pokemon);
+            yield return RunAfterMove(damageDetails, move.Base, sourceUnit, targetUnit);
 
             if(targetUnit.Pokemon.HP <= 0){
-                yield return HandlePokemonFainted(targetUnit);
+                yield return HandlePokemonFainted(targetUnit, move.Base.OneHitKoMoveEffect.isOneHitKnockOut);
             }
         } else {
             yield return dialogBox.TypeDialog($"{sourceUnit.Pokemon.Base.Name}'s attack missed!");
         }
     }
 
-    IEnumerator RunAfterMove(DamageDetails damageDetails, MoveBase move, Pokemon source, Pokemon target){
+    IEnumerator RunAfterMove(DamageDetails damageDetails, MoveBase move, BattleUnit sourceUnit, BattleUnit targetUnit){
         if(damageDetails == null){
             yield break;
+        }
+
+        if(move.DrainingPercentage != 0){
+            int healedHP = Mathf.Clamp(Mathf.CeilToInt(damageDetails.DamageDealt / 100f * move.DrainingPercentage), 1, sourceUnit.Pokemon.MaxHp);
+            sourceUnit.Pokemon.IncreaseHP(healedHP);
+            yield return sourceUnit.Hud.WaitForHPUpdate();
         }
 
         if(move.Recoil.recoilType != RecoilType.None){
             int damage = 0;
             switch(move.Recoil.recoilType){
                 case RecoilType.RecoilByMaxHP:
-                    int maxHp = source.MaxHp;
+                    int maxHp = sourceUnit.Pokemon.MaxHp;
                     damage = Mathf.FloorToInt(maxHp * move.Recoil.recoilDamage / 100f);
-                    source.TakeRecoilDamage(damage);
+                    sourceUnit.Pokemon.TakeRecoilDamage(damage);
                     break;
                 case RecoilType.RecoilByCurrentHP:
-                    int currentHp = source.HP;
+                    int currentHp = sourceUnit.Pokemon.HP;
                     damage = Mathf.FloorToInt(currentHp * move.Recoil.recoilDamage / 100f);
-                    source.TakeRecoilDamage(damage);
+                    sourceUnit.Pokemon.TakeRecoilDamage(damage);
                     break;
                 case RecoilType.RecoilByDamage:
                     damage = Mathf.FloorToInt(damageDetails.DamageDealt * move.Recoil.recoilDamage / 100f);
-                    source.TakeRecoilDamage(damage);
+                    sourceUnit.Pokemon.TakeRecoilDamage(damage);
                     break;
                 default:
                     Debug.LogError($"Unknown recoil type: {move.Recoil.recoilType}");
@@ -219,8 +250,8 @@ public class RunTurnState : State<BattleSystem>{
             }
         }
 
-        yield return ShowStatusChanges(source);
-        yield return ShowStatusChanges(target);
+        yield return ShowStatusChanges(sourceUnit.Pokemon);
+        yield return ShowStatusChanges(targetUnit.Pokemon);
     }
 
     IEnumerator RunAfterTurn(BattleUnit sourceUnit){
@@ -258,6 +289,20 @@ public class RunTurnState : State<BattleSystem>{
     bool CheckIfMoveHits(Move move, Pokemon source, Pokemon target){
         if(move.Base.AlwaysHits){
             return true;
+        }
+        if (move.Base.OneHitKoMoveEffect.isOneHitKnockOut){
+            if (source.Level < target.Level)
+            return false;
+            if (source.HasType(move.Base.OneHitKoMoveEffect.immunityType))
+                return false;
+
+            int baseAccuracy = 30;
+            if (move.Base.OneHitKoMoveEffect.lowerOddsException)
+                baseAccuracy = (source.HasType(move.Base.Type)) ? 30 : 20;
+
+            int chance = (source.Level - target.Level + baseAccuracy);
+
+            return Random.Range(1, 101) <= chance;
         }
 
         float moveAccuracy = move.Base.Accuracy;

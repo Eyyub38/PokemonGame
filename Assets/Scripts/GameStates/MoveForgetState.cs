@@ -8,7 +8,8 @@ public class MoveForgetState : State<GameController>{
     [SerializeField] MoveForgetSelectionUI moveForgetSelectionUI;
 
     GameController gameController;
-    
+
+    public BattleSystem BattleSystem {get; set;}    
     public List<Move> CurrentMoves {get; set;}
     public MoveBase NewMove {get; set;}
     public int Selection  {get; set;}
@@ -22,6 +23,9 @@ public class MoveForgetState : State<GameController>{
     public override void Enter(GameController owner){
         gameController = owner;
         Selection = 0;
+        if(BattleSystem != null){
+            moveForgetSelectionUI = BattleSystem.MoveForgetSelectionUI;
+        }
         moveForgetSelectionUI.gameObject.SetActive(true);
         moveForgetSelectionUI.SetMoveSelectionBars(CurrentMoves, NewMove);
         moveForgetSelectionUI.SetMoveDetails(CurrentMoves[0].Base, NewMove);

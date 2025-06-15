@@ -2,24 +2,23 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using GDEUtills.StateMachine;
 using System.Collections.Generic;
 
-public class EvolutionManager : MonoBehaviour{
+public class EvolutionState : State<GameController>{
     [SerializeField] GameObject evolutionUI;
     [SerializeField] Image evolutionImage;
     [SerializeField] AudioClip evolutionMusic;
 
-    public event Action OnStartEvolution;
-    public event Action OnCompleteEvolution;
-
-    public static EvolutionManager i { get; private set; }
+    public static EvolutionState i { get; set; }
 
     private void Awake(){
         i = this;
     }
 
     public IEnumerator Evolve(Pokemon pokemon, Evolution evolution){
-        OnStartEvolution?.Invoke();
+        var gameController = GameController.i;
+        gameController.StateMachine.Push(this);
         evolutionUI.SetActive(true);
 
         AudioManager.i.PlayMusic(evolutionMusic);
@@ -33,6 +32,9 @@ public class EvolutionManager : MonoBehaviour{
         yield return DialogManager.i.ShowDialogText($"{oldPokemon.Name} evolved into {pokemon.Base.Name}!");
 
         evolutionUI.SetActive(false);
-        OnCompleteEvolution?.Invoke();
+
+        gameController.PartyScreen.SetPartyData();
+        AudioManager.i.PlayMusic(gameController.CurrentScene.SceneMusic, fade: true);
+        gameController.StateMachine.Pop();
     }
 }

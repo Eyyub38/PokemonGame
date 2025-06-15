@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public enum GrowthRate{ Fluctuating ,Slow, MediumSlow, MediumFast, Fast, Erratic}
 public enum PokemonType{ None, Normal, Fire, Water, Grass, Electric, Ice, Fighting, Poison, Ground, Flying, Psychic, Bug, Rock, Ghost, Dragon, Dark, Steel, Fairy}
-public enum Stat{ Attack, Defense , SpAttack, SpDefense, Speed, Accuracy, Evasion}
+public enum Stat{ Attack, Defense , SpAttack, SpDefense, Speed, Accuracy, Evasion, HitPoints}
 
 [CreateAssetMenu(fileName = "Pokemon", menuName = "Pokemon/Create new Pokemon")]
 public class PokemonBase : ScriptableObject{
@@ -52,6 +52,14 @@ public class PokemonBase : ScriptableObject{
     [Header("Evolutions")]
     [SerializeField] List<Evolution> evolutions;
 
+    [Header("Effort Value Yield")]
+    [SerializeField] int hitPointsEvYield = 0;
+    [SerializeField] int attackEvYield = 0;
+    [SerializeField] int defenseEvYield = 0;
+    [SerializeField] int spAttackEvYield = 0;
+    [SerializeField] int spDefenseEvYield = 0;
+    [SerializeField] int speedEvYield = 0;
+
     public string Name{ get{return _name;}}
     public string Description{ get{return description;}}
     public Sprite FrontSprite{ get{return frontSprite;}}
@@ -77,8 +85,16 @@ public class PokemonBase : ScriptableObject{
     public List<LearnableMove> LearnableMoves{ get{return learnableMovesLevelUp;}}
     public List<MoveBase> LearnableMovesByTm{ get{return learnableMovesByTm;}}
     public List<Evolution> Evolutions => evolutions;
-
     public static int MaxNumberOfMoves { get; set; } = 4;
+
+    public Dictionary<Stat, int> EvYields => new Dictionary<Stat, int>() {
+    	{ Stat.HitPoints, hitPointsEvYield },
+    	{ Stat.Attack, attackEvYield },
+    	{ Stat.Defense, defenseEvYield },
+    	{ Stat.SpAttack, spAttackEvYield },
+    	{ Stat.SpDefense, spDefenseEvYield },
+    	{ Stat.Speed, speedEvYield }
+    };
 
     public int GetExpForLevel(int level){
         if(growthRate == GrowthRate.Erratic){

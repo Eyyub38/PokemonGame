@@ -6,7 +6,6 @@ using System.Collections;
 using GDEUtills.StateMachine;
 using System.Collections.Generic;
 
-public enum BattleStates { Bag, MoveToForget, PartyScreen}
 public enum BattleAction { Move, SwitchPokemon, UseItem, Run}
 public enum BattleTrigger {LongGrass, Water}
 
@@ -20,6 +19,7 @@ public class BattleSystem : MonoBehaviour{
     [SerializeField] PartyScreen partyScreen;
     [SerializeField] InventoryUI inventoryUI;
     [SerializeField] MoveForgetSelectionUI moveForgetSelectionUI; 
+    [SerializeField] DynamicMenuUI dynamicMenuUI;
     
     [Header("Character Images")]
     [SerializeField] Image playerImage;
@@ -45,9 +45,7 @@ public class BattleSystem : MonoBehaviour{
     [SerializeField] Sprite waterBackground;
     [SerializeField] Sprite waterSpot;
 
-    public BattleStates state;
     PlayerController player;
-    MoveBase moveToLearn;
     BattleTrigger battleTrigger;
 
     public Action<bool> OnBattleOver;
@@ -64,7 +62,10 @@ public class BattleSystem : MonoBehaviour{
     public Pokemon SelectedPokemon {get; set;}
     public ItemBase SelectedItem {get; set;}
     public PartyScreen PartyScreen => partyScreen;
+    public InventoryUI InventoryUI => inventoryUI;
     public BattleDialogBox DialogBox => dialogBox;
+    public DynamicMenuUI DynamicMenuUI => dynamicMenuUI;
+    public MoveForgetSelectionUI MoveForgetSelectionUI => moveForgetSelectionUI;
     public BattleAction SelectedAction {get; set;}
     public BattleUnit PlayerUnit => playerUnit;
     public BattleUnit EnemyUnit => enemyUnit;
@@ -150,15 +151,6 @@ public class BattleSystem : MonoBehaviour{
     
     }
 
-    IEnumerator ChooseMoveToForget(Pokemon pokemon, MoveBase newMove){
-        yield return dialogBox.TypeDialog($"Choose a move you want {pokemon.Base.Name} to forget!");
-        moveForgetSelectionUI.gameObject.SetActive(true);
-
-        moveForgetSelectionUI.SetMoveSelectionBars(pokemon.Moves, newMove);
-        moveForgetSelectionUI.SetMoveDetails(pokemon.Moves[0].Base, newMove);
-        moveToLearn = newMove;
-    }
-
     void OnPartyMemberSelected(int selectedIndex){
         Debug.Log($"OnPartyMemberSelected called with index: {selectedIndex}");
         var selectedMember = partyScreen.SelectedMember;
@@ -197,25 +189,6 @@ public class BattleSystem : MonoBehaviour{
 
     public void HandleUpdate(){
         StateMachine.Execute();
-
-        if(state == BattleStates.MoveToForget){
-            Action<int> onMoveSelected = (moveIndex) => {
-                if(moveIndex == PokemonBase.MaxNumberOfMoves){
-                    moveForgetSelectionUI.gameObject.SetActive(false);
-                    StartCoroutine(dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name} didn't learn {moveToLearn.Name}"));
-                } else {
-                    var selectedMove = playerUnit.Pokemon.Moves[ moveIndex ].Base;
-                    moveForgetSelectionUI.gameObject.SetActive(false);
-                    StartCoroutine(dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name} forgot {selectedMove.Name} and learned {moveToLearn.Name}"));
-
-                    playerUnit.Pokemon.Moves[ moveIndex ] = new Move(moveToLearn);
-                }
-                moveToLearn = null;
-                //state = BattleStates.RunningTurn;
-            };
-
-            //moveSelectionUI.HandleMoveSelection(playerUnit.Pokemon, onMoveSelected);
-        }
     }
 
     public IEnumerator SwitchPokemon(Pokemon newPokemon){

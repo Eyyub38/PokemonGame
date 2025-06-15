@@ -36,7 +36,7 @@ public class UseItemState : State<GameController>{
             if(item is EvolutionItem){
                 var evolution = pokemon.CheckForEvolution(item);
                 if(evolution != null){
-                    yield return EvolutionManager.i.Evolve(pokemon, evolution);
+                    yield return EvolutionState.i.Evolve(pokemon, evolution);
                 } else {
                     yield return DialogManager.i.ShowDialogText($"{pokemon.Base.Name} can't evolve with {item.Name}");
                     gameController.StateMachine.Pop();

@@ -8,7 +8,7 @@ public class CutsceneEditor : Editor{
     public override void OnInspectorGUI(){
         var cutscene = target as Cutscene;
 
-        using (var scope = new GUILayout.HorizontalScope()){
+        using (new GUILayout.HorizontalScope()){
             if(GUILayout.Button("Dialog")){
                 cutscene.AddAction(new DialogAction());
             } else if(GUILayout.Button("Move Actor")){
@@ -16,8 +16,9 @@ public class CutsceneEditor : Editor{
             } else if(GUILayout.Button("Turn Actor")){
                 cutscene.AddAction(new TurnActorAction());
             }
-        };
-        using(var scope = new GUILayout.HorizontalScope()){   
+        }
+        
+        using(new GUILayout.HorizontalScope()){   
             if(GUILayout.Button("Teleport Object")){
                 cutscene.AddAction(new TeleportObjectAction());
             } else if(GUILayout.Button("Enbale Object")){
@@ -26,7 +27,8 @@ public class CutsceneEditor : Editor{
                 cutscene.AddAction(new DisableObjectAction());
             }
         }
-        using(var scope = new GUILayout.HorizontalScope()){
+        
+        using(new GUILayout.HorizontalScope()){
             if(GUILayout.Button("FadeIn")){
                 cutscene.AddAction(new FadeInAction());
             } else if(GUILayout.Button("FadeOut")){
@@ -35,6 +37,7 @@ public class CutsceneEditor : Editor{
                 cutscene.AddAction(new NPCInteractAction());
             }
         }
+        
         base.OnInspectorGUI();
     }
 }

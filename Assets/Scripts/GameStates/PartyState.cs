@@ -36,36 +36,52 @@ public class PartyState : State<GameController>{
 
     void OnPokemonSelected(int selectedPokemon){
         SelectedPokemon = partyScreen.SelectedMember;
+
+        StartCoroutine(PokemonSelectedAction());
+    }
+
+    IEnumerator PokemonSelectedAction(){
         var prevState = gameController.StateMachine.GetPrevState();
 
         if(prevState == InventoryState.i){
-            StartCoroutine(GoToUseItemState());
+            yield return gameController.StateMachine.PushAndWait(UseItemState.i);
+            gameController.StateMachine.Pop();
         } else if(prevState == BattleState.i || BattleSystem != null){
             BattleSystem battleSystem = BattleSystem;
+            battleSystem = BattleState.i.BattleSystem;
             if(battleSystem == null && prevState == BattleState.i){
                 var battleState = prevState as BattleState;
-                battleSystem = battleState.BattleSystem;
+                DynamicMenuState.i.MenuItems = new List<string>() {"Shift" ,"Summary", "Cancel"};
+                yield return gameController.StateMachine.PushAndWait(DynamicMenuState.i);
+                if(DynamicMenuState.i.SelectedItem == 0){
+                    if(SelectedPokemon.HP <= 0){
+                        partyScreen.SetMessageText($"{SelectedPokemon.Base.Name} is fainted. You cannot send out to battle.");
+                        yield break;
+                    }
+                    if(SelectedPokemon == battleSystem.PlayerUnit.Pokemon){
+                        partyScreen.SetMessageText($"{SelectedPokemon.Base.Name} is already in battle.");
+                        yield break;
+                    }
+                
+                    battleSystem.SelectedPokemon = SelectedPokemon;
+                    gameController.StateMachine.Pop();
+                } else if(DynamicMenuState.i.SelectedItem == 1){
+                    Debug.Log("Summary Screen");
+                } else {
+                    yield break;
+                }
             }
-
-            if(SelectedPokemon.HP <= 0){
-                partyScreen.SetMessageText($"{SelectedPokemon.Base.Name} is fainted. You cannot send out to battle.");
-                return;
-            }
-            if(SelectedPokemon == battleSystem.PlayerUnit.Pokemon){
-                partyScreen.SetMessageText($"{SelectedPokemon.Base.Name} is already in battle.");
-                return;
-            }
-        
-            battleSystem.SelectedPokemon = SelectedPokemon;
-            gameController.StateMachine.Pop();
         } else {
-            Debug.Log("Summary Screen");
+            DynamicMenuState.i.MenuItems = new List<string>() {"Summary","Switch","Cancel"};
+            yield return gameController.StateMachine.PushAndWait(DynamicMenuState.i);
+            if(DynamicMenuState.i.SelectedItem == 0){
+                Debug.Log("Summary Screen");
+            } else if(DynamicMenuState.i.SelectedItem == 1){
+                Debug.Log("Switch Position");
+            } else {
+                yield break;
+            }
         }
-    }
-
-    IEnumerator GoToUseItemState(){
-        yield return gameController.StateMachine.PushAndWait(UseItemState.i);
-        gameController.StateMachine.Pop();
     }
 
     void OnBack(){

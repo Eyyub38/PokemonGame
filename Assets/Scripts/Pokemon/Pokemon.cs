@@ -17,6 +17,8 @@ public class Pokemon{
     public int Level { get{ return level; } }
     public Gender Gender { get{ return gender; } set{ gender = value; } }
     public PokeballItem Pokeball { get => pokeball; set => pokeball = value; }
+    public Dictionary<Stat, int> StatEffortValues { get; private set; }
+
 
     public int HP{ get; set; }
     public int Exp{ get; set; }
@@ -87,6 +89,8 @@ public class Pokemon{
                 gender = UnityEngine.Random.value < Base.MaleRatio ? Gender.Male : Gender.Female;
             }
         }
+        
+        StatEffortValues = new Dictionary<Stat, int>() { { Stat.HitPoints, 0 }, { Stat.Attack, 0 }, { Stat.Defense, 0 }, { Stat.SpAttack, 0 }, { Stat.SpDefense, 0 }, { Stat.Speed, 0 } };
 
         Exp = Base.GetExpForLevel(Level);
         StatusChanges = new Queue<string>();
@@ -98,18 +102,19 @@ public class Pokemon{
     }
 
     void CalculateStats(){
-        Stats = new Dictionary<Stat, int>();
-        Stats.Add(Stat.Attack, Mathf.FloorToInt((Base.Attack * Level) / 100f) + 5);
-        Stats.Add(Stat.Defense, Mathf.FloorToInt((Base.Defense * Level) / 100f) + 5);
-        Stats.Add(Stat.SpAttack, Mathf.FloorToInt((Base.SpAttack * Level) / 100f) + 5);
-        Stats.Add(Stat.SpDefense, Mathf.FloorToInt((Base.SpDefense * Level) / 100f) + 5);
-        Stats.Add(Stat.Speed, Mathf.FloorToInt((Base.Speed * Level) / 100f) + 5);
+    	Stats = new Dictionary<Stat, int>();
+   	 
+    	Stats.Add(Stat.Attack, Mathf.FloorToInt((((2f * Base.Attack + (StatEffortValues[Stat.Attack] / 4f)) * Level) / 100f) + 5f));
+    	Stats.Add(Stat.Defense, Mathf.FloorToInt((((2f * Base.Defense + (StatEffortValues[Stat.Defense] / 4f)) * Level) / 100f) + 5f));
+    	Stats.Add(Stat.SpAttack, Mathf.FloorToInt((((2f * Base.SpAttack + (StatEffortValues[Stat.SpAttack] / 4f)) * Level) / 100f) + 5f));
+    	Stats.Add(Stat.SpDefense, Mathf.FloorToInt((((2f * Base.SpDefense + (StatEffortValues[Stat.SpDefense] / 4f)) * Level) / 100f) + 5f));
+    	Stats.Add(Stat.Speed, Mathf.FloorToInt((((2f * Base.Speed + (StatEffortValues[Stat.Speed] / 4f)) * Level) / 100f) + 5f));
 
-        int oldMaxHP = MaxHp;
-        MaxHp = Mathf.FloorToInt((Base.MaxHp * Level) / 100f) + 10 + Level;
+    	int oldMaxHP = MaxHp;
+    	MaxHp = Mathf.FloorToInt((((2f * Base.MaxHp + (StatEffortValues[Stat.HitPoints] / 4f)) * Level) / 100f) + Level + 10f);
 
-        if(oldMaxHP != 0){
-            HP += MaxHp - oldMaxHP;
+    	if (oldMaxHP != 0){
+        	HP += MaxHp - oldMaxHP;
         }
     }
 
@@ -149,6 +154,9 @@ public class Pokemon{
 
     public Move GetRandomMove(){
         var movesWithPP = Moves.Where(x => x.PP > 0).ToList();
+        if(movesWithPP.Count == 0){
+            return null;
+        }
         
         int r = UnityEngine.Random.Range( 0, movesWithPP.Count);
         return movesWithPP[r];
@@ -173,6 +181,10 @@ public class Pokemon{
 
     public bool HasMove(MoveBase moveToCheck){
         return Moves.Count( m => m.Base == moveToCheck) > 0;
+    }
+
+    public bool HasType(PokemonType typeToCheck){
+        return Base.Type1 == typeToCheck || Base.Type2 == typeToCheck;
     }
 
     public void LearnMove(MoveBase moveToLearn){
@@ -242,6 +254,12 @@ public class Pokemon{
     public DamageDetails TakeDamage(Move move, Pokemon attacker){
         float critical = 1f;
 
+        if (move.Base.OneHitKoMoveEffect.isOneHitKnockOut){
+            int oneHitDamage = HP;
+            DecreaseHP(oneHitDamage);
+            return new DamageDetails() { TypeEffectiveness = 1f, Critical = 1f, Fainted = false };
+        }
+
         if(!(move.Base.CritBehaviour == CritBehaviour.NeverCrit)){
             if(move.Base.CritBehaviour == CritBehaviour.AlwaysCrit){
                 critical = 1.5f;
@@ -251,7 +269,6 @@ public class Pokemon{
                 if(UnityEngine.Random.value * 100f <= chances[Mathf.Clamp(critChance, 0, 3)]){
                     critical = 1.5f;
                 }
-
             }
         }
 
@@ -334,6 +351,19 @@ public class Pokemon{
     public void GainExp(int exp){
         Exp += exp;
         OnExpChanged?.Invoke();
+    }
+
+    public void GainEvs(Dictionary<Stat, int> evGained){
+    	foreach (var sev in StatEffortValues.ToArray()){
+            if (sev.Value < GlobalSettings.i.MaxEvPerStat && GetTotalEvs() < GlobalSettings.i.MaxEvs){
+                evGained[sev.Key] = Mathf.Clamp(evGained[sev.Key], 0, (GlobalSettings.i.MaxEvs - GetTotalEvs()));
+                StatEffortValues[sev.Key] = Mathf.Clamp((StatEffortValues[sev.Key] += evGained[sev.Key]), 0, GlobalSettings.i.MaxEvPerStat);
+            }
+        }
+    }
+
+    public int GetTotalEvs(){
+        return StatEffortValues.Values.Sum();
     }
 }
 

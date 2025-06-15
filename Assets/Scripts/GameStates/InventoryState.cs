@@ -11,6 +11,7 @@ public class InventoryState : State<GameController>{
     Inventory inventory;
     
     public ItemBase SelectedItem { get; private set; }
+    public BattleSystem BattleSystem { get; set; }
 
     public static InventoryState i { get; private set; }
 
@@ -26,6 +27,9 @@ public class InventoryState : State<GameController>{
         gameController = owner;
 
         SelectedItem = null;
+        if(BattleSystem != null){
+            inventoryUI = BattleSystem.InventoryUI;
+        }
 
         inventoryUI.gameObject.SetActive(true);
         inventoryUI.OnSelected += OnItemSelected;
@@ -38,7 +42,11 @@ public class InventoryState : State<GameController>{
     
     void OnItemSelected(int selectedItem){
         SelectedItem = inventoryUI.SelectedItem;
-        StartCoroutine(SelectPokemonAndUseItem());
+        if(gameController.StateMachine.GetPrevState() != ShopSellingState.i){
+            StartCoroutine(SelectPokemonAndUseItem());
+        } else {
+            gameController.StateMachine.Pop();
+        }
     }
 
     void OnBack(){
@@ -62,7 +70,6 @@ public class InventoryState : State<GameController>{
             if(!SelectedItem.CanUseInOffsideBattle){
                 yield return DialogManager.i.ShowDialogText($"{SelectedItem.Name} can't be used outside battle.");
                 yield break;
-
             }
         }
 

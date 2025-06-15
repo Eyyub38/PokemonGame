@@ -3,6 +3,7 @@ using System.Collections;
 using GDEUtills.StateMachine;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 
 public class MoveSelectionState : State<BattleSystem>{
@@ -19,6 +20,12 @@ public class MoveSelectionState : State<BattleSystem>{
 
     public override void Enter(BattleSystem owner){
         battleSystem = owner;
+
+        if (Moves.Where(m => m.PP > 0).Count() == 0){
+            battleSystem.SelectedMove = -1;
+            battleSystem.StateMachine.ChangeState(RunTurnState.i);
+            return;
+        }
 
         moveSelectionUI.SetMoves(Moves);
 

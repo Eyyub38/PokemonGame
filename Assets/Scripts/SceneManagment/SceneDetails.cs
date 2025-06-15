@@ -54,8 +54,10 @@ public class SceneDetails : MonoBehaviour{
             IsLoaded = true;
 
             operation.completed += (AsyncOperation operation) => {
-                var savableEntities = GetSavableEntitiesInScene();
-                SavingSystem.i.RestoreEntityStates(savableEntities);
+                if(SavingSystem.i != null){
+                    var savableEntities = GetSavableEntitiesInScene();
+                    SavingSystem.i.RestoreEntityStates(savableEntities);
+                }
             };
         }
     }
@@ -63,7 +65,9 @@ public class SceneDetails : MonoBehaviour{
     public void UnloadScene(){
         if(IsLoaded){
             savableEntities = GetSavableEntitiesInScene();
-            SavingSystem.i.CaptureEntityStates(savableEntities);
+            if(SavingSystem.i != null){
+                SavingSystem.i.CaptureEntityStates(savableEntities);
+            }
 
             SceneManager.UnloadSceneAsync(gameObject.name);
             IsLoaded = false;

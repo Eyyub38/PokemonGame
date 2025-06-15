@@ -54,7 +54,7 @@ public class PartyMemberUI : MonoBehaviour{
         _pokemon.OnExpChanged += UpdateData;
         _pokemon.OnStatusChanged += UpdateData;
 
-        if(GameController.i.PrevState == GameState.Bag){
+        if(GameController.i.StateMachine.GetPrevState() == InventoryState.i){
             if(_pokemon.HP <= 0){
                 details.sprite = detailBackground[1];
                 icon.color = Color.gray;

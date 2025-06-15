@@ -32,17 +32,19 @@ public class MoveBase : ScriptableObject{
     [SerializeField] MoveTarget target;
     [SerializeField] List<SecondaryEffects> secondaries;
     [SerializeField] RecoilMoveEffect recoil = new RecoilMoveEffect();
+    [SerializeField] int drianingPercentage = 0;
 
     [Header("Crit Behaviour")]
     [SerializeField] CritBehaviour critBehaviour;
+    [SerializeField] OneHitKoMoveEffect oneHitKoMoveEffect = new OneHitKoMoveEffect();
 
-    //Properties
     public string Name{ get{return _name;}} 
     public string Description{ get{return description;}}
     public int Power{ get{return power;}}
     public int PP{ get{return pp;}}
     public int Priority{ get{return priority;}}
     public int Accuracy{ get{return accuracy;}}
+    public int DrainingPercentage => drianingPercentage;
     public bool AlwaysHits{ get{return alwaysHits;}}
     public PokemonType Type{ get{return type;}}
     public MoveCategory Category{ get{return category;}}
@@ -52,6 +54,7 @@ public class MoveBase : ScriptableObject{
     public RecoilMoveEffect Recoil{ get{return recoil;} }
     public CritBehaviour CritBehaviour{ get{return critBehaviour;} }
     public AudioClip SoundEffect{ get{return soundEffect;} }
+    public OneHitKoMoveEffect OneHitKoMoveEffect => oneHitKoMoveEffect;
 }
 
 [System.Serializable]
@@ -84,6 +87,13 @@ public class StatBoosts{
 public class RecoilMoveEffect{
     public RecoilType recoilType;
     public int recoilDamage = 0;
+}
+
+[System.Serializable]
+public class OneHitKoMoveEffect{
+	public bool isOneHitKnockOut;
+	public bool lowerOddsException;
+	public PokemonType immunityType;
 }
 
 

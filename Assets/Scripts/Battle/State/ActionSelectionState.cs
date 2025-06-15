@@ -62,6 +62,7 @@ public class ActionSelectionState : State<BattleSystem>{
     }
 
     IEnumerator GoToInventoryState(){
+        InventoryState.i.BattleSystem = battleSystem;
         yield return GameController.i.StateMachine.PushAndWait(InventoryState.i);
         var selectedItem = InventoryState.i.SelectedItem;
         if(selectedItem != null){

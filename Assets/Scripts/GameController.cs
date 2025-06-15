@@ -5,7 +5,6 @@ using System.Collections;
 using GDEUtills.StateMachine;
 using System.Collections.Generic;
 
-public enum GameState{ FreeRoam, Battle, Dialog, PartyScreen, Evolution, Menu, Bag, Cutscene , Shop, Paused }
 
 public class GameController : MonoBehaviour{
     [Header("Referances")]
@@ -19,10 +18,6 @@ public class GameController : MonoBehaviour{
     [SerializeField] GameObject locationUI;
     [SerializeField] Text locationText;
 
-    GameState state;
-    GameState stateBeforePause;
-    GameState stateBeforeEvolution;
-
     TrainerController trainer;
 
     public static GameController i { get; private set; }
@@ -30,17 +25,11 @@ public class GameController : MonoBehaviour{
     public Text LocationText => locationText;
 
     public StateMachine<GameController> StateMachine { get; private set; }
-    public GameState State { get { return state; } }
-    public GameState PrevState { get; private set; }
     public SceneDetails CurrentScene {get; private set;}
     public SceneDetails PrevScene {get; private set;}
     public PlayerController PlayerController => playerController;
     public Camera WorldCamera => worldCamera;
-
-    private void SetState(GameState newState){
-        PrevState = state;
-        state = newState;
-    }
+    public PartyScreen PartyScreen => partyScreen;
 
     private void Awake(){
         i = this;
@@ -57,12 +46,6 @@ public class GameController : MonoBehaviour{
 
     public void Update(){
         StateMachine.Execute();
-
-        if(state == GameState.Dialog){
-            DialogManager.i.HandleUpdate();
-        } else if(state == GameState.Shop){
-            ShopController.i.HandleUpdate();
-        }
     }
 
     void Start(){
@@ -75,20 +58,6 @@ public class GameController : MonoBehaviour{
         DialogManager.i.OnDialogFinished += () =>{
             StateMachine.Pop();
         };
-
-        EvolutionManager.i.OnStartEvolution += () => {
-            stateBeforeEvolution = state;    
-            SetState(GameState.Evolution);
-        };
-        EvolutionManager.i.OnCompleteEvolution += () => {
-            partyScreen.SetPartyData();
-            SetState(stateBeforeEvolution);
-
-            AudioManager.i.PlayMusic(CurrentScene.SceneMusic, fade: true);
-        };
-
-        ShopController.i.OnStart += () => SetState(GameState.Shop);
-        ShopController.i.OnFinish += () => SetState(GameState.FreeRoam);
     }
 
     public void OnEnterTrainersView(TrainerController trainer){
@@ -101,8 +70,6 @@ public class GameController : MonoBehaviour{
             trainer = null;
         }
         partyScreen.SetPartyData();
-
-        SetState(GameState.FreeRoam);
         
         battleSystem.gameObject.SetActive(false);
         worldCamera.gameObject.SetActive(true);
@@ -128,36 +95,15 @@ public class GameController : MonoBehaviour{
 
     public void PauseGame(bool pause){
         if(pause){
-            stateBeforePause = state;
-            SetState(GameState.Paused);
+            StateMachine.Push(PauseState.i);
         } else {
-            SetState(stateBeforePause);
+            StateMachine.Pop();
         }
     }
 
     public void SetCurrentScene(SceneDetails currScene){
         PrevScene = CurrentScene;
         CurrentScene = currScene;
-    }
-
-    void OnMenuSelected(int selectedItem){
-        if(selectedItem == 0){
-            //Pokemon
-            SetState(GameState.PartyScreen);
-            partyScreen.gameObject.SetActive(true);
-        } else if(selectedItem == 1){
-            //Bag
-            SetState(GameState.Bag);
-            inventoryUI.gameObject.SetActive(true);
-        } else if(selectedItem == 2){
-            //Save
-            SavingSystem.i.Save("saveSlot1");
-            SetState(GameState.FreeRoam);
-        } else if(selectedItem == 3){
-            //Load
-            SavingSystem.i.Load("saveSlot1");
-            SetState(GameState.FreeRoam);
-        }
     }
 
     public IEnumerator MoveCamera(Vector2 moveOffset, bool waitForFadeOut = false){
