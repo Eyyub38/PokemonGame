@@ -8,6 +8,7 @@ public class PartyState : State<GameController>{
     GameController gameController;
 
     public Pokemon SelectedPokemon {get; set;}
+    public BattleSystem BattleSystem {get; set;}
 
     public static PartyState i{get; private set;}
 
@@ -19,6 +20,11 @@ public class PartyState : State<GameController>{
         gameController = owner;
 
         SelectedPokemon = null;
+        
+        if(BattleSystem != null){
+            partyScreen = BattleSystem.PartyScreen;
+        }
+        
         partyScreen.gameObject.SetActive(true);
         partyScreen.OnSelected += OnPokemonSelected;
         partyScreen.OnBack += OnBack;
@@ -34,18 +40,23 @@ public class PartyState : State<GameController>{
 
         if(prevState == InventoryState.i){
             StartCoroutine(GoToUseItemState());
-        } else if(prevState == BattleState.i){
-            var battleState = prevState as BattleState;
+        } else if(prevState == BattleState.i || BattleSystem != null){
+            BattleSystem battleSystem = BattleSystem;
+            if(battleSystem == null && prevState == BattleState.i){
+                var battleState = prevState as BattleState;
+                battleSystem = battleState.BattleSystem;
+            }
 
             if(SelectedPokemon.HP <= 0){
                 partyScreen.SetMessageText($"{SelectedPokemon.Base.Name} is fainted. You cannot send out to battle.");
                 return;
             }
-            if(SelectedPokemon == battleState.BattleSystem.PlayerUnit.Pokemon){
+            if(SelectedPokemon == battleSystem.PlayerUnit.Pokemon){
                 partyScreen.SetMessageText($"{SelectedPokemon.Base.Name} is already in battle.");
                 return;
             }
         
+            battleSystem.SelectedPokemon = SelectedPokemon;
             gameController.StateMachine.Pop();
         } else {
             Debug.Log("Summary Screen");
@@ -61,10 +72,14 @@ public class PartyState : State<GameController>{
         SelectedPokemon = null;
 
         var prevState = gameController.StateMachine.GetPrevState();
-        if(prevState == BattleState.i){
-            var battleState = prevState as BattleState;
+        if(prevState == BattleState.i || BattleSystem != null){
+            BattleSystem battleSystem = BattleSystem;
+            if(battleSystem == null && prevState == BattleState.i){
+                var battleState = prevState as BattleState;
+                battleSystem = battleState.BattleSystem;
+            }
 
-            if(battleState.BattleSystem.PlayerUnit.Pokemon.HP <=0){
+            if(battleSystem.PlayerUnit.Pokemon.HP <=0){
                     partyScreen.SetMessageText("Your Pokemon is fainted! You need to choose new Pokemon");
                     return;
                 }

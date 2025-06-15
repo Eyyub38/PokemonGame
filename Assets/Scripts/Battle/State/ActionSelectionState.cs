@@ -40,10 +40,9 @@ public class ActionSelectionState : State<BattleSystem>{
             actionSelectionUI.gameObject.SetActive(false);
             battleSystem.StateMachine.Push(MoveSelectionState.i);
         } else if(selectedAction == 1){
-            actionSelectionUI.gameObject.SetActive(false);
             StartCoroutine(GoToPartyState());
         } else if(selectedAction == 2){
-            //BAG BURAYA DOKUNMA
+            StartCoroutine(GoToInventoryState());
         } else if(selectedAction == 3){
             battleSystem.SelectedAction = BattleAction.Run;
             battleSystem.StateMachine.ChangeState(RunTurnState.i);
@@ -51,15 +50,24 @@ public class ActionSelectionState : State<BattleSystem>{
     }
 
     IEnumerator GoToPartyState(){
-        battleSystem.OpenPartyScreen();
-        yield return new WaitUntil(() => battleSystem.state != BattleStates.PartyScreen);
+        PartyState.i.BattleSystem = battleSystem;
+        yield return GameController.i.StateMachine.PushAndWait(PartyState.i);
         
         var selectedPokemon = battleSystem.SelectedPokemon;
         if(selectedPokemon != null){
             battleSystem.SelectedAction = BattleAction.SwitchPokemon;
+            battleSystem.SelectedPokemon = selectedPokemon;
             battleSystem.StateMachine.ChangeState(RunTurnState.i);
-        } else {
-            actionSelectionUI.gameObject.SetActive(true);
+        }
+    }
+
+    IEnumerator GoToInventoryState(){
+        yield return GameController.i.StateMachine.PushAndWait(InventoryState.i);
+        var selectedItem = InventoryState.i.SelectedItem;
+        if(selectedItem != null){
+            battleSystem.SelectedAction = BattleAction.UseItem;
+            battleSystem.SelectedItem = selectedItem;
+            battleSystem.StateMachine.ChangeState(RunTurnState.i);
         }
     }
 }

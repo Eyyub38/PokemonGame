@@ -11,7 +11,8 @@ public class Cutscene : MonoBehaviour, IPlayerTriggerable{
     public bool TriggerRepeatedly => false;
 
     public IEnumerator Play(){
-        GameController.i.StartCutsceneState();
+        GameController.i.StateMachine.Push(CutsceneState.i);
+
         foreach(var action in actions){
             
             if(action.WaitForCompletion){
@@ -21,7 +22,7 @@ public class Cutscene : MonoBehaviour, IPlayerTriggerable{
             }
         }
 
-        GameController.i.StartFreeRoamState();
+        GameController.i.StateMachine.Pop();
     }
 
     public void AddAction(CutsceneAction action){

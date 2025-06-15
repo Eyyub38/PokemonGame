@@ -1,21 +1,32 @@
+using System;
 using UnityEngine;
+using System.Collections;
 using GDEUtills.StateMachine;
 using System.Collections.Generic;
-using System;
 
 public class InventoryState : State<GameController>{
     [SerializeField] InventoryUI inventoryUI;
 
     GameController gameController;
+    Inventory inventory;
     
+    public ItemBase SelectedItem { get; private set; }
+
     public static InventoryState i { get; private set; }
 
     void Awake(){
         i = this;
     }
+
+    void Start(){
+        inventory = Inventory.GetInventory();
+    }
     
     public override void Enter(GameController owner){
         gameController = owner;
+
+        SelectedItem = null;
+
         inventoryUI.gameObject.SetActive(true);
         inventoryUI.OnSelected += OnItemSelected;
         inventoryUI.OnBack += OnBack;
@@ -26,7 +37,8 @@ public class InventoryState : State<GameController>{
     }
     
     void OnItemSelected(int selectedItem){
-        gameController.StateMachine.Push(PartyState.i);
+        SelectedItem = inventoryUI.SelectedItem;
+        StartCoroutine(SelectPokemonAndUseItem());
     }
 
     void OnBack(){
@@ -37,5 +49,34 @@ public class InventoryState : State<GameController>{
         inventoryUI.gameObject.SetActive(false);
         inventoryUI.OnSelected -= OnItemSelected;
         inventoryUI.OnBack -= OnBack;
+    }
+
+    IEnumerator SelectPokemonAndUseItem(){
+        var prevState = gameController.StateMachine.GetPrevState();
+        if(prevState == BattleState.i){
+            if(!SelectedItem.CanUseInBattle){
+                yield return DialogManager.i.ShowDialogText($"{SelectedItem.Name} can't be used in battle.");
+                yield break;
+            }
+        } else {
+            if(!SelectedItem.CanUseInOffsideBattle){
+                yield return DialogManager.i.ShowDialogText($"{SelectedItem.Name} can't be used outside battle.");
+                yield break;
+
+            }
+        }
+
+        if(SelectedItem is PokeballItem){
+            inventory.UseItem(SelectedItem, null);
+            gameController.StateMachine.Pop();
+            yield break;
+        }
+        yield return gameController.StateMachine.PushAndWait(PartyState.i);
+
+        if(prevState == BattleState.i){
+            if(UseItemState.i.ItemUsed){
+                gameController.StateMachine.Pop();
+            }
+        }
     }
 }

@@ -30,14 +30,6 @@ public class Character : MonoBehaviour{
         }
     }
 
-    private bool IsWalkable(Vector3 targetPos){
-        if(Physics2D.OverlapCircle(targetPos, 0.2f, GameLayers.i.SolidObjectsLayer | GameLayers.i.InteractableLayer) != null){
-            return false;
-        }
-        
-        return true;
-    }
-
     private bool IsPathClear(Vector3 targetPos){
         var diff = targetPos - transform.position;
         var dir = diff.normalized;

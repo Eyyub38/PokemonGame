@@ -121,7 +121,14 @@ public class RunTurnState : State<BattleSystem>{
             if(playerAction == BattleAction.SwitchPokemon){
                 yield return battleSystem.SwitchPokemon(battleSystem.SelectedPokemon);
             } else if(playerAction == BattleAction.UseItem){
-                dialogBox.EnableActionSelector(false);
+                if(battleSystem.SelectedItem is PokeballItem){
+                    yield return battleSystem.ThrowPokeball(battleSystem.SelectedItem as PokeballItem);
+                    if(battleSystem.IsBattleOver){
+                        yield break;
+                    }
+                } else {
+
+                }
             } else if(playerAction == BattleAction.Run){
                 yield return TryToEscape();
             }
@@ -287,7 +294,8 @@ public class RunTurnState : State<BattleSystem>{
             } else {
                 var nextPokemon = trainerParty.GetHealthyPokemon();
                 if(nextPokemon != null){
-                    yield break;//StartCoroutine(AboutToUse(nextPokemon));
+                    AboutToUseState.i.NewPokemon = nextPokemon;
+                    yield return battleSystem.StateMachine.PushAndWait(AboutToUseState.i);
                 } else {
                     battleSystem.BattleOver(true);
                 }

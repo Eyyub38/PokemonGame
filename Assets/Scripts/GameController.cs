@@ -58,9 +58,7 @@ public class GameController : MonoBehaviour{
     public void Update(){
         StateMachine.Execute();
 
-        if(state == GameState.Cutscene){
-            playerController.Character.HandleUpdate();
-        } else if(state == GameState.Dialog){
+        if(state == GameState.Dialog){
             DialogManager.i.HandleUpdate();
         } else if(state == GameState.Shop){
             ShopController.i.HandleUpdate();
@@ -73,11 +71,9 @@ public class GameController : MonoBehaviour{
 
         battleSystem.OnBattleOver += EndBattle;
         partyScreen.Init();
-        DialogManager.i.OnShowDialog += () => SetState(GameState.Dialog);
+        DialogManager.i.OnShowDialog += () => StateMachine.Push(DialogState.i);
         DialogManager.i.OnDialogFinished += () =>{
-            if(state == GameState.Dialog){
-                SetState(PrevState);
-            }
+            StateMachine.Pop();
         };
 
         EvolutionManager.i.OnStartEvolution += () => {
@@ -96,7 +92,6 @@ public class GameController : MonoBehaviour{
     }
 
     public void OnEnterTrainersView(TrainerController trainer){
-        SetState(GameState.Cutscene);
         StartCoroutine(trainer.TriggerTrainerBattle(playerController));
     }
 
@@ -129,14 +124,6 @@ public class GameController : MonoBehaviour{
     public void StartTrainerBattle(TrainerController trainer){
         BattleState.i.trainer = trainer;
         StateMachine.Push(BattleState.i);
-    }
-
-    public void StartCutsceneState(){
-        SetState(GameState.Cutscene);
-    }
-
-    public void StartFreeRoamState(){
-        SetState(GameState.FreeRoam);
     }
 
     public void PauseGame(bool pause){

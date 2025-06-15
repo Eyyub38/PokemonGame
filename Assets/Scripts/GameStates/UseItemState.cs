@@ -10,6 +10,8 @@ public class UseItemState : State<GameController>{
     GameController gameController;
     Inventory inventory;
     
+    public bool ItemUsed {get; private set;}
+
     public static UseItemState i {get; private set;}
 
     void Awake(){
@@ -19,6 +21,7 @@ public class UseItemState : State<GameController>{
 
     public override void Enter(GameController owner){
         gameController = owner;
+        ItemUsed = false;
         StartCoroutine(UseItem());
     }
 
@@ -43,7 +46,7 @@ public class UseItemState : State<GameController>{
 
             var usedItem = inventory.UseItem(item, partyScreen.SelectedMember);
             if(usedItem != null){
-
+                ItemUsed = true;
                 if(usedItem is RecoveryItem){
                     yield return DialogManager.i.ShowDialogText($"You use {usedItem.Name}!");
                 }

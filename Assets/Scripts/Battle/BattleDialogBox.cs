@@ -27,6 +27,8 @@ public class BattleDialogBox : MonoBehaviour{
     Color originalColor;
     Color  highlightedColor;
 
+    public bool IsChoiceBoxEnabled => choiceBox.activeSelf;
+
     private void Start(){
         highlightedColor = GlobalSettings.i.HighlightedColor;
     }
