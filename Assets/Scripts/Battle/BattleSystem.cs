@@ -152,7 +152,6 @@ public class BattleSystem : MonoBehaviour{
     }
 
     void OnPartyMemberSelected(int selectedIndex){
-        Debug.Log($"OnPartyMemberSelected called with index: {selectedIndex}");
         var selectedMember = partyScreen.SelectedMember;
         if(selectedMember.HP <= 0){
             partyScreen.SetMessageText($"{selectedMember.Base.Name} is fainted. You cannot send out to battle.");

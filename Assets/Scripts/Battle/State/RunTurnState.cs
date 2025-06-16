@@ -113,7 +113,9 @@ public class RunTurnState : State<BattleSystem>{
         if(playerAction == BattleAction.Move){
 
             playerUnit.Pokemon.CurrentMove = (battleSystem.SelectedMove != -1) ? playerUnit.Pokemon.Moves[battleSystem.SelectedMove] : new Move(GlobalSettings.i.BackUpMove);
-            enemyUnit.Pokemon.CurrentMove = (enemyUnit.Pokemon.GetRandomMove() != null) ? enemyUnit.Pokemon.GetRandomMove() : new Move(GlobalSettings.i.BackUpMove);
+            
+            Move enemyMove = enemyUnit.Pokemon.GetRandomMove();
+            enemyUnit.Pokemon.CurrentMove = (enemyMove != null) ? enemyMove : new Move(GlobalSettings.i.BackUpMove);
 
             int playerMovePriority = playerUnit.Pokemon.CurrentMove.Base.Priority;
             int enemyMovePriority = enemyUnit.Pokemon.CurrentMove.Base.Priority;
@@ -155,7 +157,8 @@ public class RunTurnState : State<BattleSystem>{
                 yield return TryToEscape();
             }
 
-            enemyUnit.Pokemon.CurrentMove = (enemyUnit.Pokemon.GetRandomMove() != null) ? enemyUnit.Pokemon.GetRandomMove() : new Move(GlobalSettings.i.BackUpMove);
+            Move enemyMove = enemyUnit.Pokemon.GetRandomMove();
+            enemyUnit.Pokemon.CurrentMove = (enemyMove != null) ? enemyMove : new Move(GlobalSettings.i.BackUpMove);
             yield return RunMove(enemyUnit, playerUnit, enemyUnit.Pokemon.CurrentMove);
             yield return RunAfterTurn(enemyUnit);
             if(battleSystem.IsBattleOver) yield break;

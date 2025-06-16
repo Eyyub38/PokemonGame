@@ -153,12 +153,12 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 512
-        height: 768
+        y: 95
+        width: 1024
+        height: 769
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 18, y: 12, z: 18, w: 70}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 15, z: 22, w: 70}
       customData: 
       outline: []
       physicsShape: []
@@ -174,13 +174,13 @@ TextureImporter:
       name: SummaryUI_1
       rect:
         serializedVersion: 2
-        x: 512
-        y: 0
+        x: 1024
+        y: 95
         width: 512
-        height: 768
+        height: 769
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 18, y: 12, z: 18, w: 71}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 15, z: 22, w: 138}
       customData: 
       outline: []
       physicsShape: []
@@ -196,13 +196,13 @@ TextureImporter:
       name: SummaryUI_2
       rect:
         serializedVersion: 2
-        x: 1024
-        y: 0
+        x: 1536
+        y: 95
         width: 512
-        height: 768
+        height: 769
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 17, y: 12, z: 17, w: 135}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 15, z: 22, w: 139}
       customData: 
       outline: []
       physicsShape: []
@@ -218,13 +218,13 @@ TextureImporter:
       name: SummaryUI_3
       rect:
         serializedVersion: 2
-        x: 1536
-        y: 0
+        x: 2048
+        y: 95
         width: 512
-        height: 768
+        height: 769
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 17, y: 12, z: 17, w: 135}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 18, y: 15, z: 22, w: 378}
       customData: 
       outline: []
       physicsShape: []
@@ -237,23 +237,23 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SummaryUI_5
+      name: SummaryUI_4
       rect:
         serializedVersion: 2
-        x: 2048
-        y: 0
-        width: 512
-        height: 768
+        x: 0
+        y: 15
+        width: 65
+        height: 66
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 17, y: 12, z: 17, w: 367}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf35c94b72fb9e348ba5f92ef9ee4556
-      internalID: 462084660
+      spriteID: 627b271b6ec6c5743a99bc1cbbb65341
+      internalID: 1139471810
       vertices: []
       indices: 
       edges: []
@@ -272,7 +272,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":5.0,"y":1.0},"gridSpriteSize":{"x":512.0,"y":768.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       SummaryUI_0: -1505870082
       SummaryUI_1: -1392185141
@@ -280,6 +280,7 @@ TextureImporter:
       SummaryUI_3: -980080420
       SummaryUI_4: 1139471810
       SummaryUI_5: 462084660
+      SummaryUI_6: -1329114030
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

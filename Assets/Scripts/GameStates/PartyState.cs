@@ -37,10 +37,10 @@ public class PartyState : State<GameController>{
     void OnPokemonSelected(int selectedPokemon){
         SelectedPokemon = partyScreen.SelectedMember;
 
-        StartCoroutine(PokemonSelectedAction());
+        StartCoroutine(PokemonSelectedAction(selectedPokemon));
     }
 
-    IEnumerator PokemonSelectedAction(){
+    IEnumerator PokemonSelectedAction(int selectedPokemon){
         var prevState = gameController.StateMachine.GetPrevState();
 
         if(prevState == InventoryState.i){
@@ -49,9 +49,9 @@ public class PartyState : State<GameController>{
         } else if(prevState == BattleState.i || BattleSystem != null){
             BattleSystem battleSystem = BattleSystem;
             battleSystem = BattleState.i.BattleSystem;
-            if(battleSystem == null && prevState == BattleState.i){
+            if(battleSystem != null && prevState == BattleState.i){
                 var battleState = prevState as BattleState;
-                DynamicMenuState.i.MenuItems = new List<string>() {"Shift" ,"Summary", "Cancel"};
+                DynamicMenuState.EnsureInstance().MenuItems = new List<string>() {"Shift" ,"Summary", "Cancel"};
                 yield return gameController.StateMachine.PushAndWait(DynamicMenuState.i);
                 if(DynamicMenuState.i.SelectedItem == 0){
                     if(SelectedPokemon.HP <= 0){
@@ -66,16 +66,18 @@ public class PartyState : State<GameController>{
                     battleSystem.SelectedPokemon = SelectedPokemon;
                     gameController.StateMachine.Pop();
                 } else if(DynamicMenuState.i.SelectedItem == 1){
-                    Debug.Log("Summary Screen");
+                    SummaryState.i.SelectedPokemonIndex = selectedPokemon;
+                    yield return gameController.StateMachine.PushAndWait(SummaryState.i);
                 } else {
                     yield break;
                 }
             }
         } else {
-            DynamicMenuState.i.MenuItems = new List<string>() {"Summary","Switch","Cancel"};
+            DynamicMenuState.EnsureInstance().MenuItems = new List<string>() {"Summary","Switch","Cancel"};
             yield return gameController.StateMachine.PushAndWait(DynamicMenuState.i);
             if(DynamicMenuState.i.SelectedItem == 0){
-                Debug.Log("Summary Screen");
+                SummaryState.i.SelectedPokemonIndex = selectedPokemon;
+                yield return gameController.StateMachine.PushAndWait(SummaryState.i);
             } else if(DynamicMenuState.i.SelectedItem == 1){
                 Debug.Log("Switch Position");
             } else {

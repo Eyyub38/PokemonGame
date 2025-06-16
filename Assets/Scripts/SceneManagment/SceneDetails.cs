@@ -35,7 +35,8 @@ public class SceneDetails : MonoBehaviour{
 
             if(prevScene != null){
                 var prevLoadedScenes = prevScene.connectedScenes;
-                foreach(var scene in prevLoadedScenes){
+                var scenesToUnload = new List<SceneDetails>(prevLoadedScenes);
+                foreach(var scene in scenesToUnload){
                     if(!connectedScenes.Contains(scene) && scene != this){
                         scene.UnloadScene();
                     }

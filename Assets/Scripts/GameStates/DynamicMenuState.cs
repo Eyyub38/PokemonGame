@@ -16,8 +16,22 @@ public class DynamicMenuState : State<GameController>{
 
     public static DynamicMenuState i { get; private set; }
 
+    public static DynamicMenuState EnsureInstance() {
+        if (i == null) {
+            var go = new GameObject("DynamicMenuState");
+            i = go.AddComponent<DynamicMenuState>();
+            DontDestroyOnLoad(go);
+        }
+        return i;
+    }
+
     void Awake(){
-        i = this;
+        if (i == null) {
+            i = this;
+            DontDestroyOnLoad(gameObject);
+        } else if (i != this) {
+            Destroy(gameObject);
+        }
     }
 
     public override void Enter(GameController owner){

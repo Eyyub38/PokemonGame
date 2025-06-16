@@ -39,24 +39,7 @@ public class MoveForgetSelectionUI : SelectionUI<TextSlot>{
         this.currentMoves = moves;
 
         for(int i = 0; i < moveBars.Count - 1; i++) {
-
-            if(i < moves.Count) {
-                moveBars[ i ].NameText.text = moves[ i ].Base.Name;
-
-                moveBars[ i ].PpText.text = "PP: " + moves[ i ].Base.PP.ToString();
-
-                if(moves[i].PP <= 0){
-                    originalColor = Color.red;
-                } else {
-                    originalColor = Color.black;
-                }
-
-                SetMoveSelectionTypeBars(moves[ i ].Base, moveBars[ i ]);
-            } else {
-                moveBars[ i ].NameText.text = "";
-                moveBars[ i ].PpText.text = "";
-                moveBars[ i ].TypeImage.sprite = empty;
-            }
+            moveBars[ i ].gameObject.SetActive(true);
         }
         var moveBar = moveBars[ PokemonBase.MaxNumberOfMoves ];
         if(newMove != null) {
@@ -153,42 +136,53 @@ public class MoveForgetSelectionUI : SelectionUI<TextSlot>{
 
     void SetMoveSelectionTypeBars(MoveBase move, MoveBar moveBar) {
         string type = move.Type.ToString();
+        
+        int spriteIndex = -1;
+        
         if(type == "Normal") {
-            moveBar.TypeImage.sprite = typeBarSprites[ 0 ];
+            spriteIndex = 0;
         } else if(type == "Fire") {
-            moveBar.TypeImage.sprite = typeBarSprites[ 1 ];
+            spriteIndex = 1;
         } else if(type == "Water") {
-            moveBar.TypeImage.sprite = typeBarSprites[ 2 ];
+            spriteIndex = 2;
         } else if(type == "Grass") {
-            moveBar.TypeImage.sprite = typeBarSprites[ 3 ];
+            spriteIndex = 3;
         } else if(type == "Electric") {
-            moveBar.TypeImage.sprite = typeBarSprites[ 4 ];
-        } else if(type == "Flying") {
-            moveBar.TypeImage.sprite = typeBarSprites[ 5 ];
-        } else if(type == "Bug") {
-            moveBar.TypeImage.sprite = typeBarSprites[ 6 ];
+            spriteIndex = 4;
         } else if(type == "Ice") {
-            moveBar.TypeImage.sprite = typeBarSprites[ 7 ];
-        } else if(type == "Dark") {
-            moveBar.TypeImage.sprite = typeBarSprites[ 8 ];
-        } else if(type == "Fairy") {
-            moveBar.TypeImage.sprite = typeBarSprites[ 9 ];
+            spriteIndex = 5;
         } else if(type == "Fighting") {
-            moveBar.TypeImage.sprite = typeBarSprites[ 10 ];
-        } else if(type == "Ground") {
-            moveBar.TypeImage.sprite = typeBarSprites[ 11 ];
-        } else if(type == "Steel") {
-            moveBar.TypeImage.sprite = typeBarSprites[ 12 ];
-        } else if(type == "Psychic") {
-            moveBar.TypeImage.sprite = typeBarSprites[ 13 ];
+            spriteIndex = 6;
         } else if(type == "Poison") {
-            moveBar.TypeImage.sprite = typeBarSprites[ 14 ];
+            spriteIndex = 7;
+        } else if(type == "Ground") {
+            spriteIndex = 8;
+        } else if(type == "Flying") {
+            spriteIndex = 9;
+        } else if(type == "Psychic") {
+            spriteIndex = 10;
+        } else if(type == "Bug") {
+            spriteIndex = 11;
         } else if(type == "Rock") {
-            moveBar.TypeImage.sprite = typeBarSprites[ 15 ];
+            spriteIndex = 12;
         } else if(type == "Ghost") {
-            moveBar.TypeImage.sprite = typeBarSprites[ 16 ];
+            spriteIndex = 13;
         } else if(type == "Dragon") {
-            moveBar.TypeImage.sprite = typeBarSprites[ 17 ];
+            spriteIndex = 14;
+        } else if(type == "Dark") {
+            spriteIndex = 15;
+        } else if(type == "Steel") {
+            spriteIndex = 16;
+        } else if(type == "Fairy") {
+            spriteIndex = 17;
+        }
+        
+        // Check if we have a valid sprite index and if the sprite exists in the array
+        if(spriteIndex >= 0 && spriteIndex < typeBarSprites.Count){
+            moveBar.TypeImage.sprite = typeBarSprites[spriteIndex];
+        } else {
+            // Fallback to empty sprite if type is not found or sprite doesn't exist
+            moveBar.TypeImage.sprite = empty;
         }
     }
 }

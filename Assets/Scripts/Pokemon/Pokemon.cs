@@ -179,6 +179,14 @@ public class Pokemon{
         return saveData;
     }
 
+    public float GetNormalizedExp(){
+        int currLevelExp = Base.GetExpForLevel(Level);
+        int nextLevelExp = Base.GetExpForLevel(Level + 1);
+
+        float normilizedExp =  (float)( Exp - currLevelExp ) / (float)( nextLevelExp - currLevelExp);
+        return Mathf.Clamp01(normilizedExp);
+    }
+
     public bool HasMove(MoveBase moveToCheck){
         return Moves.Count( m => m.Base == moveToCheck) > 0;
     }

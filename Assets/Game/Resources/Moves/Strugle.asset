@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef9f53284bbc2445b03e93459fa2577, type: 3}
+  m_Name: Strugle
+  m_EditorClassIdentifier: 
+  _name: Struggle
+  description: sed only if all PP are exhausted.
+  soundEffect: {fileID: 8300000, guid: 092a669a6a53ecd4ba82ab2bb64e09f0, type: 3}
+  type: 1
+  power: 50
+  accuracy: 0
+  alwaysHits: 1
+  pp: 1
+  priority: 0
+  category: 0
+  effects:
+    boosts: []
+    status: 0
+    volatileStatus: 0
+  target: 0
+  secondaries: []
+  recoil:
+    recoilType: 1
+    recoilDamage: 25
+  drianingPercentage: 0
+  critBehaviour: 0
+  oneHitKoMoveEffect:
+    isOneHitKnockOut: 0
+    lowerOddsException: 0
+    immunityType: 0

@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class PokemonAnimator : MonoBehaviour{
     SpriteRenderer spriteRenderer;
     SpriteAnimator spriteAnimator;
-    PokemonBase surferPokemon;
 
     public float MoveX { get; set; }
     public float MoveY { get; set; }

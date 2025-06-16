@@ -9,6 +9,7 @@ using System.Linq;
 public class MoveSelectionState : State<BattleSystem>{
     [SerializeField] MoveSelectionUI moveSelectionUI;    
     BattleSystem battleSystem;
+    bool moveSelected = false;
 
     public List<Move> Moves {get; set;}
 
@@ -20,6 +21,8 @@ public class MoveSelectionState : State<BattleSystem>{
 
     public override void Enter(BattleSystem owner){
         battleSystem = owner;
+        battleSystem.SelectedMove = 0;
+        moveSelected = false;
 
         if (Moves.Where(m => m.PP > 0).Count() == 0){
             battleSystem.SelectedMove = -1;
@@ -37,7 +40,6 @@ public class MoveSelectionState : State<BattleSystem>{
     }
 
     public override void Execute(){
-        moveSelectionUI.HandleUpdate();
     }
 
     public override void Exit(){
@@ -51,6 +53,8 @@ public class MoveSelectionState : State<BattleSystem>{
     }
 
     private void OnMoveSelected(int selection){
+        if(moveSelected) return;
+        moveSelected = true;
         battleSystem.SelectedMove = selection;
         battleSystem.StateMachine.ChangeState(RunTurnState.i);   
     }

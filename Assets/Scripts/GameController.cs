@@ -5,7 +5,6 @@ using System.Collections;
 using GDEUtills.StateMachine;
 using System.Collections.Generic;
 
-
 public class GameController : MonoBehaviour{
     [Header("Referances")]
     [SerializeField] PlayerController playerController;
