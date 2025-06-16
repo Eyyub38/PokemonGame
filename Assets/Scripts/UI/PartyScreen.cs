@@ -45,7 +45,7 @@ public class PartyScreen : SelectionUI<IconSlot>{
     public void SetMessageText(string message){
         messageText.text = message;
     }
-
+    
     public void ShowIfTmUsable(TmItem tmItem){
         for(int i= 0; i < pokemons.Count; i++){
             string message = tmItem.CanBeTaught(pokemons[i])? "ABLE" : "NOT ABLE";

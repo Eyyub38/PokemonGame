@@ -118,7 +118,7 @@ public class GameController : MonoBehaviour{
 
     private void OnGUI(){
         var style = new GUIStyle();
-        style.fontSize = 24;
+        style.fontSize = 72;
 
         GUILayout.Label("State Stack", style);
         if(StateMachine?.StateStack != null){

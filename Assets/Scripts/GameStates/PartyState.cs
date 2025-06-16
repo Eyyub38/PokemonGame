@@ -9,6 +9,7 @@ public class PartyState : State<GameController>{
 
     public Pokemon SelectedPokemon {get; set;}
     public BattleSystem BattleSystem {get; set;}
+    public ItemBase SelectedItem {get; set;}
 
     public static PartyState i{get; private set;}
 
@@ -28,10 +29,27 @@ public class PartyState : State<GameController>{
         partyScreen.gameObject.SetActive(true);
         partyScreen.OnSelected += OnPokemonSelected;
         partyScreen.OnBack += OnBack;
+        
+        if(SelectedItem is TmItem tmItem){
+            partyScreen.ShowIfTmUsable(tmItem);
+            partyScreen.SetMessageText($"Choose a Pokemon to teach {tmItem.Move.Name}");
+        } else {
+            partyScreen.ClearMemberSlotMessage();
+            partyScreen.SetMessageText("Choose a Pokemon");
+        }
     }
 
     public override void Execute(){
         partyScreen.HandleUpdate();
+    }
+
+    public override void Exit(){
+        partyScreen.gameObject.SetActive(false);
+        BattleSystem = null;
+        partyScreen.OnSelected -= OnPokemonSelected;
+        partyScreen.OnBack -= OnBack;
+        partyScreen.ClearMemberSlotMessage();
+        SelectedItem = null;
     }
 
     void OnPokemonSelected(int selectedPokemon){
@@ -106,11 +124,5 @@ public class PartyState : State<GameController>{
         } else {
             gameController.StateMachine.Pop();
         }
-    }
-
-    public override void Exit(){
-        partyScreen.gameObject.SetActive(false);
-        partyScreen.OnSelected -= OnPokemonSelected;
-        partyScreen.OnBack -= OnBack;
     }
 }

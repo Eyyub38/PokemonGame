@@ -39,6 +39,13 @@ public class InventoryState : State<GameController>{
     public override void Execute(){
         inventoryUI.HandleUpdate();
     }
+
+    public override void Exit(){
+        inventoryUI.gameObject.SetActive(false);
+        BattleSystem = null;
+        inventoryUI.OnSelected -= OnItemSelected;
+        inventoryUI.OnBack -= OnBack;
+    }
     
     void OnItemSelected(int selectedItem){
         SelectedItem = inventoryUI.SelectedItem;
@@ -51,12 +58,6 @@ public class InventoryState : State<GameController>{
 
     void OnBack(){
         gameController.StateMachine.Pop();
-    }
-
-    public override void Exit(){
-        inventoryUI.gameObject.SetActive(false);
-        inventoryUI.OnSelected -= OnItemSelected;
-        inventoryUI.OnBack -= OnBack;
     }
 
     IEnumerator SelectPokemonAndUseItem(){
@@ -78,6 +79,11 @@ public class InventoryState : State<GameController>{
             gameController.StateMachine.Pop();
             yield break;
         }
+        
+        if(SelectedItem is TmItem){
+            PartyState.i.SelectedItem = SelectedItem;
+        }
+        
         yield return gameController.StateMachine.PushAndWait(PartyState.i);
 
         if(prevState == BattleState.i){

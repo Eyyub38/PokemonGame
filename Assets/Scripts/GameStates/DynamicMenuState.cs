@@ -28,7 +28,12 @@ public class DynamicMenuState : State<GameController>{
     void Awake(){
         if (i == null) {
             i = this;
-            DontDestroyOnLoad(gameObject);
+            if (transform.parent == null) {
+                DontDestroyOnLoad(gameObject);
+            } else {
+                transform.SetParent(null);
+                DontDestroyOnLoad(gameObject);
+            }
         } else if (i != this) {
             Destroy(gameObject);
         }
@@ -64,7 +69,7 @@ public class DynamicMenuState : State<GameController>{
 
     public override void Exit(){
         dynamicMenuUI.ClearItems();
-
+        BattleSystem = null;
         dynamicMenuUI.gameObject.SetActive(false);
         dynamicMenuUI.OnSelected -= OnItemSelected;
         dynamicMenuUI.OnBack -= OnBack;

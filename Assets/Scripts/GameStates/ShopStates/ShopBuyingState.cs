@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using GDEUtills.StateMachine;
 
 public class ShopBuyingState : State<GameController>{
-    [SerializeField] InventoryUI inventoryUI;
     [SerializeField] WalletUI walletUI;
     [SerializeField] CounterSelectorUI countSelectorUI;
     [SerializeField] ShopUI shopUI;
@@ -50,9 +49,9 @@ public class ShopBuyingState : State<GameController>{
         yield return DialogManager.i.ShowDialogText($"How many would you like to buy {item.Name}?",
                                                     waitForInput: false, autoClose: false);
 
-                                                    int countToBuy = 1;
+        int countToBuy = 1;
         yield return countSelectorUI.ShowSelector( 100, item.Price, 
-                                                (selectedCount) => { countToBuy =  selectedCount; });
+                                                (selectedCount) => { countToBuy = selectedCount; });
 
         DialogManager.i.CloseDialog();
 
@@ -79,6 +78,7 @@ public class ShopBuyingState : State<GameController>{
         yield return GameController.i.MoveCamera(-cameraOffset);
         shopUI.Close();
         walletUI.Close();
+        Debug.Log("Closed all UI's and Camera go back to original position");
         gameController.StateMachine.Pop();
     }
 }

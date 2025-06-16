@@ -32,6 +32,8 @@ public class UseItemState : State<GameController>{
 
         if(item is TmItem){
             yield return HandleTmItems();
+            partyScreen.ClearMemberSlotMessage();
+            PartyState.i.SelectedItem = null;
         } else {
             if(item is EvolutionItem){
                 var evolution = pokemon.CheckForEvolution(item);

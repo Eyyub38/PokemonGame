@@ -40,6 +40,7 @@ public class MoveForgetState : State<GameController>{
 
     public override void Exit(){
         moveForgetSelectionUI.gameObject.SetActive(false);
+        BattleSystem = null;
         moveForgetSelectionUI.OnSelected -= OnMoveSelected;
         moveForgetSelectionUI.OnBack -= OnBack;
     }
