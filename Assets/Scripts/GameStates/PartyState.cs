@@ -5,13 +5,21 @@ using System.Collections.Generic;
 
 public class PartyState : State<GameController>{
     [SerializeField] PartyScreen partyScreen;
+
     GameController gameController;
+    PokemonParty playerParty;
+    bool isSwitchingPosition;
+    int selectedIndexForSwitching = 0;
 
     public Pokemon SelectedPokemon {get; set;}
     public BattleSystem BattleSystem {get; set;}
     public ItemBase SelectedItem {get; set;}
 
     public static PartyState i{get; private set;}
+
+    void Start(){
+        playerParty = PlayerController.i.GetComponent<PokemonParty>();
+    }
 
     void Awake(){
         i = this;
@@ -60,7 +68,7 @@ public class PartyState : State<GameController>{
         StartCoroutine(PokemonSelectedAction(selectedPokemon));
     }
 
-    IEnumerator PokemonSelectedAction(int selectedPokemon){
+    IEnumerator PokemonSelectedAction(int selectedPokemonIndex){
         var prevState = gameController.StateMachine.GetPrevState();
 
         if(prevState == InventoryState.i){
@@ -86,20 +94,38 @@ public class PartyState : State<GameController>{
                     battleSystem.SelectedPokemon = SelectedPokemon;
                     gameController.StateMachine.Pop();
                 } else if(DynamicMenuState.i.SelectedItem == 1){
-                    SummaryState.i.SelectedPokemonIndex = selectedPokemon;
+                    SummaryState.i.SelectedPokemonIndex = selectedPokemonIndex;
                     yield return gameController.StateMachine.PushAndWait(SummaryState.i);
                 } else {
                     yield break;
                 }
             }
         } else {
+            if(isSwitchingPosition){
+                isSwitchingPosition = false;
+
+                if(selectedIndexForSwitching == selectedPokemonIndex){
+                    partyScreen.SetMessageText("You can't switch to same pokemon");
+                    yield break;
+                }
+                var tmpPokemon = playerParty.Pokemons[selectedIndexForSwitching];
+                
+                playerParty.Pokemons[selectedIndexForSwitching] = playerParty.Pokemons[selectedPokemonIndex];
+                playerParty.Pokemons[selectedPokemonIndex] = tmpPokemon;
+                playerParty.PartyUptaded();
+
+                yield break;
+            }
+
             DynamicMenuState.EnsureInstance().MenuItems = new List<string>() {"Summary","Switch","Cancel"};
             yield return gameController.StateMachine.PushAndWait(DynamicMenuState.i);
             if(DynamicMenuState.i.SelectedItem == 0){
-                SummaryState.i.SelectedPokemonIndex = selectedPokemon;
+                SummaryState.i.SelectedPokemonIndex = selectedPokemonIndex;
                 yield return gameController.StateMachine.PushAndWait(SummaryState.i);
             } else if(DynamicMenuState.i.SelectedItem == 1){
-                Debug.Log("Switch Position");
+                isSwitchingPosition = true;
+                selectedIndexForSwitching = selectedPokemonIndex;
+                partyScreen.SetMessageText($"Choose a pokemon to switch with.");
             } else {
                 yield break;
             }

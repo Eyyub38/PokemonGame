@@ -27,6 +27,7 @@ public class PartyScreen : SelectionUI<IconSlot>{
 
     public void SetPartyData(){
         pokemons = party.Pokemons;
+        ClearItems();
 
         for(int i = 0; i < memberSlots.Length; i++){
             if(i < pokemons.Count){

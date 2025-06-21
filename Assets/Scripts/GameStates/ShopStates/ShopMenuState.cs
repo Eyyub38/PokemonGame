@@ -33,7 +33,9 @@ public class ShopMenuState : State<GameController>{
             yield return gameController.StateMachine.PushAndWait(ShopBuyingState.i);
         } else if(selectedChoice == 1){
             yield return gameController.StateMachine.PushAndWait(ShopSellingState.i);
-        } else if(selectedChoice == 2){}
+        } else if(selectedChoice == 2){
+            
+        }
         
         gameController.StateMachine.Pop();
     }

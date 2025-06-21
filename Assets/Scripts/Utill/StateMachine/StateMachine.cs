@@ -44,16 +44,13 @@ namespace GDEUtills.StateMachine{
         }
 
         public void Pop(){
-            CurrentState.Exit();
             StateStack.Pop();
+            CurrentState.Exit();
             CurrentState = StateStack.Peek();
         }
 
         public State<T> GetPrevState(){
-            if(StateStack.Count < 2){
-                return null;
-            }
-            return StateStack.ElementAt(1);
+            return StateStack.ElementAtOrDefault(1);
         }
     }
 }
