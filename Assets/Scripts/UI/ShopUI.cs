@@ -58,7 +58,6 @@ public class ShopUI : MonoBehaviour{
     }
 
     void UpdateItemSelection(){
-
         selectedItem = Mathf.Clamp(selectedItem, 0, avaliableItems.Count - 1);
 
         for(int i = 0; i < slotUIList.Count; ++i){

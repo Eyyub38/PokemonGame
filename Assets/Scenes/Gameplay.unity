@@ -119,6 +119,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &668345118 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4520237801166908126, guid: 02c4ce5024c363743a1fb1b8e11d7e30, type: 3}
+  m_PrefabInstance: {fileID: 757929264}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb3c63be1b1940c48b905f245008af26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &757929264
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1595,6 +1606,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3452434682412755755, guid: 02c4ce5024c363743a1fb1b8e11d7e30, type: 3}
+      propertyPath: countSelectorUI
+      value: 
+      objectReference: {fileID: 668345118}
     - target: {fileID: 3478601385138767302, guid: 02c4ce5024c363743a1fb1b8e11d7e30, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3318,6 +3333,10 @@ PrefabInstance:
     - target: {fileID: 6630726709606302107, guid: 02c4ce5024c363743a1fb1b8e11d7e30, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -228.45033
+      objectReference: {fileID: 0}
+    - target: {fileID: 6634811198699080451, guid: 02c4ce5024c363743a1fb1b8e11d7e30, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -11.02002
       objectReference: {fileID: 0}
     - target: {fileID: 6765485197226454655, guid: 02c4ce5024c363743a1fb1b8e11d7e30, type: 3}
       propertyPath: m_AnchoredPosition.x

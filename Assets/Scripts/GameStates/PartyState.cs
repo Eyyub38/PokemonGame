@@ -24,6 +24,8 @@ public class PartyState : State<GameController>{
         
         if(BattleSystem != null){
             partyScreen = BattleSystem.PartyScreen;
+        } else {
+            partyScreen = owner.PartyScreen;
         }
         
         partyScreen.gameObject.SetActive(true);

@@ -8,7 +8,7 @@ public class ShopMenuState : State<GameController>{
 
     public List<ItemBase> AvailableItems {get; set;}
 
-    public static ShopMenuState i {get; set;}
+    public static ShopMenuState i {get; private set;}
 
     void Awake(){
         i = this;
@@ -34,7 +34,7 @@ public class ShopMenuState : State<GameController>{
         } else if(selectedChoice == 1){
             yield return gameController.StateMachine.PushAndWait(ShopSellingState.i);
         } else if(selectedChoice == 2){}
-
+        
         gameController.StateMachine.Pop();
     }
 }

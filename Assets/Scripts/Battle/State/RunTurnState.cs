@@ -392,7 +392,7 @@ public class RunTurnState : State<BattleSystem>{
                 yield return dialogBox.TypeDialog($"Looks like {enemyUnit.Pokemon.Base.Name} left you and {playerUnit.Pokemon.Base.Name} alone.");
                 battleSystem.BattleOver(true);
             } else {
-                yield return dialogBox.TypeDialog($"{enemyUnit.Pokemon.Base.Name} left you and {playerUnit.Pokemon.Base.Name} no chance to escape.");
+                yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name} no chance to escape.");
             }
         }
     }

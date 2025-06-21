@@ -11,7 +11,7 @@ public class ShopSellingState : State<GameController>{
     GameController gameController;
     Inventory inventory;
 
-    public static ShopSellingState i {get; set;}
+    public static ShopSellingState i {get; private set;}
 
     void Awake(){
         i = this;

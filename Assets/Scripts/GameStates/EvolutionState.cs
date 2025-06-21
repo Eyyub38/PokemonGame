@@ -10,7 +10,7 @@ public class EvolutionState : State<GameController>{
     [SerializeField] Image evolutionImage;
     [SerializeField] AudioClip evolutionMusic;
 
-    public static EvolutionState i { get; set; }
+    public static EvolutionState i { get; private set; }
 
     private void Awake(){
         i = this;

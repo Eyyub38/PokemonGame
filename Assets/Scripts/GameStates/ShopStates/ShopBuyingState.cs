@@ -15,7 +15,7 @@ public class ShopBuyingState : State<GameController>{
 
     public List<ItemBase> AvailableItems {get; set;}
 
-    public static ShopBuyingState i {get; set;}
+    public static ShopBuyingState i {get; private set;}
 
     void Awake(){
         i = this;
@@ -51,7 +51,7 @@ public class ShopBuyingState : State<GameController>{
 
         int countToBuy = 1;
         yield return countSelectorUI.ShowSelector( 100, item.Price, 
-                                                (selectedCount) => { countToBuy = selectedCount; });
+                                                (selectedCount) => countToBuy = selectedCount );
 
         DialogManager.i.CloseDialog();
 
@@ -78,7 +78,6 @@ public class ShopBuyingState : State<GameController>{
         yield return GameController.i.MoveCamera(-cameraOffset);
         shopUI.Close();
         walletUI.Close();
-        Debug.Log("Closed all UI's and Camera go back to original position");
         gameController.StateMachine.Pop();
     }
 }
