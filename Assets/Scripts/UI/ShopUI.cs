@@ -62,8 +62,8 @@ public class ShopUI : MonoBehaviour{
 
         for(int i = 0; i < slotUIList.Count; ++i){
             if(i == selectedItem){
-                slotUIList[i].NameText.color = GlobalSettings.i.HighlightedColor;
-                slotUIList[i].CountText.color = GlobalSettings.i.HighlightedColor;
+                slotUIList[i].NameText.color = GlobalSettings.i.HighlightedTextColor;
+                slotUIList[i].CountText.color = GlobalSettings.i.HighlightedTextColor;
             } else {
                 slotUIList[i].NameText.color = Color.white;
                 slotUIList[i].CountText.color = Color.white;

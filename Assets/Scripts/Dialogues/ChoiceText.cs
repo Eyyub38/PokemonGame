@@ -13,6 +13,6 @@ public class ChoiceText : MonoBehaviour{
     }
 
     public void SetSelected(bool selected){
-        text.color = (selected) ? GlobalSettings.i.HighlightedColor : Color.white;
+        text.color = (selected) ? GlobalSettings.i.HighlightedTextColor : Color.white;
     }
 }

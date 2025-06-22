@@ -12,13 +12,15 @@ public class GlobalSettings : MonoBehaviour{
     [SerializeField] MoveBase backupMove;
 
     [Header("Color")]
-    [SerializeField] Color highlightedColor;
+    [SerializeField] Color highlightedTextColor;
+    [SerializeField] Color highlightedImageColor;
 
     [Header("HP Bar")]
     [SerializeField] Gradient healthbarGradient;
     
     
-    public Color HighlightedColor => highlightedColor;
+    public Color HighlightedTextColor => highlightedTextColor;
+    public Color HighlightedImageColor => highlightedImageColor;
     public MoveBase BackUpMove => backupMove;
     public Gradient HealthBarGradient => healthbarGradient;
     public int MaxEvs => maxEvs;

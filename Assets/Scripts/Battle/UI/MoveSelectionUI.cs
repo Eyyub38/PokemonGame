@@ -46,7 +46,7 @@ public class MoveSelectionUI : MonoBehaviour{
     void UpdateSelection(){
         for(int i = 0; i < moveBars.Count; i++){
             if(i < currentMoves.Count){
-                Color textColor = (i == selectedItem) ? GlobalSettings.i.HighlightedColor : 
+                Color textColor = (i == selectedItem) ? GlobalSettings.i.HighlightedTextColor : 
                                 (currentMoves[i].PP <= 0) ? Color.red : Color.white;
                 moveBars[i].NameText.color = textColor;
                 moveBars[i].PpText.color = textColor;

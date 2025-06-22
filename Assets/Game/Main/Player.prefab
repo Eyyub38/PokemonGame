@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 1181391121118234357}
   - component: {fileID: 7530823447165788642}
   - component: {fileID: 7573879844018487043}
+  - component: {fileID: 2597518626943218673}
   - component: {fileID: 1706078320481970831}
   - component: {fileID: 4213203068204416339}
   - component: {fileID: 2910947406915275775}
@@ -282,6 +283,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Red
   battleImage: {fileID: 5799124150812420617, guid: f5e8695acd16a5247a7eaa655d9444b5, type: 3}
+--- !u!114 &2597518626943218673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3860890692304561109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1edb35aa295d8544baf6809786dc8680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1706078320481970831
 MonoBehaviour:
   m_ObjectHideFlags: 0

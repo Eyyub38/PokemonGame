@@ -60,7 +60,6 @@ namespace  GDEUtills.GenerciSelectionUI {
         }
 
         void HandleListSelection(){
-            Debug.Log("List");
             float v = Input.GetAxisRaw("Vertical");
             if(selectionTimer == 0 && Mathf.Abs(v) > 0.2f){
                 selectedItem += -(int) Mathf.Sign(v);
@@ -69,7 +68,6 @@ namespace  GDEUtills.GenerciSelectionUI {
         }
 
         void HandleGridSelection(){
-            Debug.Log("Grid");
             float v = Input.GetAxisRaw("Vertical");
             float h = Input.GetAxisRaw("Horizontal");
             if(selectionTimer == 0 && (Mathf.Abs(v) > 0.2f || Mathf.Abs(h) > 0.2f)){

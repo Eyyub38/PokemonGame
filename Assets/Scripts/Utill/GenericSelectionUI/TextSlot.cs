@@ -9,7 +9,7 @@ public class TextSlot : MonoBehaviour, ISelectableItem{
     Color originalColor;
 
     public void OnSelectionChanged(bool selected){
-        text.color = selected ? GlobalSettings.i.HighlightedColor : originalColor;
+        text.color = selected ? GlobalSettings.i.HighlightedTextColor : originalColor;
     }
 
     public void Init(){

@@ -25,7 +25,7 @@ public class BattleDialogBox : MonoBehaviour{
     public bool IsChoiceBoxEnabled => choiceBox.activeSelf;
 
     private void Start(){
-        highlightedColor = GlobalSettings.i.HighlightedColor;
+        highlightedColor = GlobalSettings.i.HighlightedTextColor;
     }
 
     public void SetDialog(string dialog){
