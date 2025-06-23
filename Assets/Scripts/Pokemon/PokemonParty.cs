@@ -26,7 +26,7 @@ public class PokemonParty : MonoBehaviour{
             pokemons.Add(newPokemon);
             OnUpdated?.Invoke();
         } else {
-
+            
         }
     }
 

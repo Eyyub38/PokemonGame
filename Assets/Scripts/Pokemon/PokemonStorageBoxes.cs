@@ -3,7 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class PokemonStorageBoxes : MonoBehaviour{
-    Pokemon[,] boxes = new Pokemon[30,36];
+    const int numberOfBoxes = 30;
+    const int numberOfSlotsPerBox = 36;
+
+    Pokemon[,] boxes = new Pokemon[ numberOfBoxes, numberOfSlotsPerBox];
 
     public static PokemonStorageBoxes GetPlayersStorageBoxes(){
         return FindFirstObjectByType<PlayerController>().GetComponent<PokemonStorageBoxes>();
@@ -19,5 +22,11 @@ public class PokemonStorageBoxes : MonoBehaviour{
     
     public Pokemon GetPokemon(int boxIndex, int slotIndex){
         return boxes[boxIndex, slotIndex];
+    }
+
+    public void AddPokemonToEmptySlot(Pokemon pokemon){
+        for(int boxIndex = 0; boxIndex < numberOfBoxes; boxIndex++){
+
+        }
     }
 }
