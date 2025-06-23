@@ -8,6 +8,7 @@ using System.Linq;
 public class PokemonStorageUI : SelectionUI<ImageSlot>{
     [SerializeField] List<ImageSlot> boxSlots;
     [SerializeField] Image movingPokemonImage;
+    [SerializeField] Text boxNameText;
     
     PokemonParty party;
     PokemonStorageBoxes storageBoxes;
@@ -62,6 +63,23 @@ public class PokemonStorageUI : SelectionUI<ImageSlot>{
         }
     }
 
+    public override void HandleUpdate(){
+        int prevSelectedBox = SelectedBox;
+        if(Input.GetKeyDown(KeyCode.Q)){
+            SelectedBox = (SelectedBox > 0) ? (SelectedBox - 1) : (SelectedBox = storageBoxes.NumberOfBoxes - 1);
+        } else if(Input.GetKeyDown(KeyCode.E)){
+            SelectedBox = (SelectedBox + 1) %  storageBoxes.NumberOfBoxes;
+        }
+
+        if(SelectedBox != prevSelectedBox){
+            SetDataInStorageSlots();
+            UpdateSelectionInUI();
+            return;
+        }
+
+        base.HandleUpdate();
+    }
+
     public Pokemon TakePokemonFromSlot(int slotIndex){
         Pokemon pokemon;
         if(IsPartySlot(slotIndex)){
@@ -79,7 +97,7 @@ public class PokemonStorageUI : SelectionUI<ImageSlot>{
             int boxSlotIndex = slotIndex - (slotIndex / totalColumns + 1);
             pokemon = storageBoxes.GetPokemon(SelectedBox ,boxSlotIndex);
             if(pokemon == null) return null;
-            
+
             storageBoxes.RemovePokemon(SelectedBox, boxSlotIndex);
         }
 
@@ -114,6 +132,8 @@ public class PokemonStorageUI : SelectionUI<ImageSlot>{
 
     public override void UpdateSelectionInUI(){
         base.UpdateSelectionInUI();
+        
+        boxNameText.text = "Box " + (SelectedBox + 1);
 
         if(movingPokemonImage.gameObject.activeSelf){
             movingPokemonImage.transform.position = boxSlotImages[selectedItem].transform.position + (Vector3.up * 50f);

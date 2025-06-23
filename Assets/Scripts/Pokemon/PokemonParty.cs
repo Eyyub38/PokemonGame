@@ -7,11 +7,14 @@ using System.Collections.Generic;
 public class PokemonParty : MonoBehaviour{
     [SerializeField] List<Pokemon> pokemons;
 
+    PokemonStorageBoxes storageBoxes;
+
     public event Action OnUpdated;
 
     public List<Pokemon> Pokemons{get { return pokemons; } set{ pokemons = value; OnUpdated?.Invoke();}}
 
     private void Awake(){
+        storageBoxes = GetComponent<PokemonStorageBoxes>();
         foreach(var pokemon in pokemons){
             pokemon.Init();
         }
@@ -26,7 +29,7 @@ public class PokemonParty : MonoBehaviour{
             pokemons.Add(newPokemon);
             OnUpdated?.Invoke();
         } else {
-            
+            storageBoxes.AddPokemonToEmptySlot(newPokemon);
         }
     }
 
