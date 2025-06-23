@@ -21,7 +21,7 @@ public class ActionSelectionState : State<BattleSystem>{
         actionSelectionUI.gameObject.SetActive(true);
         actionSelectionUI.OnSelected += OnActionSelected;
 
-        battleSystem.DialogBox.SetDialog("Choose an Action");
+        battleSystem.DialogBox.SetDialog($"Choose an Action for {battleSystem.UnitInSelection.Pokemon.Base.Name}");
     }
 
     public override void Execute(){
@@ -35,17 +35,19 @@ public class ActionSelectionState : State<BattleSystem>{
 
     void OnActionSelected(int selectedAction){
         if(selectedAction == 0){
-            battleSystem.SelectedAction = BattleAction.Move;
-            MoveSelectionState.i.Moves = battleSystem.PlayerUnit.Pokemon.Moves;
-            actionSelectionUI.gameObject.SetActive(false);
-            battleSystem.StateMachine.Push(MoveSelectionState.i);
+            MoveSelectionState.i.Moves = battleSystem.UnitInSelection.Pokemon.Moves;
+            battleSystem.StateMachine.ChangeState(MoveSelectionState.i);
+
         } else if(selectedAction == 1){
             StartCoroutine(GoToPartyState());
+
         } else if(selectedAction == 2){
             StartCoroutine(GoToInventoryState());
+
         } else if(selectedAction == 3){
-            battleSystem.SelectedAction = BattleAction.Run;
-            battleSystem.StateMachine.ChangeState(RunTurnState.i);
+            battleSystem.AddBattleAction(new BattleAction(){
+                Type = BattleActionType.Run
+            });
         }
     }
 
@@ -53,11 +55,12 @@ public class ActionSelectionState : State<BattleSystem>{
         PartyState.i.BattleSystem = battleSystem;
         yield return GameController.i.StateMachine.PushAndWait(PartyState.i);
         
-        var selectedPokemon = battleSystem.SelectedPokemon;
+        var selectedPokemon = PartyState.i.SelectedPokemon;
         if(selectedPokemon != null){
-            battleSystem.SelectedAction = BattleAction.SwitchPokemon;
-            battleSystem.SelectedPokemon = selectedPokemon;
-            battleSystem.StateMachine.ChangeState(RunTurnState.i);
+            battleSystem.AddBattleAction(new BattleAction(){
+                Type = BattleActionType.SwitchPokemon,
+                SelectedPokemon = selectedPokemon
+            });
         }
     }
 
@@ -66,9 +69,10 @@ public class ActionSelectionState : State<BattleSystem>{
         yield return GameController.i.StateMachine.PushAndWait(InventoryState.i);
         var selectedItem = InventoryState.i.SelectedItem;
         if(selectedItem != null){
-            battleSystem.SelectedAction = BattleAction.UseItem;
-            battleSystem.SelectedItem = selectedItem;
-            battleSystem.StateMachine.ChangeState(RunTurnState.i);
+            battleSystem.AddBattleAction(new BattleAction(){
+                Type = BattleActionType.UseItem,
+                SelectedItem = selectedItem
+            });
         }
     }
 }

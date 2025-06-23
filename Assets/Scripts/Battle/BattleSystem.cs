@@ -5,14 +5,20 @@ using UnityEngine.UI;
 using System.Collections;
 using GDEUtills.StateMachine;
 using System.Collections.Generic;
+using System.Linq;
 
-public enum BattleAction { Move, SwitchPokemon, UseItem, Run}
 public enum BattleTrigger {LongGrass, Water}
 
 public class BattleSystem : MonoBehaviour{
-    [Header("Battle Units")]
-    [SerializeField] BattleUnit playerUnit;
-    [SerializeField] BattleUnit enemyUnit;
+    [Header("Single Battle")]
+    [SerializeField] GameObject singleBattleElements;
+    [SerializeField] BattleUnit playerSingleUnit;
+    [SerializeField] BattleUnit enemySingleUnit;
+
+    [Header("Multi Battle")]
+    [SerializeField] GameObject multiBattleElements;
+    [SerializeField] List<BattleUnit> playerMultiUnits;
+    [SerializeField] List<BattleUnit> enemyMultiUnits;
 
     [Header("UI")]
     [SerializeField] BattleDialogBox dialogBox;
@@ -47,11 +53,16 @@ public class BattleSystem : MonoBehaviour{
 
     PlayerController player;
     BattleTrigger battleTrigger;
+    List<BattleUnit> playerUnits;
+    List<BattleUnit> enemyUnits;
+    List<BattleAction> battleActions; 
+    int unitCount = 1;
+    int unitInSelectionIndex = 0;
 
     public Action<bool> OnBattleOver;
 
-    public int SelectedMove {get; set;}
     public int EscapeAttempts {get; set;}
+    public int UnitCount => unitCount;
     public bool IsBattleOver {get; private set;}
     public bool IsTrainerBattle {get; private set;} = false;
     public TrainerController Trainer{get; private set;}
@@ -59,22 +70,21 @@ public class BattleSystem : MonoBehaviour{
     public PokemonParty PlayerParty {get; private set;}
     public PokemonParty TrainerParty {get; private set;}
     public Pokemon WildPokemon {get; private set;}
-    public Pokemon SelectedPokemon {get; set;}
-    public ItemBase SelectedItem {get; set;}
     public PartyScreen PartyScreen => partyScreen;
     public InventoryUI InventoryUI => inventoryUI;
     public BattleDialogBox DialogBox => dialogBox;
     public DynamicMenuUI DynamicMenuUI => dynamicMenuUI;
     public MoveForgetSelectionUI MoveForgetSelectionUI => moveForgetSelectionUI;
-    public BattleAction SelectedAction {get; set;}
-    public BattleUnit PlayerUnit => playerUnit;
-    public BattleUnit EnemyUnit => enemyUnit;
+    public List<BattleUnit> PlayerUnits => playerUnits;
+    public List<BattleUnit> EnemyUnits => enemyUnits;
+    public BattleUnit UnitInSelection => playerUnits[unitInSelectionIndex];
     public AudioClip WildVicBattleMusic => wildBattleVictoryMusic;
     public AudioClip TrainerVicBattleMusic => trainerBattleVictoryMusic;
 
     public void StartBattle(PokemonParty playerParty, Pokemon wildPokemon, BattleTrigger trigger = BattleTrigger.LongGrass){
         this.PlayerParty = playerParty;
         this.WildPokemon = wildPokemon;
+        this.unitCount = 1;
         player = playerParty.GetComponent<PlayerController>();
         IsTrainerBattle = false;
 
@@ -84,9 +94,10 @@ public class BattleSystem : MonoBehaviour{
         StartCoroutine(SetupBattle());
     }
     
-    public void StartTrainerBattle(PokemonParty playerParty, PokemonParty trainerParty, BattleTrigger trigger = BattleTrigger.LongGrass){
+    public void StartTrainerBattle(PokemonParty playerParty, PokemonParty trainerParty, BattleTrigger trigger = BattleTrigger.LongGrass, int unitCount = 1){
         this.PlayerParty = playerParty;
         this.TrainerParty = trainerParty;
+        this.unitCount = unitCount;
         player = playerParty.GetComponent<PlayerController>();
         Trainer = trainerParty.GetComponent<TrainerController>();
         IsTrainerBattle = true;
@@ -98,10 +109,25 @@ public class BattleSystem : MonoBehaviour{
     }
 
     public IEnumerator SetupBattle(){
-        StateMachine = new StateMachine<BattleSystem>(this);
+        singleBattleElements.SetActive(unitCount == 1);
+        multiBattleElements.SetActive(unitCount > 1);
 
-        playerUnit.Clear();
-        enemyUnit.Clear();
+        if(unitCount == 1){
+            playerUnits = new List<BattleUnit>(){playerSingleUnit};
+            enemyUnits = new List<BattleUnit>(){enemySingleUnit};
+        } else if(unitCount > 1){
+            playerUnits = playerMultiUnits.GetRange(0, playerMultiUnits.Count);
+            enemyUnits = enemyMultiUnits.GetRange(0, enemyMultiUnits.Count);
+        }
+
+        StateMachine = new StateMachine<BattleSystem>(this);
+        battleActions = new List<BattleAction>();
+
+        for(int i = 0; i < unitCount; i++){
+            playerUnits[i].Clear();
+            enemyUnits[i].Clear();
+        }
+
         if(battleTrigger == BattleTrigger.Water){
             backgroundImages.sprite = waterBackground;
             playerUnitSpotImage.sprite = waterSpot;
@@ -112,15 +138,18 @@ public class BattleSystem : MonoBehaviour{
             enemyUnitSpotImage.sprite = longGrassSpot;
         }
         if(!IsTrainerBattle){
-            playerUnit.Setup(PlayerParty.GetHealthyPokemon());
-            enemyUnit.Setup(WildPokemon);
+            playerUnits[0].Setup(PlayerParty.GetHealthyPokemon());
+            enemyUnits[0].Setup(WildPokemon);
 
-            dialogBox.SetMoveBars(playerUnit.Pokemon.Moves);
+            dialogBox.SetMoveBars(playerUnits[0].Pokemon.Moves);
 
-            yield return dialogBox.TypeDialog($"A wild {enemyUnit.Pokemon.Base.Name} appeared.");
+            yield return dialogBox.TypeDialog($"A wild {enemyUnits[0].Pokemon.Base.Name} appeared.");
         } else {
-            playerUnit.gameObject.SetActive(false);
-            enemyUnit.gameObject.SetActive(false);
+            for(int i = 0; i < unitCount; i++){
+                playerUnits[i].gameObject.SetActive(false);
+                enemyUnits[i].gameObject.SetActive(false);
+            }
+
 
             playerImage.gameObject.SetActive(true);
             trainerImage.gameObject.SetActive(true);
@@ -131,58 +160,71 @@ public class BattleSystem : MonoBehaviour{
             yield return dialogBox.TypeDialog($"The battle between you and {Trainer.Name} is started.");
 
             trainerImage.gameObject.SetActive(false);
-            enemyUnit.gameObject.SetActive(true);
-            var enemyPokemon = TrainerParty.GetHealthyPokemon();
-            enemyUnit.Setup(enemyPokemon);
-            yield return dialogBox.TypeDialog($"{Trainer.Name} send out {enemyPokemon.Base.Name} for battle!");
-
+            var enemyPokemons = TrainerParty.GetHealthyPokemons(unitCount);
+            for(int i = 0; i < unitCount; i++){
+                enemyUnits[i].gameObject.SetActive(true);
+                enemyUnits[i].Setup(enemyPokemons[i]);
+            }
+            
+            var pokemonNames = String.Join(" and ", enemyPokemons.Select(p => p.Base.Name));
+            yield return dialogBox.TypeDialog($"{Trainer.Name} send out {pokemonNames} for battle!");
+            
             playerImage.gameObject.SetActive(false);
-            playerUnit.gameObject.SetActive(true);
-            var playerPokemon = PlayerParty.GetHealthyPokemon();
-            playerUnit.Setup(playerPokemon);
-            yield return dialogBox.TypeDialog($"Go {playerPokemon.Base.Name}! I choose you.");
-            dialogBox.SetMoveBars(playerPokemon.Moves);
+            var playerPokemons = PlayerParty.GetHealthyPokemons(unitCount);
+
+            for(int i = 0; i < unitCount; i++){
+                playerUnits[i].gameObject.SetActive(true);
+                playerUnits[i].Setup(playerPokemons[i]);
+            }
+            
+            pokemonNames = String.Join("and", playerPokemons.Select(p => p.Base.Name));
+            yield return dialogBox.TypeDialog($"Go {pokemonNames}! I choose you.");
         }
 
         IsBattleOver = false;
         EscapeAttempts = 0;
         partyScreen.Init();
+        unitInSelectionIndex = 0;
         StateMachine.ChangeState(ActionSelectionState.i);
-    
     }
 
-    void OnPartyMemberSelected(int selectedIndex){
-        var selectedMember = partyScreen.SelectedMember;
-        if(selectedMember.HP <= 0){
-            partyScreen.SetMessageText($"{selectedMember.Base.Name} is fainted. You cannot send out to battle.");
-            return;
-        }
-        if(selectedMember == playerUnit.Pokemon){
-            partyScreen.SetMessageText($"{selectedMember.Base.Name} is already in battle.");
-            return;
-        }
+    public void AddBattleAction(BattleAction battleAction){
+        battleAction.User = UnitInSelection;
+        battleActions.Add(battleAction);
 
-        SelectedPokemon = selectedMember;
-        partyScreen.gameObject.SetActive(false);
-        partyScreen.OnSelected -= OnPartyMemberSelected;
-        partyScreen.OnBack -= OnPartyScreenBack;
+        if(battleActions.Count == unitCount){
+            foreach(var enemyUnit in enemyUnits){
+                battleActions.Add(new BattleAction{
+                    Type = BattleActionType.Move,
+                    SelectedMove = enemyUnit.Pokemon.GetRandomMove(),
+                    User = enemyUnit,
+                    Target = playerUnits[UnityEngine.Random.Range( 0, playerUnits.Count)]
+                });
+            }
+
+            battleActions = battleActions.OrderByDescending(a => a.Priority).ThenByDescending(a => a.User.Pokemon.Base.Speed).ToList();
+
+            RunTurnState.i.Actions = battleActions;
+            StateMachine.ChangeState(RunTurnState.i);
+        } else {
+            ++unitInSelectionIndex;
+            StateMachine.ChangeState(ActionSelectionState.i);
+        }
     }
 
-    void OnPartyScreenBack(){
-        if(playerUnit.Pokemon.HP <=0){
-            partyScreen.SetMessageText("Your Pokemon is fainted! You need to choose new Pokemon");
-            return;
-        }
-        partyScreen.gameObject.SetActive(false);
-        partyScreen.OnSelected -= OnPartyMemberSelected;
-        partyScreen.OnBack -= OnPartyScreenBack;
+    public void ClearTurnData(){
+        battleActions = new List<BattleAction>();
+        unitInSelectionIndex = 0;
     }
 
     public void BattleOver(bool won){
         IsBattleOver = true;
         PlayerParty.Pokemons.ForEach(p => p.OnBattleOver());
-        playerUnit.Hud.ClearData();
-        enemyUnit.Hud.ClearData();
+        for(int i = 0; i < unitCount; i++){
+            playerUnits[i].Hud.ClearData();
+            enemyUnits[i].Hud.ClearData();
+        }
+
         OnBattleOver(won);
     }
 
@@ -190,14 +232,14 @@ public class BattleSystem : MonoBehaviour{
         StateMachine.Execute();
     }
 
-    public IEnumerator SwitchPokemon(Pokemon newPokemon){
-        if (playerUnit.Pokemon.HP > 0){
-            yield return dialogBox.TypeDialog($"Come back {playerUnit.Pokemon.Base.Name}!. Thank you for your hard work!");
-            playerUnit.PlayFaintedAnimation();
+    public IEnumerator SwitchPokemon(Pokemon newPokemon, BattleUnit unitToSwitch){
+        if (unitToSwitch.Pokemon.HP > 0){
+            yield return dialogBox.TypeDialog($"Come back {unitToSwitch.Pokemon.Base.Name}!. Thank you for your hard work!");
+            unitToSwitch.PlayFaintedAnimation();
             yield return new WaitForSeconds(2f);
         }
 
-        playerUnit.Setup(newPokemon);
+        unitToSwitch.Setup(newPokemon);
         dialogBox.SetMoveBars(newPokemon.Moves);
 
         yield return dialogBox.TypeDialog($"Your turn {newPokemon.Base.Name}!");
@@ -205,7 +247,7 @@ public class BattleSystem : MonoBehaviour{
 
     public IEnumerator SendNextTrainerPokemon(){
         var nextPokemon = TrainerParty.GetHealthyPokemon();
-        enemyUnit.Setup(nextPokemon);
+        enemyUnits[0].Setup(nextPokemon);
         yield return dialogBox.TypeDialog($"{Trainer.Name} send out {nextPokemon.Base.Name}!");
     }
     
@@ -215,6 +257,9 @@ public class BattleSystem : MonoBehaviour{
             yield return dialogBox.TypeDialog("You are trying to steal someone's pokemon... You cannot do it!");
             yield break;
         }
+
+        var playerUnit = playerUnits[0];
+        var enemyUnit = enemyUnits[0];
 
         yield return dialogBox.TypeDialog($"{player.Name} used {pokeball.Name}");
 

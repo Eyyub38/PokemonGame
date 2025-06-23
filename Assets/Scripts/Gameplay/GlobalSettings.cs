@@ -14,6 +14,7 @@ public class GlobalSettings : MonoBehaviour{
     [Header("Color")]
     [SerializeField] Color highlightedTextColor;
     [SerializeField] Color highlightedImageColor;
+    [SerializeField] Color selectedUnitColor;
 
     [Header("HP Bar")]
     [SerializeField] Gradient healthbarGradient;
@@ -21,6 +22,7 @@ public class GlobalSettings : MonoBehaviour{
     
     public Color HighlightedTextColor => highlightedTextColor;
     public Color HighlightedImageColor => highlightedImageColor;
+    public Color SelectedUnitColor => selectedUnitColor;
     public MoveBase BackUpMove => backupMove;
     public Gradient HealthBarGradient => healthbarGradient;
     public int MaxEvs => maxEvs;

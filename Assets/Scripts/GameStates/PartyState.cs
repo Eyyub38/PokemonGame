@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using GDEUtills.StateMachine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class PartyState : State<GameController>{
     [SerializeField] PartyScreen partyScreen;
@@ -86,12 +87,11 @@ public class PartyState : State<GameController>{
                         partyScreen.SetMessageText($"{SelectedPokemon.Base.Name} is fainted. You cannot send out to battle.");
                         yield break;
                     }
-                    if(SelectedPokemon == battleSystem.PlayerUnit.Pokemon){
+                    if(battleSystem.PlayerUnits.Any(p => p.Pokemon == SelectedPokemon)){
                         partyScreen.SetMessageText($"{SelectedPokemon.Base.Name} is already in battle.");
                         yield break;
                     }
                 
-                    battleSystem.SelectedPokemon = SelectedPokemon;
                     gameController.StateMachine.Pop();
                 } else if(DynamicMenuState.i.SelectedItem == 1){
                     SummaryState.i.SelectedPokemonIndex = selectedPokemonIndex;
@@ -143,7 +143,7 @@ public class PartyState : State<GameController>{
                 battleSystem = battleState.BattleSystem;
             }
 
-            if(battleSystem.PlayerUnit.Pokemon.HP <=0){
+            if(battleSystem.PlayerUnits.Any(p => p.Pokemon.HP <=0)){
                     partyScreen.SetMessageText("Your Pokemon is fainted! You need to choose new Pokemon");
                     return;
                 }

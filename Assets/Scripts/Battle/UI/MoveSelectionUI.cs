@@ -128,11 +128,9 @@ public class MoveSelectionUI : MonoBehaviour{
             spriteIndex = 17;
         }
         
-        // Check if we have a valid sprite index and if the sprite exists in the array
         if(spriteIndex >= 0 && spriteIndex < TypeBarSprites.Count){
             moveBar.TypeImage.sprite = TypeBarSprites[spriteIndex];
         } else {
-            // Fallback to empty sprite if type is not found or sprite doesn't exist
             moveBar.TypeImage.sprite = Empty;
         }
     }

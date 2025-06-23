@@ -57,7 +57,7 @@ public class AboutToUseState : State<BattleSystem>{
         yield return GameController.i.StateMachine.PushAndWait(PartyState.i);
         var selectedPokemon = PartyState.i.SelectedPokemon;
         if(selectedPokemon != null){
-            yield return battleSystem.SwitchPokemon(selectedPokemon);
+            yield return battleSystem.SwitchPokemon(selectedPokemon, battleSystem.PlayerUnits[0]);
         }
 
         yield return CountinueBattle();

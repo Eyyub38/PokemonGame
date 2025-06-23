@@ -9,13 +9,13 @@ using UnityEngine.SceneManagement;
 public class MainMenuController : SelectionUI<TextSlot>{
 
     void Start(){
-        var textSlots = GetComponentsInChildren<TextSlot>();
-
+        var textSlots = GetComponentsInChildren<TextSlot>().ToList();
+        
         if(SavingSystem.i.CheckIfSaveExists("saveSlot1")){
-            SetItems(GetComponentsInChildren<TextSlot>().ToList());
+            SetItems(textSlots);
         } else {
             SetItems(textSlots.TakeLast(4).ToList());
-            textSlots.First().GetComponent<Text>().color = Color.gray;
+            textSlots.First().GetComponentInChildren<Text>().color = Color.gray;
         }
 
         OnSelected += OnItemSelected;
