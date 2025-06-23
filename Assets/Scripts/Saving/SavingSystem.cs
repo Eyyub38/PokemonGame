@@ -29,6 +29,10 @@ public class SavingSystem : MonoBehaviour{
         }
     }
 
+    public bool CheckIfSaveExists(string saveFile){
+        return File.Exists(GetPath(saveFile));
+    }
+
     public void Save(string saveFile){
         CaptureState(gameState);
         SaveFile(saveFile, gameState);

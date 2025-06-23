@@ -49,7 +49,7 @@ public class GameController : MonoBehaviour{
 
     void Start(){
         StateMachine = new StateMachine<GameController>(this);
-        StateMachine.ChangeState(FreeRoamState.i);
+        StateMachine.ChangeState(PauseState.i);
 
         battleSystem.OnBattleOver += EndBattle;
         partyScreen.Init();
