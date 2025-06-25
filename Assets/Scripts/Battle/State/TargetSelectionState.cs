@@ -34,7 +34,7 @@ public class TargetSelectionState : State<BattleSystem>{
             --selectedTarget;
         }
 
-        selectedTarget = Mathf.Clamp(selectedTarget, 0, battleSystem.UnitCount - 1);
+        selectedTarget = Mathf.Clamp(selectedTarget, 0, battleSystem.EnemyUnits.Count - 1);
 
         if(selectedTarget != prevSelected){
             UpdateSelectionInUI();

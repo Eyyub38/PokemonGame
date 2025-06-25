@@ -16,8 +16,9 @@ public class TrainerController : MonoBehaviour, Interactable, ISavable{
     [Header("Trainer Emote")]
     [SerializeField] GameObject exclamation;
     
-    [Header("Trainer FoV")]
+    [Header("Trainer Battle")]
     [SerializeField] GameObject fov;
+    [SerializeField] int battleUnitCount = 1;
 
     [Header("Trainer Music")]
     [SerializeField] AudioClip trainerAppearsClip;
@@ -27,6 +28,7 @@ public class TrainerController : MonoBehaviour, Interactable, ISavable{
 
     public string Name => _name;
     public Sprite BattleImage => battleImage;
+    public int BattleUnitCount => battleUnitCount;
 
     private void Awake(){
         character = GetComponent<Character>();

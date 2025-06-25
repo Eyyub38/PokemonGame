@@ -20,8 +20,12 @@ public class PokemonParty : MonoBehaviour{
         }
     }
 
-    public Pokemon GetHealthyPokemon(){
-        return pokemons.Where( x => x.HP > 0).FirstOrDefault();
+    public Pokemon GetHealthyPokemon(List<Pokemon> doNotInclude = null){
+        var healthyPokemons = pokemons.Where( p => p.HP > 0).ToList();
+        if(doNotInclude != null){
+            healthyPokemons = healthyPokemons.Where(p => !doNotInclude.Contains(p)).ToList();
+        }
+        return healthyPokemons.FirstOrDefault();
     }
     
     public List<Pokemon> GetHealthyPokemons(int unitCount){

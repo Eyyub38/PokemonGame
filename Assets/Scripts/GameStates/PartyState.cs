@@ -91,6 +91,11 @@ public class PartyState : State<GameController>{
                         partyScreen.SetMessageText($"{SelectedPokemon.Base.Name} is already in battle.");
                         yield break;
                     }
+
+                    if(battleSystem.UnitCount > 1 && battleSystem.IsPokemonSelectedToShift(SelectedPokemon)){
+                        partyScreen.SetMessageText($"{SelectedPokemon.Base.Name} is already selected to send out.");
+                        yield break;
+                    }
                 
                     gameController.StateMachine.Pop();
                 } else if(DynamicMenuState.i.SelectedItem == 1){

@@ -13,5 +13,7 @@ public class BattleAction{
     public Pokemon SelectedPokemon { get; set;}
     public ItemBase SelectedItem { get; set;}
 
+    public bool IsInvalid { get; set;}
+
     public int Priority => (Type == BattleActionType.Move) ? SelectedMove.Base.Priority : 99;
 }

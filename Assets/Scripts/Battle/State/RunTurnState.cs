@@ -108,11 +108,16 @@ public class RunTurnState : State<BattleSystem>{
             yield return new WaitForSeconds(1f);
         }
 
-        yield return CheckForBattleOver(faintedUnit);
+        yield return NextStepsAfterFainting(faintedUnit);
     }
 
     IEnumerator RunTurns(){
         foreach(BattleAction action in Actions){
+        
+            if(action.IsInvalid){
+                continue;   
+            }
+        
             if(action.Type == BattleActionType.Move){
                 action.User.Pokemon.CurrentMove = action.SelectedMove;
                 yield return RunMove(action.User, action.Target, action.SelectedMove);
@@ -299,25 +304,60 @@ public class RunTurnState : State<BattleSystem>{
         return UnityEngine.Random.Range(1, 101) <= moveAccuracy;
     }
 
-    IEnumerator CheckForBattleOver(BattleUnit faintedUnit){
+    IEnumerator NextStepsAfterFainting(BattleUnit faintedUnit){
+
+        var actionToRemove = Actions.FirstOrDefault(a => a.User == faintedUnit);
+
+        if(actionToRemove != null){
+            actionToRemove.IsInvalid = true;
+        }
+
         if(faintedUnit.IsPlayerUnit){
-            var nextPokemon = playerParty.GetHealthyPokemon();
-            if(nextPokemon != null){
-                yield return GameController.i.StateMachine.PushAndWait(PartyState.i);
-                yield return battleSystem.SwitchPokemon(PartyState.i.SelectedPokemon, faintedUnit);
-            } else {
+            var activePokemons = battleSystem.PlayerUnits.Select(u => u.Pokemon).Where(p => p.HP > 0).ToList();
+
+            var nextPokemon = playerParty.GetHealthyPokemon(doNotInclude: activePokemons);
+            if(nextPokemon == null && activePokemons.Count == 0){
                 battleSystem.BattleOver(false);
+
+            } else if(nextPokemon == null && activePokemons.Count > 0){
+                battleSystem.PlayerUnits.Remove(faintedUnit);
+                faintedUnit.Hud.gameObject.SetActive(false);
+
+                var actionsToChange = Actions.Where(a => a.Target = faintedUnit).ToList();
+                actionsToChange.ForEach(a => a.Target = battleSystem.PlayerUnits.First());
+
+            } else if(nextPokemon != null){
+                yield return battleSystem.SwitchPokemon(PartyState.i.SelectedPokemon, faintedUnit);
+                yield return GameController.i.StateMachine.PushAndWait(PartyState.i);
             }
+
         } else {
             if(!isTrainerBattle){
                 battleSystem.BattleOver(true);
-            } else {
-                var nextPokemon = trainerParty.GetHealthyPokemon();
-                if(nextPokemon != null){
+                yield break;
+
+            }
+
+            var activePokemons = battleSystem.EnemyUnits.Select(u => u.Pokemon).Where(p => p.HP > 0).ToList();
+
+            var nextPokemon = trainerParty.GetHealthyPokemon(doNotInclude: activePokemons);
+            if(nextPokemon == null && activePokemons.Count == 0){
+                battleSystem.BattleOver(true);
+
+            } else if(nextPokemon == null && activePokemons.Count > 0){
+                battleSystem.EnemyUnits.Remove(faintedUnit);
+                faintedUnit.Hud.gameObject.SetActive(false);
+
+                var actionsToChange = Actions.Where(a => a.Target = faintedUnit).ToList();
+                actionsToChange.ForEach(a => a.Target = battleSystem.EnemyUnits.First());
+
+            } else if(nextPokemon != null){
+                if(battleSystem.UnitCount == 1){
                     AboutToUseState.i.NewPokemon = nextPokemon;
                     yield return battleSystem.StateMachine.PushAndWait(AboutToUseState.i);
+
                 } else {
-                    battleSystem.BattleOver(true);
+                    battleSystem.SendNextTrainerPokemon();
                 }
             }
         }

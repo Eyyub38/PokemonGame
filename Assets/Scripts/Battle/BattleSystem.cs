@@ -220,10 +220,9 @@ public class BattleSystem : MonoBehaviour{
     public void BattleOver(bool won){
         IsBattleOver = true;
         PlayerParty.Pokemons.ForEach(p => p.OnBattleOver());
-        for(int i = 0; i < unitCount; i++){
-            playerUnits[i].Hud.ClearData();
-            enemyUnits[i].Hud.ClearData();
-        }
+
+        playerUnits.ForEach(u => u.Hud.ClearData());
+        enemyUnits.ForEach(u => u.Hud.ClearData());
 
         OnBattleOver(won);
     }
@@ -246,7 +245,9 @@ public class BattleSystem : MonoBehaviour{
     }
 
     public IEnumerator SendNextTrainerPokemon(){
-        var nextPokemon = TrainerParty.GetHealthyPokemon();
+        var activePokemons = EnemyUnits.Select(u => u.Pokemon).Where(p => p.HP > 0).ToList();
+
+        var nextPokemon = TrainerParty.GetHealthyPokemon(doNotInclude: activePokemons);
         enemyUnits[0].Setup(nextPokemon);
         yield return dialogBox.TypeDialog($"{Trainer.Name} send out {nextPokemon.Base.Name}!");
     }
@@ -330,5 +331,9 @@ public class BattleSystem : MonoBehaviour{
             ++shakeCount;
         }
         return shakeCount;
+    }
+
+    public bool IsPokemonSelectedToShift(Pokemon pokemon){
+        return battleActions.Any(a => a.Type == BattleActionType.SwitchPokemon && a.SelectedPokemon == pokemon);
     }
 }
