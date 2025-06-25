@@ -1,9 +1,13 @@
+using System.Linq;
 using UnityEngine;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
-using System.Linq;
+
+#if UNITY_EDITOR
+using UnityEditor.SceneManagement;
+#endif
 
 public class SceneDetails : MonoBehaviour{
     [SerializeField] List<SceneDetails> connectedScenes;
@@ -87,4 +91,22 @@ public class SceneDetails : MonoBehaviour{
         yield return new WaitForSeconds(2f);
         GameController.i.LocationUI.gameObject.SetActive(false);
     }
+
+#if UNITY_EDITOR
+    [ContextMenu("OpenScene")]
+    public void OpenSceneInEditor(){
+        if(!EditorSceneManager.GetSceneByName(gameObject.name).isLoaded){
+            string path = $"Assets/Scenes/{gameObject.name}.unity";
+            EditorSceneManager.OpenScene(path, OpenSceneMode.Additive);
+        }
+    }
+    
+    [ContextMenu("CloseScene")]
+    public void CloseSceneInEditor(){
+        var scene = EditorSceneManager.GetSceneByName(gameObject.name);
+        if(scene.isLoaded){
+            EditorSceneManager.CloseScene(scene, true);
+        }
+    }
+#endif
 }

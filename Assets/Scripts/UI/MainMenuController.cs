@@ -33,14 +33,12 @@ public class MainMenuController : SelectionUI<TextSlot>{
         if(selectedIndex == 0){
             DontDestroyOnLoad(gameObject);
             
-            GameController.i.StateMachine.ChangeState(FreeRoamState.i);
             SceneManager.LoadScene(1);
             SavingSystem.i.Load("saveSlot1");
             
             Destroy(gameObject);
 
         } else if(selectedIndex == 1){
-            GameController.i.StateMachine.ChangeState(FreeRoamState.i);
             SavingSystem.i.Delete("saveSlot1");
             SceneManager.LoadScene(1);
 
