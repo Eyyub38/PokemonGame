@@ -14,6 +14,9 @@ public class PokemonBase : ScriptableObject{
     [TextArea]
     [SerializeField] string description;
 
+    [SerializeField] float baseWeight;
+    [SerializeField] float baseHeight;
+
     [Header("Default Sprites")]
     [SerializeField] Sprite backSprite;
     [SerializeField] Sprite frontSprite;
@@ -65,12 +68,14 @@ public class PokemonBase : ScriptableObject{
     public Sprite FrontSprite{ get{return frontSprite;}}
     public Sprite BackSprite{ get{return backSprite;}}
     public Sprite IconSprite{ get{return iconSprite;}}
-    public Sprite FemaleFrontSprite { get { return femaleFrontSprite; } }
-    public Sprite FemaleBackSprite { get { return femaleBackSprite; } }
-    public bool HasGenderDifferences { get { return hasGenderDifferences; } }
-    public bool IsGenderless { get { return isGenderless; } }
-    public float MaleRatio { get { return maleRatio; } }
-    public List<Sprite> SurfSprites { get { return surfSprites; } }
+    public Sprite FemaleFrontSprite { get{return femaleFrontSprite;}}
+    public Sprite FemaleBackSprite { get{return femaleBackSprite;}}
+    public bool HasGenderDifferences { get{return hasGenderDifferences;}}
+    public bool IsGenderless { get{return isGenderless;}}
+    public float MaleRatio { get{return maleRatio;}}
+    public float BaseWeight { get{return baseWeight;}}
+    public float BaseHeight { get{return baseHeight;}}
+    public List<Sprite> SurfSprites { get{return surfSprites;}}
     public PokemonType Type1{ get{return type1;}}
     public PokemonType Type2{ get{return type2;}}
     public GrowthRate GrowthRate => growthRate;

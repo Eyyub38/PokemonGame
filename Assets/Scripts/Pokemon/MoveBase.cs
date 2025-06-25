@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+public enum PowerBasedOn {value, target, difference}
 public enum MoveTarget{ Foe, Self}
 public enum MoveCategory{ Physical, Special, Status}
 public enum CritBehaviour{ None, HighCritRatio, AlwaysCrit, NeverCrit}
@@ -31,7 +32,11 @@ public class MoveBase : ScriptableObject{
     [SerializeField] MoveEffects effects;
     [SerializeField] MoveTarget target;
     [SerializeField] List<SecondaryEffects> secondaries;
+
+    [Header("Recoils Moves")]
     [SerializeField] RecoilMoveEffect recoil = new RecoilMoveEffect();
+
+    [Header("Drain Moves")]
     [SerializeField] int drianingPercentage = 0;
 
     [Header("Crit Behaviour")]
@@ -41,6 +46,9 @@ public class MoveBase : ScriptableObject{
     [Header("Multi-Hit Move")]
     [SerializeField] bool isMultiHitMove = false;
     [SerializeField] Vector2Int hitRange = new Vector2Int( 2, 0);
+
+    [Header("Weight Base Moves")]
+    [SerializeField] PowerBasedOn movePowerBasedOn = PowerBasedOn.value;
 
     public string Name{ get{return _name;}} 
     public string Description{ get{return description;}}
@@ -60,6 +68,7 @@ public class MoveBase : ScriptableObject{
     public CritBehaviour CritBehaviour{ get{return critBehaviour;} }
     public AudioClip SoundEffect{ get{return soundEffect;} }
     public OneHitKoMoveEffect OneHitKoMoveEffect => oneHitKoMoveEffect;
+    public PowerBasedOn MovePowerBasedOn => movePowerBasedOn;
 
     public int GetHitTimes(){
         if(IsMultiHitMove){

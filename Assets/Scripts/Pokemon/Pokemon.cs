@@ -263,6 +263,12 @@ public class Pokemon{
     public DamageDetails TakeDamage(Move move, Pokemon attacker, float weatherModifier = 1f){
         float critical = 1f;
 
+        int power = move.Base.Power;
+        if(move.Base.MovePowerBasedOn == PowerBasedOn.target){
+            power = GetPowerFromBaseWeight();
+        } else if(move.Base.MovePowerBasedOn == PowerBasedOn.difference){
+            power = GetPowerFromWeightDifference(attacker);
+        }
         if (move.Base.OneHitKoMoveEffect.isOneHitKnockOut){
             int oneHitDamage = HP;
             DecreaseHP(oneHitDamage, true);
@@ -383,6 +389,40 @@ public class Pokemon{
 
     public int GetTotalEvs(){
         return StatEffortValues.Values.Sum();
+    }
+
+    public int GetPowerFromBaseWeight(){
+        float weight = _base.BaseWeight;
+        if(weight < 10f){
+            return 20;
+        } else if(weight < 25f){
+            return 40;
+        } else if(weight < 50f){
+            return 60;
+        } else if(weight < 50f){
+            return 80;
+        } else if(weight < 50f){
+            return 100;
+        } else {
+            return 120;
+        }
+    }
+
+    public int GetPowerFromWeightDifference(Pokemon source){
+        float defending = _base.BaseWeight;
+        float attacking = source.Base.BaseWeight;
+
+        if(defending > (attacking * 0.5f)){
+            return 40;
+        } else if(defending > (attacking * 0.3335f)){
+            return 60;
+        } else if(defending > (attacking * 0.2501f)){
+            return 80;
+        } else if(defending > (attacking * 0.2001f)){
+            return 100;
+        } else {
+            return 120;
+        }
     }
 }
 
