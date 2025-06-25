@@ -37,14 +37,19 @@ public class PlayerController : MonoBehaviour, ISavable{
             
             if(input.x != 0 ) input.y = 0;
 
+            bool wasRunning = character.IsRunning;
             character.IsRunning = Input.GetKey(KeyCode.LeftShift);
 
             if(input != Vector2.zero){
                 if(character.IsPathClear((Vector2)this.transform.position + input)){
-                    buddy.Follow(this.transform.position);
+                    buddy?.Follow(this.transform.position);
                 }
                 
                 StartCoroutine( character.Move(input, OnMoveOver));
+            }
+            
+            if(wasRunning != character.IsRunning && buddy != null){
+                buddy.OnPlayerRunningChanged(character.IsRunning);
             }
         }
 

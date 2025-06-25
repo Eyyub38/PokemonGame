@@ -23,10 +23,16 @@ public class Ledge : MonoBehaviour{
         GameController.i.PauseGame(true);
         character.Animator.IsJumping = true;
         
-        
         var landingPoint = character.transform.position + new Vector3(xDir,yDir) * 2;
-        yield return character.transform.DOJump(landingPoint, 0.3f, 1, 0.5f).WaitForCompletion();
         
+        if(character.GetComponent<PlayerController>() != null){
+            var playerController = character.GetComponent<PlayerController>();
+            if(playerController.Buddy != null){
+                playerController.Buddy.OnPlayerJump(landingPoint);
+            }
+        }
+        
+        yield return character.transform.DOJump(landingPoint, 0.3f, 1, 0.5f).WaitForCompletion();
         
         character.Animator.IsJumping = false;
         GameController.i.PauseGame(false);
