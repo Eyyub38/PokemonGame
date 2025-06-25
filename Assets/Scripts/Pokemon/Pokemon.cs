@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public enum Gender{ None, Male, Female, Genderless}
+public enum StatusEventType { Text, Damage, StatBoost}
 
 [System.Serializable]
 public class Pokemon{
@@ -26,12 +27,12 @@ public class Pokemon{
     public Move CurrentMove{ get; set; }
     public Dictionary<Stat, int> Stats{get; private set;}
     public Dictionary<Stat, int> StatBoosts{ get; private set;}
-    public Condition Status{ get; private set;}
-    public Condition VolatileStatus{ get; private set;}
+    public StatusCondition Status{ get; private set;}
+    public StatusCondition VolatileStatus{ get; private set;}
     public int StatusTime{ get; set; }
     public int VolatileStatusTime{ get; set; }
 
-    public Queue<string> StatusChanges { get; private set; }
+    public Queue<StatusEvent> StatusChanges { get; private set; }
 
     public event System.Action OnStatusChanged;
     public event System.Action OnHpChanged;
@@ -59,7 +60,7 @@ public class Pokemon{
         pokeball = ItemDB.GetObjectByName(saveData.pokeball) as PokeballItem;
         
         if(saveData.statusId != null){
-            Status = ConditionsDB.Conditions[saveData.statusId.Value];
+            Status = StatusConditionsDB.Conditions[saveData.statusId.Value];
         } else {
             Status = null;
         }
@@ -67,7 +68,7 @@ public class Pokemon{
         Moves = saveData.moves.Select(s => new Move(s)).ToList();
 
         CalculateStats();
-        StatusChanges = new Queue<string>();
+        StatusChanges = new Queue<StatusEvent>();
         ResetStatBoosts();
         VolatileStatus = null;
     }
@@ -93,7 +94,7 @@ public class Pokemon{
         StatEffortValues = new Dictionary<Stat, int>() { { Stat.HitPoints, 0 }, { Stat.Attack, 0 }, { Stat.Defense, 0 }, { Stat.SpAttack, 0 }, { Stat.SpDefense, 0 }, { Stat.Speed, 0 } };
 
         Exp = Base.GetExpForLevel(Level);
-        StatusChanges = new Queue<string>();
+        StatusChanges = new Queue<StatusEvent>();
         CalculateStats();
         HP = MaxHp;
         ResetStatBoosts();
@@ -202,21 +203,21 @@ public class Pokemon{
         Moves.Add(new Move(moveToLearn));
     }
     
-    public void SetStatus(ConditionID conditionID){
+    public void SetStatus(StatusConditionID conditionID){
         if(Status != null) return;
 
-        Status = ConditionsDB.Conditions[conditionID];
+        Status = StatusConditionsDB.Conditions[conditionID];
         Status?.OnStart?.Invoke(this);
-        StatusChanges.Enqueue($"{Base.Name} {Status.StartMessage}");
+        AddStatusEvet($"{Base.Name} {Status.StartMessage}");
         OnStatusChanged?.Invoke();
     }
     
-    public void SetVolatileStatus(ConditionID conditionID){
+    public void SetVolatileStatus(StatusConditionID conditionID){
         if(VolatileStatus != null) return;
 
-        VolatileStatus = ConditionsDB.Conditions[conditionID];
+        VolatileStatus = StatusConditionsDB.Conditions[conditionID];
         VolatileStatus?.OnStart?.Invoke(this);
-        StatusChanges.Enqueue($"{Base.Name} {VolatileStatus.StartMessage}");
+        AddStatusEvet($"{Base.Name} {VolatileStatus.StartMessage}");
     }
 
     public void CureStatus(){
@@ -249,22 +250,22 @@ public class Pokemon{
 
             if(changeIsPositive && StatBoosts[stat] == 6 || !changeIsPositive && StatBoosts[stat] == -6){
                 string riseOrFall = changeIsPositive ? "rose" : "fell";
-                StatusChanges.Enqueue($"{Base.Name}'s {stat} cannot go any higher, it has already {riseOrFall} to the maximum!");
+                AddStatusEvet(StatusEventType.StatBoost, $"{Base.Name}'s {stat} cannot go any higher, it has already {riseOrFall} to the maximum!");
             } else {
                 StatBoosts[stat] = Mathf.Clamp(StatBoosts[stat] += boost,-6, 6);
                 string riseOrFall = changeIsPositive ? "rose" : "fell";
                 string bigChance = Mathf.Abs(boost) >= 3 ? "severly" : Mathf.Abs(boost) == 2 ? "harshly" : "";
-                StatusChanges.Enqueue($"{Base.Name}'s {stat} {bigChance} {riseOrFall}!");
+                AddStatusEvet(StatusEventType.StatBoost, $"{Base.Name}'s {stat} {bigChance} {riseOrFall}!");
             }
         }
     }
 
-    public DamageDetails TakeDamage(Move move, Pokemon attacker){
+    public DamageDetails TakeDamage(Move move, Pokemon attacker, float weatherModifier = 1f){
         float critical = 1f;
 
         if (move.Base.OneHitKoMoveEffect.isOneHitKnockOut){
             int oneHitDamage = HP;
-            DecreaseHP(oneHitDamage);
+            DecreaseHP(oneHitDamage, true);
             return new DamageDetails() { TypeEffectiveness = 1f, Critical = 1f, Fainted = false };
         }
 
@@ -294,12 +295,12 @@ public class Pokemon{
         float attack = (move.Base.Category == MoveCategory.Special)? attacker.SpAttack : attacker.Attack;
         float defense = (move.Base.Category == MoveCategory.Special)? SpDefense : Defense;
 
-        float modifiers = UnityEngine.Random.Range( 0.85f, 1f) * typeEffectiveness * critical;
+        float modifiers = UnityEngine.Random.Range( 0.85f, 1f) * typeEffectiveness * critical * weatherModifier;
         float a = ( 2 * attacker.Level + 10) / 250f;
         float d = a * move.Base.Power * ((float)attack / defense) + 2;
         int damage = Mathf.FloorToInt(d * modifiers);
 
-        DecreaseHP(damage);
+        DecreaseHP(damage, true);
         damageDetails.DamageDealt = damage;
 
         return damageDetails;
@@ -309,13 +310,21 @@ public class Pokemon{
         if(damage < 1){
             damage = 1;
         }
-        DecreaseHP(damage);
-        StatusChanges.Enqueue($"{Base.Name} took {damage} recoil damage!");
+        DecreaseHP(damage, true);
+        AddStatusEvet($"{Base.Name} took {damage} recoil damage!");
     }
 
     public void OnBattleOver(){
         VolatileStatus = null;
         ResetStatBoosts();
+    }
+
+    public void AddStatusEvet(StatusEventType type, string message){
+        StatusChanges.Enqueue(new StatusEvent(type, message));
+    }
+    
+    public void AddStatusEvet(string message){
+        StatusChanges.Enqueue(new StatusEvent(StatusEventType.Text, message));
     }
 
     public void Heal(){
@@ -346,9 +355,11 @@ public class Pokemon{
         VolatileStatus?.OnAfterTurn?.Invoke(this);
     }
 
-    public void DecreaseHP(int damage){
+    public void DecreaseHP(int damage, bool callUpdateEvent = false){
         HP = Mathf.Clamp(HP - damage, 0, MaxHp);
-        OnHpChanged?.Invoke();
+        if(callUpdateEvent){
+            OnHpChanged?.Invoke();
+        }
     }
 
     public void IncreaseHP(int amount){
@@ -390,6 +401,17 @@ public class PokemonSaveData{
     public int level;
     public int xp;
     public string pokeball;
-    public ConditionID? statusId;
+    public StatusConditionID? statusId;
     public List<MoveSaveData> moves;
+}
+
+[System.Serializable]
+public class StatusEvent{
+    public StatusEventType Type {get; private set;}
+    public string Message {get; private set;}
+
+    public StatusEvent(StatusEventType type, string message){
+        Type = type;
+        Message = message;
+    }
 }

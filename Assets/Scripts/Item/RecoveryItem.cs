@@ -13,7 +13,7 @@ public class RecoveryItem : ItemBase{
     [SerializeField] bool restoreMaxPp;
 
     [Header("Status")]
-    [SerializeField] ConditionID status;
+    [SerializeField] StatusConditionID status;
     [SerializeField] bool recoverAllStatus;
 
     [Header("Revive")]
@@ -52,7 +52,7 @@ public class RecoveryItem : ItemBase{
             }
         }
 
-        if(recoverAllStatus || status != ConditionID.non){
+        if(recoverAllStatus || status != StatusConditionID.non){
             if(pokemon.Status == null && pokemon.VolatileStatus == null){
                 return false;
             }

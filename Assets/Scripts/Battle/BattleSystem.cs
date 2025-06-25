@@ -78,10 +78,12 @@ public class BattleSystem : MonoBehaviour{
     public List<BattleUnit> PlayerUnits => playerUnits;
     public List<BattleUnit> EnemyUnits => enemyUnits;
     public BattleUnit UnitInSelection => playerUnits[unitInSelectionIndex];
+    public BattleField Field { get; private set;}
     public AudioClip WildVicBattleMusic => wildBattleVictoryMusic;
     public AudioClip TrainerVicBattleMusic => trainerBattleVictoryMusic;
 
-    public void StartBattle(PokemonParty playerParty, Pokemon wildPokemon, BattleTrigger trigger = BattleTrigger.LongGrass){
+    public void StartBattle(PokemonParty playerParty, Pokemon wildPokemon, BattleTrigger trigger = BattleTrigger.LongGrass, 
+                            WeatherConditionID weather = WeatherConditionID.None){
         this.PlayerParty = playerParty;
         this.WildPokemon = wildPokemon;
         this.unitCount = 1;
@@ -91,10 +93,11 @@ public class BattleSystem : MonoBehaviour{
         battleTrigger = trigger;
         AudioManager.i.PlayMusic(wildBattleMusic);
 
-        StartCoroutine(SetupBattle());
+        StartCoroutine(SetupBattle(weather));
     }
     
-    public void StartTrainerBattle(PokemonParty playerParty, PokemonParty trainerParty, BattleTrigger trigger = BattleTrigger.LongGrass, int unitCount = 1){
+    public void StartTrainerBattle(PokemonParty playerParty, PokemonParty trainerParty, BattleTrigger trigger = BattleTrigger.LongGrass, 
+                                   WeatherConditionID weather = WeatherConditionID.None, int unitCount = 1){
         this.PlayerParty = playerParty;
         this.TrainerParty = trainerParty;
         this.unitCount = unitCount;
@@ -105,10 +108,10 @@ public class BattleSystem : MonoBehaviour{
         battleTrigger = trigger;
         AudioManager.i.PlayMusic(trainerBattleMusic);
 
-        StartCoroutine(SetupBattle());
+        StartCoroutine(SetupBattle(weather));
     }
 
-    public IEnumerator SetupBattle(){
+    public IEnumerator SetupBattle(WeatherConditionID weather){
         singleBattleElements.SetActive(unitCount == 1);
         multiBattleElements.SetActive(unitCount > 1);
 
@@ -181,6 +184,12 @@ public class BattleSystem : MonoBehaviour{
             yield return dialogBox.TypeDialog($"Go {pokemonNames}! I choose you.");
         }
 
+        Field = new BattleField();
+        if(weather != WeatherConditionID.None){
+            Field.SetWeather(weather);
+            yield return dialogBox.TypeDialog(Field.Weather.StartMessage);
+        }
+        
         IsBattleOver = false;
         EscapeAttempts = 0;
         partyScreen.Init();
@@ -318,7 +327,7 @@ public class BattleSystem : MonoBehaviour{
     }
     
     int TryCatchPokemon(Pokemon pokemon, PokeballItem pokeball){
-        float a = ( 3 * pokemon.MaxHp - 2 * pokemon.HP) * pokemon.Base.CatchRate * pokeball.CatchRateModifier * ConditionsDB.GetStatusBonus(pokemon.Status) / ( 3 * pokemon.MaxHp);
+        float a = ( 3 * pokemon.MaxHp - 2 * pokemon.HP) * pokemon.Base.CatchRate * pokeball.CatchRateModifier * StatusConditionsDB.GetStatusBonus(pokemon.Status) / ( 3 * pokemon.MaxHp);
         if(a >= 255){
             return 4;
         }

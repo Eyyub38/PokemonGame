@@ -38,7 +38,8 @@ public class GameController : MonoBehaviour{
 
         PokemonDB.Init();
         MoveDB.Init();
-        ConditionsDB.Init();
+        StatusConditionsDB.Init();
+        WeatherConditionsDB.Init();
         ItemDB.Init();
         QuestDB.Init();
     }

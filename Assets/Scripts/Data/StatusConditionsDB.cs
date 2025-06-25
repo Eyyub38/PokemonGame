@@ -3,9 +3,9 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public enum ConditionID{ non, psn, brn, slp, par, frz, fro, tox, confusion}
+public enum StatusConditionID{ non, psn, brn, slp, par, frz, fro, tox, confusion}
 
-public class ConditionsDB{
+public class StatusConditionsDB{
     public static void Init(){
         foreach(var kvp in Conditions){
             var conditionId = kvp.Key;
@@ -15,29 +15,29 @@ public class ConditionsDB{
         }
     }
     
-    public static Dictionary<ConditionID, Condition> Conditions { get; set; } = new Dictionary<ConditionID, Condition>(){
-        { ConditionID.psn,
-            new Condition{
+    public static Dictionary<StatusConditionID, StatusCondition> Conditions { get; set; } = new Dictionary<StatusConditionID, StatusCondition>(){
+        { StatusConditionID.psn,
+            new StatusCondition{
                 Name = "Poison",
                 StartMessage = "has been poisoned!",
                 OnAfterTurn = (Pokemon pokemon) =>{
                     pokemon.DecreaseHP(pokemon.MaxHp / 8);
-                    pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} is hurt by poison!");
+                    pokemon.AddStatusEvet( StatusEventType.Damage, $"{pokemon.Base.Name} is hurt by poison!");
                 }
             }
         },
-        { ConditionID.brn,
-            new Condition{
+        { StatusConditionID.brn,
+            new StatusCondition{
                 Name = "Burn",
                 StartMessage = "has been burned!",
                 OnAfterTurn = (Pokemon pokemon) =>{
                     pokemon.DecreaseHP(pokemon.MaxHp / 16);
-                    pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} is hurt by burn!");
+                    pokemon.AddStatusEvet( StatusEventType.Damage, $"{pokemon.Base.Name} is hurt by burn!");
                 }
             }
         },
-        { ConditionID.tox,
-            new Condition{
+        { StatusConditionID.tox,
+            new StatusCondition{
                 Name = "Toxic",
                 StartMessage = "has been badly poisoned!",
                 OnAfterTurn = (Pokemon pokemon) =>{
@@ -46,71 +46,71 @@ public class ConditionsDB{
                         damage += pokemon.StatusTime * pokemon.MaxHp / 16;
                     }
                     pokemon.DecreaseHP(damage);
-                    pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} is hurt by poison badly!");
+                    pokemon.AddStatusEvet( StatusEventType.Damage, $"{pokemon.Base.Name} is hurt by poison badly!");
                     pokemon.StatusTime++;
                 }
             }
         },
-        { ConditionID.par,
-            new Condition{
+        { StatusConditionID.par,
+            new StatusCondition{
                 Name = "Paralysis",
                 StartMessage = "has been paralyzed!",
                 OnBeforeMove = (Pokemon pokemon) => {
                     if (Random.Range(1, 5) == 1){
-                        pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} is fully paralyzed. It can't move!");
+                        pokemon.AddStatusEvet($"{pokemon.Base.Name} is fully paralyzed. It can't move!");
                         return false;
                     }
                     return true;
                 }
             }
         },
-        { ConditionID.frz,
-            new Condition{
+        { StatusConditionID.frz,
+            new StatusCondition{
                 Name = "Freeze",
                 StartMessage = "has been frozen solid!",
                 OnBeforeMove = (Pokemon pokemon) => {
                     if (Random.Range(1, 5) == 1){
-                        pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} thawed out!");
+                        pokemon.AddStatusEvet($"{pokemon.Base.Name} thawed out!");
                         pokemon.CureStatus();
                         return true;
                     }
-                    pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} is frozen solid. It can't move!");
+                    pokemon.AddStatusEvet($"{pokemon.Base.Name} is frozen solid. It can't move!");
                     return false;
                 }
             }
         },
-        { ConditionID.fro,
-            new Condition{
+        { StatusConditionID.fro,
+            new StatusCondition{
                 Name = "Frostbite",
                 StartMessage = "has been frostbitten!",
                 OnAfterTurn = (Pokemon pokemon) =>{
                     pokemon.DecreaseHP(pokemon.MaxHp / 16);
-                    pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} is hurt by frostbite!");
+                    pokemon.AddStatusEvet( StatusEventType.Damage, $"{pokemon.Base.Name} is hurt by frostbite!");
                 }
             }
         },
-        { ConditionID.slp,
-            new Condition{
+        { StatusConditionID.slp,
+            new StatusCondition{
                 Name = "Sleep",
                 StartMessage = "has fallen asleep!",
                 OnStart = (Pokemon pokemon) => {
-                    pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} fell asleep!");
+                    pokemon.AddStatusEvet($"{pokemon.Base.Name} fell asleep!");
                     pokemon.StatusTime = Random.Range(1, 4);
                 },
                 OnBeforeMove = (Pokemon pokemon) => {
                     if (pokemon.StatusTime <= 0){
                         pokemon.CureStatus();
-                        pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} woke up!");
+                        pokemon.AddStatusEvet($"{pokemon.Base.Name} woke up!");
                         return true;
                     }
                     pokemon.StatusTime--;
-                    pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} is fast asleep. It can't move!");
+                    pokemon.AddStatusEvet($"{pokemon.Base.Name} is fast asleep. It can't move!");
                     return false;
                 }
             }
         },
-        { ConditionID.confusion,
-            new Condition{
+        { StatusConditionID.confusion,
+            new StatusCondition{
                 Name = "Confusion",
                 StartMessage = "has been confused!",
                 OnStart = (Pokemon pokemon) => {
@@ -119,7 +119,7 @@ public class ConditionsDB{
                 OnBeforeMove = (Pokemon pokemon) => {
                     if (pokemon.VolatileStatusTime <= 0){
                         pokemon.CureVolatileStatus();
-                        pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} kickesd off its confusion!");
+                        pokemon.AddStatusEvet($"{pokemon.Base.Name} kickesd off its confusion!");
                         return true;
                     }
                     pokemon.VolatileStatusTime--;
@@ -127,20 +127,20 @@ public class ConditionsDB{
                     if(Random.Range(1, 3) == 1){
                         return true;
                     }
-                    pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} is confued.");
+                    pokemon.AddStatusEvet($"{pokemon.Base.Name} is confused.");
                     pokemon.DecreaseHP(pokemon.MaxHp / 8);
-                    pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} hurt itself in its confusion!");
+                    pokemon.AddStatusEvet( StatusEventType.Damage, $"{pokemon.Base.Name} hurt itself in its confusion!");
                     return false;
                 }
             }
         },
     };
-    public static float GetStatusBonus(Condition condition){
+    public static float GetStatusBonus(StatusCondition condition){
         if(condition == null){
             return 1f;
-        } else if(condition.Id == ConditionID.slp || condition.Id == ConditionID.frz){
+        } else if(condition.Id == StatusConditionID.slp || condition.Id == StatusConditionID.frz){
             return 2f;
-        } else if(condition.Id == ConditionID.psn || condition.Id == ConditionID.par || condition.Id == ConditionID.brn){
+        } else if(condition.Id == StatusConditionID.psn || condition.Id == StatusConditionID.par || condition.Id == StatusConditionID.brn){
             return 1.5f;
         }
         

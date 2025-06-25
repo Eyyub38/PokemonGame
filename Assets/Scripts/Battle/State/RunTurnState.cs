@@ -137,6 +137,9 @@ public class RunTurnState : State<BattleSystem>{
             
             if(battleSystem.IsBattleOver) break;
         }
+        if(battleSystem.Field.Weather != null){
+            yield return RunWeatherEffects(battleSystem.Field.Weather);
+        }
         
         battleSystem.ClearTurnData();
 
@@ -148,11 +151,10 @@ public class RunTurnState : State<BattleSystem>{
     IEnumerator RunMove(BattleUnit sourceUnit, BattleUnit targetUnit, Move move){
         bool canRunMove = sourceUnit.Pokemon.OnBeforeTurn();
         if(canRunMove == false){
-            yield return ShowStatusChanges(sourceUnit.Pokemon);
-            yield return sourceUnit.Hud.WaitForHPUpdate();
+            yield return ShowStatusChanges(sourceUnit);
             yield break;
         }
-        yield return ShowStatusChanges(sourceUnit.Pokemon);
+        yield return ShowStatusChanges(sourceUnit);
 
         move.PP--;
         if(move.Base == GlobalSettings.i.BackUpMove){
@@ -161,36 +163,59 @@ public class RunTurnState : State<BattleSystem>{
         yield return dialogBox.TypeDialog($"{sourceUnit.Pokemon.Base.Name} used {move.Base.Name}.");
 
         if(CheckIfMoveHits(move, sourceUnit.Pokemon, targetUnit.Pokemon)){
-            var damageDetails = new DamageDetails();
-            sourceUnit.PlayAttackAnimation();
-            AudioManager.i.PlaySfx(move.Base.SoundEffect);
-            yield return new WaitForSeconds(1f);
+            int hitCount = 0;
+            float typeEffectiveness = 1;
 
-            targetUnit.PlayHitAnimation();
-            AudioManager.i.PlaySfx(AudioId.Hit);
+            for(int i = 1; i <= move.Base.GetHitTimes(); ++i){
 
-            if(move.Base.Category == MoveCategory.Status){
-                yield return RunMoveEffects(move.Base.Effects, sourceUnit.Pokemon, targetUnit.Pokemon, move.Base.Target);
-            } else {
-                damageDetails = targetUnit.Pokemon.TakeDamage(move, sourceUnit.Pokemon);
-                yield return targetUnit.Hud.WaitForHPUpdate();
-                yield return ShowDamageDetails(damageDetails);
-            }
+                var damageDetails = new DamageDetails();
+                sourceUnit.PlayAttackAnimation();
+                AudioManager.i.PlaySfx(move.Base.SoundEffect);
+                yield return new WaitForSeconds(1f);
 
-            if(move.Base.Secondaries != null && move.Base.Secondaries.Count > 0 && targetUnit.Pokemon.HP > 0){
-                foreach(var secondary in move.Base.Secondaries){
-                    var rnd = UnityEngine.Random.Range(1, 101);
-                    if(rnd <= secondary.Chance){
-                    yield return RunMoveEffects(secondary, sourceUnit.Pokemon, targetUnit.Pokemon, secondary.Target);
+                targetUnit.PlayHitAnimation();
+                AudioManager.i.PlaySfx(AudioId.Hit);
+
+                if(move.Base.Category == MoveCategory.Status){
+                    yield return RunMoveEffects(move.Base.Effects, sourceUnit, targetUnit, move.Base.Target);
+
+                } else {
+                    float weatherModifier = battleSystem.Field.Weather?.OnDamageModify?.Invoke(move) ?? 1f;
+
+                    damageDetails = targetUnit.Pokemon.TakeDamage(move, sourceUnit.Pokemon, weatherModifier);
+                    yield return targetUnit.Hud.UpdateHPAsync();
+                    yield return ShowDamageDetails(damageDetails);
+                    typeEffectiveness = damageDetails.TypeEffectiveness;
+                }
+
+                if(move.Base.Secondaries != null && move.Base.Secondaries.Count > 0 && targetUnit.Pokemon.HP > 0){
+                    foreach(var secondary in move.Base.Secondaries){
+                        var rnd = UnityEngine.Random.Range(1, 101);
+                        if(rnd <= secondary.Chance){
+                        yield return RunMoveEffects(secondary, sourceUnit, targetUnit, secondary.Target);
+                        }
                     }
+                }
+
+                yield return RunAfterMove(damageDetails, move.Base, sourceUnit, targetUnit);
+
+                hitCount++;
+
+                if(targetUnit.Pokemon.HP <= 0){
+                    break;
                 }
             }
 
-            yield return RunAfterMove(damageDetails, move.Base, sourceUnit, targetUnit);
+            yield return ShowTypeEffectiveness(typeEffectiveness);
+
+            if(move.Base.IsMultiHitMove){
+                yield return dialogBox.TypeDialog($"Hit {hitCount} times!");
+            }
 
             if(targetUnit.Pokemon.HP <= 0){
                 yield return HandlePokemonFainted(targetUnit, move.Base.OneHitKoMoveEffect.isOneHitKnockOut);
             }
+
         } else {
             yield return dialogBox.TypeDialog($"{sourceUnit.Pokemon.Base.Name}'s attack missed!");
         }
@@ -204,7 +229,7 @@ public class RunTurnState : State<BattleSystem>{
         if(move.DrainingPercentage != 0){
             int healedHP = Mathf.Clamp(Mathf.CeilToInt(damageDetails.DamageDealt / 100f * move.DrainingPercentage), 1, sourceUnit.Pokemon.MaxHp);
             sourceUnit.Pokemon.IncreaseHP(healedHP);
-            yield return sourceUnit.Hud.WaitForHPUpdate();
+            yield return sourceUnit.Hud.UpdateHPAsync();
         }
 
         if(move.Recoil.recoilType != RecoilType.None){
@@ -230,23 +255,25 @@ public class RunTurnState : State<BattleSystem>{
             }
         }
 
-        yield return ShowStatusChanges(sourceUnit.Pokemon);
-        yield return ShowStatusChanges(targetUnit.Pokemon);
+        yield return ShowStatusChanges(sourceUnit);
+        yield return ShowStatusChanges(targetUnit);
     }
 
     IEnumerator RunAfterTurn(BattleUnit sourceUnit){
         if(battleSystem.IsBattleOver) yield break;
 
         sourceUnit.Pokemon.OnAfterTurn();
-        yield return ShowStatusChanges(sourceUnit.Pokemon);
-        yield return sourceUnit.Hud.WaitForHPUpdate();
+        yield return ShowStatusChanges(sourceUnit);
         
         if(sourceUnit.Pokemon.HP <= 0){
             yield return HandlePokemonFainted(sourceUnit);
         }
     }
 
-    IEnumerator RunMoveEffects(MoveEffects effects, Pokemon source, Pokemon target, MoveTarget moveTarget){
+    IEnumerator RunMoveEffects(MoveEffects effects, BattleUnit sourceUnit, BattleUnit targetUnit, MoveTarget moveTarget){
+        var source = sourceUnit.Pokemon;
+        var target = targetUnit.Pokemon;
+
         if(effects.Boosts != null){
             if(moveTarget == MoveTarget.Self){
                 source.ApplyBoosts(effects.Boosts);
@@ -254,15 +281,48 @@ public class RunTurnState : State<BattleSystem>{
                 target.ApplyBoosts(effects.Boosts);
             }
 
-            yield return ShowStatusChanges(source);
-            yield return ShowStatusChanges(target);
         }
 
-        if(effects.Status != ConditionID.non){
+        if(effects.Status != StatusConditionID.non){
             target.SetStatus(effects.Status);
         }
-        if(effects.VolatileStatus != ConditionID.non){
+        if(effects.VolatileStatus != StatusConditionID.non){
             target.SetVolatileStatus(effects.VolatileStatus);
+        }
+        if(effects.WeatherStatus != WeatherConditionID.None){
+            battleSystem.Field.SetWeather(effects.WeatherStatus, 5);
+            yield return dialogBox.TypeDialog(battleSystem.Field.Weather.StartByMoveMessage ?? battleSystem.Field.Weather.StartMessage);
+        }
+
+        yield return ShowStatusChanges(sourceUnit);
+        yield return ShowStatusChanges(targetUnit);
+    }
+
+    IEnumerator RunWeatherEffects(WeatherCondition weather){
+        if(battleSystem.Field.WeatherDuration != null){
+            if(battleSystem.Field.WeatherDuration > 0){
+                --battleSystem.Field.WeatherDuration;
+            } else {
+                battleSystem.Field.SetWeather(WeatherConditionID.None, null);
+                yield return dialogBox.TypeDialog(weather.EndMessage);
+
+                yield break;
+            }
+        }
+
+        if(weather.EffectMessage != null){
+            yield return dialogBox.TypeDialog(weather.EffectMessage);
+        }
+
+        var units = battleSystem.PlayerUnits.Concat(battleSystem.EnemyUnits);
+
+        foreach(var unit in units){
+            weather.OnWeatherEffect?.Invoke(unit.Pokemon);
+            yield return ShowStatusChanges(unit);
+
+            if(unit.Pokemon.HP <= 0){
+               yield return  HandlePokemonFainted(unit);
+            }
         }
     }
 
@@ -367,19 +427,30 @@ public class RunTurnState : State<BattleSystem>{
         if(damageDetails.Critical > 1f){
             yield return dialogBox.TypeDialog("A critical hit!");
         }
-        if(damageDetails.TypeEffectiveness > 1f){
+    }
+
+    IEnumerator ShowTypeEffectiveness(float typeEffectiveness){
+        if(typeEffectiveness > 1f){
             yield return dialogBox.TypeDialog($"It's super effective!");
-        } else if(damageDetails.TypeEffectiveness < 1f){
+        } else if(typeEffectiveness < 1f){
             yield return dialogBox.TypeDialog($"It's not very effective...");
-        } else if(damageDetails.TypeEffectiveness == 0f){
+        } else if(typeEffectiveness == 0f){
             yield return dialogBox.TypeDialog($"It doesn't affect...");
         }
     }
 
-    IEnumerator ShowStatusChanges(Pokemon pokemon){
+    IEnumerator ShowStatusChanges(BattleUnit pokemonUnit){
+        var pokemon = pokemonUnit.Pokemon;
+
         while (pokemon.StatusChanges.Count > 0){
-            var message = pokemon.StatusChanges.Dequeue();
-            yield return dialogBox.TypeDialog(message);
+            var statusEvent = pokemon.StatusChanges.Dequeue();
+            yield return dialogBox.TypeDialog(statusEvent.Message);
+
+            if(statusEvent.Type == StatusEventType.Damage){
+                pokemonUnit.PlayHitAnimation();
+                AudioManager.i.PlaySfx(AudioId.Hit);
+                yield return pokemonUnit.Hud.UpdateHPAsync();
+            }
         }
     }
 

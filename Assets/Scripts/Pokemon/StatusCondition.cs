@@ -4,11 +4,11 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Condition{
+public class StatusCondition{
     public string Name{ get; set;}
     public string Description{ get; set;}
     public string StartMessage{ get; set;}
-    public ConditionID Id{ get; set; }
+    public StatusConditionID Id{ get; set; }
 
     public Func<Pokemon, bool> OnBeforeMove{get; set;}
     public Action<Pokemon> OnAfterTurn{get; set;}

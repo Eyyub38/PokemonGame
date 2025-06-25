@@ -37,6 +37,10 @@ public class MoveBase : ScriptableObject{
     [Header("Crit Behaviour")]
     [SerializeField] CritBehaviour critBehaviour;
     [SerializeField] OneHitKoMoveEffect oneHitKoMoveEffect = new OneHitKoMoveEffect();
+    
+    [Header("Multi-Hit Move")]
+    [SerializeField] bool isMultiHitMove = false;
+    [SerializeField] Vector2Int hitRange = new Vector2Int( 2, 0);
 
     public string Name{ get{return _name;}} 
     public string Description{ get{return description;}}
@@ -46,6 +50,7 @@ public class MoveBase : ScriptableObject{
     public int Accuracy{ get{return accuracy;}}
     public int DrainingPercentage => drianingPercentage;
     public bool AlwaysHits{ get{return alwaysHits;}}
+    public bool IsMultiHitMove { get{return isMultiHitMove;}}
     public PokemonType Type{ get{return type;}}
     public MoveCategory Category{ get{return category;}}
     public MoveEffects Effects{ get{return effects;}}
@@ -55,17 +60,31 @@ public class MoveBase : ScriptableObject{
     public CritBehaviour CritBehaviour{ get{return critBehaviour;} }
     public AudioClip SoundEffect{ get{return soundEffect;} }
     public OneHitKoMoveEffect OneHitKoMoveEffect => oneHitKoMoveEffect;
+
+    public int GetHitTimes(){
+        if(IsMultiHitMove){
+            if(hitRange.y == 0){
+                return hitRange.x;
+            } else {
+                return Random.Range(hitRange.x, hitRange.y + 1);
+            }
+        } else {
+            return 1;
+        }
+    }
 }
 
 [System.Serializable]
 public class MoveEffects{
     [SerializeField] List<StatBoosts> boosts;
-    [SerializeField] ConditionID status;
-    [SerializeField] ConditionID volatileStatus;
+    [SerializeField] StatusConditionID status;
+    [SerializeField] StatusConditionID volatileStatus;
+    [SerializeField] WeatherConditionID weatherStatus;
 
     public List<StatBoosts> Boosts{get{return boosts;}}
-    public ConditionID Status{get{return status;}}
-    public ConditionID VolatileStatus{get{return volatileStatus;}}
+    public StatusConditionID Status{get{return status;}}
+    public StatusConditionID VolatileStatus{get{return volatileStatus;}}
+    public WeatherConditionID WeatherStatus {get{return weatherStatus;}}
 }
 
 [System.Serializable]

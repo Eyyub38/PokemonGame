@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class MapArea : MonoBehaviour{
+    [Header("Wild Pokemons")]
     [SerializeField] List<PokemonEncounterRecord> wildPokemons;
     [SerializeField] List<PokemonEncounterRecord> wildPokemonsInWater;
 
@@ -12,6 +13,10 @@ public class MapArea : MonoBehaviour{
     
     [HideInInspector]
     [SerializeField] int totalChanceWater = 0;
+    [Header("Weather")]
+    [SerializeField] WeatherConditionID weather;
+
+    public WeatherConditionID Weather => weather;
 
     private void OnValidate(){
         CalculateCahncePercentage();

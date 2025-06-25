@@ -30,9 +30,9 @@ public class BattleHud : MonoBehaviour{
     [SerializeField] Sprite froImage;
 
     Pokemon _pokemon;
-    Dictionary<ConditionID, Sprite> statusImages;
+    Dictionary<StatusConditionID, Sprite> statusImages;
     
-    public Dictionary<ConditionID, Sprite> StatusImages { get { return statusImages; } set { statusImages = value; }}
+    public Dictionary<StatusConditionID, Sprite> StatusImages { get { return statusImages; } set { statusImages = value; }}
     
     public void SetData(Pokemon pokemon){
         ClearData();
@@ -57,14 +57,14 @@ public class BattleHud : MonoBehaviour{
             genderIcon.gameObject.SetActive(false);
         }
 
-        statusImages = new Dictionary<ConditionID, Sprite>(){
-            { ConditionID.psn, psnImage },
-            { ConditionID.frz, frzImage },
-            { ConditionID.brn, brnImage },
-            { ConditionID.slp, slpImage },
-            { ConditionID.par, parImage },
-            { ConditionID.tox, toxImage },
-            { ConditionID.fro, froImage }
+        statusImages = new Dictionary<StatusConditionID, Sprite>(){
+            { StatusConditionID.psn, psnImage },
+            { StatusConditionID.frz, frzImage },
+            { StatusConditionID.brn, brnImage },
+            { StatusConditionID.slp, slpImage },
+            { StatusConditionID.par, parImage },
+            { StatusConditionID.tox, toxImage },
+            { StatusConditionID.fro, froImage }
         };
 
         SetStatusImage();
