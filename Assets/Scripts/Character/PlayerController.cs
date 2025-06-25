@@ -27,7 +27,6 @@ public class PlayerController : MonoBehaviour, ISavable{
     private void Awake(){
         i = this;
         character = GetComponent<Character>();
-        buddy = FindFirstObjectByType<BuddyController>().GetComponent<BuddyController>();
     }
     
     public void HandleUpdate(){
