@@ -12,19 +12,22 @@ public class PlayerController : MonoBehaviour, ISavable{
     [Header("Battle Image")]
     [SerializeField] Sprite battleImage;
 
-    private Character character;
-    private Vector2 input;
+    Character character;
+    Vector2 input;
+    BuddyController buddy;
     IPlayerTriggerable currentlyInTrigger;
     
     public string Name => _name;
     public Sprite BattleImage => battleImage;
     public Character Character => character;
+    public BuddyController Buddy {get => buddy; set => buddy = value;}
 
     public static PlayerController i { get; private set; }
 
     private void Awake(){
         i = this;
         character = GetComponent<Character>();
+        buddy = FindFirstObjectByType<BuddyController>().GetComponent<BuddyController>();
     }
     
     public void HandleUpdate(){
@@ -38,6 +41,9 @@ public class PlayerController : MonoBehaviour, ISavable{
             character.IsRunning = Input.GetKey(KeyCode.LeftShift);
 
             if(input != Vector2.zero){
+                if(character.IsPathClear((Vector2)this.transform.position + input)){
+                    buddy.Follow(this.transform.position);
+                }
                 
                 StartCoroutine( character.Move(input, OnMoveOver));
             }

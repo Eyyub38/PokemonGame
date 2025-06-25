@@ -30,7 +30,7 @@ public class Character : MonoBehaviour{
         }
     }
 
-    private bool IsPathClear(Vector3 targetPos){
+    public bool IsPathClear(Vector3 targetPos){
         var diff = targetPos - transform.position;
         var dir = diff.normalized;
 
@@ -61,7 +61,7 @@ public class Character : MonoBehaviour{
             }
         }
 
-        if(checkCollisions &&!IsPathClear(targetPos)){
+        if(checkCollisions && !IsPathClear(targetPos)){
             animator.IsMoving = false;
             animator.MoveX = 0f;
             animator.MoveY = 0f;

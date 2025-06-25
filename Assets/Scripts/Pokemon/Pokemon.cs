@@ -264,9 +264,9 @@ public class Pokemon{
         float critical = 1f;
 
         int power = move.Base.Power;
-        if(move.Base.MovePowerBasedOn == PowerBasedOn.target){
+        if(move.Base.MovePowerBasedOn == PowerBasedOn.TargetWeight){
             power = GetPowerFromBaseWeight();
-        } else if(move.Base.MovePowerBasedOn == PowerBasedOn.difference){
+        } else if(move.Base.MovePowerBasedOn == PowerBasedOn.WeightDifference){
             power = GetPowerFromWeightDifference(attacker);
         }
         if (move.Base.OneHitKoMoveEffect.isOneHitKnockOut){

@@ -33,6 +33,7 @@ public class LocationPortal : MonoBehaviour, IPlayerTriggerable{
         player.Character.SetPositionAndSnapToTile(destPortal.SpawnPoint.position);
         yield return fader.FadeOut(0.5f);
 
+        player.Buddy.SetPosition();
         GameController.i.PauseGame(false);
     }
 }

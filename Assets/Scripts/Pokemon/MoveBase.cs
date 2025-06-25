@@ -2,9 +2,9 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public enum PowerBasedOn {value, target, difference}
 public enum MoveTarget{ Foe, Self}
 public enum MoveCategory{ Physical, Special, Status}
+public enum PowerBasedOn {Value, TargetWeight, WeightDifference}
 public enum CritBehaviour{ None, HighCritRatio, AlwaysCrit, NeverCrit}
 public enum RecoilType{ None, RecoilByMaxHP, RecoilByCurrentHP, RecoilByDamage}
 public enum MoveTag{ Contact, MinimizeBonusDamage, SoundBased, BallOrBomb, AuraOrPulse, Bite, Dance, Explosive, PowderOrSpore, Punching, WindBased, SlicingMove, SemiInvulnerableBonusDamageFlying}
@@ -48,7 +48,7 @@ public class MoveBase : ScriptableObject{
     [SerializeField] Vector2Int hitRange = new Vector2Int( 2, 0);
 
     [Header("Weight Base Moves")]
-    [SerializeField] PowerBasedOn movePowerBasedOn = PowerBasedOn.value;
+    [SerializeField] PowerBasedOn movePowerBasedOn = PowerBasedOn.Value;
 
     public string Name{ get{return _name;}} 
     public string Description{ get{return description;}}
