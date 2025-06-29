@@ -2819,7 +2819,7 @@ GameObject:
   - component: {fileID: 2896507974377657656}
   - component: {fileID: 1482850566063924640}
   - component: {fileID: 4754696838692357650}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Buddy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2835,7 +2835,7 @@ Transform:
   m_GameObject: {fileID: 4455694344442824389}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 59.18688, y: 4.07703, z: 0}
+  m_LocalPosition: {x: 8.5, y: 2.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2882,8 +2882,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1743963929
-  m_SortingLayer: 2
+  m_SortingLayerID: -288411153
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -1582130859987849193, guid: 56e57d424736abf41ae1949abdbf046a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2909,7 +2909,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movingSpeed: 5
-  runningSpeed: 2.5
+  runningSpeed: 2
 --- !u!114 &1482850566063924640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3000,6 +3000,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b6451ca2d578844903198da94ac165, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxDistance: 1
+  minDistance: 0.75
+  smoothSpeed: 5
+  behindOffset: 0.5
 --- !u!1 &4600913375759247387
 GameObject:
   m_ObjectHideFlags: 0
@@ -4585,62 +4589,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3801786594285018470}
     m_Modifications:
-    - target: {fileID: 1706078320481970831, guid: 1b94f68f11f463d47b6ce95040256c4c, type: 3}
-      propertyPath: pokemons.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1706078320481970831, guid: 1b94f68f11f463d47b6ce95040256c4c, type: 3}
-      propertyPath: pokemons.Array.data[0]._base
-      value: 
-      objectReference: {fileID: 11400000, guid: 4a226997b1746e14a8bf1852ddcdd471, type: 2}
-    - target: {fileID: 1706078320481970831, guid: 1b94f68f11f463d47b6ce95040256c4c, type: 3}
-      propertyPath: pokemons.Array.data[0].level
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1706078320481970831, guid: 1b94f68f11f463d47b6ce95040256c4c, type: 3}
-      propertyPath: pokemons.Array.data[1]._base
-      value: 
-      objectReference: {fileID: 11400000, guid: 5701d7c52774a5c46aa9f3fa6f493bca, type: 2}
-    - target: {fileID: 1706078320481970831, guid: 1b94f68f11f463d47b6ce95040256c4c, type: 3}
-      propertyPath: pokemons.Array.data[2]._base
-      value: 
-      objectReference: {fileID: 11400000, guid: f11f6a84ab7fa8847baad6ab50441aa4, type: 2}
-    - target: {fileID: 1706078320481970831, guid: 1b94f68f11f463d47b6ce95040256c4c, type: 3}
-      propertyPath: pokemons.Array.data[3]._base
-      value: 
-      objectReference: {fileID: 11400000, guid: 8cc7dd316f742dd4ab256f8a21e85d46, type: 2}
-    - target: {fileID: 1706078320481970831, guid: 1b94f68f11f463d47b6ce95040256c4c, type: 3}
-      propertyPath: pokemons.Array.data[4]._base
-      value: 
-      objectReference: {fileID: 11400000, guid: f3da621f39f4452418f05134a077863e, type: 2}
-    - target: {fileID: 1706078320481970831, guid: 1b94f68f11f463d47b6ce95040256c4c, type: 3}
-      propertyPath: pokemons.Array.data[4].level
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1706078320481970831, guid: 1b94f68f11f463d47b6ce95040256c4c, type: 3}
-      propertyPath: pokemons.Array.data[0].gender
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1706078320481970831, guid: 1b94f68f11f463d47b6ce95040256c4c, type: 3}
-      propertyPath: pokemons.Array.data[4].gender
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1706078320481970831, guid: 1b94f68f11f463d47b6ce95040256c4c, type: 3}
-      propertyPath: pokemons.Array.data[0].pokeball
-      value: 
-      objectReference: {fileID: 11400000, guid: 6f2070f7e40f97c4db8e767f154d4265, type: 2}
-    - target: {fileID: 1706078320481970831, guid: 1b94f68f11f463d47b6ce95040256c4c, type: 3}
-      propertyPath: pokemons.Array.data[1].pokeball
-      value: 
-      objectReference: {fileID: 11400000, guid: 7976b18e77265444eb510ddc60bae1dd, type: 2}
-    - target: {fileID: 1706078320481970831, guid: 1b94f68f11f463d47b6ce95040256c4c, type: 3}
-      propertyPath: pokemons.Array.data[2].pokeball
-      value: 
-      objectReference: {fileID: 11400000, guid: 78ea5903124a1c04f987c21403094afe, type: 2}
-    - target: {fileID: 1706078320481970831, guid: 1b94f68f11f463d47b6ce95040256c4c, type: 3}
-      propertyPath: pokemons.Array.data[4].pokeball
-      value: 
-      objectReference: {fileID: 11400000, guid: 6f2070f7e40f97c4db8e767f154d4265, type: 2}
     - target: {fileID: 1801119618800852856, guid: 1b94f68f11f463d47b6ce95040256c4c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.5
@@ -4681,17 +4629,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3490100522872339274, guid: 1b94f68f11f463d47b6ce95040256c4c, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3860890692304561109, guid: 1b94f68f11f463d47b6ce95040256c4c, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 3971893604026267208, guid: 1b94f68f11f463d47b6ce95040256c4c, type: 3}
-      propertyPath: uniqueId
-      value: 26795e58-b69a-44e9-8acb-3f55c4f2376d
+    - target: {fileID: 9062857018545044580, guid: 1b94f68f11f463d47b6ce95040256c4c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -91,7 +91,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1009001760501340260}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!1 &3860890692304561109
 GameObject:
   m_ObjectHideFlags: 0
@@ -128,7 +128,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3860890692304561109}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 8.5, y: 2.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -177,7 +177,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1384333211
+  m_SortingLayerID: -288411153
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -8200344204186834244, guid: 56e57d424736abf41ae1949abdbf046a, type: 3}
@@ -308,6 +308,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pokemons:
+  - _base: {fileID: 11400000, guid: 4a226997b1746e14a8bf1852ddcdd471, type: 2}
+    level: 5
+    gender: 2
+    pokeball: {fileID: 11400000, guid: 6f2070f7e40f97c4db8e767f154d4265, type: 2}
   - _base: {fileID: 11400000, guid: 5701d7c52774a5c46aa9f3fa6f493bca, type: 2}
     level: 15
     gender: 1
@@ -411,7 +415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4881f89f8b930e34489bbb86116ccd4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uniqueId: 
+  uniqueId: 26795e58-b69a-44e9-8acb-3f55c4f2376d
 --- !u!50 &4610450899944117206
 Rigidbody2D:
   serializedVersion: 5
