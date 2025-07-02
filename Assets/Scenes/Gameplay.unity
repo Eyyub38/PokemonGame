@@ -191,10 +191,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1407916638938763405, guid: 02c4ce5024c363743a1fb1b8e11d7e30, type: 3}
-      propertyPath: timeDuration
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1772301774844981562, guid: 02c4ce5024c363743a1fb1b8e11d7e30, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -982,7 +978,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4889994261358544069, guid: ef6468f31fd0b214695244dd76454603, type: 3}
       propertyPath: totalChance
-      value: 100
+      value: 99
       objectReference: {fileID: 0}
     - target: {fileID: 4889994261358544069, guid: ef6468f31fd0b214695244dd76454603, type: 3}
       propertyPath: wildPokemons.Array.size
@@ -1063,11 +1059,11 @@ PrefabInstance:
     - target: {fileID: 4889994261358544069, guid: ef6468f31fd0b214695244dd76454603, type: 3}
       propertyPath: wildPokemons.Array.data[0].pokemon
       value: 
-      objectReference: {fileID: 11400000, guid: 4a226997b1746e14a8bf1852ddcdd471, type: 2}
+      objectReference: {fileID: 11400000, guid: 84ff778521f7eda499cf104ac5988ded, type: 2}
     - target: {fileID: 4889994261358544069, guid: ef6468f31fd0b214695244dd76454603, type: 3}
       propertyPath: wildPokemons.Array.data[1].pokemon
       value: 
-      objectReference: {fileID: 11400000, guid: d9683147ddde6114fbd659dd26b1db88, type: 2}
+      objectReference: {fileID: 11400000, guid: 84ff778521f7eda499cf104ac5988ded, type: 2}
     - target: {fileID: 4889994261358544069, guid: ef6468f31fd0b214695244dd76454603, type: 3}
       propertyPath: wildPokemons.Array.data[2].pokemon
       value: 
@@ -1202,11 +1198,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4889994261358544069, guid: ef6468f31fd0b214695244dd76454603, type: 3}
       propertyPath: totalChance
-      value: 100
+      value: 99
       objectReference: {fileID: 0}
     - target: {fileID: 4889994261358544069, guid: ef6468f31fd0b214695244dd76454603, type: 3}
       propertyPath: wildPokemons.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4889994261358544069, guid: ef6468f31fd0b214695244dd76454603, type: 3}
       propertyPath: wildPokemons.Array.data[0]._base
@@ -1259,18 +1255,18 @@ PrefabInstance:
     - target: {fileID: 4889994261358544069, guid: ef6468f31fd0b214695244dd76454603, type: 3}
       propertyPath: wildPokemons.Array.data[0].pokemon
       value: 
-      objectReference: {fileID: 11400000, guid: 4a226997b1746e14a8bf1852ddcdd471, type: 2}
+      objectReference: {fileID: 11400000, guid: 84ff778521f7eda499cf104ac5988ded, type: 2}
     - target: {fileID: 4889994261358544069, guid: ef6468f31fd0b214695244dd76454603, type: 3}
       propertyPath: wildPokemons.Array.data[1].pokemon
       value: 
       objectReference: {fileID: 11400000, guid: cd2fc93a5fb83c14d8bc315e3ac8beb6, type: 2}
     - target: {fileID: 4889994261358544069, guid: ef6468f31fd0b214695244dd76454603, type: 3}
       propertyPath: wildPokemons.Array.data[0].levelRange.x
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4889994261358544069, guid: ef6468f31fd0b214695244dd76454603, type: 3}
       propertyPath: wildPokemons.Array.data[0].levelRange.y
-      value: 5
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4889994261358544069, guid: ef6468f31fd0b214695244dd76454603, type: 3}
       propertyPath: wildPokemons.Array.data[1].levelRange.x
@@ -1282,7 +1278,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4889994261358544069, guid: ef6468f31fd0b214695244dd76454603, type: 3}
       propertyPath: wildPokemons.Array.data[0].chancePercentage
-      value: 50
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4889994261358544069, guid: ef6468f31fd0b214695244dd76454603, type: 3}
       propertyPath: wildPokemons.Array.data[1].chancePercentage

@@ -43,7 +43,15 @@ MonoBehaviour:
   - moveBase: {fileID: 11400000, guid: 72353876ccbec0941bd1511e241c07c0, type: 2}
     level: 1
   learnableMovesByTm: []
-  evolutions: []
+  evolutions:
+  - evolvesInto: {fileID: 11400000, guid: c02911bccd9800d4881e944b572c2327, type: 2}
+    requiredItem: {fileID: 0}
+    requiredTime: 3
+    requiredLevel: 24
+  - evolvesInto: {fileID: 11400000, guid: 2628ea48930537d418856ea39b4b28a0, type: 2}
+    requiredItem: {fileID: 0}
+    requiredTime: 1
+    requiredLevel: 24
   hitPointsEvYield: 0
   attackEvYield: 0
   defenseEvYield: 0
