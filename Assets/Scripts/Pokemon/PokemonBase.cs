@@ -2,9 +2,10 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+public enum GeneralDayPeriod { None, Day, Emerald, Night}
 public enum GrowthRate{ Fluctuating ,Slow, MediumSlow, MediumFast, Fast, Erratic}
-public enum PokemonType{ None, Normal, Fire, Water, Grass, Electric, Ice, Fighting, Poison, Ground, Flying, Psychic, Bug, Rock, Ghost, Dragon, Dark, Steel, Fairy}
 public enum Stat{ Attack, Defense , SpAttack, SpDefense, Speed, Accuracy, Evasion, HitPoints}
+public enum PokemonType{ None, Normal, Fire, Water, Grass, Electric, Ice, Fighting, Poison, Ground, Flying, Psychic, Bug, Rock, Ghost, Dragon, Dark, Steel, Fairy}
 
 [CreateAssetMenu(fileName = "Pokemon", menuName = "Pokemon/Create new Pokemon")]
 public class PokemonBase : ScriptableObject{
@@ -150,12 +151,14 @@ public class LearnableMove{
 [System.Serializable]
 public class Evolution{
     [SerializeField] PokemonBase evolvesInto;
-    [SerializeField] int requiredLevel;
     [SerializeField] EvolutionItem requiredItem;
+    [SerializeField] GeneralDayPeriod requiredTime = GeneralDayPeriod.None;
+    [SerializeField] int requiredLevel;
 
     public PokemonBase EvolvesInto => evolvesInto;
-    public int RequiredLevel => requiredLevel;
     public EvolutionItem RequiredItem => requiredItem;
+    public GeneralDayPeriod RequiredTime => requiredTime;
+    public int RequiredLevel => requiredLevel;
 }
 
 public class TypeChart{

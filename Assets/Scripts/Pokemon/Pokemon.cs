@@ -230,11 +230,11 @@ public class Pokemon{
     }
 
     public Evolution CheckForEvolution(){
-        return Base.Evolutions.FirstOrDefault(e => e.RequiredLevel <= level);
+        return Base.Evolutions.FirstOrDefault(e => e.RequiredLevel <= level && ((e.RequiredTime != GeneralDayPeriod.None) ? e.RequiredTime == TimeSystem.i.EvolutionTime : true));
     }
     
     public Evolution CheckForEvolution(ItemBase item){
-        return Base.Evolutions.FirstOrDefault(e => e.RequiredItem == item);
+        return Base.Evolutions.FirstOrDefault(e => e.RequiredItem == item && ((e.RequiredTime != GeneralDayPeriod.None) ? e.RequiredTime == TimeSystem.i.EvolutionTime : true));
     }
 
     public void Evolve(Evolution evolution){

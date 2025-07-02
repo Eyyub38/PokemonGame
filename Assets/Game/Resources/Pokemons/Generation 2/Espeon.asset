@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e17b5636463d23c489f99c873ed40ff6, type: 3}
+  m_Name: Espeon
+  m_EditorClassIdentifier: 
+  _name: Espeon
+  description: "It uses the fine hair that covers its body to sense\fair currents
+    and predict its ene\xAD my's actions."
+  baseWeight: 26.5
+  baseHeight: 0.9
+  backSprite: {fileID: 21300000, guid: d889928215e662c4d95f93afadce2787, type: 3}
+  frontSprite: {fileID: 21300000, guid: e3c04a5f34be6db44b911e2979c78694, type: 3}
+  iconSprite: {fileID: 975789949, guid: d5af3fd8cfc83c242b4f8e10e78270a4, type: 3}
+  isGenderless: 0
+  hasGenderDifferences: 0
+  femaleBackSprite: {fileID: 0}
+  femaleFrontSprite: {fileID: 0}
+  maleRatio: 0.875
+  surfSprites: []
+  type1: 11
+  type2: 0
+  maxHp: 65
+  attack: 65
+  defense: 60
+  spAttack: 130
+  spDefense: 95
+  speed: 110
+  catchRate: 45
+  xpYield: 184
+  growthRate: 3
+  learnableMovesLevelUp:
+  - moveBase: {fileID: 11400000, guid: 9b637f5b7f8ce124b968bd96f2d7276a, type: 2}
+    level: 0
+  learnableMovesByTm: []
+  evolutions:
+  - evolvesInto: {fileID: 11400000, guid: c02911bccd9800d4881e944b572c2327, type: 2}
+    requiredItem: {fileID: 0}
+    requiredTime: 7
+    requiredLevel: 24
+  - evolvesInto: {fileID: 11400000}
+    requiredItem: {fileID: 0}
+    requiredTime: 2
+    requiredLevel: 24
+  hitPointsEvYield: 0
+  attackEvYield: 0
+  defenseEvYield: 0
+  spAttackEvYield: 0
+  spDefenseEvYield: 0
+  speedEvYield: 0

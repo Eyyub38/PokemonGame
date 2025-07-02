@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e17b5636463d23c489f99c873ed40ff6, type: 3}
+  m_Name: Eevee
+  m_EditorClassIdentifier: 
+  _name: Eevee
+  description: Its genetic code is irregular. It may mutate if it is exposed to radiation
+    from Element Stones.
+  baseWeight: 6.5
+  baseHeight: 0.3
+  backSprite: {fileID: 21300000, guid: 34881ace26fcbdc42b9cb6a090a90703, type: 3}
+  frontSprite: {fileID: 21300000, guid: 8c812718a3ea2c04aaf262bd9727526f, type: 3}
+  iconSprite: {fileID: -1842511418, guid: 6b5444ad19f2dec4ab5b0b0a1bf35b14, type: 3}
+  isGenderless: 0
+  hasGenderDifferences: 0
+  femaleBackSprite: {fileID: 0}
+  femaleFrontSprite: {fileID: 0}
+  maleRatio: 0.875
+  surfSprites: []
+  type1: 1
+  type2: 0
+  maxHp: 55
+  attack: 55
+  defense: 50
+  spAttack: 45
+  spDefense: 65
+  speed: 55
+  catchRate: 45
+  xpYield: 65
+  growthRate: 3
+  learnableMovesLevelUp:
+  - moveBase: {fileID: 11400000, guid: d193c5a83424a2e4fb5e24fd70e67b02, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: 72353876ccbec0941bd1511e241c07c0, type: 2}
+    level: 1
+  learnableMovesByTm: []
+  evolutions: []
+  hitPointsEvYield: 0
+  attackEvYield: 0
+  defenseEvYield: 0
+  spAttackEvYield: 0
+  spDefenseEvYield: 0
+  speedEvYield: 0
