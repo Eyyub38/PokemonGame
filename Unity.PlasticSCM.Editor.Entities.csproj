@@ -17,7 +17,7 @@
     <LangVersion>9.0</LangVersion>
     <RootNamespace></RootNamespace>
     <OutputType>Library</OutputType>
-    <AssemblyName>Unity.Searcher.Editor</AssemblyName>
+    <AssemblyName>Unity.PlasticSCM.Editor.Entities</AssemblyName>
     <TargetFramework>netstandard2.1</TargetFramework>
     <BaseDirectory>.</BaseDirectory>
   </PropertyGroup>
@@ -48,22 +48,11 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.3.0b4\Editor\Data\Tools\BuildPipeline\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Library\PackageCache\com.unity.searcher@1e17ce91558d\Editor\Searcher\SearcherDatabaseBase.cs" />
-    <Compile Include="Library\PackageCache\com.unity.searcher@1e17ce91558d\Editor\Searcher\SearcherAdapter.cs" />
-    <Compile Include="Library\PackageCache\com.unity.searcher@1e17ce91558d\Editor\Searcher\SearcherWindow.cs" />
-    <Compile Include="Library\PackageCache\com.unity.searcher@1e17ce91558d\Editor\Searcher\SearcherDatabase.cs" />
-    <Compile Include="Library\PackageCache\com.unity.searcher@1e17ce91558d\Editor\Searcher\Searcher.cs" />
-    <Compile Include="Library\PackageCache\com.unity.searcher@1e17ce91558d\Editor\Searcher\SearcherTreeUtility.cs" />
-    <Compile Include="Library\PackageCache\com.unity.searcher@1e17ce91558d\Editor\Searcher\SearcherHighlighter.cs" />
-    <Compile Include="Library\PackageCache\com.unity.searcher@1e17ce91558d\Editor\AssemblyInfo.cs" />
-    <Compile Include="Library\PackageCache\com.unity.searcher@1e17ce91558d\Editor\Searcher\SearcherItem.cs" />
-    <Compile Include="Library\PackageCache\com.unity.searcher@1e17ce91558d\Editor\Searcher\SearcherControl.cs" />
+    <Compile Include="Library\PackageCache\com.unity.collab-proxy@ab839cc7d2ad\Editor\Entities\GetSubScenePathFromInstance.cs" />
+    <Compile Include="Library\PackageCache\com.unity.collab-proxy@ab839cc7d2ad\Editor\Entities\HierarchyExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Library\PackageCache\com.unity.searcher@1e17ce91558d\Editor\Unity.Searcher.Editor.asmdef" />
-    <None Include="Library\PackageCache\com.unity.searcher@1e17ce91558d\Editor\Resources\SearcherItem.uxml" />
-    <None Include="Library\PackageCache\com.unity.searcher@1e17ce91558d\Editor\Resources\SearcherWindow.uxml" />
-    <None Include="Library\PackageCache\com.unity.searcher@1e17ce91558d\Editor\Resources\Searcher.uss" />
+    <None Include="Library\PackageCache\com.unity.collab-proxy@ab839cc7d2ad\Editor\Entities\Unity.PlasticSCM.Editor.Entities.asmdef" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -1200,6 +1189,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Unity.PlasticSCM.Editor.csproj" />
   </ItemGroup>
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
   <ItemGroup>

@@ -14,13 +14,11 @@ public class PlayerController : MonoBehaviour, ISavable{
 
     Character character;
     Vector2 input;
-    BuddyController buddy;
     IPlayerTriggerable currentlyInTrigger;
     
     public string Name => _name;
     public Sprite BattleImage => battleImage;
     public Character Character => character;
-    public BuddyController Buddy {get => buddy; set => buddy = value;}
 
     public static PlayerController i { get; private set; }
 
@@ -39,18 +37,6 @@ public class PlayerController : MonoBehaviour, ISavable{
 
             bool wasRunning = character.IsRunning;
             character.IsRunning = Input.GetKey(KeyCode.LeftShift);
-
-            if(input != Vector2.zero){
-                if(character.IsPathClear((Vector2)this.transform.position + input)){
-                    buddy?.Follow(this.transform.position);
-                }
-                
-                StartCoroutine( character.Move(input, OnMoveOver));
-            }
-            
-            if(wasRunning != character.IsRunning && buddy != null){
-                buddy.OnPlayerRunningChanged(character.IsRunning);
-            }
         }
 
         character.HandleUpdate();

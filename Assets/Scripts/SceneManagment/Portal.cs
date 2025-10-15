@@ -12,11 +12,11 @@ public class Portal : MonoBehaviour, IPlayerTriggerable{
     [SerializeField] DestinationIdentifier destinationPortal;
 
     Fader fader;
+    PlayerController player;
 
     public Transform SpawnPoint => spawnPoint;
-    public bool TriggerRepeatedly => false;
 
-    PlayerController player;
+    public bool TriggerRepeatedly => false;
 
     public void OnPlayerTriggered(PlayerController player){
         this.player = player;
@@ -39,7 +39,6 @@ public class Portal : MonoBehaviour, IPlayerTriggerable{
         player.Character.SetPositionAndSnapToTile(destPortal.SpawnPoint.position);
         yield return fader.FadeOut(0.5f);
 
-        player.Buddy.SetPosition();
         GameController.i.PauseGame(false);
         Destroy(gameObject);
     }
