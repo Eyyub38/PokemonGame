@@ -66,7 +66,7 @@ public class DialogManager : MonoBehaviour{
     public void CloseDialog(){
         dialogBox.SetActive(false);
         IsShowing = false;
-        OnDialogFinished?.Invoke();
+        //OnDialogFinished?.Invoke(); <- Commented out to prevent double invocation
     }
 
     public void HandleUpdate(){}

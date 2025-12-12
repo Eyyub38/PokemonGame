@@ -44,9 +44,19 @@ namespace GDEUtills.StateMachine{
         }
 
         public void Pop(){
-            StateStack.Pop();
-            CurrentState.Exit();
-            CurrentState = StateStack.Peek();
+            if (StateStack.Count == 0){
+                Debug.LogError("Cannot pop from an empty state stack.");
+                return;
+            }
+            
+            State<T> poppedState = StateStack.Pop();
+            poppedState.Exit();
+            
+            if (StateStack.Count > 0){
+                CurrentState = StateStack.Peek();
+            } else {
+                CurrentState = null;
+            }
         }
 
         public State<T> GetPrevState(){

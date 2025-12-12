@@ -64,7 +64,9 @@ public class MoveForgetSelectionUI : SelectionUI<TextSlot>{
         if(currMove == null || newMove == null) {
             return;
         }
+        
         if( ReferenceEquals(currMove, newMove) ){
+            Debug.Log("Same Move Selected");
             SetCategories(newMove, newCatagoryImage);
             newPowerText.text = newMove.Power.ToString();
             newNameText.text = newMove.Name;
@@ -72,6 +74,7 @@ public class MoveForgetSelectionUI : SelectionUI<TextSlot>{
             newDescriptionText.text = newMove.Description;
 
             currDetails.gameObject.SetActive(false);
+            Debug.Log("Same Move Selected");
             return;
         }
 

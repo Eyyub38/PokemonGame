@@ -67,6 +67,7 @@ public class Character : MonoBehaviour{
             animator.MoveY = 0f;
             yield break;
         }
+
         if(animator.IsSurfing && Physics2D.OverlapCircle(targetPos, 0.3f, GameLayers.i.WaterLayer) == null){
             animator.IsSurfing = false;
             ClearPokemonAnimator();

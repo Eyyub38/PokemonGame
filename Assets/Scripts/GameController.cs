@@ -57,6 +57,9 @@ public class GameController : MonoBehaviour{
         DialogManager.i.OnShowDialog += () => StateMachine.Push(DialogState.i);
         DialogManager.i.OnDialogFinished += () =>{
             StateMachine.Pop();
+            if (StateMachine.CurrentState == null) {
+                Debug.LogWarning("No current state after pop.");
+            }
         };
     }
 

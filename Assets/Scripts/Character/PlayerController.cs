@@ -32,13 +32,15 @@ public class PlayerController : MonoBehaviour, ISavable{
   
             input.x = Input.GetAxisRaw("Horizontal");
             input.y = Input.GetAxisRaw("Vertical");
-            
             if(input.x != 0 ) input.y = 0;
-
             bool wasRunning = character.IsRunning;
             character.IsRunning = Input.GetKey(KeyCode.LeftShift);
-        }
 
+            if(input != Vector2.zero){
+                StartCoroutine( character.Move(input, OnMoveOver));
+            }
+        }
+        
         character.HandleUpdate();
 
         if(Input.GetKeyDown(KeyCode.Return)){

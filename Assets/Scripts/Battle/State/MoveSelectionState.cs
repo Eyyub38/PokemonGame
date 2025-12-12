@@ -35,8 +35,7 @@ public class MoveSelectionState : State<BattleSystem>{
         battleSystem.DialogBox.EnableDialogText(false);
     }
 
-    public override void Execute(){
-    }
+    public override void Execute(){}
 
     public override void Exit(){
         moveSelectionUI.ClearItems();

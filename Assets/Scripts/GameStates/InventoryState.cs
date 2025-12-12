@@ -51,6 +51,7 @@ public class InventoryState : State<GameController>{
         SelectedItem = inventoryUI.SelectedItem;
         if(gameController.StateMachine.GetPrevState() != ShopSellingState.i){
             StartCoroutine(SelectPokemonAndUseItem());
+            
         } else {
             gameController.StateMachine.Pop();
         }
@@ -67,6 +68,7 @@ public class InventoryState : State<GameController>{
                 yield return DialogManager.i.ShowDialogText($"{SelectedItem.Name} can't be used in battle.");
                 yield break;
             }
+
         } else {
             if(!SelectedItem.CanUseInOffsideBattle){
                 yield return DialogManager.i.ShowDialogText($"{SelectedItem.Name} can't be used outside battle.");
