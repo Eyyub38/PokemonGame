@@ -38,10 +38,22 @@ public class MoveForgetSelectionUI : SelectionUI<TextSlot>{
         this.newMove = newMove;
         this.currentMoves = moves;
 
-        for(int i = 0; i < moveBars.Count - 1; i++) {
-            moveBars[ i ].gameObject.SetActive(true);
+        for(int i = 0; i < moves.Count && i < moveBars.Count - 1; i++) {
+            var move = moves[i];
+            moveBars[i].gameObject.SetActive(true);
+            moveBars[i].NameText.text = move.Base.Name;
+            moveBars[i].PpText.text = "PP: " + move.PP;
+            if(move.PP <= 0){
+                moveBars[i].PpText.color = Color.red;
+            } else {
+                moveBars[i].PpText.color = Color.black;
+            }
+            SetMoveSelectionTypeBars(move.Base, moveBars[i]);
         }
-        var moveBar = moveBars[ PokemonBase.MaxNumberOfMoves ];
+
+        var moveBar = moveBars[PokemonBase.MaxNumberOfMoves];
+        moveBar.gameObject.SetActive(true);
+
         if(newMove != null) {
             moveBar.NameText.text = newMove.Name;
             moveBar.PpText.text = "PP: " + newMove.PP.ToString();
@@ -50,23 +62,22 @@ public class MoveForgetSelectionUI : SelectionUI<TextSlot>{
             } else {
                 moveBar.PpText.color = Color.black;
             }
-            SetMoveSelectionTypeBars(newMove, moveBars[ PokemonBase.MaxNumberOfMoves ]);
+            SetMoveSelectionTypeBars(newMove, moveBars[PokemonBase.MaxNumberOfMoves]);
         } else {
-            moveBars[ 4 ].NameText.text = "";
-            moveBars[ 4 ].PpText.text = "";
-            moveBars[ 4 ].TypeImage.sprite = empty;
+            moveBars[4].NameText.text = "";
+            moveBars[4].PpText.text = "";
+            moveBars[4].TypeImage.sprite = empty;
         }
 
         SetItems(moveBars.Select(b => b.GetComponent<TextSlot>()).ToList());
     }
 
-    public void SetMoveDetails(MoveBase currMove, MoveBase newMove) {
-        if(currMove == null || newMove == null) {
+    public void SetMoveDetails(MoveBase currMove, MoveBase newMove){
+        if(currMove == null || newMove == null){
             return;
         }
-        
+
         if( ReferenceEquals(currMove, newMove) ){
-            Debug.Log("Same Move Selected");
             SetCategories(newMove, newCatagoryImage);
             newPowerText.text = newMove.Power.ToString();
             newNameText.text = newMove.Name;
@@ -74,7 +85,6 @@ public class MoveForgetSelectionUI : SelectionUI<TextSlot>{
             newDescriptionText.text = newMove.Description;
 
             currDetails.gameObject.SetActive(false);
-            Debug.Log("Same Move Selected");
             return;
         }
 

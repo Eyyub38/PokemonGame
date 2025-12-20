@@ -58,7 +58,7 @@ public class MoveSelectionUI : MonoBehaviour{
         currentMoves = moves;
         selectedItem = 0;
         isActive = true;
-
+        
         for(int i=0; i< moveBars.Count; ++i){
             if(i < moves.Count){
                 moveBars[i].NameText.text = moves[i].Base.Name;
