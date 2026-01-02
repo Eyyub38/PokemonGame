@@ -36,6 +36,9 @@ public class PokemonBase : ScriptableObject{
     [Header("Types")]
     [SerializeField] PokemonType type1;
     [SerializeField] PokemonType type2;
+
+    [Header("Ability")]
+    [SerializeField] AbilityID ability;
     
     [Header("Stats")]
     [SerializeField] int maxHp;
@@ -80,6 +83,7 @@ public class PokemonBase : ScriptableObject{
     public PokemonType Type1{ get{return type1;}}
     public PokemonType Type2{ get{return type2;}}
     public GrowthRate GrowthRate => growthRate;
+    public AbilityID AbilityID => ability;
     public int MaxHp{ get{return maxHp;}}
     public int Attack{ get{return attack;}}
     public int Defense{ get{return defense;}}

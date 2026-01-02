@@ -54,7 +54,7 @@ public class TargetSelectionState : State<BattleSystem>{
     }
 
     void UpdateSelectionInUI(){
-        for(int i = 0; i < battleSystem.EnemyUnits.Count; i++){
+        for(int i = 0; i < battleSystem.ActiveEnemyUnitsCount; i++){
             battleSystem.EnemyUnits[i].SetSelected(i == selectedTarget);
         }
     }

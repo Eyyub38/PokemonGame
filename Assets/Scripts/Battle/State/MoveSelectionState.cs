@@ -53,7 +53,7 @@ public class MoveSelectionState : State<BattleSystem>{
 
     IEnumerator OnMoveSelectedAsync(int selection){
         int moveTarget = 0;
-        if(battleSystem.UnitCount > 1){
+        if(battleSystem.ActiveEnemyUnitsCount > 1){
             yield return battleSystem.StateMachine.PushAndWait(TargetSelectionState.i);
             if(!TargetSelectionState.i.SelectionMade){
                 yield break;

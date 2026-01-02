@@ -40,6 +40,8 @@ public class PartyState : State<GameController>{
         partyScreen.gameObject.SetActive(true);
         partyScreen.OnSelected += OnPokemonSelected;
         partyScreen.OnBack += OnBack;
+
+        partyScreen.SetPartyData();
         
         if(SelectedItem is TmItem tmItem){
             partyScreen.ShowIfTmUsable(tmItem);
@@ -148,7 +150,7 @@ public class PartyState : State<GameController>{
                 battleSystem = battleState.BattleSystem;
             }
 
-            if(battleSystem.PlayerUnits.Any(p => p.Pokemon.HP <=0)){
+            if(battleSystem.PlayerUnits.Any(p => p.Pokemon != null && p.Pokemon.HP <=0)){
                     partyScreen.SetMessageText("Your Pokemon is fainted! You need to choose new Pokemon");
                     return;
                 }

@@ -34,11 +34,11 @@ public class MoveForgetSelectionUI : SelectionUI<TextSlot>{
     MoveBase newMove;
     List<Move> currentMoves;
 
-    public void SetMoveSelectionBars(List<Move> moves, MoveBase newMove) {
+    public void SetMoveSelectionBars(List<Move> moves, MoveBase newMove){
         this.newMove = newMove;
         this.currentMoves = moves;
 
-        for(int i = 0; i < moves.Count && i < moveBars.Count - 1; i++) {
+        for(int i = 0; i < moves.Count && i < moveBars.Count - 1; i++){
             var move = moves[i];
             moveBars[i].gameObject.SetActive(true);
             moveBars[i].NameText.text = move.Base.Name;
@@ -57,7 +57,7 @@ public class MoveForgetSelectionUI : SelectionUI<TextSlot>{
         if(newMove != null) {
             moveBar.NameText.text = newMove.Name;
             moveBar.PpText.text = "PP: " + newMove.PP.ToString();
-            if(newMove.PP <= 0) {
+            if(newMove.PP <= 0){
                 moveBar.PpText.color = Color.red;
             } else {
                 moveBar.PpText.color = Color.black;
@@ -77,7 +77,7 @@ public class MoveForgetSelectionUI : SelectionUI<TextSlot>{
             return;
         }
 
-        if( ReferenceEquals(currMove, newMove) ){
+        if(ReferenceEquals(currMove, newMove)){
             SetCategories(newMove, newCatagoryImage);
             newPowerText.text = newMove.Power.ToString();
             newNameText.text = newMove.Name;
@@ -105,7 +105,7 @@ public class MoveForgetSelectionUI : SelectionUI<TextSlot>{
     public override void UpdateSelectionInUI(){
         base.UpdateSelectionInUI();
         
-        if(currentMoves != null && newMove != null && selectedItem < currentMoves.Count) {
+        if(currentMoves != null && newMove != null && selectedItem < currentMoves.Count){
             MoveBase selectedMoveBase = currentMoves[selectedItem].Base;
             
             if(ReferenceEquals(selectedMoveBase, newMove)){
@@ -134,67 +134,65 @@ public class MoveForgetSelectionUI : SelectionUI<TextSlot>{
         }
     }
 
-    void SetCategories(MoveBase moveBase, Image image) {
+    void SetCategories(MoveBase moveBase, Image image){
         var category = moveBase.Category;
-        if(category == MoveCategory.Physical) {
+        if(category == MoveCategory.Physical){
             image.sprite = categories[ 0 ];
-        } else if(category == MoveCategory.Special) {
+        } else if(category == MoveCategory.Special){
             image.sprite = categories[ 1 ];
-        } else if(category == MoveCategory.Status) {
+        } else if(category == MoveCategory.Status){
             image.sprite = categories[ 2 ];
         } else {
             return;
         }
     }
 
-    void SetMoveSelectionTypeBars(MoveBase move, MoveBar moveBar) {
+    void SetMoveSelectionTypeBars(MoveBase move, MoveBar moveBar){
         string type = move.Type.ToString();
         
         int spriteIndex = -1;
         
-        if(type == "Normal") {
+        if(type == "Normal"){
             spriteIndex = 0;
-        } else if(type == "Fire") {
+        } else if(type == "Fire"){
             spriteIndex = 1;
-        } else if(type == "Water") {
+        } else if(type == "Water"){
             spriteIndex = 2;
-        } else if(type == "Grass") {
+        } else if(type == "Grass"){
             spriteIndex = 3;
-        } else if(type == "Electric") {
+        } else if(type == "Electric"){
             spriteIndex = 4;
-        } else if(type == "Ice") {
+        } else if(type == "Ice"){
             spriteIndex = 5;
-        } else if(type == "Fighting") {
+        } else if(type == "Fighting"){
             spriteIndex = 6;
-        } else if(type == "Poison") {
+        } else if(type == "Poison"){
             spriteIndex = 7;
-        } else if(type == "Ground") {
+        } else if(type == "Ground"){
             spriteIndex = 8;
-        } else if(type == "Flying") {
+        } else if(type == "Flying"){
             spriteIndex = 9;
-        } else if(type == "Psychic") {
+        } else if(type == "Psychic"){
             spriteIndex = 10;
-        } else if(type == "Bug") {
+        } else if(type == "Bug"){
             spriteIndex = 11;
-        } else if(type == "Rock") {
+        } else if(type == "Rock"){
             spriteIndex = 12;
-        } else if(type == "Ghost") {
+        } else if(type == "Ghost"){
             spriteIndex = 13;
-        } else if(type == "Dragon") {
+        } else if(type == "Dragon"){
             spriteIndex = 14;
-        } else if(type == "Dark") {
+        } else if(type == "Dark"){
             spriteIndex = 15;
-        } else if(type == "Steel") {
+        } else if(type == "Steel"){
             spriteIndex = 16;
-        } else if(type == "Fairy") {
+        } else if(type == "Fairy"){
             spriteIndex = 17;
         }
         
-        // Check if we have a valid sprite index and if the sprite exists in the array
         if(spriteIndex >= 0 && spriteIndex < typeBarSprites.Count){
             moveBar.TypeImage.sprite = typeBarSprites[spriteIndex];
         } else {
-            // Fallback to empty sprite if type is not found or sprite doesn't exist
             moveBar.TypeImage.sprite = empty;
         }
     }

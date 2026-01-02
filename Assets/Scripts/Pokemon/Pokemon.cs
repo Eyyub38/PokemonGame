@@ -44,6 +44,8 @@ public class Pokemon{
     public int SpAttack{ get{ return GetStat(Stat.SpAttack);}}
     public int SpDefense{ get{ return GetStat(Stat.SpDefense);}}
     public int Speed{ get{ return GetStat(Stat.Speed);}}
+
+    public Ability Ability {get; set;}
     
     public Pokemon(PokemonBase pBase, int pLvl, PokeballItem pokeball = null){
         _base = pBase;
@@ -97,6 +99,11 @@ public class Pokemon{
         StatusChanges = new Queue<StatusEvent>();
         CalculateStats();
         HP = MaxHp;
+
+        if(Base.AbilityID != AbilityID.None){
+            Ability = AbilityDB.Abilities[Base.AbilityID];
+        }
+
         ResetStatBoosts();
         Status = null;
         VolatileStatus = null;
@@ -242,10 +249,13 @@ public class Pokemon{
         CalculateStats(); 
     }
 
-    public void ApplyBoosts(List<StatBoosts> statBoosts){
-        foreach(var statBoost in statBoosts){
-            var stat = statBoost.stat;
-            var boost = statBoost.boost;
+    public void ApplyBoosts(List<StatBoosts> statBoosts, Pokemon source){
+        var statsDicc = statBoosts.ToDictionary(x => x.stat, x => x.boost);
+        Ability?.OnBoost?.Invoke(statsDicc, source, this);
+
+        foreach(var kvp in statsDicc){
+            var stat = kvp.Key;
+            var boost = kvp.Value;
             bool changeIsPositive = (boost > 0)? true : false;
 
             if(changeIsPositive && StatBoosts[stat] == 6 || !changeIsPositive && StatBoosts[stat] == -6){
@@ -298,8 +308,25 @@ public class Pokemon{
             DamageDealt = 0
         };
 
-        float attack = (move.Base.Category == MoveCategory.Special)? attacker.SpAttack : attacker.Attack;
-        float defense = (move.Base.Category == MoveCategory.Special)? SpDefense : Defense;
+        // float attack = (move.Base.Category == MoveCategory.Special)? attacker.SpAttack : attacker.Attack;
+        // float defense = (move.Base.Category == MoveCategory.Special)? SpDefense : Defense;
+
+        float attack, defense;
+
+        if(move.Base.Category == MoveCategory.Special){
+            attack = attacker.SpAttack;
+            defense = SpDefense;
+
+            attack = attacker.ModifySpAttack(attack, this, move);
+            defense = ModifySpDefense(defense, attacker, move);
+
+        } else {
+            attack = attacker.Attack;
+            defense = Defense;
+
+            attack = attacker.ModifyAttack(attack, this, move);
+            defense = ModifyDefense(defense, attacker, move);
+        }
 
         float modifiers = UnityEngine.Random.Range( 0.85f, 1f) * typeEffectiveness * critical * weatherModifier;
         float a = ( 2 * attacker.Level + 10) / 250f;
@@ -310,6 +337,54 @@ public class Pokemon{
         damageDetails.DamageDealt = damage;
 
         return damageDetails;
+    }
+
+    public float ModifyAttack(float attack, Pokemon defender, Move move){
+        if(Ability?.OnModifyAttack != null){
+            return Ability.OnModifyAttack(attack, this, defender, move);
+        }
+        
+        return attack;
+    }
+    
+    public float ModifySpAttack(float spAttack, Pokemon defender, Move move){
+        if(Ability?.OnModifySpAttack != null){
+            return Ability.OnModifySpAttack(spAttack, this, defender, move);
+        }
+
+        return spAttack;
+    }
+
+    public float ModifyDefense(float defense, Pokemon attacker, Move move){
+        if(Ability?.OnModifyDefense != null){
+            return Ability.OnModifyDefense(defense, attacker, this, move);
+        }
+
+        return defense;
+    }
+
+    public float ModifySpDefense(float spDefense, Pokemon attacker, Move move){
+        if(Ability?.OnModifySpDefense != null){
+            return Ability.OnModifySpDefense(spDefense, attacker, this, move);
+        }
+
+        return spDefense;
+    }
+
+    public float ModifySpeed(float speed, Pokemon defender, Move move){
+        if(Ability?.OnModifySpeed != null){
+            return Ability.OnModifySpeed(speed, this, defender, move);
+        }
+
+        return speed;
+    }
+
+    public float ModifyAccuracy(float accuracy, Pokemon defender, Move move){
+        if(Ability?.OnModifyAccuracy != null){
+            return Ability.OnModifyAccuracy(accuracy, this, defender, move);
+        }
+
+        return accuracy;
     }
 
     public void TakeRecoilDamage(int damage){

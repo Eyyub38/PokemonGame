@@ -58,12 +58,12 @@ public class RunTurnState : State<BattleSystem>{
             int enemyLevel = faintedUnit.Pokemon.Level;
             float trainerBonus = (isTrainerBattle)? 1.5f : 1f;
 
-            for(int i = 0; i < battleSystem.UnitCount; i++){
+            for(int i = 0; i < battleSystem.ActivePlayerUnitsCount; i++){
                 var playerUnit = battleSystem.PlayerUnits[i];
 
                 playerUnit.Pokemon.GainEvs(faintedUnit.Pokemon.Base.EvYields);
 
-                int expGain = Mathf.FloorToInt( expYield * enemyLevel * trainerBonus)  / ( 7 * battleSystem.UnitCount);
+                int expGain = Mathf.FloorToInt( expYield * enemyLevel * trainerBonus)  / ( 7 * battleSystem.ActivePlayerUnitsCount);
                 playerUnit.Pokemon.GainExp(expGain);
 
                 yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name} gained {expGain} XP from this battle.");
@@ -276,9 +276,9 @@ public class RunTurnState : State<BattleSystem>{
 
         if(effects.Boosts != null){
             if(moveTarget == MoveTarget.Self){
-                source.ApplyBoosts(effects.Boosts);
+                source.ApplyBoosts(effects.Boosts, source);
             } else {
-                target.ApplyBoosts(effects.Boosts);
+                target.ApplyBoosts(effects.Boosts, source);
             }
 
         }
@@ -317,6 +317,10 @@ public class RunTurnState : State<BattleSystem>{
         var units = battleSystem.PlayerUnits.Concat(battleSystem.EnemyUnits);
 
         foreach(var unit in units){
+            if(unit.Pokemon == null || unit.Pokemon.HP <= 0){
+                continue;
+            }
+
             weather.OnWeatherEffect?.Invoke(unit.Pokemon);
             yield return ShowStatusChanges(unit);
 
@@ -361,6 +365,7 @@ public class RunTurnState : State<BattleSystem>{
         } else {
             moveAccuracy *= boostValues[-evasion];
         }
+        moveAccuracy = source.ModifyAccuracy(moveAccuracy, target, move);
         return UnityEngine.Random.Range(1, 101) <= moveAccuracy;
     }
 
@@ -417,7 +422,7 @@ public class RunTurnState : State<BattleSystem>{
                     yield return battleSystem.StateMachine.PushAndWait(AboutToUseState.i);
 
                 } else {
-                    battleSystem.SendNextTrainerPokemon();
+                    yield return battleSystem.SendNextTrainerPokemon(battleSystem.EnemyUnits.IndexOf(faintedUnit));
                 }
             }
         }

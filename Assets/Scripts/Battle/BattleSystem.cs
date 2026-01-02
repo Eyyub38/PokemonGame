@@ -59,12 +59,13 @@ public class BattleSystem : MonoBehaviour{
     int unitCount = 1;
     int unitInSelectionIndex = 0;
 
-    public Action<bool> OnBattleOver;
-
     public int EscapeAttempts {get; set;}
     public int UnitCount => unitCount;
+    public int ActivePlayerUnitsCount => playerUnits.Count(u => u.Pokemon != null && u.Pokemon.HP > 0);
+    public int ActiveEnemyUnitsCount => enemyUnits.Count(u => u.Pokemon != null && u.Pokemon.HP > 0);
     public bool IsBattleOver {get; private set;}
     public bool IsTrainerBattle {get; private set;} = false;
+    public Action<bool> OnBattleOver;
     public TrainerController Trainer{get; private set;}
     public StateMachine<BattleSystem> StateMachine {get; private set;}
     public PokemonParty PlayerParty {get; private set;}
@@ -164,7 +165,7 @@ public class BattleSystem : MonoBehaviour{
 
             trainerImage.gameObject.SetActive(false);
             var enemyPokemons = TrainerParty.GetHealthyPokemons(unitCount);
-            for(int i = 0; i < unitCount; i++){
+            for(int i = 0; i < enemyPokemons.Count; i++){
                 enemyUnits[i].gameObject.SetActive(true);
                 enemyUnits[i].Setup(enemyPokemons[i]);
             }
@@ -175,7 +176,7 @@ public class BattleSystem : MonoBehaviour{
             playerImage.gameObject.SetActive(false);
             var playerPokemons = PlayerParty.GetHealthyPokemons(unitCount);
 
-            for(int i = 0; i < unitCount; i++){
+            for(int i = 0; i < playerPokemons.Count; i++){
                 playerUnits[i].gameObject.SetActive(true);
                 playerUnits[i].Setup(playerPokemons[i]);
             }
@@ -201,17 +202,18 @@ public class BattleSystem : MonoBehaviour{
         battleAction.User = UnitInSelection;
         battleActions.Add(battleAction);
 
-        if(battleActions.Count == unitCount){
+        if(battleActions.Count == ActivePlayerUnitsCount){
             foreach(var enemyUnit in enemyUnits){
                 battleActions.Add(new BattleAction{
                     Type = BattleActionType.Move,
                     SelectedMove = enemyUnit.Pokemon.GetRandomMove(),
                     User = enemyUnit,
-                    Target = playerUnits[UnityEngine.Random.Range( 0, playerUnits.Count)]
+                    Target = playerUnits[UnityEngine.Random.Range( 0, ActivePlayerUnitsCount)]
                 });
             }
 
-            battleActions = battleActions.OrderByDescending(a => a.Priority).ThenByDescending(a => a.User.Pokemon.Base.Speed).ToList();
+            battleActions = battleActions.OrderByDescending(a => a.Priority).ThenByDescending(
+                a => a.User.Pokemon.ModifySpeed( a.User.Pokemon.Speed, a.Target.Pokemon, a.SelectedMove)).ToList();
 
             RunTurnState.i.Actions = battleActions;
             StateMachine.ChangeState(RunTurnState.i);
@@ -253,11 +255,11 @@ public class BattleSystem : MonoBehaviour{
         yield return dialogBox.TypeDialog($"Your turn {newPokemon.Base.Name}!");
     }
 
-    public IEnumerator SendNextTrainerPokemon(){
+    public IEnumerator SendNextTrainerPokemon(int faintedUnitIndex = 0){
         var activePokemons = EnemyUnits.Select(u => u.Pokemon).Where(p => p.HP > 0).ToList();
 
         var nextPokemon = TrainerParty.GetHealthyPokemon(doNotInclude: activePokemons);
-        enemyUnits[0].Setup(nextPokemon);
+        enemyUnits[faintedUnitIndex].Setup(nextPokemon);
         yield return dialogBox.TypeDialog($"{Trainer.Name} send out {nextPokemon.Base.Name}!");
     }
     
