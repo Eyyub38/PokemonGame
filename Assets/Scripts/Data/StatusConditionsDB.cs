@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public enum StatusConditionID{ non, psn, brn, slp, par, frz, fro, tox, confusion}
+public enum StatusConditionID { None, Poison, Burn, Sleep, Paralyze, Frozen, FrostBite, Toxic, Confusion }
 
 public class StatusConditionsDB{
     public static void Init(){
@@ -16,7 +16,7 @@ public class StatusConditionsDB{
     }
     
     public static Dictionary<StatusConditionID, StatusCondition> Conditions { get; set; } = new Dictionary<StatusConditionID, StatusCondition>(){
-        { StatusConditionID.psn,
+        { StatusConditionID.Poison,
             new StatusCondition{
                 Name = "Poison",
                 StartMessage = "has been poisoned!",
@@ -26,7 +26,7 @@ public class StatusConditionsDB{
                 }
             }
         },
-        { StatusConditionID.brn,
+        { StatusConditionID.Burn,
             new StatusCondition{
                 Name = "Burn",
                 StartMessage = "has been burned!",
@@ -36,7 +36,7 @@ public class StatusConditionsDB{
                 }
             }
         },
-        { StatusConditionID.tox,
+        { StatusConditionID.Toxic,
             new StatusCondition{
                 Name = "Toxic",
                 StartMessage = "has been badly poisoned!",
@@ -51,7 +51,7 @@ public class StatusConditionsDB{
                 }
             }
         },
-        { StatusConditionID.par,
+        { StatusConditionID.Paralyze,
             new StatusCondition{
                 Name = "Paralysis",
                 StartMessage = "has been paralyzed!",
@@ -64,7 +64,7 @@ public class StatusConditionsDB{
                 }
             }
         },
-        { StatusConditionID.frz,
+        { StatusConditionID.Frozen,
             new StatusCondition{
                 Name = "Freeze",
                 StartMessage = "has been frozen solid!",
@@ -79,7 +79,7 @@ public class StatusConditionsDB{
                 }
             }
         },
-        { StatusConditionID.fro,
+        { StatusConditionID.FrostBite,
             new StatusCondition{
                 Name = "Frostbite",
                 StartMessage = "has been frostbitten!",
@@ -89,7 +89,7 @@ public class StatusConditionsDB{
                 }
             }
         },
-        { StatusConditionID.slp,
+        { StatusConditionID.Sleep,
             new StatusCondition{
                 Name = "Sleep",
                 StartMessage = "has fallen asleep!",
@@ -109,7 +109,7 @@ public class StatusConditionsDB{
                 }
             }
         },
-        { StatusConditionID.confusion,
+        { StatusConditionID.Confusion,
             new StatusCondition{
                 Name = "Confusion",
                 StartMessage = "has been confused!",
@@ -138,9 +138,9 @@ public class StatusConditionsDB{
     public static float GetStatusBonus(StatusCondition condition){
         if(condition == null){
             return 1f;
-        } else if(condition.Id == StatusConditionID.slp || condition.Id == StatusConditionID.frz){
+        } else if(condition.Id == StatusConditionID.Sleep || condition.Id == StatusConditionID.Frozen) {
             return 2f;
-        } else if(condition.Id == StatusConditionID.psn || condition.Id == StatusConditionID.par || condition.Id == StatusConditionID.brn){
+        } else if(condition.Id == StatusConditionID.Poison || condition.Id == StatusConditionID.Paralyze || condition.Id == StatusConditionID.Burn) {
             return 1.5f;
         }
         

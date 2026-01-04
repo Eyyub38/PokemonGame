@@ -58,13 +58,13 @@ public class BattleHud : MonoBehaviour{
         }
 
         statusImages = new Dictionary<StatusConditionID, Sprite>(){
-            { StatusConditionID.psn, psnImage },
-            { StatusConditionID.frz, frzImage },
-            { StatusConditionID.brn, brnImage },
-            { StatusConditionID.slp, slpImage },
-            { StatusConditionID.par, parImage },
-            { StatusConditionID.tox, toxImage },
-            { StatusConditionID.fro, froImage }
+            { StatusConditionID.Poison, psnImage },
+            { StatusConditionID.Frozen, frzImage },
+            { StatusConditionID.Burn, brnImage },
+            { StatusConditionID.Sleep, slpImage },
+            { StatusConditionID.Paralyze, parImage },
+            { StatusConditionID.Toxic, toxImage },
+            { StatusConditionID.FrostBite, froImage }
         };
 
         SetStatusImage();

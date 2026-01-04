@@ -209,18 +209,24 @@ public class Pokemon{
         }
         Moves.Add(new Move(moveToLearn));
     }
-    
-    public void SetStatus(StatusConditionID conditionID){
+
+    public void SetStatus(StatusConditionID conditionID, EffectSource source = EffectSource.Move) {
         if(Status != null) return;
+
+        bool canSet = Ability?.OnTrySetStatus?.Invoke(conditionID, this, source) ?? true;
+        if(!canSet) return;
 
         Status = StatusConditionsDB.Conditions[conditionID];
         Status?.OnStart?.Invoke(this);
         AddStatusEvet($"{Base.Name} {Status.StartMessage}");
         OnStatusChanged?.Invoke();
     }
-    
-    public void SetVolatileStatus(StatusConditionID conditionID){
+
+    public void SetVolatileStatus(StatusConditionID conditionID, EffectSource source = EffectSource.Move) {
         if(VolatileStatus != null) return;
+
+        bool canSet = Ability?.OnTrySetVolatileStatus?.Invoke(conditionID, this, source) ?? true;
+        if(!canSet) return;
 
         VolatileStatus = StatusConditionsDB.Conditions[conditionID];
         VolatileStatus?.OnStart?.Invoke(this);
@@ -328,12 +334,18 @@ public class Pokemon{
             defense = ModifyDefense(defense, attacker, move);
         }
 
+        float basePower = attacker.ModifyMoveBasePower(power, this, move);
+
         float modifiers = UnityEngine.Random.Range( 0.85f, 1f) * typeEffectiveness * critical * weatherModifier;
         float a = ( 2 * attacker.Level + 10) / 250f;
-        float d = a * move.Base.Power * ((float)attack / defense) + 2;
+        float d = a * basePower * ((float)attack / defense) + 2;
         int damage = Mathf.FloorToInt(d * modifiers);
 
         DecreaseHP(damage, true);
+        if(damage > 0) {
+            Ability?.OnDamagingHit?.Invoke(damage, attacker, this, move);
+        }
+
         damageDetails.DamageDealt = damage;
 
         return damageDetails;
@@ -385,6 +397,14 @@ public class Pokemon{
         }
 
         return accuracy;
+    }
+
+    public float ModifyMoveBasePower(float basePower, Pokemon defender, Move move) {
+        if(Ability?.OnModifyMoveBasePower != null) {
+            return Ability.OnModifyMoveBasePower(basePower, this, defender, move);
+        }
+
+        return basePower;
     }
 
     public void TakeRecoilDamage(int damage){

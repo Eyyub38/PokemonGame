@@ -283,10 +283,10 @@ public class RunTurnState : State<BattleSystem>{
 
         }
 
-        if(effects.Status != StatusConditionID.non){
+        if(effects.Status != StatusConditionID.None) {
             target.SetStatus(effects.Status);
         }
-        if(effects.VolatileStatus != StatusConditionID.non){
+        if(effects.VolatileStatus != StatusConditionID.None) {
             target.SetVolatileStatus(effects.VolatileStatus);
         }
         if(effects.WeatherStatus != WeatherConditionID.None){

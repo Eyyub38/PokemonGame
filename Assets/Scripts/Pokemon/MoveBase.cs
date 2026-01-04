@@ -7,7 +7,8 @@ public enum MoveCategory{ Physical, Special, Status}
 public enum PowerBasedOn {Value, TargetWeight, WeightDifference}
 public enum CritBehaviour{ None, HighCritRatio, AlwaysCrit, NeverCrit}
 public enum RecoilType{ None, RecoilByMaxHP, RecoilByCurrentHP, RecoilByDamage}
-public enum MoveTag{ Contact, MinimizeBonusDamage, SoundBased, BallOrBomb, AuraOrPulse, Bite, Dance, Explosive, PowderOrSpore, Punching, WindBased, SlicingMove, SemiInvulnerableBonusDamageFlying}
+public enum MoveFlag { Contact, Punch, Bite, Sound, MinimizeBonusDamage, BallOrBomb, AuraOrPulse, Dance, Explosive, PowderOrSpore, WindBased, SlicingMove, SemiInvulnerableBonusDamageFlying }
+public enum EffectSource { Move, Ability, Item }
 
 [CreateAssetMenu(fileName = "Move", menuName = "Move/Create new Move")]
 public class MoveBase : ScriptableObject{
@@ -16,6 +17,7 @@ public class MoveBase : ScriptableObject{
     [TextArea]
     [SerializeField] string description;
     [SerializeField] AudioClip soundEffect;
+    [SerializeField] List<MoveFlag> flags;
 
     [Header("Type")]
     [SerializeField] PokemonType type;
@@ -80,6 +82,10 @@ public class MoveBase : ScriptableObject{
         } else {
             return 1;
         }
+    }
+
+    public bool HasFlag(MoveFlag flag){
+        return flags.Contains(flag);
     }
 }
 

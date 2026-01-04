@@ -12,9 +12,10 @@ public class Ability{
     public Func<float, Pokemon, Pokemon, Move, float> OnModifySpDefense {get; set;}
     public Func<float, Pokemon, Pokemon, Move, float> OnModifySpeed {get; set;}
     public Func<float, Pokemon, Pokemon, Move, float> OnModifyAccuracy {get; set;}
+    public Func<StatusConditionID, Pokemon, EffectSource, bool> OnTrySetStatus { get; set; }
+    public Func<StatusConditionID, Pokemon, EffectSource, bool> OnTrySetVolatileStatus { get; set; }
+    public Func<float, Pokemon, Pokemon, Move, float> OnModifyMoveBasePower { get; set; }
 
     public Action<Dictionary<Stat, int>, Pokemon, Pokemon> OnBoost {get; set;}
-
-    public Func<StatusConditionID, Pokemon, bool> OnTrySetStatus {get; set;}
-    public Func<StatusConditionID, Pokemon, bool> OnTrySetVolatileStatus {get; set;}
+    public Action<float, Pokemon, Pokemon, Move> OnDamagingHit { get; set; }
 }

@@ -4,7 +4,14 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 
-public enum AbilityID{ None, Blaze, Overgrow, Torrent, Swarm, Guts, MarvelScale, QuickFeet, CompoundEyes, KeenEye, HyperCutter, BigPecks, ClearBody, WhiteSmoke, Imsomnia, Immunity, Limber, WaterVeil, VitalSpirit, OwnTempo }
+public enum AbilityID {
+    None,
+    Blaze, Overgrow, Torrent, Swarm, Guts, MarvelScale, QuickFeet, CompoundEyes, //Abilities that boost stats
+    KeenEye, HyperCutter, BigPecks, ClearBody, WhiteSmoke,                       //Abilities that prevent stat reduction
+    Insomnia, Immunity, Limber, WaterVeil, VitalSpirit, OwnTempo,                //Abilities that prevent status conditions
+    Static, PoisonPoint, FlameBody,                                              //Abilities that inflict status conditions on contact
+    ToughClaws, StrongJaw, IronFist                                              //Abilities that power up moves
+}
 
 public class AbilityDB{
     public static Dictionary<AbilityID, Ability> Abilities = new Dictionary<AbilityID, Ability>(){
@@ -233,17 +240,174 @@ public class AbilityDB{
                 }
             }
         },
-        {AbilityID.Imsomnia,
+        {AbilityID.Insomnia,
             new Ability(){
-                Name = "Imsomnia",
+                Name = "Insomnia",
                 Description = "Prevents the Pokémon from falling asleep.",
-                OnTrySetStatus = (StatusConditionID statusID, Pokemon pokemon) => {
-                    if(statusID == StatusConditionID.slp){
-                        pokemon.AddStatusEvet(StatusEventType.Text, $"{pokemon.Base.Name}'s insomnia prevents it from falling asleep!");
+                OnTrySetStatus = (StatusConditionID statusID, Pokemon pokemon, EffectSource source) => {
+                    if(statusID == StatusConditionID.Sleep){
+                        if(source == EffectSource.Move){
+                            pokemon.AddStatusEvet(StatusEventType.Text, $"{pokemon.Base.Name}'s Insomnia prevents it from falling asleep!");
+                        }
+
                         return false;
                     }
 
                     return true;
+                }
+            }
+        },
+        {AbilityID.Immunity,
+            new Ability(){
+                Name = "Immunity",
+                Description = "Prevents the Pokémon from getting poisoned.",
+                OnTrySetStatus = (StatusConditionID statusID, Pokemon pokemon, EffectSource source) => {
+                    if(statusID == StatusConditionID.Poison){
+                        if(source == EffectSource.Move){
+                            pokemon.AddStatusEvet(StatusEventType.Text, $"{pokemon.Base.Name}'s Immunity prevents it from getting poisoned!");
+                        }
+
+                        return false;
+                    }
+
+                    return true;
+                }
+            }
+        },
+        {AbilityID.Limber,
+            new Ability(){
+                Name = "Limber",
+                Description = "Prevents the Pokémon from getting paralyzed.",
+                OnTrySetStatus = (StatusConditionID statusID, Pokemon pokemon, EffectSource source) => {
+                    if(statusID == StatusConditionID.Paralyze){
+                        if(source == EffectSource.Move){
+                            pokemon.AddStatusEvet(StatusEventType.Text, $"{pokemon.Base.Name}'s Limber prevents it from getting paralyzed!");
+                        }
+
+                        return false;
+                    }
+
+                    return true;
+                }
+            }
+        },
+        {AbilityID.WaterVeil,
+            new Ability(){
+                Name = "Water Veil",
+                Description = "Prevents the Pokémon from getting burned.",
+                OnTrySetStatus = (StatusConditionID statusID, Pokemon pokemon, EffectSource source) => {
+                    if(statusID == StatusConditionID.Burn){
+                        if(source == EffectSource.Move){
+                            pokemon.AddStatusEvet(StatusEventType.Text, $"{pokemon.Base.Name}'s water veil prevents it from getting burned!");
+                        }
+
+                        return false;
+                    }
+
+                    return true;
+                }
+            }
+        },
+        {AbilityID.VitalSpirit,
+            new Ability(){
+                Name = "Vital Spirit",
+                Description = "Prevents the Pokémon from falling asleep.",
+                OnTrySetStatus = (StatusConditionID statusID, Pokemon pokemon, EffectSource source) => {
+                    if(statusID == StatusConditionID.Sleep){
+                        if(source == EffectSource.Move){
+                            pokemon.AddStatusEvet(StatusEventType.Text, $"{pokemon.Base.Name}'s Vital Spirit prevents it from falling asleep!");
+                        }
+
+                        return false;
+                    }
+
+                    return true;
+                }
+            }
+        },
+        {AbilityID.OwnTempo,
+            new Ability(){
+                Name = "Own Tempo",
+                Description = "Prevents the Pokémon from getting confused.",
+                OnTrySetVolatileStatus = (StatusConditionID statusID, Pokemon pokemon, EffectSource source) => {
+                    if(statusID == StatusConditionID.Confusion){
+                        if(source == EffectSource.Move){
+                            pokemon.AddStatusEvet(StatusEventType.Text, $"{pokemon.Base.Name}'s Own Tempo prevents it from getting confused!");
+                        }
+
+                        return false;
+                    }
+
+                    return true;
+                }
+            }
+        },
+        {AbilityID.Static,
+            new Ability(){
+                Name = "Static",
+                Description = "Has a chance to paralyze attackers that use physical moves on the Pokémon.",
+                OnDamagingHit = (float damage, Pokemon attacker, Pokemon defender, Move move) => {
+                    if(move.Base.HasFlag(MoveFlag.Contact) && (UnityEngine.Random.Range(1, 101) <= 30)){
+                        attacker.SetStatus(StatusConditionID.Paralyze, EffectSource.Ability);
+                    }
+                }
+            }
+        },
+        {AbilityID.PoisonPoint,
+            new Ability(){
+                Name = "Poison Point",
+                Description = "Has a chance to poison attackers that use physical moves on the Pokémon.",
+                OnDamagingHit = (float damage, Pokemon attacker, Pokemon defender, Move move) => {
+                    if(move.Base.HasFlag(MoveFlag.Contact) && (UnityEngine.Random.Range(1, 101) <= 30)){
+                        attacker.SetStatus(StatusConditionID.Poison, EffectSource.Ability);
+                    }
+                }
+            }
+        },
+        {AbilityID.FlameBody,
+            new Ability(){
+                Name = "Flame Body",
+                Description = "Has a chance to burn attackers that use physical moves on the Pokémon.",
+                OnDamagingHit = (float damage, Pokemon attacker, Pokemon defender, Move move) => {
+                    if(move.Base.HasFlag(MoveFlag.Contact) && (UnityEngine.Random.Range(1, 101) <= 30)){
+                        attacker.SetStatus(StatusConditionID.Burn, EffectSource.Ability);
+                    }
+                }
+            }
+        },
+        {AbilityID.ToughClaws,
+            new Ability(){
+                Name = "Tough Claws",
+                Description = "Powers up moves that make direct contact.",
+                OnModifyMoveBasePower = (float basePower, Pokemon attacker, Pokemon defender, Move move) => {
+                    if(move.Base.HasFlag(MoveFlag.Contact)){
+                        basePower *= 1.3f;
+                    }
+                    return basePower;
+                }
+            }
+        },
+        {AbilityID.StrongJaw,
+            new Ability(){
+                Name = "Strong Jaw",
+                Description = "Powers up biting moves.",
+                OnModifyMoveBasePower = (float basePower, Pokemon attacker, Pokemon defender, Move move) => {
+                    if(move.Base.HasFlag(MoveFlag.Bite)){
+                        basePower *= 1.3f;
+                    }
+                    return basePower;
+                }
+            }
+        },
+        {AbilityID.IronFist,
+            new Ability(){
+                Name = "Iron Fist",
+                Description = "Powers up punching moves.",
+                OnModifyMoveBasePower = (float basePower, Pokemon attacker, Pokemon defender, Move move) => {
+                    if(move.Base.HasFlag(MoveFlag.Punch)){
+                        basePower *= 1.3f;
+                    }
+                    return basePower;
                 }
             }
         }
