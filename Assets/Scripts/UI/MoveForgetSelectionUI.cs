@@ -38,6 +38,11 @@ public class MoveForgetSelectionUI : SelectionUI<TextSlot>{
         this.newMove = newMove;
         this.currentMoves = moves;
 
+        for(int i = 0; i < moveBars.Count; i++) {
+            moveBars[i].NameText.color = Color.black;
+            moveBars[i].PpText.color = Color.black;
+        }
+
         for(int i = 0; i < moves.Count && i < moveBars.Count - 1; i++){
             var move = moves[i];
             moveBars[i].gameObject.SetActive(true);
@@ -67,6 +72,8 @@ public class MoveForgetSelectionUI : SelectionUI<TextSlot>{
             moveBars[4].NameText.text = "";
             moveBars[4].PpText.text = "";
             moveBars[4].TypeImage.sprite = empty;
+            moveBars[4].NameText.color = Color.white;
+            moveBars[4].PpText.color = Color.black;
         }
 
         SetItems(moveBars.Select(b => b.GetComponent<TextSlot>()).ToList());
@@ -104,10 +111,9 @@ public class MoveForgetSelectionUI : SelectionUI<TextSlot>{
 
     public override void UpdateSelectionInUI(){
         base.UpdateSelectionInUI();
-        
-        if(currentMoves != null && newMove != null && selectedItem < currentMoves.Count){
-            MoveBase selectedMoveBase = currentMoves[selectedItem].Base;
-            
+
+        if(currentMoves != null && newMove != null && selectedItem <= currentMoves.Count) {
+            MoveBase selectedMoveBase = selectedItem < currentMoves.Count ? currentMoves[selectedItem].Base : newMove;
             if(ReferenceEquals(selectedMoveBase, newMove)){
                 SetCategories(newMove, newCatagoryImage);
                 newPowerText.text = newMove.Power.ToString();

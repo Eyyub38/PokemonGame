@@ -96,7 +96,18 @@ public class CharacterAnimator : MonoBehaviour{
             lastMoveY = MoveY;
         }
         if(!IsSurfing){
-            if(IsJumping){
+            if(!IsMoving){
+                // Set idle animation based on last movement direction
+                if(lastMoveX == 1){
+                    currentAnim = walkRightAnim;
+                } else if(lastMoveX == -1){
+                    currentAnim = walkLeftAnim;
+                } else if(lastMoveY == 1){
+                    currentAnim = walkUpAnim;
+                } else if(lastMoveY == -1){
+                    currentAnim = walkDownAnim;
+                }
+            } else if(IsJumping){
                 if(lastMoveX == 1){
                     currentAnim = jumpRightAnim;
                 } else if(lastMoveX == -1){

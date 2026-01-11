@@ -65,6 +65,7 @@ public class Character : MonoBehaviour{
             animator.IsMoving = false;
             animator.MoveX = 0f;
             animator.MoveY = 0f;
+            IsRunning = false;
             yield break;
         }
 
