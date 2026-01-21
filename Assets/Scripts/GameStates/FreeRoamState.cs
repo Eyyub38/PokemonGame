@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using System.Collections.Generic;
 using GDEUtills.StateMachine;
 
@@ -16,7 +17,7 @@ public class FreeRoamState : State<GameController>{
 
     public override void Execute(){
         PlayerController.i.HandleUpdate();
-        if(Input.GetKeyDown(KeyCode.Tab)){
+        if(Keyboard.current.tabKey.isPressed){
             gameController.StateMachine.Push(GameMenuState.i);
         }
     }

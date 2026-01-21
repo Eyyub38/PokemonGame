@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using System.Collections;
 using GDEUtills.StateMachine;
 using System.Collections.Generic;
@@ -34,9 +35,9 @@ public class SummaryState : State<GameController>{
 
         if(!summaryScreenUI.InMoveSelection){
             int prevPage = selectedPage;
-            if(Input.GetKeyDown(KeyCode.LeftArrow)){
+            if(Keyboard.current.leftArrowKey.isPressed){
                 selectedPage = Mathf.Abs(selectedPage - 1) % 2;
-            } else if(Input.GetKeyDown(KeyCode.RightArrow)){
+            } else if(Keyboard.current.rightArrowKey.isPressed){
                 selectedPage = (selectedPage + 1) % 2;
             }
             if(selectedPage != prevPage){
@@ -44,12 +45,12 @@ public class SummaryState : State<GameController>{
             }
 
             int prevIndex = SelectedPokemonIndex;
-            if(Input.GetKeyDown(KeyCode.DownArrow)){
+            if(Keyboard.current.downArrowKey.isPressed){
                 SelectedPokemonIndex += 1;
                 if(SelectedPokemonIndex >= playerParty.Count){
                     SelectedPokemonIndex = 0;
                 }
-            } else if(Input.GetKeyDown(KeyCode.UpArrow)){
+            } else if(Keyboard.current.upArrowKey.isPressed){
                 SelectedPokemonIndex -= 1;
                 if(SelectedPokemonIndex < 0){
                     SelectedPokemonIndex = playerParty.Count - 1;
@@ -62,11 +63,11 @@ public class SummaryState : State<GameController>{
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.Return)){
+        if(Keyboard.current.enterKey.isPressed){
             if(selectedPage == 1 && !summaryScreenUI.InMoveSelection){
                 summaryScreenUI.InMoveSelection = true;
             }
-        } else if(Input.GetKeyDown(KeyCode.Escape)){
+        } else if(Keyboard.current.escapeKey.isPressed){
             if(summaryScreenUI.InMoveSelection){
                 summaryScreenUI.InMoveSelection = false;
             } else {

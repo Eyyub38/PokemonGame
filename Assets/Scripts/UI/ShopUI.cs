@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
@@ -94,9 +95,9 @@ public class ShopUI : MonoBehaviour{
     public void HandleUpdate(){
         var prevSelection = selectedItem;
 
-        if(Input.GetKeyDown(KeyCode.DownArrow)){
+        if(Keyboard.current.downArrowKey.isPressed){
             ++selectedItem;
-        } else if(Input.GetKeyDown(KeyCode.UpArrow)){
+        } else if(Keyboard.current.upArrowKey.isPressed){
             --selectedItem;
         }
 
@@ -106,9 +107,9 @@ public class ShopUI : MonoBehaviour{
             UpdateItemSelection();
         }
 
-        if(Input.GetKeyDown(KeyCode.Return)){
+        if(Keyboard.current.enterKey.isPressed){
             onItemSelected?.Invoke(avaliableItems[selectedItem]);
-        } else if(Input.GetKeyDown(KeyCode.Escape)){
+        } else if(Keyboard.current.escapeKey.isPressed){
             onBack?.Invoke();
         }
     }

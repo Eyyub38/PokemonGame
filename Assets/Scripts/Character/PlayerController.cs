@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour, ISavable{
     [Header("Character Name")]
@@ -34,7 +35,7 @@ public class PlayerController : MonoBehaviour, ISavable{
             input.y = Input.GetAxisRaw("Vertical");
             if(input.x != 0 ) input.y = 0;
             bool wasRunning = character.IsRunning;
-            character.IsRunning = Input.GetKey(KeyCode.LeftShift);
+            character.IsRunning = Keyboard.current.leftShiftKey.isPressed;
 
             if(input != Vector2.zero){
                 StartCoroutine( character.Move(input, OnMoveOver));
@@ -43,7 +44,7 @@ public class PlayerController : MonoBehaviour, ISavable{
         
         character.HandleUpdate();
 
-        if(Input.GetKeyDown(KeyCode.Return)){
+        if(Keyboard.current.enterKey.isPressed){
             StartCoroutine(Interact());
         }
     }

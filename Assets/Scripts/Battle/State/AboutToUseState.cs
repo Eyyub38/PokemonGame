@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using GDEUtills.StateMachine;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 
 public class AboutToUseState : State<BattleSystem>{
     BattleSystem battleSystem;
@@ -25,19 +26,19 @@ public class AboutToUseState : State<BattleSystem>{
             return;
         }
         
-        if(Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow)){
+        if(Keyboard.current.upArrowKey.isPressed || Keyboard.current.downArrowKey.isPressed){
             aboutToUseChoice = !aboutToUseChoice;
         }
 
         battleSystem.DialogBox.UpdateChoiceSelection(aboutToUseChoice);
-        if(Input.GetKeyDown(KeyCode.Return)){
+        if(Keyboard.current.enterKey.isPressed){
             battleSystem.DialogBox.EnableChoiceBox(false);
             if(aboutToUseChoice == true){
                 StartCoroutine(SwitchCountinueBattle());
             } else {
                 StartCoroutine(CountinueBattle());
             }
-        } else if(Input.GetKeyDown(KeyCode.Escape)){
+        } else if(Keyboard.current.escapeKey.isPressed){
             battleSystem.DialogBox.EnableChoiceBox(false);
             StartCoroutine(CountinueBattle());
         }

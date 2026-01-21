@@ -1,5 +1,6 @@
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using System.Collections;
 using System.Collections.Generic;
 using System;
@@ -22,23 +23,23 @@ public class MoveSelectionUI : MonoBehaviour{
     void Update(){
         if(!isActive) return;
 
-        if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)){
+        if(Keyboard.current.wKey.isPressed || Keyboard.current.upArrowKey.isPressed){
             selectedItem = Mathf.Max(0, selectedItem - 2);
             UpdateSelection();
-        } else if(Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)){
+        } else if(Keyboard.current.sKey.isPressed || Keyboard.current.downArrowKey.isPressed ){
             selectedItem = Mathf.Min(currentMoves.Count - 1, selectedItem + 2);
             UpdateSelection();
-        } else if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)){
+        } else if(Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed){
             selectedItem = Mathf.Max(0, selectedItem - 1);
             UpdateSelection();
-        } else if(Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)){
+        } else if(Keyboard.current.dKey.isPressed || Keyboard.current.downArrowKey.isPressed){
             selectedItem = Mathf.Min(currentMoves.Count - 1, selectedItem + 1);
             UpdateSelection();
-        } else if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return)){
+        } else if(Keyboard.current.spaceKey.isPressed || Keyboard.current.enterKey.isPressed){
             if(selectedItem < currentMoves.Count && currentMoves[selectedItem].PP > 0){
                 OnSelected?.Invoke(selectedItem);
             }
-        } else if(Input.GetKeyDown(KeyCode.Escape)){
+        } else if(Keyboard.current.escapeKey.isPressed){
             OnBack?.Invoke();
         }
     }

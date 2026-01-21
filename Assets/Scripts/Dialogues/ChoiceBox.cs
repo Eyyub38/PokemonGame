@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 
 public class ChoiceBox : MonoBehaviour{
     [SerializeField] ChoiceText choiceTextPrefab;
@@ -34,9 +35,9 @@ public class ChoiceBox : MonoBehaviour{
     }
 
     private void Update(){
-        if(Input.GetKeyDown(KeyCode.UpArrow)){
+        if(Keyboard.current.upArrowKey.isPressed){
             --currChoice;
-        } else if(Input.GetKeyDown(KeyCode.DownArrow)){
+        } else if(Keyboard.current.downArrowKey.isPressed){
             ++currChoice;
         }
 
@@ -46,7 +47,7 @@ public class ChoiceBox : MonoBehaviour{
             choiceTexts[i].SetSelected(i == currChoice);
         }
 
-        if(Input.GetKeyDown(KeyCode.Return)){
+        if(Keyboard.current.enterKey.isPressed){
             choiceSelected = true;
         }
     }   

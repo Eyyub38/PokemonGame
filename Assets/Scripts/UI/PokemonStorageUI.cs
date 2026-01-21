@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
@@ -65,9 +66,9 @@ public class PokemonStorageUI : SelectionUI<ImageSlot>{
 
     public override void HandleUpdate(){
         int prevSelectedBox = SelectedBox;
-        if(Input.GetKeyDown(KeyCode.Q)){
+        if(Keyboard.current.qKey.isPressed){
             SelectedBox = (SelectedBox > 0) ? (SelectedBox - 1) : (SelectedBox = storageBoxes.NumberOfBoxes - 1);
-        } else if(Input.GetKeyDown(KeyCode.E)){
+        } else if(Keyboard.current.eKey.isPressed){
             SelectedBox = (SelectedBox + 1) %  storageBoxes.NumberOfBoxes;
         }
 

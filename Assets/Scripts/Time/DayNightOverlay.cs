@@ -19,7 +19,7 @@ public class DayNightOverlay : MonoBehaviour
     }
 
     void Update(){
-        if(GameController.i.StateMachine.CurrentState == FreeRoamState.i){
+        if(GameController.i.StateMachine.CurrentState == FreeRoamState.i || GameController.i.StateMachine.CurrentState == GameMenuState.i){
             overlayImage.gameObject.SetActive(true);
         } else {
             overlayImage.gameObject.SetActive(false);

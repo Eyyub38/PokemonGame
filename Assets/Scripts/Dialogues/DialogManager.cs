@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
@@ -30,7 +31,7 @@ public class DialogManager : MonoBehaviour{
         foreach(var line in dialog.Lines){
             AudioManager.i.PlaySfx(AudioId.UISelecet);
             yield return TypeDialog(line);
-            yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return));
+            yield return new WaitUntil(() => Keyboard.current.enterKey.isPressed);
         }
 
         if(choices != null && choices.Count > 1){
@@ -50,7 +51,7 @@ public class DialogManager : MonoBehaviour{
         yield return TypeDialog(text);
         
         if(waitForInput){
-            yield return new WaitUntil( () => Input.GetKeyDown(KeyCode.Return));
+            yield return new WaitUntil( () => Keyboard.current.enterKey.isPressed);
         }
 
         if(choices != null && choices.Count > 1){

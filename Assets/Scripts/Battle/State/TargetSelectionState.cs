@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using GDEUtills.StateMachine;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 
 public class TargetSelectionState : State<BattleSystem>{
     BattleSystem battleSystem;
@@ -27,10 +28,10 @@ public class TargetSelectionState : State<BattleSystem>{
 
     public override void Execute(){
         int prevSelected = selectedTarget;
-        if(Input.GetKeyDown(KeyCode.RightArrow)){
+        if(Keyboard.current.rightArrowKey.isPressed){
             ++selectedTarget;
 
-        } else if(Input.GetKeyDown(KeyCode.LeftArrow)){
+        } else if(Keyboard.current.leftArrowKey.isPressed){
             --selectedTarget;
         }
 

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
@@ -33,9 +34,9 @@ public class CounterSelectorUI : MonoBehaviour{
     void Update(){
         int prevCount = currentCount;
 
-        if(Input.GetKeyDown(KeyCode.UpArrow)){
+        if(Keyboard.current.upArrowKey.isPressed){
             ++currentCount;
-        } else if(Input.GetKeyDown(KeyCode.DownArrow)){
+        } else if(Keyboard.current.downArrowKey.isPressed){
             --currentCount;
         }
         currentCount = Mathf.Clamp(currentCount, 1, maxCount);
@@ -44,7 +45,7 @@ public class CounterSelectorUI : MonoBehaviour{
             SetValues();
         }
 
-        if(Input.GetKeyDown(KeyCode.Return)){
+        if(Keyboard.current.enterKey.isPressed){
             selected = true;
         }
     }

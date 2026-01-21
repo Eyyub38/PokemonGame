@@ -1,16 +1,16 @@
 using System;
-using UnityEngine;
 using System.Linq;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
 public enum AbilityID {
     None,
     Blaze, Overgrow, Torrent, Swarm, Guts, MarvelScale, QuickFeet, CompoundEyes, //Abilities that boost stats
-    KeenEye, HyperCutter, BigPecks, ClearBody, WhiteSmoke,                       //Abilities that prevent stat reduction
-    Insomnia, Immunity, Limber, WaterVeil, VitalSpirit, OwnTempo,                //Abilities that prevent status conditions
-    Static, PoisonPoint, FlameBody,                                              //Abilities that inflict status conditions on contact
-    ToughClaws, StrongJaw, IronFist                                              //Abilities that power up moves
+    KeenEye, HyperCutter, BigPecks, ClearBody, WhiteSmoke,                                   //Abilities that prevent stat reduction
+    Insomnia, Immunity, Limber, WaterVeil, VitalSpirit, OwnTempo,                            //Abilities that prevent status conditions
+    Static, PoisonPoint, FlameBody,                                                                             //Abilities that inflict status conditions on contact
+    ToughClaws, StrongJaw, IronFist                                                                         //Abilities that power up moves
 }
 
 public class AbilityDB{
@@ -411,5 +411,6 @@ public class AbilityDB{
                 }
             }
         }
+        
     };
 }
