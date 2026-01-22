@@ -11,6 +11,17 @@ public class DialogManager : MonoBehaviour{
     [SerializeField] Text dialogText;
     [SerializeField] int letterPerSecond = 10;
 
+    [Header("Input")]
+    [SerializeField] InputActionAsset actions;
+    [SerializeField] string actionMapName = "UI";
+    [SerializeField] string selectName = "Select";
+    
+    InputAction select;
+
+    [Header("Fast Forward")] 
+    [SerializeField]  int fastMultiplier = 8;
+    bool skipTyping = false;
+    
     public event Action OnShowDialog;
     public event Action OnDialogFinished;
 
@@ -19,8 +30,25 @@ public class DialogManager : MonoBehaviour{
 
     void Awake(){
         i = this;
+
+        if(actions == null) {
+            Debug.LogError("DialogManager: actions not set");
+            enabled = false;
+            return;
+        }
+
+        var map = actions.FindActionMap(actionMapName);
+        select = map.FindAction(selectName);
     }
 
+    void OnEnable() {
+        select?.Enable();
+    }
+
+    void OnDisable() {
+        select?.Disable();
+    }
+    
     public IEnumerator ShowDialog(Dialog dialog, List<string> choices = null, Action<int> onChoiceSelected = null){
         yield return new WaitForEndOfFrame();
 
@@ -31,7 +59,7 @@ public class DialogManager : MonoBehaviour{
         foreach(var line in dialog.Lines){
             AudioManager.i.PlaySfx(AudioId.UISelecet);
             yield return TypeDialog(line);
-            yield return new WaitUntil(() => Keyboard.current.enterKey.isPressed);
+            yield return WaitForAdvance();
         }
 
         if(choices != null && choices.Count > 1){
@@ -43,6 +71,16 @@ public class DialogManager : MonoBehaviour{
         OnDialogFinished?.Invoke();
     }
 
+    IEnumerator WaitForSelectPress() {
+        while(select.IsPressed()) {
+            yield return null;
+        }
+
+        while(!select.IsPressed()) {
+            yield return null;
+        }
+    }
+
     public IEnumerator ShowDialogText(string text, bool waitForInput = true, bool autoClose = true, List<string> choices = null, Action<int> onChoiceSelected = null){
         OnShowDialog?.Invoke();
         IsShowing = true;
@@ -51,7 +89,7 @@ public class DialogManager : MonoBehaviour{
         yield return TypeDialog(text);
         
         if(waitForInput){
-            yield return new WaitUntil( () => Keyboard.current.enterKey.isPressed);
+            yield return WaitForAdvance();
         }
 
         if(choices != null && choices.Count > 1){
@@ -74,9 +112,32 @@ public class DialogManager : MonoBehaviour{
 
     public IEnumerator TypeDialog(string line){
         dialogText.text = "";
-        foreach (var letter in line.ToCharArray()){
+        skipTyping = false;
+        foreach (var letter in line){
+            if(select.WasPressedThisFrame()) {
+                skipTyping = true;
+            }
+
+            if(skipTyping) {
+                dialogText.text = line;
+                yield break;
+            }
+            
             dialogText.text += letter;
-            yield return new WaitForSeconds( 1f / letterPerSecond);
+            float speed = letterPerSecond;
+            if(select.IsPressed()) {
+                speed *= fastMultiplier;
+            }
+            yield return new WaitForSeconds( 1f / speed);
+        }
+    }
+
+    IEnumerator WaitForAdvance() {
+        while(select.IsPressed()) {
+            yield return null;
+        }
+        while(!select.IsPressed()) {
+            yield return null;
         }
     }
 }

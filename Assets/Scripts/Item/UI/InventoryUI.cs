@@ -28,13 +28,18 @@ public class InventoryUI : SelectionUI<TextSlot>{
     [SerializeField] Image upArrow;
     [SerializeField] Image downArrow;
 
-
+    [Header("Input")] 
+    [SerializeField] SelectionInputFromActions selectionInput;
+    
     Inventory inventory;
     RectTransform itemListRect;
 
     List<ItemSlotUI> slotUIList;
 
     int selectedCategory = 0;
+    
+    float categoryTimer = 0f;
+    const float categorySpeed = 8f;
 
     const int itemsInViewport = 6;
 
@@ -44,6 +49,10 @@ public class InventoryUI : SelectionUI<TextSlot>{
     private void Awake(){
         inventory = Inventory.GetInventory();
         itemListRect = itemList.GetComponent<RectTransform>();
+    }
+
+    void OnEnable() {
+        InputSource = selectionInput;
     }
 
     private void Start(){
@@ -73,13 +82,16 @@ public class InventoryUI : SelectionUI<TextSlot>{
     public override void HandleUpdate(){
         int prevCategory = selectedCategory;
 
-        if(Keyboard.current.leftArrowKey.isPressed){
-            --selectedCategory;
-        }
-        else if(Keyboard.current.rightArrowKey.isPressed){
-            ++selectedCategory;
-        }
+        categoryTimer = Mathf.Clamp(categoryTimer + Time.deltaTime, 0, categorySpeed);
 
+        if(InputSource != null) {
+            float input = Mathf.RoundToInt(InputSource.Navigate.x);
+            if(categoryTimer == 0 && Mathf.Abs(input) > 0.2f) {
+                selectedCategory += (int)Mathf.Sign(input);
+                categoryTimer = 1f / categorySpeed;
+            }
+        }
+        
         if(selectedCategory > Inventory.ItemCategories.Count - 1){
             selectedCategory = 0;
         } else if(selectedCategory < 0){

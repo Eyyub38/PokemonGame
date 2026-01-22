@@ -30,6 +30,9 @@ public class MoveForgetSelectionUI : SelectionUI<TextSlot>{
     [SerializeField] List<Sprite> typeBarSprites = new List<Sprite>();
     [SerializeField] Sprite empty;
 
+    [Header("Input")]
+    [SerializeField] SelectionInputFromActions selectionInput;
+    
     Color originalColor;
     MoveBase newMove;
     List<Move> currentMoves;
@@ -76,7 +79,13 @@ public class MoveForgetSelectionUI : SelectionUI<TextSlot>{
             moveBars[4].PpText.color = Color.black;
         }
 
-        SetItems(moveBars.Select(b => b.GetComponent<TextSlot>()).ToList());
+        var selectableBars = moveBars
+                .Where(b => b.gameObject.activeSelf)
+                .Select(b => b.GetComponent<TextSlot>())
+                .ToList();
+
+        SetItems(selectableBars);
+        UpdateSelectionInUI();
     }
 
     public void SetMoveDetails(MoveBase currMove, MoveBase newMove){
@@ -201,5 +210,9 @@ public class MoveForgetSelectionUI : SelectionUI<TextSlot>{
         } else {
             moveBar.TypeImage.sprite = empty;
         }
+    }
+
+    private void OnEnable() {
+        InputSource = selectionInput;
     }
 }

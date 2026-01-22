@@ -6,8 +6,8 @@ using System.Collections.Generic;
 using GDEUtills.GenerciSelectionUI;
 using UnityEngine.SceneManagement;
 
-public class MainMenuController : SelectionUI<TextSlot>{
-
+public class MainMenuController : SelectionUI<TextSlot> {
+    [SerializeField] private SelectionInputFromActions selectionInput;
     void Start(){
         var textSlots = GetComponentsInChildren<TextSlot>().ToList();
         
@@ -19,6 +19,10 @@ public class MainMenuController : SelectionUI<TextSlot>{
         }
 
         OnSelected += OnItemSelected;
+    }
+
+    void OnEnable() {
+        InputSource = selectionInput;
     }
 
     void Update(){

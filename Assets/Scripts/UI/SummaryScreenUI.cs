@@ -45,6 +45,9 @@ public class SummaryScreenUI : SelectionUI<TextSlot>{
     [SerializeField] Text categoryText;
     [SerializeField] Text powerText;
     [SerializeField] Text accuracyText;
+    
+    [Header("Input")]
+    [SerializeField] SelectionInputFromActions selectionInput;
 
     bool inMoveSelection;
     Pokemon pokemon;
@@ -56,7 +59,14 @@ public class SummaryScreenUI : SelectionUI<TextSlot>{
         set{
             inMoveSelection = value;
             if(inMoveSelection){
+                if(pokemon == null || pokemon.Moves == null || pokemon.Moves.Count == 0) {
+                    inMoveSelection = false;
+                    ClearItems();
+                    return;
+                }
                 SetItems(moveSlots.Take(pokemon.Moves.Count).ToList());
+                selectedItem = Mathf.Clamp(selectedItem, 0, pokemon.Moves.Count - 1);
+                UpdateSelectionInUI();
             } else {
                 descriptionText.text = "";
                 categoryText.text = "";
@@ -164,11 +174,18 @@ public class SummaryScreenUI : SelectionUI<TextSlot>{
 
     public override void UpdateSelectionInUI(){
         base.UpdateSelectionInUI();
-
+        
+        if(pokemon == null || pokemon.Moves == null || pokemon.Moves.Count == 0) return;
+        selectedItem = Mathf.Clamp(selectedItem, 0, pokemon.Moves.Count - 1);
+        
         var move = pokemon.Moves[selectedItem];
         descriptionText.text = move.Base.Description;
         categoryText.text = move.Base.Category.ToString();
         powerText.text = "" + move.Base.Power;
         accuracyText.text = "" + move.Base.Accuracy;
+    }
+
+    void OnEnable() {
+        InputSource = selectionInput;
     }
 }

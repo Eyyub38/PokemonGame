@@ -23,19 +23,38 @@ public class PlayerController : MonoBehaviour, ISavable{
 
     public static PlayerController i { get; private set; }
 
+    public InputActionAsset actions;
+    InputAction move;
+    InputAction run;
+    InputAction interact;
+
     private void Awake(){
         i = this;
         character = GetComponent<Character>();
+        
+        if (actions == null){
+            Debug.LogError("PlayerController: actions (InputActionAsset) not found!");
+            enabled = false;
+            return;
+        }
+        
+        var playerMap = actions.FindActionMap("Player");
+        
+        move = playerMap.FindAction("Move");
+        run = playerMap.FindAction("Run");
+        interact = playerMap.FindAction("Interact");
     }
     
     public void HandleUpdate(){
-        if(!character.IsMoving){
-  
-            input.x = Input.GetAxisRaw("Horizontal");
-            input.y = Input.GetAxisRaw("Vertical");
+        if(!character.IsMoving) {
+            input = move.ReadValue<Vector2>();
+            
+            input.x = Mathf.RoundToInt(input.x);
+            input.y = Mathf.RoundToInt(input.y);
+            
             if(input.x != 0 ) input.y = 0;
             bool wasRunning = character.IsRunning;
-            character.IsRunning = Keyboard.current.leftShiftKey.isPressed;
+            character.IsRunning = run.IsPressed();
 
             if(input != Vector2.zero){
                 StartCoroutine( character.Move(input, OnMoveOver));
@@ -44,9 +63,20 @@ public class PlayerController : MonoBehaviour, ISavable{
         
         character.HandleUpdate();
 
-        if(Keyboard.current.enterKey.isPressed){
+        if(interact.WasPressedThisFrame()){
             StartCoroutine(Interact());
         }
+    }
+
+    void OnEnable() {
+        if(move != null) move.Enable();
+        if(run != null) run.Enable();
+        if(interact != null) interact.Enable();
+    }
+    void OnDisable() {
+        move.Disable();
+        run.Disable();
+        interact.Disable();
     }
 
     IEnumerator Interact(){

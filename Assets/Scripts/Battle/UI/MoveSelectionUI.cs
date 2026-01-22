@@ -10,6 +10,14 @@ public class MoveSelectionUI : MonoBehaviour{
     [SerializeField] List<Sprite> typeBarSprites;
     [SerializeField] Sprite empty;
 
+    [Header("Input")]
+    [SerializeField] InputActionAsset actions;
+
+    [SerializeField] string actionMapName = "UI";
+    [SerializeField] string navigateName = "Navigate";
+    [SerializeField] string selectName = "Select";
+    [SerializeField] string backName = "Back";
+    
     public event Action<int> OnSelected;
     public event Action OnBack;
 
@@ -17,29 +25,73 @@ public class MoveSelectionUI : MonoBehaviour{
     List<Move> currentMoves;
     bool isActive = false;
 
+    float navTimer = 0f;
+    const float navSpeed = 8f;
+    
+    InputAction navigate;
+    InputAction select;
+    InputAction back;
+    
     List<Sprite> TypeBarSprites => typeBarSprites;
     Sprite Empty => empty;
 
-    void Update(){
-        if(!isActive) return;
+    void Awake() {
+        if(actions == null) {
+            Debug.LogError("MoveSelectionUI: actions not set");
+            enabled = false;
+            return;
+        }
 
-        if(Keyboard.current.wKey.isPressed || Keyboard.current.upArrowKey.isPressed){
-            selectedItem = Mathf.Max(0, selectedItem - 2);
-            UpdateSelection();
-        } else if(Keyboard.current.sKey.isPressed || Keyboard.current.downArrowKey.isPressed ){
-            selectedItem = Mathf.Min(currentMoves.Count - 1, selectedItem + 2);
-            UpdateSelection();
-        } else if(Keyboard.current.aKey.isPressed || Keyboard.current.leftArrowKey.isPressed){
-            selectedItem = Mathf.Max(0, selectedItem - 1);
-            UpdateSelection();
-        } else if(Keyboard.current.dKey.isPressed || Keyboard.current.downArrowKey.isPressed){
-            selectedItem = Mathf.Min(currentMoves.Count - 1, selectedItem + 1);
-            UpdateSelection();
-        } else if(Keyboard.current.spaceKey.isPressed || Keyboard.current.enterKey.isPressed){
-            if(selectedItem < currentMoves.Count && currentMoves[selectedItem].PP > 0){
+        var map = actions.FindActionMap(actionMapName);
+        navigate = map.FindAction(navigateName);
+        select = map.FindAction(selectName);
+        back = map.FindAction(backName);
+    }
+
+    void OnEnbale() {
+        navigate?.Enable();
+        select?.Enable();
+        back?.Enable();
+    }
+
+    void OnDisable() {
+        navigate?.Disable();
+        select?.Disable();
+        back?.Disable();
+    }
+    
+    void Update(){
+        if(!isActive || currentMoves == null || currentMoves.Count == 0) return;
+        
+        navTimer = Mathf.Clamp(navTimer - Time.deltaTime, 0f, navTimer);
+        
+        Vector2 navVector = navigate.ReadValue<Vector2>();
+        navVector.x = navVector.x;
+        navVector.y = navVector.y;
+
+        if(navTimer == 0 && (Mathf.Abs(navVector.x) > 0.2f) || (Mathf.Abs(navVector.y) > 0.2f)) {
+            int prevSelection = selectedItem;
+
+            if((Mathf.Abs(navVector.y) >= (Mathf.Abs(navVector.x)))) {
+                selectedItem += -(int)Mathf.Sign(navVector.y) * 2;
+            } else {
+                selectedItem += -(int)Mathf.Sign(navVector.x);
+            }
+            
+            selectedItem = Mathf.Clamp(selectedItem, 0, moveBars.Count - 1);
+            
+            if(prevSelection != selectedItem) {
+                UpdateSelection();
+            }
+            
+            navTimer = 1f/navSpeed;
+        }
+
+        if(select.WasPressedThisFrame()) {
+            if(selectedItem < currentMoves.Count && currentMoves[selectedItem].PP > 0) {
                 OnSelected?.Invoke(selectedItem);
             }
-        } else if(Keyboard.current.escapeKey.isPressed){
+        } else if(back.WasPressedThisFrame()) {
             OnBack?.Invoke();
         }
     }

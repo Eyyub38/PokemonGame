@@ -11,6 +11,16 @@ public class PokemonStorageUI : SelectionUI<ImageSlot>{
     [SerializeField] Image movingPokemonImage;
     [SerializeField] Text boxNameText;
     
+    [Header("Box Input")]
+    [SerializeField] SelectionInputFromActions selectionInput;
+    [SerializeField] InputActionAsset actions;
+    [SerializeField] string actionMapName = "UI";
+    [SerializeField] string boxPrevName = "Previous";
+    [SerializeField] string boxNextName = "Next";
+
+    InputAction boxPrev;
+    InputAction boxNext;
+
     PokemonParty party;
     PokemonStorageBoxes storageBoxes;
     int totalColumns = 7;
@@ -29,6 +39,9 @@ public class PokemonStorageUI : SelectionUI<ImageSlot>{
             } else {
                 partySlots.Add(boxSlot.GetComponent<BoxPartySlotUI>());
             }
+            var map = actions.FindActionMap(actionMapName, true);
+            boxPrev = map.FindAction(boxPrevName, true);
+            boxNext = map.FindAction(boxNextName, true);
         }
 
         party = PokemonParty.GetPlayerParty();
@@ -66,10 +79,12 @@ public class PokemonStorageUI : SelectionUI<ImageSlot>{
 
     public override void HandleUpdate(){
         int prevSelectedBox = SelectedBox;
-        if(Keyboard.current.qKey.isPressed){
-            SelectedBox = (SelectedBox > 0) ? (SelectedBox - 1) : (SelectedBox = storageBoxes.NumberOfBoxes - 1);
-        } else if(Keyboard.current.eKey.isPressed){
-            SelectedBox = (SelectedBox + 1) %  storageBoxes.NumberOfBoxes;
+        if(InputSource == null) return;
+        
+        if(InputSource.PreviousPressedThisFrame) {
+            SelectedBox = (SelectedBox > 0) ? (SelectedBox - 1) : (storageBoxes.NumberOfBoxes - 1);
+        } else if(InputSource.NextPressedThisFrame) {
+            SelectedBox = (SelectedBox + 1) % storageBoxes.NumberOfBoxes ;
         }
 
         if(SelectedBox != prevSelectedBox){
@@ -140,4 +155,15 @@ public class PokemonStorageUI : SelectionUI<ImageSlot>{
             movingPokemonImage.transform.position = boxSlotImages[selectedItem].transform.position + (Vector3.up * 50f);
         }
     }
+
+    void OnEnable() {
+        InputSource = selectionInput;
+        boxPrev?.Enable();
+        boxNext?.Enable();
+    }
+    void OnDisable(){
+        boxPrev?.Disable();
+        boxNext?.Disable();
+    }
+
 }

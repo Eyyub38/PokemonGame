@@ -18,6 +18,21 @@ public class ShopUI : MonoBehaviour{
     [SerializeField] Image upArrow;
     [SerializeField] Image downArrow;
 
+    [Header("Input")]
+    [SerializeField] InputActionAsset actions;
+    [SerializeField] string actionMapName = "UI";
+    [SerializeField] string navigateName = "Navigate";
+    [SerializeField] string submitName = "Submit";
+    [SerializeField] string backName = "Back";
+
+    InputAction navigate;
+    InputAction submit;
+    InputAction back;
+
+    float navTimer = 0f;
+    const float navSpeed = 10f;
+
+    
     List<ItemBase> avaliableItems;
     List<ItemSlotUI> slotUIList;
     RectTransform itemListRect;
@@ -28,6 +43,17 @@ public class ShopUI : MonoBehaviour{
 
     void Awake(){
         itemListRect = itemList.GetComponent<RectTransform>();
+
+        if(actions == null) {
+            Debug.LogError("ShopUI: actions not found");
+            enabled  = false;
+            return;
+        }
+
+        var map = actions.FindActionMap(actionMapName);
+        navigate = map.FindAction(navigateName);
+        submit = map.FindAction(submitName);
+        back = map.FindAction(backName);
     }
 
     public void Show(List<ItemBase> avaliableItems, Action<ItemBase> onItemSelected, Action onBack){
@@ -93,24 +119,48 @@ public class ShopUI : MonoBehaviour{
     }
 
     public void HandleUpdate(){
-        var prevSelection = selectedItem;
+        if(avaliableItems == null || avaliableItems.Count == 0) {
+            if(back != null && back.WasPressedThisFrame()) {
+                onBack?.Invoke();
+            }
 
-        if(Keyboard.current.downArrowKey.isPressed){
-            ++selectedItem;
-        } else if(Keyboard.current.upArrowKey.isPressed){
-            --selectedItem;
+            return;
         }
+        
+        navTimer = Mathf.Clamp(navTimer - Time.deltaTime, 0, navSpeed);
+        
+        int prevSelection = selectedItem;
+        
+        Vector2 navVector = navigate.ReadValue<Vector2>();
+        navVector.y = Mathf.RoundToInt(navVector.y);
 
+        if(navTimer == 0 && Mathf.Abs(navVector.y) > 0.2f) {
+            selectedItem += -(int)Mathf.Sign(navVector.y);
+            navTimer = 1 / navSpeed;
+        }
+        
         selectedItem = Mathf.Clamp(selectedItem, 0, avaliableItems.Count - 1);
 
-        if(prevSelection != selectedItem){
+        if(prevSelection != selectedItem) {
             UpdateItemSelection();
         }
 
-        if(Keyboard.current.enterKey.isPressed){
+        if(submit.WasPressedThisFrame()) {
             onItemSelected?.Invoke(avaliableItems[selectedItem]);
-        } else if(Keyboard.current.escapeKey.isPressed){
+        } else if(back.WasPressedThisFrame()) {
             onBack?.Invoke();
         }
+    }
+    
+    void OnEnable(){
+        navigate?.Enable();
+        submit?.Enable();
+        back?.Enable();
+    }
+
+    void OnDisable(){
+        navigate?.Disable();
+        submit?.Disable();
+        back?.Disable();
     }
 }

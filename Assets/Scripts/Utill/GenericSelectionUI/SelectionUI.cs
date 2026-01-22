@@ -18,6 +18,8 @@ namespace  GDEUtills.GenerciSelectionUI {
 
         public event Action<int> OnSelected;
         public event Action OnBack;
+        
+        public ISelectionInput InputSource { get; set; }
 
         public void SetItems(List<T> items){
             this.items = items;
@@ -36,7 +38,10 @@ namespace  GDEUtills.GenerciSelectionUI {
             this.gridWith = gridWith;
         }
 
-        public virtual void HandleUpdate(){
+        public virtual void HandleUpdate() {
+            if(items == null || items.Count == 0) return;
+            if(InputSource == null) return;
+
             UpdateSelectionTimer();
             int prevSelection = selectedItem;
 
@@ -52,15 +57,15 @@ namespace  GDEUtills.GenerciSelectionUI {
                 UpdateSelectionInUI();
             }
 
-            if(Input.GetButtonDown("Action")){
+            if(InputSource.SubmitPressedThisFrame){
                 OnSelected?.Invoke(selectedItem);
-            } else if(Input.GetButtonDown("Back")){
+            } else if(InputSource.BackPressedThisFrame){
                 OnBack?.Invoke();
             }
         }
 
-        void HandleListSelection(){
-            float v = Input.GetAxisRaw("Vertical");
+        void HandleListSelection() {
+            float v = Mathf.RoundToInt(InputSource.Navigate.y);
             if(selectionTimer == 0 && Mathf.Abs(v) > 0.2f){
                 selectedItem += -(int) Mathf.Sign(v);
                 selectionTimer = 1 / selectionSpeed;
@@ -68,8 +73,8 @@ namespace  GDEUtills.GenerciSelectionUI {
         }
 
         void HandleGridSelection(){
-            float v = Input.GetAxisRaw("Vertical");
-            float h = Input.GetAxisRaw("Horizontal");
+            float h = InputSource.Navigate.x;
+            float v = InputSource.Navigate.y;
             if(selectionTimer == 0 && (Mathf.Abs(v) > 0.2f || Mathf.Abs(h) > 0.2f)){
                 if(Mathf.Abs(h) > Mathf.Abs(v)){
                     selectedItem += (int) Mathf.Sign(h);

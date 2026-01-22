@@ -17,6 +17,9 @@ public class GameController : MonoBehaviour{
     [SerializeField] GameObject locationUI;
     [SerializeField] Text locationText;
 
+    [Header("Input")]
+    [SerializeField] InputMapController inputMaps;
+    
     TrainerController trainer;
 
     public static GameController i { get; private set; }
@@ -33,6 +36,7 @@ public class GameController : MonoBehaviour{
     private void Awake(){
         i = this;
 
+        inputMaps = GetComponent<InputMapController>();
         //Cursor.lockState = CursorLockMode.Locked;
         //Cursor.visible = false;
 
@@ -54,9 +58,13 @@ public class GameController : MonoBehaviour{
 
         battleSystem.OnBattleOver += EndBattle;
         partyScreen.Init();
-        DialogManager.i.OnShowDialog += () => StateMachine.Push(DialogState.i);
+        DialogManager.i.OnShowDialog += () => { 
+            inputMaps.EnableUI();
+            StateMachine.Push(DialogState.i);
+        };
         DialogManager.i.OnDialogFinished += () =>{
             StateMachine.Pop();
+            inputMaps.EnablePlayer();
             if (StateMachine.CurrentState == null) {
                 Debug.LogWarning("No current state after pop.");
             }
