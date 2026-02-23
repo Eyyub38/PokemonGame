@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4889994261358544069}
   - component: {fileID: 7318308256899295542}
   m_Layer: 0
-  m_Name: SceneTrigger
+  m_Name: MapSceneTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connectedScenes: []
+  sceneMusic: {fileID: 0}
 --- !u!114 &4889994261358544069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,6 +61,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wildPokemons: []
+  wildPokemonsInWater: []
+  totalChance: -1
+  totalChanceWater: -1
+  weather: 0
 --- !u!61 &7318308256899295542
 BoxCollider2D:
   m_ObjectHideFlags: 0

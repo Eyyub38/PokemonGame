@@ -3,6 +3,7 @@ using System.Collections;
 using GDEUtills.StateMachine;
 using System.Collections.Generic;
 using System.Linq;
+using GDEUtills.GenerciSelectionUI;
 
 public class PartyState : State<GameController>{
     [SerializeField] PartyScreen partyScreen;
@@ -28,7 +29,9 @@ public class PartyState : State<GameController>{
 
     public override void Enter(GameController owner){
         gameController = owner;
+        gameController.InputMaps.EnableUI();
 
+        partyScreen.InputSource = InputRouter.i.UI;
         SelectedPokemon = null;
         
         if(BattleSystem != null){

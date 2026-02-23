@@ -58,7 +58,8 @@ public class SummaryScreenUI : SelectionUI<TextSlot>{
         get => inMoveSelection;
         set{
             inMoveSelection = value;
-            if(inMoveSelection){
+            if(inMoveSelection) {
+                selectedItem = 0;
                 if(pokemon == null || pokemon.Moves == null || pokemon.Moves.Count == 0) {
                     inMoveSelection = false;
                     ClearItems();
@@ -68,6 +69,7 @@ public class SummaryScreenUI : SelectionUI<TextSlot>{
                 selectedItem = Mathf.Clamp(selectedItem, 0, pokemon.Moves.Count - 1);
                 UpdateSelectionInUI();
             } else {
+                selectedItem = 0;
                 descriptionText.text = "";
                 categoryText.text = "";
                 powerText.text = "";

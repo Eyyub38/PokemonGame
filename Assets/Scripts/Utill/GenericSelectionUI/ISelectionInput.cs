@@ -2,9 +2,12 @@
 
 public interface ISelectionInput{
         Vector2 Navigate {  get;  }
-        bool SubmitPressedThisFrame { get; }
+        bool SelectPressedThisFrame { get; }
         bool BackPressedThisFrame { get; }
-        float Horizontal { get; }
         bool NextPressedThisFrame { get; }
         bool PreviousPressedThisFrame { get; }
+        bool UpPressedThisFrame { get; }
+        bool DownPressedThisFrame { get; }
+        bool LeftPressedThisFrame { get; }
+        bool RightPressedThisFrame { get; }
 }

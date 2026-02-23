@@ -66,8 +66,8 @@ public class MoveSelectionUI : MonoBehaviour{
         navTimer = Mathf.Clamp(navTimer - Time.deltaTime, 0f, navTimer);
         
         Vector2 navVector = navigate.ReadValue<Vector2>();
-        navVector.x = navVector.x;
-        navVector.y = navVector.y;
+        navVector.x = Mathf.RoundToInt(navVector.x);
+        navVector.y = Mathf.RoundToInt(navVector.y);
 
         if(navTimer == 0 && (Mathf.Abs(navVector.x) > 0.2f) || (Mathf.Abs(navVector.y) > 0.2f)) {
             int prevSelection = selectedItem;

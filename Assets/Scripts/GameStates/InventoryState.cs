@@ -25,6 +25,7 @@ public class InventoryState : State<GameController>{
     
     public override void Enter(GameController owner){
         gameController = owner;
+        gameController.InputMaps.EnableUI();
 
         SelectedItem = null;
         if(BattleSystem != null){

@@ -37,9 +37,9 @@ public class TargetSelectionState : State<BattleSystem> {
         }
 
         var map = actions.FindActionMap(actionMapName);
-        navigate = map.FindAction("Navigate");
-        select = map.FindAction("Select");
-        back = map.FindAction("Back");
+        navigate = map.FindAction(navigateName);
+        select = map.FindAction(selectName);
+        back = map.FindAction(backName);
     }
 
     public override void Enter(BattleSystem owner){

@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using GDEUtills.StateMachine;
 using System.Collections.Generic;
+using GDEUtills.GenerciSelectionUI;
 
 public class GameMenuState : State<GameController>{
     [SerializeField] MenuController menuController;
@@ -16,12 +17,15 @@ public class GameMenuState : State<GameController>{
 
     public override void Enter(GameController owner){
         gameController = owner;
+        gameController.InputMaps.EnableUI();
+
+        menuController.InputSource = InputRouter.i.UI;
         menuController.gameObject.SetActive(true);
         menuController.OnSelected += OnMenuItemSelected;
         menuController.OnBack += OnBack;
     }
 
-    public override void Execute(){
+    public override void Execute() {
         menuController.HandleUpdate();
     }
     
@@ -29,6 +33,8 @@ public class GameMenuState : State<GameController>{
         menuController.gameObject.SetActive(false);
         menuController.OnSelected -= OnMenuItemSelected;
         menuController.OnBack -= OnBack;
+        
+        gameController.InputMaps.EnablePlayer();
     }
 
     void OnMenuItemSelected(int selection){

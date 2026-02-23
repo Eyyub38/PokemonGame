@@ -11,9 +11,13 @@ public class IconSlot : MonoBehaviour, ISelectableItem{
 
     Vector3 originalIconPosition;
     Sequence bounceSequence;
-    
+    bool initialized = false;
+
     public void Init(){
-        originalIconPosition = icon.transform.localPosition;
+        if(!initialized) {
+            originalIconPosition = icon.transform.localPosition;
+            initialized = true;
+        }
     }
 
     void StartBounceAnimation(){

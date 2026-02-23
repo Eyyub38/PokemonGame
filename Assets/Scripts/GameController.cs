@@ -32,6 +32,7 @@ public class GameController : MonoBehaviour{
     public PlayerController PlayerController => playerController;
     public Camera WorldCamera => worldCamera;
     public PartyScreen PartyScreen => partyScreen;
+    public InputMapController InputMaps => inputMaps;
 
     private void Awake(){
         i = this;
@@ -64,7 +65,11 @@ public class GameController : MonoBehaviour{
         };
         DialogManager.i.OnDialogFinished += () =>{
             StateMachine.Pop();
-            inputMaps.EnablePlayer();
+            if(StateMachine.CurrentState is FreeRoamState) {
+                inputMaps.EnablePlayer();
+            } else {
+                inputMaps.EnableUI();
+            }
             if (StateMachine.CurrentState == null) {
                 Debug.LogWarning("No current state after pop.");
             }

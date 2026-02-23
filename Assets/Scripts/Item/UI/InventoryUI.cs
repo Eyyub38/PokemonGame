@@ -53,6 +53,12 @@ public class InventoryUI : SelectionUI<TextSlot>{
 
     void OnEnable() {
         InputSource = selectionInput;
+        selectionInput.enabled = true;
+
+        categoryTimer = 0f;
+
+        ResetSelection();
+        UpdateSelectionInUI();
     }
 
     private void Start(){
@@ -82,14 +88,15 @@ public class InventoryUI : SelectionUI<TextSlot>{
     public override void HandleUpdate(){
         int prevCategory = selectedCategory;
 
-        categoryTimer = Mathf.Clamp(categoryTimer + Time.deltaTime, 0, categorySpeed);
+        categoryTimer = Mathf.Max(categoryTimer - Time.deltaTime);
 
-        if(InputSource != null) {
-            float input = Mathf.RoundToInt(InputSource.Navigate.x);
-            if(categoryTimer == 0 && Mathf.Abs(input) > 0.2f) {
-                selectedCategory += (int)Mathf.Sign(input);
-                categoryTimer = 1f / categorySpeed;
-            }
+        float raw = InputSource.Navigate.x;
+        float dir = Mathf.Sign(raw);
+
+        float input = Mathf.RoundToInt(InputSource.Navigate.x);
+        if(categoryTimer <= 0 && Mathf.Abs(raw) > 0.2f) {
+            selectedCategory += (int)dir;
+            categoryTimer = 1f / categorySpeed;
         }
         
         if(selectedCategory > Inventory.ItemCategories.Count - 1){

@@ -16,10 +16,24 @@ public class EvolutionState : State<GameController>{
         i = this;
     }
 
+    public override void Enter(GameController owner) {
+        evolutionUI.SetActive(true);
+        owner.InputMaps.EnableUI();
+    }
+
+    public override void Exit() {
+        evolutionUI.SetActive(false);
+        var prevState = GameController.i.StateMachine.GetPrevState();
+        if(prevState is FreeRoamState) {
+            GameController.i.InputMaps.EnablePlayer();
+        } else {
+            GameController.i.InputMaps.EnableUI();
+        }
+    }
+
     public IEnumerator Evolve(Pokemon pokemon, Evolution evolution){
         var gameController = GameController.i;
         gameController.StateMachine.Push(this);
-        evolutionUI.SetActive(true);
 
         AudioManager.i.PlayMusic(evolutionMusic);
 
@@ -30,8 +44,6 @@ public class EvolutionState : State<GameController>{
         pokemon.Evolve(evolution);
         evolutionImage.sprite = evolution.EvolvesInto.FrontSprite;
         yield return DialogManager.i.ShowDialogText($"{oldPokemon.Name} evolved into {pokemon.Base.Name}!");
-
-        evolutionUI.SetActive(false);
 
         gameController.PartyScreen.SetPartyData();
         AudioManager.i.PlayMusic(gameController.CurrentScene.SceneMusic, fade: true);

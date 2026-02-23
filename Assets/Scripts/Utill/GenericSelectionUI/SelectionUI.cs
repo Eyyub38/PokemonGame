@@ -12,7 +12,7 @@ namespace  GDEUtills.GenerciSelectionUI {
         SelectionType selectionType = SelectionType.List;
         
         float selectionTimer = 0;
-        int gridWith = 2;
+        int gridWidth = 2;
         protected int selectedItem = 0;
         const float selectionSpeed = 5;
 
@@ -21,8 +21,15 @@ namespace  GDEUtills.GenerciSelectionUI {
         
         public ISelectionInput InputSource { get; set; }
 
+        protected virtual void Start() {
+            if(InputSource == null) {
+                InputSource = InputRouter.i?.UI;
+            }
+        }
+
         public void SetItems(List<T> items){
             this.items = items;
+            selectedItem = 0; // Reset selection to avoid out-of-bounds flicker
             items.ForEach(i => i.Init());
             UpdateSelectionInUI();
         }
@@ -33,16 +40,26 @@ namespace  GDEUtills.GenerciSelectionUI {
             this.items = null;
         }
 
-        public void SetSelectionSettings(SelectionType selectionType, int gridWith){
+        public void SetSelectionSettings(SelectionType selectionType, int gridWidth) {
             this.selectionType = selectionType;
-            this.gridWith = gridWith;
+            this.gridWidth = gridWidth;
         }
 
         public virtual void HandleUpdate() {
-            if(items == null || items.Count == 0) return;
-            if(InputSource == null) return;
+            if(InputSource == null) {
+                Debug.LogError("Input Source is null");
+                return;
+            }
 
             UpdateSelectionTimer();
+
+            if(InputSource.BackPressedThisFrame) {
+                OnBack?.Invoke();
+                return;
+            }
+
+            if(items == null || items.Count == 0) return;
+
             int prevSelection = selectedItem;
 
             if(selectionType == SelectionType.List){
@@ -57,10 +74,8 @@ namespace  GDEUtills.GenerciSelectionUI {
                 UpdateSelectionInUI();
             }
 
-            if(InputSource.SubmitPressedThisFrame){
+            if(InputSource.SelectPressedThisFrame) {
                 OnSelected?.Invoke(selectedItem);
-            } else if(InputSource.BackPressedThisFrame){
-                OnBack?.Invoke();
             }
         }
 
@@ -77,9 +92,15 @@ namespace  GDEUtills.GenerciSelectionUI {
             float v = InputSource.Navigate.y;
             if(selectionTimer == 0 && (Mathf.Abs(v) > 0.2f || Mathf.Abs(h) > 0.2f)){
                 if(Mathf.Abs(h) > Mathf.Abs(v)){
-                    selectedItem += (int) Mathf.Sign(h);
+                    var direction = (int)Mathf.Sign(h);
+                    // Prevent wrapping to next/prev row
+                    if(direction > 0 && (selectedItem + 1) % gridWidth != 0) {
+                        selectedItem++;
+                    } else if(direction < 0 && selectedItem % gridWidth != 0) {
+                        selectedItem--;
+                    }
                 } else {
-                    selectedItem += -(int) Mathf.Sign(v) * gridWith;
+                    selectedItem += -(int)Mathf.Sign(v) * gridWidth;
                 }
                 selectionTimer = 1 / selectionSpeed;
             }
@@ -93,7 +114,7 @@ namespace  GDEUtills.GenerciSelectionUI {
 
         void UpdateSelectionTimer(){
             if(selectionTimer > 0){
-                selectionTimer = Mathf.Clamp( selectionTimer - Time.deltaTime, 0, selectionTimer);
+                selectionTimer = Mathf.Clamp(selectionTimer - Time.unscaledDeltaTime, 0, selectionTimer);
             }
         }
     }

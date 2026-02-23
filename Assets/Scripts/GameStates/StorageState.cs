@@ -22,6 +22,7 @@ public class StorageState : State<GameController>{
 
     public override void Enter(GameController owner){
         gameController = owner;
+        gameController.InputMaps.EnableUI();
 
         storageUI.gameObject.SetActive(true);
         storageUI.SetDataInPartySlots();

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class ImageSlot : MonoBehaviour, ISelectableItem{
     Image image;
     Color originalColor;
+    bool initialized = false;
 
     void Awake(){
         image = GetComponent<Image>();
@@ -16,7 +17,10 @@ public class ImageSlot : MonoBehaviour, ISelectableItem{
     }
 
     public void Init(){
-        originalColor = image.color;
+        if(!initialized) {
+            originalColor = image.color;
+            initialized = true;
+        }
     }
 
     public void OnSelectionChanged(bool selected){

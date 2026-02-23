@@ -3,17 +3,25 @@ using UnityEngine.InputSystem;
 using System.Collections;
 using GDEUtills.StateMachine;
 using System.Collections.Generic;
+using GDEUtills.GenerciSelectionUI;
+using NUnit.Framework.Internal.Filters;
 
 public class SummaryState : State<GameController>{
     [SerializeField] SummaryScreenUI summaryScreenUI;
 
     GameController gameController;
     List<Pokemon> playerParty;
+    
     int selectedPage = 0;
+    float navTimer = 0f;
+    const float navSpeed = 7f;
 
     public int SelectedPokemonIndex { get; set; }
-
     public static SummaryState i { get; private set; }
+
+    bool CanNav() => navTimer <= 10f;
+    void TickNavTimer() => navTimer = Mathf.Max(0f, navTimer - Time.deltaTime);
+    void ResetNavTimer() => navTimer = 1f / navSpeed;
 
     void Awake(){
         i = this;
@@ -25,59 +33,67 @@ public class SummaryState : State<GameController>{
 
     public override void Enter(GameController owner){
         gameController = owner;
+        gameController.InputMaps.EnableUI();
+        
+        summaryScreenUI.InputSource = InputRouter.i.UI;
+        
         summaryScreenUI.gameObject.SetActive(true);
         summaryScreenUI.SetBasicDetails(playerParty[SelectedPokemonIndex]);
         summaryScreenUI.ShowPage(selectedPage);
         summaryScreenUI.SetTypeImage();
     }
 
-    public override void Execute(){
+    public override void Execute() {
+        TickNavTimer();
 
-        if(!summaryScreenUI.InMoveSelection){
+        var input = summaryScreenUI.InputSource;
+
+        if(input != null && CanNav()) {
+            Vector2 navVector = input.Navigate;
             int prevPage = selectedPage;
-            if(Keyboard.current.leftArrowKey.isPressed){
-                selectedPage = Mathf.Abs(selectedPage - 1) % 2;
-            } else if(Keyboard.current.rightArrowKey.isPressed){
-                selectedPage = (selectedPage + 1) % 2;
-            }
-            if(selectedPage != prevPage){
-                summaryScreenUI.ShowPage(selectedPage);
-            }
 
-            int prevIndex = SelectedPokemonIndex;
-            if(Keyboard.current.downArrowKey.isPressed){
-                SelectedPokemonIndex += 1;
-                if(SelectedPokemonIndex >= playerParty.Count){
-                    SelectedPokemonIndex = 0;
-                }
-            } else if(Keyboard.current.upArrowKey.isPressed){
-                SelectedPokemonIndex -= 1;
-                if(SelectedPokemonIndex < 0){
-                    SelectedPokemonIndex = playerParty.Count - 1;
+            if(!summaryScreenUI.InMoveSelection && (input.LeftPressedThisFrame || input.RightPressedThisFrame)) {
+                selectedPage = 1 - selectedPage;
+                if(selectedPage != prevPage) {
+                    summaryScreenUI.ShowPage(selectedPage);
                 }
             }
-            if(SelectedPokemonIndex != prevIndex){
-                summaryScreenUI.SetBasicDetails(playerParty[SelectedPokemonIndex]);
-                summaryScreenUI.ShowPage(selectedPage);
-                summaryScreenUI.SetTypeImage();
+
+            if(input.BackPressedThisFrame) {
+                if(summaryScreenUI.InMoveSelection) {
+                    summaryScreenUI.InMoveSelection = false;
+                } else {
+                    gameController.StateMachine.Pop();
+                    return;
+                }
+            }
+
+            if(input.SelectPressedThisFrame) {
+                if(selectedPage == 1 && !summaryScreenUI.InMoveSelection) {
+                    summaryScreenUI.InMoveSelection = true;
+                }
+            }
+
+            if(input.DownPressedThisFrame) {
+                if(!summaryScreenUI.InMoveSelection) {
+                    SelectedPokemonIndex = (SelectedPokemonIndex + 1) % playerParty.Count;
+                    Refresh();
+                } else if(input.UpPressedThisFrame) {
+                    if(!summaryScreenUI.InMoveSelection) {
+                        SelectedPokemonIndex = (SelectedPokemonIndex + 1 + playerParty.Count) % playerParty.Count;
+                        Refresh();
+                    }
+
+                    summaryScreenUI.HandleUpdate();
+                }
             }
         }
+    }
 
-        if(Keyboard.current.enterKey.isPressed){
-            if(selectedPage == 1 && !summaryScreenUI.InMoveSelection){
-                summaryScreenUI.InMoveSelection = true;
-            }
-        } else if(Keyboard.current.escapeKey.isPressed){
-            if(summaryScreenUI.InMoveSelection){
-                summaryScreenUI.InMoveSelection = false;
-            } else {
-                gameController.StateMachine.Pop();
-                return;
-            }
-
-        }
-
-        summaryScreenUI.HandleUpdate();
+    void Refresh() {
+        summaryScreenUI.SetBasicDetails(playerParty[SelectedPokemonIndex]);
+        summaryScreenUI.ShowPage(selectedPage);
+        summaryScreenUI.SetTypeImage();
     }
 
     public override void Exit(){
