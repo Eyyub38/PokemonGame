@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour, ISavable{
     public string Name => _name;
     public Sprite BattleImage => battleImage;
     public Character Character => character;
+    public event Action<Vector3> OnMovedTile;
 
     public static PlayerController i { get; private set; }
 
@@ -74,9 +75,9 @@ public class PlayerController : MonoBehaviour, ISavable{
         if(interact != null) interact.Enable();
     }
     void OnDisable() {
-        move.Disable();
-        run.Disable();
-        interact.Disable();
+        move?.Disable();
+        run?.Disable();
+        interact?.Disable();
     }
 
     IEnumerator Interact(){
@@ -139,9 +140,18 @@ public class PlayerController : MonoBehaviour, ISavable{
         }
     }
 
+    int stepCount = 0;
     private void OnMoveOver() {
         var colliders = Physics2D.OverlapCircleAll(transform.position - new Vector3(0, character.OffSetY), 0.2f, GameLayers.i.TriggerableLayers);
         
+        OnMovedTile?.Invoke(transform.position);
+
+        stepCount++;
+        if(stepCount >= 256){
+            stepCount = 0;
+            GetComponent<PokemonParty>().Pokemons.ForEach(p => p.IncreaseFriendship(1));
+        }
+
         IPlayerTriggerable triggerable = null;
         foreach(var collider in colliders) {
             triggerable = collider.GetComponent<IPlayerTriggerable>();

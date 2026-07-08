@@ -12,6 +12,7 @@ public class SpriteAnimator{
 
     public bool IsDone { get; private set; } = false;
     public List<Sprite> Frames { get { return frames; } }
+    public int CurrentFrameIndex => currentFrame;
 
     public SpriteAnimator(List<Sprite> frames, SpriteRenderer spriteRenderer, float frameRate = 0.1f, bool isLooping = true){
         this.spriteRenderer = spriteRenderer;

@@ -71,7 +71,7 @@ public class ShopSellingState : State<GameController>{
                                                     choices: new List<string> { "Ok", "No, thanks" },
                                                     onChoiceSelected: (choiceIndex) => selectedChoice = choiceIndex);
         if(selectedChoice == 0){
-            inventory.RemoveItem(item);
+            inventory.RemoveItem(item, countToSell);
             Wallet.i.AddMoney(sellingPrice);
             yield return DialogManager.i.ShowDialogText($"You sold {item.Name} for ${sellingPrice}");
         }

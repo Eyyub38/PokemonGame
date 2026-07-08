@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public interface IPlayerTriggerable{
     bool TriggerRepeatedly {get;}

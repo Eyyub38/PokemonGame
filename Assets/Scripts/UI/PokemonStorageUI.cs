@@ -49,7 +49,8 @@ public class PokemonStorageUI : SelectionUI<ImageSlot>{
         movingPokemonImage.gameObject.SetActive(false);
     }
 
-    void Start(){
+    protected override void Start(){
+        base.Start();
         SetItems(boxSlots);
         SetSelectionSettings(SelectionType.Grid, totalColumns);
 

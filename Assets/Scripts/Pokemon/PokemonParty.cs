@@ -27,9 +27,25 @@ public class PokemonParty : MonoBehaviour{
         }
         return healthyPokemons.FirstOrDefault();
     }
+
+    public Pokemon GetVitalReadyPokemon(PokemonVitalProfileDefinition vitalProfile = null, List<Pokemon> doNotInclude = null){
+        var readyPokemons = GetVitalReadyPokemons(0, vitalProfile);
+        if(doNotInclude != null){
+            readyPokemons = readyPokemons.Where(p => !doNotInclude.Contains(p)).ToList();
+        }
+        return readyPokemons.FirstOrDefault();
+    }
     
     public List<Pokemon> GetHealthyPokemons(int unitCount){
         return pokemons.Where( x => x.HP > 0).Take(unitCount).ToList();
+    }
+
+    public List<Pokemon> GetVitalReadyPokemons(int unitCount, PokemonVitalProfileDefinition vitalProfile = null){
+        var readyPokemons = pokemons
+            .Where(p => p != null && p.HP > 0 && p.IsVitallyUsable(vitalProfile, out _))
+            .ToList();
+
+        return unitCount > 0 ? readyPokemons.Take(unitCount).ToList() : readyPokemons;
     }
 
     public void AddPokemon(Pokemon newPokemon){
@@ -42,11 +58,11 @@ public class PokemonParty : MonoBehaviour{
     }
 
     public static PokemonParty GetPlayerParty(){
-        return FindFirstObjectByType<PlayerController>().GetComponent<PokemonParty>();
+        return FindAnyObjectByType<PlayerController>().GetComponent<PokemonParty>();
     }
 
     public bool CheckForEvolutions(){
-        return pokemons.Any( p => p.CheckForEvolution() != null);
+        return pokemons.Any(p => p.CheckForEvolution() != null || p.CheckForEvolutionDefinition(PlayerController.i, PokemonEvolutionTriggerKind.LevelUp) != null);
     }
 
     public IEnumerator RunEvolution(){
@@ -54,11 +70,17 @@ public class PokemonParty : MonoBehaviour{
             var evolution = pokemon.CheckForEvolution();
             if(evolution != null && evolution.RequiredItem == null){
                 yield return EvolutionState.i.Evolve(pokemon, evolution);
+                continue;
+            }
+
+            var definition = pokemon.CheckForEvolutionDefinition(PlayerController.i, PokemonEvolutionTriggerKind.LevelUp);
+            if(definition != null && definition.RequiredItem == null){
+                yield return EvolutionState.i.Evolve(pokemon, definition, PokemonEvolutionTriggerKind.LevelUp);
             }
         }
     }
 
-    public void PartyUptaded(){
+    public void PartyUpdated(){
         OnUpdated?.Invoke();
     }
 }

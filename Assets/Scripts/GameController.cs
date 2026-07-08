@@ -6,7 +6,7 @@ using GDEUtills.StateMachine;
 using System.Collections.Generic;
 
 public class GameController : MonoBehaviour{
-    [Header("Referances")]
+    [Header("References")]
     [SerializeField] PlayerController playerController;
     [SerializeField] BattleSystem battleSystem;
     [SerializeField] Camera worldCamera;
@@ -38,8 +38,6 @@ public class GameController : MonoBehaviour{
         i = this;
 
         inputMaps = GetComponent<InputMapController>();
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
 
         PokemonDB.Init();
         MoveDB.Init();
@@ -55,25 +53,44 @@ public class GameController : MonoBehaviour{
 
     void Start(){
         StateMachine = new StateMachine<GameController>(this);
-        StateMachine.ChangeState(PauseState.i);
+        StateMachine.ChangeState(FreeRoamState.i);
+        PlayerActivityContext.ClearAll();
+
+        if(playerController != null) {
+            var installer = playerController.GetComponent<PlayerSystemsInstaller>() ?? playerController.gameObject.AddComponent<PlayerSystemsInstaller>();
+            installer.Install();
+        }
 
         battleSystem.OnBattleOver += EndBattle;
         partyScreen.Init();
         DialogManager.i.OnShowDialog += () => { 
-            inputMaps.EnableUI();
-            StateMachine.Push(DialogState.i);
+            EnterDialogState();
         };
         DialogManager.i.OnDialogFinished += () =>{
-            StateMachine.Pop();
-            if(StateMachine.CurrentState is FreeRoamState) {
-                inputMaps.EnablePlayer();
-            } else {
-                inputMaps.EnableUI();
-            }
-            if (StateMachine.CurrentState == null) {
-                Debug.LogWarning("No current state after pop.");
-            }
+            ExitDialogState();
         };
+
+        if(SpeechBubbleDialogManager.i != null) {
+            SpeechBubbleDialogManager.i.OnDialogStarted += EnterDialogState;
+            SpeechBubbleDialogManager.i.OnDialogFinished += ExitDialogState;
+        }
+    }
+
+    void EnterDialogState() {
+        inputMaps.EnableUI();
+        StateMachine.Push(DialogState.i);
+    }
+
+    void ExitDialogState() {
+        StateMachine.Pop();
+        if(StateMachine.CurrentState is FreeRoamState) {
+            inputMaps.EnablePlayer();
+        } else {
+            inputMaps.EnableUI();
+        }
+        if (StateMachine.CurrentState == null) {
+            Debug.LogWarning("No current state after pop.");
+        }
     }
 
     public void OnEnterTrainersView(TrainerController trainer){
@@ -81,6 +98,11 @@ public class GameController : MonoBehaviour{
     }
 
     void EndBattle(bool won){
+        if(won == true && playerController != null){
+            int battleXp = trainer != null ? 80 + trainer.BattleUnitCount * 40 : 35;
+            playerController.GetComponent<PlayerProgression>()?.AddExperience(battleXp, PlayerExperienceSource.Battle);
+        }
+
         if(trainer != null && won == true){
             trainer.BattleLost();
             trainer = null;
@@ -101,11 +123,26 @@ public class GameController : MonoBehaviour{
 
     public void StartBattle(BattleTrigger trigger){
         BattleState.i.trigger = trigger;
+        BattleState.i.WildPokemonOverride = null;
+        StateMachine.Push(BattleState.i);
+    }
+
+    public void StartWildBattle(Pokemon wildPokemon, BattleTrigger trigger = BattleTrigger.LongGrass){
+        if(wildPokemon == null){
+            Debug.LogWarning("GameController.StartWildBattle called with null Pokemon.");
+            return;
+        }
+
+        BattleState.i.trigger = trigger;
+        BattleState.i.trainer = null;
+        BattleState.i.WildPokemonOverride = wildPokemon;
         StateMachine.Push(BattleState.i);
     }
 
     public void StartTrainerBattle(TrainerController trainer){
+        this.trainer = trainer;
         BattleState.i.trainer = trainer;
+        BattleState.i.WildPokemonOverride = null;
         StateMachine.Push(BattleState.i);
     }
 
@@ -124,7 +161,7 @@ public class GameController : MonoBehaviour{
 
     public IEnumerator MoveCamera(Vector2 moveOffset, bool waitForFadeOut = false){
         yield return Fader.i.FadeIn(0.5f);
-        worldCamera.transform.position +=new Vector3(moveOffset.x, moveOffset.y);
+        worldCamera.transform.position += new Vector3(moveOffset.x, moveOffset.y);
 
         if(waitForFadeOut){
             yield return Fader.i.FadeOut(0.5f);
@@ -133,19 +170,17 @@ public class GameController : MonoBehaviour{
         }
     }
 
-    private void OnGUI(){
-        var style = new GUIStyle();
-        style.fontSize = 72;
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+    // Cached style — created once to avoid per-frame heap allocations from new GUIStyle().
+    static readonly GUIStyle debugLabelStyle = new GUIStyle { fontSize = 72 };
 
-        GUILayout.Label("State Stack", style);
+    private void OnGUI(){
+        GUILayout.Label("State Stack", debugLabelStyle);
         if(StateMachine?.StateStack != null){
-        foreach(var state in StateMachine.StateStack){
-                if(state != null){
-            GUILayout.Label(state.GetType().ToString(), style);
-                } else {
-                    GUILayout.Label("null", style);
-                }
+            foreach(var state in StateMachine.StateStack){
+                GUILayout.Label(state != null ? state.GetType().ToString() : "null", debugLabelStyle);
             }
         }
-    }  
+    }
+#endif
 }

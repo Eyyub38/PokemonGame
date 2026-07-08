@@ -21,12 +21,18 @@ public class MoveSelectionState : State<BattleSystem>{
     public override void Enter(BattleSystem owner){
         battleSystem = owner;
 
-        if (Moves.Where(m => m.PP > 0).Count() == 0){
-            battleSystem.StateMachine.ChangeState(RunTurnState.i);
+        var pokemon = battleSystem.UnitInSelection.Pokemon;
+
+        if (!Moves.Any(move => pokemon.CanUseMove(move, battleSystem.ActiveVitalProfile))){
+            battleSystem.AddBattleAction(new BattleAction(){
+                Type = BattleActionType.Move,
+                SelectedMove = new Move(GlobalSettings.i.BackUpMove),
+                Target = battleSystem.EnemyUnits[0]
+            });
             return;
         }
 
-        moveSelectionUI.SetMoves(Moves);
+        moveSelectionUI.SetMoves(Moves, pokemon, battleSystem.ActiveVitalProfile);
 
         moveSelectionUI.gameObject.SetActive(true);
         moveSelectionUI.OnSelected += OnMoveSelected;
@@ -70,8 +76,7 @@ public class MoveSelectionState : State<BattleSystem>{
 
     private void OnBack(){
         if(battleSystem?.StateMachine != null){
-        battleSystem.StateMachine.Pop();
-            ActionSelectionState.i.ActionSelectionUI.gameObject.SetActive(true);
+            battleSystem.StateMachine.ChangeState(ActionSelectionState.i);
         }
     }
 }

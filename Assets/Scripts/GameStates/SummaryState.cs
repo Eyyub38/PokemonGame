@@ -19,7 +19,7 @@ public class SummaryState : State<GameController>{
     public int SelectedPokemonIndex { get; set; }
     public static SummaryState i { get; private set; }
 
-    bool CanNav() => navTimer <= 10f;
+    bool CanNav() => navTimer <= 0f;
     void TickNavTimer() => navTimer = Mathf.Max(0f, navTimer - Time.deltaTime);
     void ResetNavTimer() => navTimer = 1f / navSpeed;
 
@@ -56,6 +56,7 @@ public class SummaryState : State<GameController>{
                 selectedPage = 1 - selectedPage;
                 if(selectedPage != prevPage) {
                     summaryScreenUI.ShowPage(selectedPage);
+                    ResetNavTimer();
                 }
             }
 
@@ -78,15 +79,18 @@ public class SummaryState : State<GameController>{
                 if(!summaryScreenUI.InMoveSelection) {
                     SelectedPokemonIndex = (SelectedPokemonIndex + 1) % playerParty.Count;
                     Refresh();
-                } else if(input.UpPressedThisFrame) {
-                    if(!summaryScreenUI.InMoveSelection) {
-                        SelectedPokemonIndex = (SelectedPokemonIndex + 1 + playerParty.Count) % playerParty.Count;
-                        Refresh();
-                    }
-
-                    summaryScreenUI.HandleUpdate();
+                    ResetNavTimer();
+                }
+            } else if(input.UpPressedThisFrame) {
+                if(!summaryScreenUI.InMoveSelection) {
+                    SelectedPokemonIndex = (SelectedPokemonIndex - 1 + playerParty.Count) % playerParty.Count;
+                    Refresh();
+                    ResetNavTimer();
                 }
             }
+
+            if (summaryScreenUI.InMoveSelection)
+                summaryScreenUI.HandleUpdate();
         }
     }
 

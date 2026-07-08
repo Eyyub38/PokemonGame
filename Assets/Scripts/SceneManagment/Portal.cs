@@ -25,18 +25,29 @@ public class Portal : MonoBehaviour, IPlayerTriggerable{
     }
 
     void Start(){
-        fader = FindFirstObjectByType<Fader>();
+        fader = FindAnyObjectByType<Fader>();
     }
 
     IEnumerator SwitchScene(){
+        if (sceneToLoad < 0) {
+            Debug.LogError("Portal: sceneToLoad not set!");
+            yield break;
+        }
+
         DontDestroyOnLoad(gameObject);
         GameController.i.PauseGame(true);
         yield return fader.FadeIn(0.5f);
 
         yield return SceneManager.LoadSceneAsync(sceneToLoad);
 
-        var destPortal = FindObjectsByType<Portal>(FindObjectsSortMode.None).First( x => x != this && x.destinationPortal == this.destinationPortal);
-        player.Character.SetPositionAndSnapToTile(destPortal.SpawnPoint.position);
+        var destPortal = FindObjectsByType<Portal>().FirstOrDefault( x => x != this && x.destinationPortal == this.destinationPortal);
+        
+        if (destPortal != null) {
+            player.Character.SetPositionAndSnapToTile(destPortal.SpawnPoint.position);
+        } else {
+            Debug.LogError($"Portal: Destination portal {destinationPortal} not found in scene {sceneToLoad}");
+        }
+
         yield return fader.FadeOut(0.5f);
 
         GameController.i.PauseGame(false);

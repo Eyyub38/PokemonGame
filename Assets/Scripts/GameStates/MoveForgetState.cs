@@ -53,7 +53,7 @@ public class MoveForgetState : State<GameController>{
     }
     
     private void OnBack(){
-        Selection = -1;
+        Selection = PokemonBase.MaxNumberOfMoves;
         gameController.StateMachine.Pop();
     }
 }

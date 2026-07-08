@@ -6,10 +6,10 @@ public class EssentialObjectsSpawner : MonoBehaviour{
     [SerializeField] GameObject essentialObjectsPrefab;
 
     void Awake(){
-        var existingObject = FindObjectsByType<EssentialObjects>(FindObjectsSortMode.None);
+        var existingObject = FindObjectsByType<EssentialObjects>();
         if(existingObject.Length == 0){
             var spawnPos = new Vector3(0, 0, 0);
-            var grid = FindFirstObjectByType<Grid>();
+            var grid = FindAnyObjectByType<Grid>();
 
             if(grid != null){
                 spawnPos = grid.transform.position;

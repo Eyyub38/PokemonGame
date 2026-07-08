@@ -19,26 +19,26 @@ public class MapArea : MonoBehaviour{
     public WeatherConditionID Weather => weather;
 
     private void OnValidate(){
-        CalculateCahncePercentage();
+        CalculateChancePercentage();
     }
 
     private void Start(){
-        CalculateCahncePercentage();
+        CalculateChancePercentage();
     }
 
     Gender SetPokemonGender(PokemonBase pokemon){
         if(pokemon.IsGenderless){
             return Gender.Genderless;
         } else {
-            return (Random.Range(1, 101)) < (pokemon.MaleRatio * 100) ? Gender.Male : Gender.Female;
+            return (Random.value < pokemon.MaleRatio) ? Gender.Male : Gender.Female;
         }
     }
 
-    void CalculateCahncePercentage(){
-        totalChance = -1;
-        totalChanceWater = -1;
+    void CalculateChancePercentage(){
+        totalChance = 0;
+        totalChanceWater = 0;
 
-        if(wildPokemons.Count > 0){
+        if(wildPokemons != null && wildPokemons.Count > 0){
             foreach(var record in wildPokemons){
                 record.chanceLower = totalChance;
                 record.chanceUpper = totalChance + record.chancePercentage;
@@ -47,7 +47,7 @@ public class MapArea : MonoBehaviour{
             }
         }
         
-        if(wildPokemonsInWater.Count > 0){
+        if(wildPokemonsInWater != null && wildPokemonsInWater.Count > 0){
             foreach(var record in wildPokemonsInWater){
                 record.chanceLower = totalChanceWater;
                 record.chanceUpper = totalChanceWater + record.chancePercentage;
@@ -59,14 +59,23 @@ public class MapArea : MonoBehaviour{
 
     public Pokemon GetRandomWildPokemon(BattleTrigger trigger){
         var pokemonList = (trigger == BattleTrigger.LongGrass) ? wildPokemons : wildPokemonsInWater;
-        int randVal = Random.Range(1, 101);
-        var pokemonRecord = pokemonList.First( p => randVal >= p.chanceLower && randVal <= p.chanceUpper);
+        int maxChance = (trigger == BattleTrigger.LongGrass) ? totalChance : totalChanceWater;
+        if(pokemonList == null || pokemonList.Count == 0 || maxChance <= 0){
+            Debug.LogError($"MapArea: No wild Pokemon configured for {trigger} in {name}.");
+            return null;
+        }
 
-        var levelRange =pokemonRecord.levelRange;
+        int randVal = Random.Range(0, maxChance);
+        var pokemonRecord = pokemonList.FirstOrDefault( p => randVal >= p.chanceLower && randVal < p.chanceUpper);
+        if(pokemonRecord == null || pokemonRecord.pokemon == null){
+            Debug.LogError($"MapArea: Encounter table for {trigger} in {name} has invalid chance ranges or Pokemon entries.");
+            return null;
+        }
+
+        var levelRange = pokemonRecord.levelRange;
         int level = (int)((levelRange.y == 0) ? levelRange.x : Random.Range(levelRange.x, levelRange.y + 1));
 
         var wildPokemon = new Pokemon(pokemonRecord.pokemon, level);
-        wildPokemon.Init();
         wildPokemon.Gender = SetPokemonGender(wildPokemon.Base);
         return wildPokemon;
     }

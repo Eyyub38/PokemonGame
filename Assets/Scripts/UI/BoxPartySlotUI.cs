@@ -15,7 +15,7 @@ public class BoxPartySlotUI : MonoBehaviour{
     [SerializeField] Sprite genderlessIcon;
 
     public void SetData(Pokemon pokemon){
-        nameText.text = pokemon.Base.name;
+        nameText.text = pokemon.Base.Name;
         levelText.text = "Lvl " + pokemon.Level;
 
         pokemonIcon.color = new Color(255, 255, 255, 100);

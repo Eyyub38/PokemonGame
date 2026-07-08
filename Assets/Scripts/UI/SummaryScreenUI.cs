@@ -102,7 +102,8 @@ public class SummaryScreenUI : SelectionUI<TextSlot>{
         };
     }
 
-    void Start(){
+    protected override void Start(){
+        base.Start();
         moveSlots = moveNames.Select(n => n.GetComponent<TextSlot>()).ToList();
         descriptionText.text = "";
         categoryText.text = "";
@@ -132,7 +133,7 @@ public class SummaryScreenUI : SelectionUI<TextSlot>{
     }
 
     public void SetSkills(){
-        hpText.text = $"{pokemon.HP} / {pokemon.Base.MaxHp}";
+        hpText.text = $"{pokemon.HP} / {pokemon.MaxHp}";
         attackText.text = "" + pokemon.Attack;
         defenseText.text = "" + pokemon.Defense;
         spAttackText.text = "" + pokemon.SpAttack;

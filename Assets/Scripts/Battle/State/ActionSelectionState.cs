@@ -39,16 +39,36 @@ public class ActionSelectionState : State<BattleSystem>{
             battleSystem.StateMachine.ChangeState(MoveSelectionState.i);
 
         } else if(selectedAction == 1){
+            if(!battleSystem.CanSwitchByRule(true, out var failureMessage)){
+                StartCoroutine(ShowRuleBlocked(failureMessage));
+                return;
+            }
+
             StartCoroutine(GoToPartyState());
 
         } else if(selectedAction == 2){
+            if(!battleSystem.CanUseBattleItem(true, null, out var failureMessage)){
+                StartCoroutine(ShowRuleBlocked(failureMessage));
+                return;
+            }
+
             StartCoroutine(GoToInventoryState());
 
         } else if(selectedAction == 3){
+            if(!battleSystem.CanRunByRule(out var failureMessage)){
+                StartCoroutine(ShowRuleBlocked(failureMessage));
+                return;
+            }
+
             battleSystem.AddBattleAction(new BattleAction(){
                 Type = BattleActionType.Run
             });
         }
+    }
+
+    IEnumerator ShowRuleBlocked(string message){
+        yield return battleSystem.DialogBox.TypeDialog(string.IsNullOrWhiteSpace(message) ? "That action is blocked by the current battle rules." : message);
+        battleSystem.StateMachine.ChangeState(ActionSelectionState.i);
     }
 
     IEnumerator GoToPartyState(){
@@ -71,7 +91,8 @@ public class ActionSelectionState : State<BattleSystem>{
         if(selectedItem != null){
             battleSystem.AddBattleAction(new BattleAction(){
                 Type = BattleActionType.UseItem,
-                SelectedItem = selectedItem
+                SelectedItem = selectedItem,
+                SelectedPokemon = PartyState.i.SelectedPokemon
             });
         }
     }

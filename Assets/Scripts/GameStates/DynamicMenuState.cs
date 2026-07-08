@@ -46,8 +46,9 @@ public class DynamicMenuState : State<GameController>{
             dynamicMenuUI = BattleSystem.DynamicMenuUI;
         }
 
+        dynamicMenuUI.ClearItems();
         foreach(Transform child in dynamicMenuUI.transform){
-            Destroy(child.gameObject);
+             Destroy(child.gameObject);
         }
 
         var itemTextSlots = new List<TextSlot>();

@@ -62,7 +62,7 @@ public class TargetSelectionState : State<BattleSystem> {
         Vector2 navVector =  navigate.ReadValue<Vector2>();
         navVector.x = Mathf.RoundToInt(navVector.x);
 
-        if(navTimer == 0 && Mathf.Abs(navVector.x) < 0.2f) {
+        if(navTimer == 0 && Mathf.Abs(navVector.x) > 0.2f) {
             selectedTarget += (int)Mathf.Sign(navVector.x);
             navTimer = 1 / navSpeed;
         }

@@ -14,7 +14,7 @@ public class PokemonGiver : MonoBehaviour, ISavable{
         player.GetComponent<PokemonParty>().AddPokemon(pokemonToGive);
         used = true;
         AudioManager.i.PlaySfx(AudioId.PokemonObtained, pauseMusic: true);
-        yield return DialogManager.i.ShowDialogText($"{player.name} received {pokemonToGive.Base.name}");
+        yield return DialogManager.i.ShowDialogText($"{player.Name} received {pokemonToGive.Base.Name}");
     } 
 
     public bool CanBeGiven(){

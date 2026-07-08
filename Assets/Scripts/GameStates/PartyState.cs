@@ -92,6 +92,10 @@ public class PartyState : State<GameController>{
                         partyScreen.SetMessageText($"{SelectedPokemon.Base.Name} is fainted. You cannot send out to battle.");
                         yield break;
                     }
+                    if(!SelectedPokemon.IsVitallyUsable(null, out var vitalBlockReason)){
+                        partyScreen.SetMessageText(GetVitalBlockMessage(SelectedPokemon, vitalBlockReason));
+                        yield break;
+                    }
                     if(battleSystem.PlayerUnits.Any(p => p.Pokemon == SelectedPokemon)){
                         partyScreen.SetMessageText($"{SelectedPokemon.Base.Name} is already in battle.");
                         yield break;
@@ -122,7 +126,7 @@ public class PartyState : State<GameController>{
                 
                 playerParty.Pokemons[selectedIndexForSwitching] = playerParty.Pokemons[selectedPokemonIndex];
                 playerParty.Pokemons[selectedPokemonIndex] = tmpPokemon;
-                playerParty.PartyUptaded();
+                playerParty.PartyUpdated();
 
                 yield break;
             }
@@ -162,5 +166,19 @@ public class PartyState : State<GameController>{
         } else {
             gameController.StateMachine.Pop();
         }
+    }
+
+    string GetVitalBlockMessage(Pokemon pokemon, PokemonVitalBlockReason reason) {
+        if(pokemon == null) {
+            return "This Pokemon cannot battle right now.";
+        }
+
+        return reason switch {
+            PokemonVitalBlockReason.CoreHealthDepleted => $"{pokemon.Base.Name} needs deeper treatment before battling.",
+            PokemonVitalBlockReason.CoreStaminaDepleted => $"{pokemon.Base.Name} needs rest or food before battling.",
+            PokemonVitalBlockReason.BattlePhysicalStaminaDepleted => $"{pokemon.Base.Name} is physically exhausted.",
+            PokemonVitalBlockReason.BattleElementalStaminaDepleted => $"{pokemon.Base.Name} is elementally exhausted.",
+            _ => $"{pokemon.Base.Name} cannot battle right now."
+        };
     }
 }

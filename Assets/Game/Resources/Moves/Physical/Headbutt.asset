@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ef9f53284bbc2445b03e93459fa2577, type: 3}
+  m_Name: Headbutt
+  m_EditorClassIdentifier: Assembly-CSharp::MoveBase
+  _name: Headbutt
+  description: "Inflige des d\xE9gats r\xE9guliers.  A une chance d'apeurer la cible."
+  soundEffect: {fileID: 0}
+  flags: 
+  type: 1
+  power: 70
+  accuracy: 100
+  alwaysHits: 0
+  pp: 15
+  priority: 0
+  category: 0
+  effects:
+    boosts: []
+    status: 0
+    volatileStatus: 0
+    weatherStatus: 0
+    terrainStatus: 0
+    stealthRock: 0
+    spikes: 0
+    focusEnergy: 0
+    reflect: 0
+    lightScreen: 0
+    auroraVeil: 0
+    protect: 0
+    flinch: 0
+    taunt: 0
+    tauntTurns: 3
+    disable: 0
+    disableTurns: 4
+    encore: 0
+    encoreTurns: 3
+    clearUserStatBoosts: 0
+    clearTargetStatBoosts: 0
+    healingPercentage: 0
+  target: 0
+  secondaries: []
+  recoil:
+    recoilType: 0
+    recoilDamage: 0
+  drainingPercentage: 0
+  vitalProfile: {fileID: 0}
+  battlePhysicalStaminaCost: 0
+  battlePhysicalStaminaCostPercent: 0
+  battleElementalStaminaCost: 0
+  battleElementalStaminaCostPercent: 0
+  canDamageCoreHealth: 0
+  forceCoreHealthDamage: 0
+  flatCoreHealthDamage: 0
+  extraCoreHealthDamagePercent: 0
+  critBehaviour: 0
+  oneHitKoMoveEffect:
+    isOneHitKnockOut: 0
+    lowerOddsException: 0
+    immunityType: 0
+  isMultiHitMove: 0
+  hitRange: {x: 2, y: 0}
+  movePowerBasedOn: 0

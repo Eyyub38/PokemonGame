@@ -40,22 +40,32 @@ public class UseItemState : State<GameController>{
                 if(evolution != null){
                     yield return EvolutionState.i.Evolve(pokemon, evolution);
                 } else {
-                    yield return DialogManager.i.ShowDialogText($"{pokemon.Base.Name} can't evolve with {item.Name}");
-                    gameController.StateMachine.Pop();
-                    yield break;
+                    var evolutionDefinition = pokemon.CheckForEvolutionDefinition(item, PlayerController.i);
+                    if(evolutionDefinition != null){
+                        yield return EvolutionState.i.Evolve(pokemon, evolutionDefinition, PokemonEvolutionTriggerKind.ItemUse);
+                    } else {
+                        yield return DialogManager.i.ShowDialogText($"{pokemon.Base.Name} can't evolve with {item.Name}");
+                        gameController.StateMachine.Pop();
+                        yield break;
+                    }
                 }
             }
 
-            var usedItem = inventory.UseItem(item, partyScreen.SelectedMember);
-            if(usedItem != null){
-                ItemUsed = true;
-                if(usedItem is RecoveryItem){
-                    yield return DialogManager.i.ShowDialogText($"You use {usedItem.Name}!");
+            if (gameController.StateMachine.GetPrevState() != PartyState.i || PartyState.i.BattleSystem == null) {
+                var usedItem = inventory.UseItem(item, partyScreen.SelectedMember);
+                if(usedItem != null){
+                    ItemUsed = true;
+                    if(usedItem is RecoveryItem){
+                        yield return DialogManager.i.ShowDialogText($"You use {usedItem.Name}!");
+                    }
+                } else {
+                    if(inventoryUI.SelectedCategory == (int)ItemCategory.Recovery){
+                        yield return DialogManager.i.ShowDialogText($"It won't have any effect.");
+                    }
                 }
             } else {
-                if(inventoryUI.SelectedCategory == (int)ItemCategory.Recovery){
-                    yield return DialogManager.i.ShowDialogText($"It won't have any effect.");
-                }
+                // In Battle
+                ItemUsed = true;
             }
         }
         gameController.StateMachine.Pop();
@@ -101,7 +111,7 @@ public class UseItemState : State<GameController>{
                 var selectedMove = pokemon.Moves[ moveIndex ].Base;
                 yield return DialogManager.i.ShowDialogText($"{pokemon.Base.Name} forgot {selectedMove.Name} and learned {tmItem.Move.Name}");
 
-                pokemon.Moves[ moveIndex ] = new Move(tmItem.Move);
+                pokemon.SetActiveMove(moveIndex, tmItem.Move, PokemonTechniqueLearnSource.TM, tmItem.name, tmItem.Name);
             }
         }
     }

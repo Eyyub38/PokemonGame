@@ -12,7 +12,7 @@ public class PokemonStorageBoxes : MonoBehaviour, ISavable{
     public int NumberOfSlotsPerBox => numberOfSlotsPerBox;
 
     public static PokemonStorageBoxes GetPlayersStorageBoxes(){
-        return FindFirstObjectByType<PlayerController>().GetComponent<PokemonStorageBoxes>();
+        return FindAnyObjectByType<PlayerController>().GetComponent<PokemonStorageBoxes>();
     }
 
     public void AddPokemon(Pokemon pokemon, int boxIndex, int slotIndex){

@@ -101,7 +101,7 @@ public class TimeSystem : MonoBehaviour{
             return DayPeriod.Afternoon;
         } else if(Hour < 19){
             if(UnityEngine.Random.Range(0, 250) < 25){
-                evolutionTime = GeneralDayPeriod.Emerald;
+                evolutionTime = GeneralDayPeriod.Evening;
             } else {
                 evolutionTime = GeneralDayPeriod.Night;
             }

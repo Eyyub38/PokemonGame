@@ -1,8 +1,10 @@
-﻿using System;
-using UnityEditor;
+using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 [ExecuteAlways]
 public class SavableEntity : MonoBehaviour{
@@ -32,9 +34,21 @@ public class SavableEntity : MonoBehaviour{
     }
 
 #if UNITY_EDITOR
-    private void Update(){
+    private void OnValidate(){
+        // OnValidate is only called on inspector change, not every frame.
+        // This replaces the per-frame Update() approach, which was expensive
+        // in scenes with many SavableEntity instances.
         if (Application.IsPlaying(gameObject)) return;
+        if (String.IsNullOrEmpty(gameObject.scene.path)) return;
 
+        // Defer to avoid "SendMessage cannot be called during Awake/OnEnable" issues.
+        EditorApplication.delayCall += EnsureUniqueId;
+    }
+
+    void EnsureUniqueId(){
+        // Guard: component may have been destroyed before the deferred call fires.
+        if(this == null) return;
+        if (Application.IsPlaying(gameObject)) return;
         if (String.IsNullOrEmpty(gameObject.scene.path)) return;
 
         SerializedObject serializedObject = new SerializedObject(this);

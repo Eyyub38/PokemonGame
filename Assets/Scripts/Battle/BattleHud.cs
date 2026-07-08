@@ -81,6 +81,10 @@ public class BattleHud : MonoBehaviour{
         }
     }
 
+    private void OnDestroy() {
+        ClearData();
+    }
+
     void SetStatusImage(){
         if(_pokemon.Status == null){
             statusImage.gameObject.SetActive(false);

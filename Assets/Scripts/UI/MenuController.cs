@@ -7,7 +7,8 @@ using System.Collections.Generic;
 using GDEUtills.GenerciSelectionUI;
 
 public class MenuController : SelectionUI<TextSlot>{
-    void Start(){
+    protected override void Start(){
+        base.Start();
         SetItems(GetComponentsInChildren<TextSlot>().ToList());
     }
 }

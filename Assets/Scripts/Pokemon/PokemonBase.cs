@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public enum GeneralDayPeriod { None, Day, Emerald, Night}
+public enum GeneralDayPeriod { None, Day, Evening, Night}
 public enum GrowthRate{ Fluctuating ,Slow, MediumSlow, MediumFast, Fast, Erratic}
 public enum Stat{ Attack, Defense , SpAttack, SpDefense, Speed, Accuracy, Evasion, HitPoints}
 public enum PokemonType{ None, Normal, Fire, Water, Grass, Electric, Ice, Fighting, Poison, Ground, Flying, Psychic, Bug, Rock, Ghost, Dragon, Dark, Steel, Fairy}
@@ -30,8 +30,18 @@ public class PokemonBase : ScriptableObject{
     [SerializeField] Sprite femaleFrontSprite;
     [SerializeField] float maleRatio = 0.5f;
 
+    [Header("Shiny Sprites")]
+    [SerializeField] Sprite shinyFrontSprite;
+    [SerializeField] Sprite shinyBackSprite;
+    [SerializeField] Sprite shinyFemaleFrontSprite;
+    [SerializeField] Sprite shinyFemaleBackSprite;
+    [SerializeField] Sprite shinyIconSprite;
+
     [Header("Surf Sprites")]
     [SerializeField] List<Sprite> surfSprites;
+
+    [Header("Encounter Locations")]
+    [SerializeField] List<string> encounterLocations;
 
     [Header("Types")]
     [SerializeField] PokemonType type1;
@@ -74,11 +84,17 @@ public class PokemonBase : ScriptableObject{
     public Sprite IconSprite{ get{return iconSprite;}}
     public Sprite FemaleFrontSprite { get{return femaleFrontSprite;}}
     public Sprite FemaleBackSprite { get{return femaleBackSprite;}}
+    public Sprite ShinyFrontSprite { get{return shinyFrontSprite;}}
+    public Sprite ShinyBackSprite { get{return shinyBackSprite;}}
+    public Sprite ShinyFemaleFrontSprite { get{return shinyFemaleFrontSprite;}}
+    public Sprite ShinyFemaleBackSprite { get{return shinyFemaleBackSprite;}}
+    public Sprite ShinyIconSprite { get{return shinyIconSprite;}}
     public bool HasGenderDifferences { get{return hasGenderDifferences;}}
     public bool IsGenderless { get{return isGenderless;}}
     public float MaleRatio { get{return maleRatio;}}
     public float BaseWeight { get{return baseWeight;}}
     public float BaseHeight { get{return baseHeight;}}
+    public List<string> EncounterLocations => encounterLocations;
     public List<Sprite> SurfSprites { get{return surfSprites;}}
     public PokemonType Type1{ get{return type1;}}
     public PokemonType Type2{ get{return type2;}}

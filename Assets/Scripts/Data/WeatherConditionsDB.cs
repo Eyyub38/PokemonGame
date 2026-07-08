@@ -29,8 +29,52 @@ public class WeatherConditionsDB{
                         return;
                     }
                     pokemon.DecreaseHP(Mathf.CeilToInt(pokemon.MaxHp / 16f));
-                    pokemon.AddStatusEvet(StatusEventType.Damage, $"{pokemon.Base.name} was buffeted by the sandstorm");
+                    pokemon.AddStatusEvent(StatusEventType.Damage, $"{pokemon.Base.Name} was buffeted by the sandstorm");
                 }
+            }
+        },
+        { WeatherConditionID.Snowy,
+            new WeatherCondition(){
+                Name = "Snowy",
+                StartMessage = "It's snowing",
+                StartByMoveMessage = "It started to snow",
+                EffectMessage = "The snow continues to fall",
+                EndMessage = "The snow stopped",
+                OnWeatherEffect = (Pokemon pokemon) => {
+                    if(pokemon.HasType(PokemonType.Ice)){
+                        return;
+                    }
+
+                    pokemon.DecreaseHP(Mathf.CeilToInt(pokemon.MaxHp / 16f));
+                    pokemon.AddStatusEvent(StatusEventType.Damage, $"{pokemon.Base.Name} was buffeted by the snow");
+                }
+            }
+        },
+        { WeatherConditionID.Foggy,
+            new WeatherCondition(){
+                Name = "Foggy",
+                StartMessage = "The fog is deep",
+                StartByMoveMessage = "Fog is brewed",
+                EffectMessage = "The fog is deep",
+                EndMessage = "The fog subsided",
+            }
+        },
+        { WeatherConditionID.Stormy,
+            new WeatherCondition(){
+                Name = "Stormy",
+                StartMessage = "A storm is raging",
+                StartByMoveMessage = "A storm is brewed",
+                EffectMessage = "The storm is raging",
+                EndMessage = "The storm subsided",
+            }
+        },
+        { WeatherConditionID.StrongWind,
+            new WeatherCondition(){
+                Name = "Strong Wind",
+                StartMessage = "The wind is strong",
+                StartByMoveMessage = "A strong wind is brewed",
+                EffectMessage = "The wind is strong",
+                EndMessage = "The strong wind subsided",
             }
         },
         { WeatherConditionID.Hail,
@@ -46,21 +90,21 @@ public class WeatherConditionsDB{
                     }
 
                     pokemon.DecreaseHP(Mathf.CeilToInt(pokemon.MaxHp / 16f));
-                    pokemon.AddStatusEvet(StatusEventType.Damage, $"{pokemon.Base.name} was buffeted by the hail");
+                    pokemon.AddStatusEvent(StatusEventType.Damage, $"{pokemon.Base.Name} was buffeted by the hail");
                 }
             }
         },
         { WeatherConditionID.Rainy,
             new WeatherCondition(){
                 Name = "Rainy",
-                StartMessage = "It's rainig",
+                StartMessage = "It's raining",
                 StartByMoveMessage = "It started to rain",
                 EffectMessage = "The rain continues to fall",
                 EndMessage = "The rain stopped",
-                OnDamageModify = (Move move) =>{
-                    if(move.Base.Type == PokemonType.Water || move.Base.Type == PokemonType.Grass){
+                OnDamageModify = (PokemonType moveType) =>{
+                    if(moveType == PokemonType.Water || moveType == PokemonType.Grass){
                         return 1.5f;
-                    } else if(move.Base.Type == PokemonType.Fire){
+                    } else if(moveType == PokemonType.Fire){
                         return 0.5f;
                     } else {
                         return 1f;
@@ -75,10 +119,10 @@ public class WeatherConditionsDB{
                 StartByMoveMessage = "The sunlight turned harsh",
                 EffectMessage = "The sunlight is harsh",
                 EndMessage = "The sunlight faded",
-                OnDamageModify = (Move move) =>{
-                    if(move.Base.Type == PokemonType.Fire){
+                OnDamageModify = (PokemonType moveType) =>{
+                    if(moveType == PokemonType.Fire){
                         return 1.5f;
-                    } else if(move.Base.Type == PokemonType.Water || move.Base.Type == PokemonType.Ice){
+                    } else if(moveType == PokemonType.Water || moveType == PokemonType.Ice){
                         return 0.5f;
                     } else {
                         return 1f;
@@ -99,5 +143,5 @@ public class WeatherCondition{
     public WeatherConditionID Id { get; set;}
 
     public Action<Pokemon> OnWeatherEffect { get; set;}
-    public Func<Move, float> OnDamageModify { get; set;}
+    public Func<PokemonType, float> OnDamageModify { get; set;}
 }

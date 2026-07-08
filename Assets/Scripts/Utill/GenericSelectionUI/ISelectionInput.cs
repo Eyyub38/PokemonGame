@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public interface ISelectionInput{
         Vector2 Navigate {  get;  }

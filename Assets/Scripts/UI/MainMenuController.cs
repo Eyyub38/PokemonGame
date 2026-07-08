@@ -8,7 +8,8 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuController : SelectionUI<TextSlot> {
     [SerializeField] private SelectionInputFromActions selectionInput;
-    void Start(){
+    protected override void Start(){
+        base.Start();
         var textSlots = GetComponentsInChildren<TextSlot>().ToList();
         
         if(SavingSystem.i.CheckIfSaveExists("saveSlot1")){

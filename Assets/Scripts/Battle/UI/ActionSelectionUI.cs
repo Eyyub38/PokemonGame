@@ -6,7 +6,8 @@ using System.Collections.Generic;
 using GDEUtills.GenerciSelectionUI;
 
 public class ActionSelectionUI : SelectionUI<TextSlot>{
-    void Start(){
+    protected override void Start(){
+        base.Start();
         SetSelectionSettings(SelectionType.Grid, 2);
         SetItems(GetComponentsInChildren<TextSlot>().ToList());
     }

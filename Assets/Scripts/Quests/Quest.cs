@@ -23,7 +23,8 @@ public class Quest{
         yield return DialogManager.i.ShowDialog(Base.StartDialog);
 
         var questList = QuestList.GetQuestList();
-        questList.AddQuest(this);
+        questList.AddOrUpdateQuest(this);
+        PublishStartedEvent(questList);
     }
 
     public IEnumerator CompleteQuest(Transform player){
@@ -32,18 +33,31 @@ public class Quest{
 
         var inventory = Inventory.GetInventory();
         if(Base.RequiredItem != null){
-            inventory.RemoveItem(Base.RequiredItem, Base.RewardItemCount);
+            inventory.RemoveItem(Base.RequiredItem, Base.RequiredItemCount);
         }
         
         if(Base.RewardItem != null){
             inventory.AddItem(Base.RewardItem, Base.RewardItemCount);
 
             string name = player.GetComponent<PlayerController>().Name;
-            yield return DialogManager.i.TypeDialog($"{name} received {Base.RewardItemCount} {Base.RewardItem.Name}{(Base.RewardItemCount > 1 ? "s" : "")} as a reward for completing the quest.");
+            yield return DialogManager.i.ShowDialogText($"{name} received {Base.RewardItemCount} {Base.RewardItem.Name}{(Base.RewardItemCount > 1 ? "s" : "")} as a reward for completing the quest.");
         }
 
+        if(Base.RewardExperience > 0){
+            var progression = player.GetComponent<PlayerProgression>();
+            progression?.AddExperience(Base.RewardExperience, PlayerExperienceSource.Quest);
+        }
+
+        player.GetComponent<PlayerReputation>()?.ApplyChanges(Base.ReputationRewards);
+        player.GetComponent<PlayerRelationships>()?.ApplyChanges(Base.RelationshipRewards);
+        player.GetComponent<PlayerMilestones>()?.CompleteMilestones(Base.MilestonesToComplete);
+        player.GetComponent<PlayerTitles>()?.ApplyGrants(Base.TitleRewards, player);
+        player.GetComponent<PlayerRecipeBook>()?.ApplyGrants(Base.RecipeRewards, player);
+        player.GetComponent<PlayerLifePathLog>()?.ApplyRewards(Base.LifePathRewards, $"quest:{Base.Name}", Base.Name, Base);
+
         var questList = QuestList.GetQuestList();
-        questList.AddQuest(this);
+        questList.AddOrUpdateQuest(this);
+        PublishCompletedEvent(player);
     }
 
     public bool CanBeCompleted(){
@@ -62,6 +76,39 @@ public class Quest{
         status = Status
     };
         return saveData;
+    }
+
+    void PublishStartedEvent(UnityEngine.Object context) {
+        GameEventPublishing.PublishOptional(
+            Base.StartedEvent,
+            $"quest.started.{Base.Name}",
+            $"{Base.Name} started.",
+            GameEventCategory.Quest,
+            GameEventImportance.Info,
+            context,
+            "Quest",
+            GameEventScope.Player,
+            showInFeed: true,
+            writeToDebugLog: false,
+            GameEventPublishing.Value("questName", Base.Name));
+    }
+
+    void PublishCompletedEvent(UnityEngine.Object context) {
+        GameEventPublishing.PublishOptional(
+            Base.CompletedEvent,
+            $"quest.completed.{Base.Name}",
+            $"{Base.Name} completed.",
+            GameEventCategory.Quest,
+            GameEventImportance.Success,
+            context,
+            "Quest",
+            GameEventScope.Player,
+            showInFeed: true,
+            writeToDebugLog: false,
+            GameEventPublishing.Value("questName", Base.Name),
+            GameEventPublishing.Value("experience", Base.RewardExperience),
+            GameEventPublishing.Value("rewardItem", Base.RewardItem != null ? Base.RewardItem.Name : null),
+            GameEventPublishing.Value("rewardItemCount", Base.RewardItemCount));
     }
 }
 

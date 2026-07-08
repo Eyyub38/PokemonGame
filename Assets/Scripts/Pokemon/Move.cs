@@ -27,6 +27,10 @@ public class Move{
     public void IncreasePP(int amount){
         PP = Mathf.Clamp(PP + amount, 0 , Base.PP);
     }
+
+    public void DecreasePP(int amount = 1){
+        PP = Mathf.Clamp(PP - amount, 0 , Base.PP);
+    }
 }
 
 [System.Serializable]

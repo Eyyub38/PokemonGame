@@ -29,7 +29,14 @@ public class LocationPortal : MonoBehaviour, IPlayerTriggerable{
         GameController.i.PauseGame(true);
         yield return fader.FadeIn(0.5f);
 
-        var destPortal = FindObjectsByType<LocationPortal>(FindObjectsSortMode.None).First( x => x != this && x.destinationPortal == this.destinationPortal);
+        var destPortal = FindObjectsByType<LocationPortal>().FirstOrDefault( x => x != this && x.destinationPortal == this.destinationPortal);
+        if(destPortal == null){
+            Debug.LogError($"LocationPortal: Destination portal {destinationPortal} not found in scene.");
+            yield return fader.FadeOut(0.5f);
+            GameController.i.PauseGame(false);
+            yield break;
+        }
+
         player.Character.SetPositionAndSnapToTile(destPortal.SpawnPoint.position);
         yield return fader.FadeOut(0.5f);
 

@@ -70,15 +70,22 @@ public class InventoryState : State<GameController>{
                 yield break;
             }
 
+            if(BattleSystem != null && !BattleSystem.CanUseBattleItem(true, SelectedItem, out var failureMessage)){
+                yield return DialogManager.i.ShowDialogText(string.IsNullOrWhiteSpace(failureMessage) ? "That item is blocked by the current battle rules." : failureMessage);
+                yield break;
+            }
+
         } else {
-            if(!SelectedItem.CanUseInOffsideBattle){
+            if(!SelectedItem.CanUseInOutsideBattle){
                 yield return DialogManager.i.ShowDialogText($"{SelectedItem.Name} can't be used outside battle.");
                 yield break;
             }
         }
 
         if(SelectedItem is PokeballItem){
-            inventory.UseItem(SelectedItem, null);
+            if (prevState != BattleState.i) {
+                inventory.UseItem(SelectedItem, null);
+            }
             gameController.StateMachine.Pop();
             yield break;
         }

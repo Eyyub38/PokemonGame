@@ -15,6 +15,7 @@ MonoBehaviour:
   _name: Withdraw
   description: Heightens the user's Defense.
   soundEffect: {fileID: 8300000, guid: 5033a1c40edb7654bbf2323319c25e77, type: 3}
+  flags: 
   type: 3
   power: 0
   accuracy: 0
@@ -28,9 +29,36 @@ MonoBehaviour:
       boost: 1
     status: 0
     volatileStatus: 0
+    weatherStatus: 0
+    terrainStatus: 0
+    stealthRock: 0
+    spikes: 0
+    focusEnergy: 0
+    reflect: 0
+    lightScreen: 0
+    auroraVeil: 0
+    protect: 0
+    flinch: 0
+    taunt: 0
+    tauntTurns: 3
+    disable: 0
+    disableTurns: 4
+    encore: 0
+    encoreTurns: 3
+    clearUserStatBoosts: 0
+    clearTargetStatBoosts: 0
+    healingPercentage: 0
   target: 1
   secondaries: []
   recoil:
     recoilType: 0
     recoilDamage: 0
+  drainingPercentage: 0
   critBehaviour: 0
+  oneHitKoMoveEffect:
+    isOneHitKnockOut: 0
+    lowerOddsException: 0
+    immunityType: 0
+  isMultiHitMove: 0
+  hitRange: {x: 2, y: 0}
+  movePowerBasedOn: 0

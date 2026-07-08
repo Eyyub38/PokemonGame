@@ -6,19 +6,29 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class DialogManager : MonoBehaviour{
+    [Tooltip("Classic dialog box root GameObject shown while dialog is active.")]
     [SerializeField] GameObject dialogBox;
+    [Tooltip("Choice UI used when a dialog line offers multiple options.")]
     [SerializeField] ChoiceBox choiceBox;
+    [Tooltip("Text component used by the classic dialog box.")]
     [SerializeField] Text dialogText;
+    [Tooltip("Default typing speed for classic dialog text.")]
+    [Min(1)]
     [SerializeField] int letterPerSecond = 10;
 
     [Header("Input")]
+    [Tooltip("Input actions used by the classic dialog box.")]
     [SerializeField] InputActionAsset actions;
+    [Tooltip("Action map containing the select action.")]
     [SerializeField] string actionMapName = "UI";
+    [Tooltip("Action name used to advance or fast-forward dialog.")]
     [SerializeField] string selectName = "Select";
     
     InputAction select;
 
     [Header("Fast Forward")] 
+    [Tooltip("Typing speed multiplier while the select action is held.")]
+    [Min(1)]
     [SerializeField]  int fastMultiplier = 8;
     bool skipTyping = false;
     
@@ -50,6 +60,8 @@ public class DialogManager : MonoBehaviour{
     }
     
     public IEnumerator ShowDialog(Dialog dialog, List<string> choices = null, Action<int> onChoiceSelected = null){
+        if (IsShowing) yield break;
+
         yield return new WaitForEndOfFrame();
 
         OnShowDialog?.Invoke();
@@ -57,7 +69,7 @@ public class DialogManager : MonoBehaviour{
         dialogBox.SetActive(true);
 
         foreach(var line in dialog.Lines){
-            AudioManager.i.PlaySfx(AudioId.UISelecet);
+            AudioManager.i.PlaySfx(AudioId.UISelect);
             yield return TypeDialog(line);
             yield return WaitForAdvance();
         }
@@ -82,10 +94,12 @@ public class DialogManager : MonoBehaviour{
     }
 
     public IEnumerator ShowDialogText(string text, bool waitForInput = true, bool autoClose = true, List<string> choices = null, Action<int> onChoiceSelected = null){
+        if (IsShowing) yield break;
+
         OnShowDialog?.Invoke();
         IsShowing = true;
         dialogBox.SetActive(true);
-        AudioManager.i.PlaySfx(AudioId.UISelecet);
+        AudioManager.i.PlaySfx(AudioId.UISelect);
         yield return TypeDialog(text);
         
         if(waitForInput){

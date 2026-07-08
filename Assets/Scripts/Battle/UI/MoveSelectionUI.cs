@@ -23,6 +23,8 @@ public class MoveSelectionUI : MonoBehaviour{
 
     int selectedItem = 0;
     List<Move> currentMoves;
+    Pokemon currentPokemon;
+    PokemonVitalProfileDefinition currentVitalProfile;
     bool isActive = false;
 
     float navTimer = 0f;
@@ -48,7 +50,7 @@ public class MoveSelectionUI : MonoBehaviour{
         back = map.FindAction(backName);
     }
 
-    void OnEnbale() {
+    void OnEnable() {
         navigate?.Enable();
         select?.Enable();
         back?.Enable();
@@ -88,7 +90,7 @@ public class MoveSelectionUI : MonoBehaviour{
         }
 
         if(select.WasPressedThisFrame()) {
-            if(selectedItem < currentMoves.Count && currentMoves[selectedItem].PP > 0) {
+            if(selectedItem < currentMoves.Count && IsMoveSelectable(currentMoves[selectedItem])) {
                 OnSelected?.Invoke(selectedItem);
             }
         } else if(back.WasPressedThisFrame()) {
@@ -100,24 +102,32 @@ public class MoveSelectionUI : MonoBehaviour{
         for(int i = 0; i < moveBars.Count; i++){
             if(i < currentMoves.Count){
                 Color textColor = (i == selectedItem) ? GlobalSettings.i.HighlightedTextColor : 
-                                (currentMoves[i].PP <= 0) ? Color.red : Color.white;
+                                !IsMoveSelectable(currentMoves[i]) ? Color.red : Color.white;
                 moveBars[i].NameText.color = textColor;
                 moveBars[i].PpText.color = textColor;
             }
         }
     }
 
-    public void SetMoves(List<Move> moves){
+    public void SetMoves(List<Move> moves, Pokemon pokemon = null, PokemonVitalProfileDefinition vitalProfile = null){
         currentMoves = moves;
+        currentPokemon = pokemon;
+        currentVitalProfile = vitalProfile;
         selectedItem = 0;
         isActive = true;
+        for(int i = 0; i < moves.Count; i++){
+            if(IsMoveSelectable(moves[i])){
+                selectedItem = i;
+                break;
+            }
+        }
         
         for(int i=0; i< moveBars.Count; ++i){
             if(i < moves.Count){
                 moveBars[i].NameText.text = moves[i].Base.Name;
                 moveBars[i].PpText.text = "PP: " + moves[i].PP.ToString() + "/" + moves[i].Base.PP.ToString();
                 
-                Color textColor = (moves[i].PP <= 0) ? Color.red : Color.white;
+                Color textColor = !IsMoveSelectable(moves[i]) ? Color.red : Color.white;
                 moveBars[i].NameText.color = textColor;
                 moveBars[i].PpText.color = textColor;
 
@@ -135,7 +145,17 @@ public class MoveSelectionUI : MonoBehaviour{
     public void ClearItems(){
         isActive = false;
         currentMoves = null;
+        currentPokemon = null;
+        currentVitalProfile = null;
         selectedItem = 0;
+    }
+
+    bool IsMoveSelectable(Move move){
+        if(currentPokemon != null){
+            return currentPokemon.CanUseMove(move, currentVitalProfile);
+        }
+
+        return move != null && move.PP > 0;
     }
 
     public void SetTypeBars(Move move,MoveBar moveBar){

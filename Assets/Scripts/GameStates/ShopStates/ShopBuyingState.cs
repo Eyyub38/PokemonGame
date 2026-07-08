@@ -66,7 +66,7 @@ public class ShopBuyingState : State<GameController>{
             if(selectedChoice == 0){
                 inventory.AddItem(item, countToBuy);
                 Wallet.i.TakeMoney(totalPrice);
-                yield return DialogManager.i.ShowDialogText($"Thanks for shhopping with us.");
+                yield return DialogManager.i.ShowDialogText($"Thanks for shopping with us.");
             }
         } else {
             yield return DialogManager.i.ShowDialogText("You don't have enough money!");

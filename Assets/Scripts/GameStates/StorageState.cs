@@ -44,9 +44,18 @@ public class StorageState : State<GameController>{
     }
 
     void OnSlotSelected(int slotIndex){
+        StartCoroutine(OnSlotSelectedAsync(slotIndex));
+    }
+
+    IEnumerator OnSlotSelectedAsync(int slotIndex){
         if(!isMovingPokemon){
             var pokemon = storageUI.TakePokemonFromSlot(slotIndex);
             if(pokemon != null){
+                if (storageUI.IsPartySlot(slotIndex) && party.Pokemons.Count == 0) {
+                     storageUI.PutPokemonIntoSlot(pokemon, slotIndex);
+                     yield return DialogManager.i.ShowDialogText("You can't leave your party empty!");
+                     yield break;
+                }
                 isMovingPokemon = true;
                 selectedSlotToMove = slotIndex;
                 selectedPokemonToMove = pokemon;
@@ -63,7 +72,7 @@ public class StorageState : State<GameController>{
                 storageUI.PutPokemonIntoSlot(selectedPokemonToMove, selectedSlotToMove);
                 storageUI.SetDataInStorageSlots();
                 storageUI.SetDataInPartySlots();
-                return;
+                yield break;
             }
 
             storageUI.PutPokemonIntoSlot(selectedPokemonToMove, secondSlotIndex);
@@ -73,7 +82,7 @@ public class StorageState : State<GameController>{
             }
 
             party.Pokemons.RemoveAll( p => p == null );
-            party.PartyUptaded();
+            party.PartyUpdated();
 
             storageUI.SetDataInStorageSlots();
             storageUI.SetDataInPartySlots();

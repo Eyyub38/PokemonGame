@@ -1,5 +1,7 @@
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using System.Collections;
 using System.Collections.Generic;
 
@@ -27,9 +29,9 @@ public class Cutscene : MonoBehaviour, IPlayerTriggerable{
 
     public void AddAction(CutsceneAction action){
         
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         Undo.RegisterCompleteObjectUndo(this, "Add Action to Cutscene");
-        #endif
+#endif
 
         action.Name = action.GetType().ToString();
         actions.Add(action);

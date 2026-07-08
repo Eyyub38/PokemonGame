@@ -4,7 +4,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 
-public enum AudioId {Hit ,UISelecet, Faint, ExpGain, ItemObtained, PokemonObtained}
+public enum AudioId {Hit ,UISelect, Faint, ExpGain, ItemObtained, PokemonObtained, CriticalHit}
 
 public class AudioManager : MonoBehaviour{
     [SerializeField] AudioSource musicPlayer;
@@ -35,6 +35,7 @@ public class AudioManager : MonoBehaviour{
             return;
         }
         currentClip = clip;
+        StopAllCoroutines();
         StartCoroutine(PlayMusicAsync(clip, loop, fade));
     }
 

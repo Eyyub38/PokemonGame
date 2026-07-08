@@ -61,11 +61,16 @@ public class InventoryUI : SelectionUI<TextSlot>{
         UpdateSelectionInUI();
     }
 
-    private void Start(){
+    protected override void Start(){
+        base.Start();
         UpdateItemList();
         categoryText.text = Inventory.ItemCategories[selectedCategory];
         ChangeCategoryIcons(selectedCategory);
         inventory.OnUpdated += UpdateItemList;
+    }
+
+    private void OnDestroy(){
+        inventory.OnUpdated -= UpdateItemList;
     }
 
     void UpdateItemList(){
@@ -156,6 +161,8 @@ public class InventoryUI : SelectionUI<TextSlot>{
     }
 
     void HandleScrolling(){
+        if(slotUIList.Count == 0) return;
+
         if(slotUIList.Count <= itemsInViewport){
             return;
         }

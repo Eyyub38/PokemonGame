@@ -36,5 +36,6 @@ public class Wallet : MonoBehaviour, ISavable{
 
     public void RestoreState(object state){
         money = (float)state;
+        OnMoneyChanged?.Invoke();
     }
 }

@@ -34,11 +34,11 @@ public class Character : MonoBehaviour{
         var diff = targetPos - transform.position;
         var dir = diff.normalized;
 
-        var collusionLayer = GameLayers.i.SolidObjectsLayer | GameLayers.i.InteractableLayer | GameLayers.i.PlayerLayer;
+        var collisionLayer = GameLayers.i.SolidObjectsLayer | GameLayers.i.InteractableLayer | GameLayers.i.PlayerLayer;
         if(animator.IsSurfing == false){
-            collusionLayer = collusionLayer | GameLayers.i.WaterLayer;
+            collisionLayer = collisionLayer | GameLayers.i.WaterLayer;
         }
-        if(Physics2D.BoxCast(transform.position + dir , new Vector2(0.2f, 0.2f), 0f, dir, diff.magnitude - 1, collusionLayer) == true){
+        if(Physics2D.BoxCast(transform.position + dir , new Vector2(0.2f, 0.2f), 0f, dir, diff.magnitude - 1, collisionLayer) == true){
             return false;
         }
         return true;

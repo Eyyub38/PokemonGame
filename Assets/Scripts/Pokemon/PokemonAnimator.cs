@@ -25,7 +25,7 @@ public class PokemonAnimator : MonoBehaviour{
     }
 
     void Update(){
-        if (IsSurfing && SurferPokemon != null && SurferPokemon.SurfSprites != null && SurferPokemon.SurfSprites.Count > 0){
+        if (IsSurfing && SurferPokemon != null && SurferPokemon.SurfSprites != null && SurferPokemon.SurfSprites.Count >= 4){
             HandleSurfMovement();
         } else {
             spriteAnimator?.HandleUpdate();
@@ -33,7 +33,7 @@ public class PokemonAnimator : MonoBehaviour{
     }
 
     void HandleSurfMovement(){
-        bool isCurrentlyMoving = MoveX != 0 || MoveY != 0;
+        bool isCurrentlyMoving = Mathf.Abs(MoveX) > 0.2f || Mathf.Abs(MoveY) > 0.2f;
         
         if (isCurrentlyMoving){
             if (!wasMoving && shouldReturnToOriginal){
@@ -52,17 +52,17 @@ public class PokemonAnimator : MonoBehaviour{
     }
 
     void PlaySurfAnimation(){
-        if (SurferPokemon?.SurfSprites == null || SurferPokemon.SurfSprites.Count == 0) return;
+        if (SurferPokemon?.SurfSprites == null || SurferPokemon.SurfSprites.Count < 4) return;
 
         int spriteIndex = 0;
         
-        if (MoveY == 1){
+        if (MoveY > 0.2f){
             spriteIndex = 0;
-        } else if (MoveY == -1){
+        } else if (MoveY < -0.2f){
             spriteIndex = 1;
-        } else if (MoveX == 1){
+        } else if (MoveX > 0.2f){
             spriteIndex = 3;
-        } else if (MoveX == -1){
+        } else if (MoveX < -0.2f){
             spriteIndex = 2;
         }
 
@@ -74,13 +74,13 @@ public class PokemonAnimator : MonoBehaviour{
     void UpdatePosition(){
         Vector3 offset = Vector3.zero;
         
-        if (MoveY == 1){
+        if (MoveY > 0.2f){
             offset = new Vector3(0, 0.5f, 0);
-        } else if (MoveY == -1){
+        } else if (MoveY < -0.2f){
             offset = new Vector3(0, -0.5f, 0);
-        } else if (MoveX == 1){
+        } else if (MoveX > 0.2f){
             offset = new Vector3(0.5f, -0.25f, 0);
-        } else if (MoveX == -1){
+        } else if (MoveX < -0.2f){
             offset = new Vector3(-0.5f, -0.25f, 0);
         }
         

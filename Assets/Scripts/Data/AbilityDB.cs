@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 using UnityEngine;
 using System.Collections;
@@ -10,7 +10,12 @@ public enum AbilityID {
     KeenEye, HyperCutter, BigPecks, ClearBody, WhiteSmoke,                                   //Abilities that prevent stat reduction
     Insomnia, Immunity, Limber, WaterVeil, VitalSpirit, OwnTempo,                            //Abilities that prevent status conditions
     Static, PoisonPoint, FlameBody,                                                                             //Abilities that inflict status conditions on contact
-    ToughClaws, StrongJaw, IronFist                                                                         //Abilities that power up moves
+    ToughClaws, StrongJaw, IronFist,                                                                         //Abilities that power up moves
+    Intimidate, Regenerator, SpeedBoost, Levitate, Sniper,                                                     //Advanced abilities
+    Chlorophyll, SwiftSwim, SandVeil, Moxie,                                                                     //Weather and Condition based
+    ElectricSurge, GrassySurge, MistySurge, PsychicSurge,                                                   //Terrain setters
+    Normalize, Pixilate, Refrigerate, Aerilate,                                                                 //Type override abilities
+    RoughSkin, IronBarbs                                                                                        //Abilities that damage on contact
 }
 
 public class AbilityDB{
@@ -126,7 +131,7 @@ public class AbilityDB{
                 Name = "Quick Feet",
                 Description = "Boosts the Pokémon's Speed stat if it has a status condition.",
                 OnModifySpeed = (float speed, Pokemon attacker, Pokemon defender, Move move) => {
-                    if(defender.Status != null){
+                    if(attacker.Status != null){
                         speed *= 1.5f; 
                     }
                     
@@ -155,7 +160,7 @@ public class AbilityDB{
                     if(boosts.ContainsKey(Stat.Accuracy) && boosts[Stat.Accuracy] < 0){
                         boosts.Remove(Stat.Accuracy);
 
-                        target.AddStatusEvet(StatusEventType.Text, $"{target.Base.Name}'s accuracy won't go down because of its Keen Eye!");
+                        target.AddStatusEvent(StatusEventType.Text, $"{target.Base.Name}'s accuracy won't go down because of its Keen Eye!");
                     }
                 }
             }
@@ -172,7 +177,7 @@ public class AbilityDB{
                     if(boosts.ContainsKey(Stat.Attack) && boosts[Stat.Attack] < 0){
                         boosts.Remove(Stat.Attack);
 
-                        target.AddStatusEvet(StatusEventType.Text, $"{target.Base.Name}'s attack won't go down because of its Hyper Cutter!");
+                        target.AddStatusEvent(StatusEventType.Text, $"{target.Base.Name}'s attack won't go down because of its Hyper Cutter!");
                     }
                 }
             }
@@ -189,7 +194,7 @@ public class AbilityDB{
                     if(boosts.ContainsKey(Stat.Defense) && boosts[Stat.Defense] < 0){
                         boosts.Remove(Stat.Defense);
 
-                        target.AddStatusEvet(StatusEventType.Text, $"{target.Base.Name}'s defense won't go down because of its Big Pecks!");
+                        target.AddStatusEvent(StatusEventType.Text, $"{target.Base.Name}'s defense won't go down because of its Big Pecks!");
                     }
                 }
             }
@@ -212,7 +217,7 @@ public class AbilityDB{
                     }
 
                     if(boostRemoved){
-                        target.AddStatusEvet(StatusEventType.Text, $"{target.Base.Name}'s stats won't go down because of its Clear Body!");
+                        target.AddStatusEvent(StatusEventType.Text, $"{target.Base.Name}'s stats won't go down because of its Clear Body!");
                     }
                 }
             }
@@ -235,7 +240,7 @@ public class AbilityDB{
                     }
 
                     if(boostRemoved){
-                        target.AddStatusEvet(StatusEventType.Text, $"{target.Base.Name}'s stats won't go down because of its White Smoke!");
+                        target.AddStatusEvent(StatusEventType.Text, $"{target.Base.Name}'s stats won't go down because of its White Smoke!");
                     }
                 }
             }
@@ -247,7 +252,7 @@ public class AbilityDB{
                 OnTrySetStatus = (StatusConditionID statusID, Pokemon pokemon, EffectSource source) => {
                     if(statusID == StatusConditionID.Sleep){
                         if(source == EffectSource.Move){
-                            pokemon.AddStatusEvet(StatusEventType.Text, $"{pokemon.Base.Name}'s Insomnia prevents it from falling asleep!");
+                            pokemon.AddStatusEvent(StatusEventType.Text, $"{pokemon.Base.Name}'s Insomnia prevents it from falling asleep!");
                         }
 
                         return false;
@@ -264,7 +269,7 @@ public class AbilityDB{
                 OnTrySetStatus = (StatusConditionID statusID, Pokemon pokemon, EffectSource source) => {
                     if(statusID == StatusConditionID.Poison){
                         if(source == EffectSource.Move){
-                            pokemon.AddStatusEvet(StatusEventType.Text, $"{pokemon.Base.Name}'s Immunity prevents it from getting poisoned!");
+                            pokemon.AddStatusEvent(StatusEventType.Text, $"{pokemon.Base.Name}'s Immunity prevents it from getting poisoned!");
                         }
 
                         return false;
@@ -281,7 +286,7 @@ public class AbilityDB{
                 OnTrySetStatus = (StatusConditionID statusID, Pokemon pokemon, EffectSource source) => {
                     if(statusID == StatusConditionID.Paralyze){
                         if(source == EffectSource.Move){
-                            pokemon.AddStatusEvet(StatusEventType.Text, $"{pokemon.Base.Name}'s Limber prevents it from getting paralyzed!");
+                            pokemon.AddStatusEvent(StatusEventType.Text, $"{pokemon.Base.Name}'s Limber prevents it from getting paralyzed!");
                         }
 
                         return false;
@@ -298,7 +303,7 @@ public class AbilityDB{
                 OnTrySetStatus = (StatusConditionID statusID, Pokemon pokemon, EffectSource source) => {
                     if(statusID == StatusConditionID.Burn){
                         if(source == EffectSource.Move){
-                            pokemon.AddStatusEvet(StatusEventType.Text, $"{pokemon.Base.Name}'s water veil prevents it from getting burned!");
+                            pokemon.AddStatusEvent(StatusEventType.Text, $"{pokemon.Base.Name}'s water veil prevents it from getting burned!");
                         }
 
                         return false;
@@ -315,7 +320,7 @@ public class AbilityDB{
                 OnTrySetStatus = (StatusConditionID statusID, Pokemon pokemon, EffectSource source) => {
                     if(statusID == StatusConditionID.Sleep){
                         if(source == EffectSource.Move){
-                            pokemon.AddStatusEvet(StatusEventType.Text, $"{pokemon.Base.Name}'s Vital Spirit prevents it from falling asleep!");
+                            pokemon.AddStatusEvent(StatusEventType.Text, $"{pokemon.Base.Name}'s Vital Spirit prevents it from falling asleep!");
                         }
 
                         return false;
@@ -332,7 +337,7 @@ public class AbilityDB{
                 OnTrySetVolatileStatus = (StatusConditionID statusID, Pokemon pokemon, EffectSource source) => {
                     if(statusID == StatusConditionID.Confusion){
                         if(source == EffectSource.Move){
-                            pokemon.AddStatusEvet(StatusEventType.Text, $"{pokemon.Base.Name}'s Own Tempo prevents it from getting confused!");
+                            pokemon.AddStatusEvent(StatusEventType.Text, $"{pokemon.Base.Name}'s Own Tempo prevents it from getting confused!");
                         }
 
                         return false;
@@ -346,8 +351,8 @@ public class AbilityDB{
             new Ability(){
                 Name = "Static",
                 Description = "Has a chance to paralyze attackers that use physical moves on the Pokémon.",
-                OnDamagingHit = (float damage, Pokemon attacker, Pokemon defender, Move move) => {
-                    if(move.Base.HasFlag(MoveFlag.Contact) && (UnityEngine.Random.Range(1, 101) <= 30)){
+                OnAfterContact = (Pokemon attacker, Pokemon defender, Move move) => {
+                    if(UnityEngine.Random.Range(1, 101) <= 30){
                         attacker.SetStatus(StatusConditionID.Paralyze, EffectSource.Ability);
                     }
                 }
@@ -357,8 +362,8 @@ public class AbilityDB{
             new Ability(){
                 Name = "Poison Point",
                 Description = "Has a chance to poison attackers that use physical moves on the Pokémon.",
-                OnDamagingHit = (float damage, Pokemon attacker, Pokemon defender, Move move) => {
-                    if(move.Base.HasFlag(MoveFlag.Contact) && (UnityEngine.Random.Range(1, 101) <= 30)){
+                OnAfterContact = (Pokemon attacker, Pokemon defender, Move move) => {
+                    if(UnityEngine.Random.Range(1, 101) <= 30){
                         attacker.SetStatus(StatusConditionID.Poison, EffectSource.Ability);
                     }
                 }
@@ -368,10 +373,32 @@ public class AbilityDB{
             new Ability(){
                 Name = "Flame Body",
                 Description = "Has a chance to burn attackers that use physical moves on the Pokémon.",
-                OnDamagingHit = (float damage, Pokemon attacker, Pokemon defender, Move move) => {
-                    if(move.Base.HasFlag(MoveFlag.Contact) && (UnityEngine.Random.Range(1, 101) <= 30)){
+                OnAfterContact = (Pokemon attacker, Pokemon defender, Move move) => {
+                    if(UnityEngine.Random.Range(1, 101) <= 30){
                         attacker.SetStatus(StatusConditionID.Burn, EffectSource.Ability);
                     }
+                }
+            }
+        },
+        {AbilityID.RoughSkin,
+            new Ability(){
+                Name = "Rough Skin",
+                Description = "Damages attackers that make direct contact with the Pokémon.",
+                OnAfterContact = (Pokemon attacker, Pokemon defender, Move move) => {
+                    int damage = Mathf.Max(1, Mathf.FloorToInt(attacker.MaxHp / 8f));
+                    attacker.DecreaseHP(damage, true);
+                    attacker.AddStatusEvent(StatusEventType.Damage, $"{attacker.NickName} was hurt by {defender.NickName}'s Rough Skin!");
+                }
+            }
+        },
+        {AbilityID.IronBarbs,
+            new Ability(){
+                Name = "Iron Barbs",
+                Description = "Damages attackers that make direct contact with the Pokémon.",
+                OnAfterContact = (Pokemon attacker, Pokemon defender, Move move) => {
+                    int damage = Mathf.Max(1, Mathf.FloorToInt(attacker.MaxHp / 8f));
+                    attacker.DecreaseHP(damage, true);
+                    attacker.AddStatusEvent(StatusEventType.Damage, $"{attacker.NickName} was hurt by {defender.NickName}'s Iron Barbs!");
                 }
             }
         },
@@ -410,7 +437,175 @@ public class AbilityDB{
                     return basePower;
                 }
             }
-        }
-        
+        },
+        {AbilityID.Intimidate,
+            new Ability(){
+                Name = "Intimidate",
+                Description = "The Pokémon intimidates opposing Pokémon upon entering battle, lowering their Attack stat.",
+                OnBattleEntry = (Pokemon owner, List<Pokemon> enemies) => {
+                    foreach(var enemy in enemies){
+                        var boosts = new Dictionary<Stat, int>(){ {Stat.Attack, -1} };
+                        enemy.ApplyBoosts(new List<StatBoosts>(){ new StatBoosts(){ stat = Stat.Attack, boost = -1} }, owner);
+                    }
+                }
+            }
+        },
+        {AbilityID.Regenerator,
+            new Ability(){
+                Name = "Regenerator",
+                Description = "Restores a little HP when withdrawn from battle.",
+                OnSwitchOut = (Pokemon owner) => {
+                    owner.IncreaseHP(owner.MaxHp / 3);
+                }
+            }
+        },
+        {AbilityID.SpeedBoost,
+            new Ability(){
+                Name = "Speed Boost",
+                Description = "Its Speed stat is boosted every turn.",
+                OnAfterTurn = (Pokemon owner) => {
+                    owner.ApplyBoosts(new List<StatBoosts>(){ new StatBoosts(){ stat = Stat.Speed, boost = 1} }, owner);
+                }
+            }
+        },
+        {AbilityID.Levitate,
+            new Ability(){
+                Name = "Levitate",
+                Description = "By floating in the air, the Pokémon receives full immunity to all Ground-type moves.",
+                OnDamagingHit = (float damage, Pokemon attacker, Pokemon defender, Move move) => {
+                    // Logic will be handled in Pokemon.TakeDamage since damage needs to be set to 0
+                }
+            }
+        },
+        {AbilityID.Sniper,
+            new Ability(){
+                Name = "Sniper",
+                Description = "Powers up critical hits.",
+                OnDamagingHit = (float damage, Pokemon attacker, Pokemon defender, Move move) => {
+                    // Logic handled in Pokemon.TakeDamage
+                }
+            }
+        },
+        {AbilityID.Chlorophyll,
+            new Ability(){
+                Name = "Chlorophyll",
+                Description = "Boosts the Pokémon's Speed stat in sunshine.",
+                OnModifyStatInWeather = (float stat, Pokemon owner, WeatherCondition weather) => {
+                    if(weather.Id == WeatherConditionID.Sunny){
+                        return stat * 2f;
+                    }
+                    return stat;
+                }
+            }
+        },
+        {AbilityID.SwiftSwim,
+            new Ability(){
+                Name = "Swift Swim",
+                Description = "Boosts the Pokémon's Speed stat in rain.",
+                OnModifyStatInWeather = (float stat, Pokemon owner, WeatherCondition weather) => {
+                    if(weather.Id == WeatherConditionID.Rainy){
+                        return stat * 2f;
+                    }
+                    return stat;
+                }
+            }
+        },
+        {AbilityID.SandVeil,
+            new Ability(){
+                Name = "Sand Veil",
+                Description = "Boosts the Pokémon's evasion in a sandstorm.",
+                OnModifyStatInWeather = (float stat, Pokemon owner, WeatherCondition weather) => {
+                    if(weather.Id == WeatherConditionID.Sandstorm){
+                        return stat * 1.25f;
+                    }
+                    return stat;
+                }
+            }
+        },
+        {AbilityID.Moxie,
+            new Ability(){
+                Name = "Moxie",
+                Description = "Boosts the Attack stat after knocking out any Pokemon.",
+                OnKilledFoe = (Pokemon owner, Pokemon foe) => {
+                    owner.ApplyBoosts(new System.Collections.Generic.List<StatBoosts>(){ new StatBoosts(){ stat = Stat.Attack, boost = 1 } }, owner);
+                }
+            }
+        },
+        // --- Terrain Setters ---
+        {AbilityID.ElectricSurge, new Ability(){
+            Name = "Electric Surge",
+            Description = "Turns the ground into Electric Terrain when the Pokémon enters a battle.",
+            OnBattleEntry = (Pokemon owner, List<Pokemon> opponents) => {
+                if(BattleSystem.i != null) BattleSystem.i.Field.SetTerrain(TerrainID.Electric, 5);
+            }
+        }},
+        {AbilityID.GrassySurge, new Ability(){
+            Name = "Grassy Surge",
+            Description = "Turns the ground into Grassy Terrain when the Pokémon enters a battle.",
+            OnBattleEntry = (Pokemon owner, List<Pokemon> opponents) => {
+                if(BattleSystem.i != null) BattleSystem.i.Field.SetTerrain(TerrainID.Grassy, 5);
+            }
+        }},
+        {AbilityID.MistySurge, new Ability(){
+            Name = "Misty Surge",
+            Description = "Turns the ground into Misty Terrain when the Pokémon enters a battle.",
+            OnBattleEntry = (Pokemon owner, List<Pokemon> opponents) => {
+                if(BattleSystem.i != null) BattleSystem.i.Field.SetTerrain(TerrainID.Misty, 5);
+            }
+        }},
+        {AbilityID.PsychicSurge, new Ability(){
+            Name = "Psychic Surge",
+            Description = "Turns the ground into Psychic Terrain when the Pokémon enters a battle.",
+            OnBattleEntry = (Pokemon owner, List<Pokemon> opponents) => {
+                if(BattleSystem.i != null) BattleSystem.i.Field.SetTerrain(TerrainID.Psychic, 5);
+            }
+        }},
+        // --- Type Override Abilities ---
+        {AbilityID.Normalize, new Ability(){
+            Name = "Normalize",
+            Description = "All the Pokémon's moves become Normal type. Power is boosted a little.",
+            OnModifyMoveType = (PokemonType moveType, Pokemon attacker, Pokemon defender, Move move) => {
+                return PokemonType.Normal;
+            },
+            OnModifyMoveBasePower = (float power, Pokemon attacker, Pokemon defender, Move move) => {
+                return power * 1.2f;
+            }
+        }},
+        {AbilityID.Pixilate, new Ability(){
+            Name = "Pixilate",
+            Description = "Normal-type moves become Fairy-type moves. Power is boosted a little.",
+            OnModifyMoveType = (PokemonType moveType, Pokemon attacker, Pokemon defender, Move move) => {
+                return (moveType == PokemonType.Normal) ? PokemonType.Fairy : moveType;
+            },
+            OnModifyMoveBasePower = (float power, Pokemon attacker, Pokemon defender, Move move) => {
+                return (move.Base.Type == PokemonType.Normal) ? power * 1.2f : power;
+            }
+        }},
+        {AbilityID.Refrigerate, new Ability(){
+            Name = "Refrigerate",
+            Description = "Normal-type moves become Ice-type moves. Power is boosted a little.",
+            OnModifyMoveType = (PokemonType moveType, Pokemon attacker, Pokemon defender, Move move) => {
+                return (moveType == PokemonType.Normal) ? PokemonType.Ice : moveType;
+            },
+            OnModifyMoveBasePower = (float power, Pokemon attacker, Pokemon defender, Move move) => {
+                return (move.Base.Type == PokemonType.Normal) ? power * 1.2f : power;
+            }
+        }},
+        {AbilityID.Aerilate, new Ability(){
+            Name = "Aerilate",
+            Description = "Normal-type moves become Flying-type moves. Power is boosted a little.",
+            OnModifyMoveType = (PokemonType moveType, Pokemon attacker, Pokemon defender, Move move) => {
+                return (moveType == PokemonType.Normal) ? PokemonType.Flying : moveType;
+            },
+            OnModifyMoveBasePower = (float power, Pokemon attacker, Pokemon defender, Move move) => {
+                return (move.Base.Type == PokemonType.Normal) ? power * 1.2f : power;
+            }
+        }}
     };
+
+    static AbilityDB(){
+        foreach(var ability in Abilities){
+            ability.Value.Id = ability.Key;
+        }
+    }
 }

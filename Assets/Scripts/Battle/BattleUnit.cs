@@ -22,17 +22,29 @@ public class BattleUnit : MonoBehaviour{
         originalColor = image.color;
     }
 
-    public void Setup(Pokemon pokemon){
+    public void Setup(Pokemon pokemon, PokemonVitalProfileDefinition vitalProfile = null, bool spendCoreStamina = true, bool capHpByCoreHealth = true){
         Pokemon = pokemon;
-        
+        Pokemon?.PrepareBattleEntryVitals(vitalProfile, spendCoreStamina, capHpByCoreHealth);
+
+        RefreshPokemonVisual();
+
+        transform.localScale = new Vector3( 1, 1, 1);
+        PlayEnterAnimation();
+    }
+
+    public void RefreshPokemonVisual(){
+        if(Pokemon == null){
+            return;
+        }
+
         if(isPlayerUnit){
-            if(pokemon.Base.HasGenderDifferences && pokemon.Gender == Gender.Female){
+            if(Pokemon.Base.HasGenderDifferences && Pokemon.Gender == Gender.Female){
                 image.sprite = Pokemon.Base.FemaleBackSprite;
             } else {
                 image.sprite = Pokemon.Base.BackSprite;
             }
         } else {
-            if(pokemon.Base.HasGenderDifferences && pokemon.Gender == Gender.Female){
+            if(Pokemon.Base.HasGenderDifferences && Pokemon.Gender == Gender.Female){
                 image.sprite = Pokemon.Base.FemaleFrontSprite;
             } else {
                 image.sprite = Pokemon.Base.FrontSprite;
@@ -40,10 +52,13 @@ public class BattleUnit : MonoBehaviour{
         }
 
         hud.gameObject.SetActive(true);
-        hud.SetData(pokemon);
-        transform.localScale = new Vector3( 1, 1, 1);
-        image.color = originalColor;
-        PlayEnterAnimation();
+        hud.SetData(Pokemon);
+
+        if (Pokemon.IsShiny){
+            image.color = new Color(1f, 0.9f, 0.5f); // Golden tint for shiny
+        } else {
+            image.color = originalColor;
+        }
     }
 
     public void SetSelected(bool selected){
@@ -103,6 +118,6 @@ public class BattleUnit : MonoBehaviour{
         sequence.Join(transform.DOLocalMoveY(originalPos.y, 0.5f));    
         sequence.Join(transform.DOScale(new Vector3(1f, 1f, 1f), 0.5f));
         yield return sequence.WaitForCompletion();
-        this.image.color = Color.white;
+        this.image.color = originalColor;
     }
 }

@@ -3,18 +3,18 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public enum StatusConditionID { None, Poison, Burn, Sleep, Paralyze, Frozen, FrostBite, Toxic, Confusion }
+public enum StatusConditionID { None, Poison, Burn, Sleep, Paralyze, Frozen, FrostBite, Toxic, Confusion, Flinch }
 
-public class StatusConditionsDB{
-    public static void Init(){
-        foreach(var kvp in Conditions){
+public class StatusConditionsDB {
+    public static void Init() {
+        foreach(var kvp in Conditions) {
             var conditionId = kvp.Key;
             var condition = kvp.Value;
 
             condition.Id = conditionId;
         }
     }
-    
+
     public static Dictionary<StatusConditionID, StatusCondition> Conditions { get; set; } = new Dictionary<StatusConditionID, StatusCondition>(){
         { StatusConditionID.Poison,
             new StatusCondition{
@@ -22,7 +22,7 @@ public class StatusConditionsDB{
                 StartMessage = "has been poisoned!",
                 OnAfterTurn = (Pokemon pokemon) =>{
                     pokemon.DecreaseHP(pokemon.MaxHp / 8);
-                    pokemon.AddStatusEvet( StatusEventType.Damage, $"{pokemon.Base.Name} is hurt by poison!");
+                    pokemon.AddStatusEvent( StatusEventType.Damage, $"{pokemon.Base.Name} is hurt by poison!");
                 }
             }
         },
@@ -32,7 +32,7 @@ public class StatusConditionsDB{
                 StartMessage = "has been burned!",
                 OnAfterTurn = (Pokemon pokemon) =>{
                     pokemon.DecreaseHP(pokemon.MaxHp / 16);
-                    pokemon.AddStatusEvet( StatusEventType.Damage, $"{pokemon.Base.Name} is hurt by burn!");
+                    pokemon.AddStatusEvent( StatusEventType.Damage, $"{pokemon.Base.Name} is hurt by burn!");
                 }
             }
         },
@@ -46,7 +46,7 @@ public class StatusConditionsDB{
                         damage += pokemon.StatusTime * pokemon.MaxHp / 16;
                     }
                     pokemon.DecreaseHP(damage);
-                    pokemon.AddStatusEvet( StatusEventType.Damage, $"{pokemon.Base.Name} is hurt by poison badly!");
+                    pokemon.AddStatusEvent( StatusEventType.Damage, $"{pokemon.Base.Name} is hurt by poison badly!");
                     pokemon.StatusTime++;
                 }
             }
@@ -57,7 +57,7 @@ public class StatusConditionsDB{
                 StartMessage = "has been paralyzed!",
                 OnBeforeMove = (Pokemon pokemon) => {
                     if (Random.Range(1, 5) == 1){
-                        pokemon.AddStatusEvet($"{pokemon.Base.Name} is fully paralyzed. It can't move!");
+                        pokemon.AddStatusEvent($"{pokemon.Base.Name} is fully paralyzed. It can't move!");
                         return false;
                     }
                     return true;
@@ -70,11 +70,11 @@ public class StatusConditionsDB{
                 StartMessage = "has been frozen solid!",
                 OnBeforeMove = (Pokemon pokemon) => {
                     if (Random.Range(1, 5) == 1){
-                        pokemon.AddStatusEvet($"{pokemon.Base.Name} thawed out!");
+                        pokemon.AddStatusEvent($"{pokemon.Base.Name} thawed out!");
                         pokemon.CureStatus();
                         return true;
                     }
-                    pokemon.AddStatusEvet($"{pokemon.Base.Name} is frozen solid. It can't move!");
+                    pokemon.AddStatusEvent($"{pokemon.Base.Name} is frozen solid. It can't move!");
                     return false;
                 }
             }
@@ -85,26 +85,25 @@ public class StatusConditionsDB{
                 StartMessage = "has been frostbitten!",
                 OnAfterTurn = (Pokemon pokemon) =>{
                     pokemon.DecreaseHP(pokemon.MaxHp / 16);
-                    pokemon.AddStatusEvet( StatusEventType.Damage, $"{pokemon.Base.Name} is hurt by frostbite!");
+                    pokemon.AddStatusEvent( StatusEventType.Damage, $"{pokemon.Base.Name} is hurt by frostbite!");
                 }
             }
         },
         { StatusConditionID.Sleep,
             new StatusCondition{
                 Name = "Sleep",
-                StartMessage = "has fallen asleep!",
+                StartMessage = "fell asleep!",
                 OnStart = (Pokemon pokemon) => {
-                    pokemon.AddStatusEvet($"{pokemon.Base.Name} fell asleep!");
                     pokemon.StatusTime = Random.Range(1, 4);
                 },
                 OnBeforeMove = (Pokemon pokemon) => {
                     if (pokemon.StatusTime <= 0){
                         pokemon.CureStatus();
-                        pokemon.AddStatusEvet($"{pokemon.Base.Name} woke up!");
+                        pokemon.AddStatusEvent($"{pokemon.Base.Name} woke up!");
                         return true;
                     }
                     pokemon.StatusTime--;
-                    pokemon.AddStatusEvet($"{pokemon.Base.Name} is fast asleep. It can't move!");
+                    pokemon.AddStatusEvent($"{pokemon.Base.Name} is fast asleep. It can't move!");
                     return false;
                 }
             }
@@ -119,7 +118,7 @@ public class StatusConditionsDB{
                 OnBeforeMove = (Pokemon pokemon) => {
                     if (pokemon.VolatileStatusTime <= 0){
                         pokemon.CureVolatileStatus();
-                        pokemon.AddStatusEvet($"{pokemon.Base.Name} kickesd off its confusion!");
+                        pokemon.AddStatusEvent($"{pokemon.Base.Name} snapped out of its confusion!");
                         return true;
                     }
                     pokemon.VolatileStatusTime--;
@@ -127,23 +126,34 @@ public class StatusConditionsDB{
                     if(Random.Range(1, 3) == 1){
                         return true;
                     }
-                    pokemon.AddStatusEvet($"{pokemon.Base.Name} is confused.");
+                    pokemon.AddStatusEvent($"{pokemon.Base.Name} is confused.");
                     pokemon.DecreaseHP(pokemon.MaxHp / 8);
-                    pokemon.AddStatusEvet( StatusEventType.Damage, $"{pokemon.Base.Name} hurt itself in its confusion!");
+                    pokemon.AddStatusEvent( StatusEventType.Damage, $"{pokemon.Base.Name} hurt itself in its confusion!");
+                    return false;
+                }
+            }
+        },
+        { StatusConditionID.Flinch,
+            new StatusCondition{
+                Name = "Flinch",
+                StartMessage = "flinched!",
+                OnBeforeMove = (Pokemon pokemon) => {
+                    pokemon.CureVolatileStatus();
+                    pokemon.AddStatusEvent($"{pokemon.Base.Name} flinched and couldn't move!");
                     return false;
                 }
             }
         },
     };
-    public static float GetStatusBonus(StatusCondition condition){
-        if(condition == null){
+    public static float GetStatusBonus(StatusCondition condition) {
+        if(condition == null) {
             return 1f;
         } else if(condition.Id == StatusConditionID.Sleep || condition.Id == StatusConditionID.Frozen) {
             return 2f;
-        } else if(condition.Id == StatusConditionID.Poison || condition.Id == StatusConditionID.Paralyze || condition.Id == StatusConditionID.Burn) {
+        } else if(condition.Id == StatusConditionID.Poison || condition.Id == StatusConditionID.Paralyze || condition.Id == StatusConditionID.Burn || condition.Id == StatusConditionID.FrostBite || condition.Id == StatusConditionID.Toxic) {
             return 1.5f;
         }
-        
+
         return 1f;
     }
 }
